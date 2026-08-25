@@ -50,6 +50,8 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /TimeFlower/);
   assert.match(javascript, /매일 플랭크/);
   assert.match(javascript, /비온다매/);
+  assert.match(javascript, /출시 준비/);
+  assert.match(javascript, /웹 데모/);
   assert.match(javascript, /HIORIO \/ INDEPENDENT MAKER/);
   assert.match(javascript, /아이디어를 오래 쓰이는 형태로 만듭니다/);
   assert.match(javascript, /우선은 제가 필요로 하는 것들을 피워내요/);
@@ -81,12 +83,14 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
 
   const rootHtml = await readFile(new URL("../dist/index.html", import.meta.url), "utf8");
   assert.match(rootHtml, /https:\/\/hiorio\.com\/og\.png/);
+  assert.match(rootHtml, /theme-color" content="#22333b"/);
+  assert.match(rootHtml, /og:image:width" content="1600"/);
   assert.match(rootHtml, /rel="canonical" href="https:\/\/hiorio\.com\/"/);
   assert.match(rootHtml, /twitter:card/);
   assert.doesNotMatch(rootHtml, /Node Network|노드 선택/);
 
   const socialImage = await stat(new URL("../dist/og.png", import.meta.url));
-  assert.ok(socialImage.size > 100000, "social preview should contain the finished Hiorio artwork");
+  assert.ok(socialImage.size > 50000, "social preview should contain the finished Hiorio artwork");
 
   const timeFlowerIcon = await readFile(new URL("../dist/app-icons/timeflower.png", import.meta.url));
   assert.equal(

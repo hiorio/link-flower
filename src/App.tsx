@@ -5,11 +5,17 @@ import { defaultNodeId, nodes } from "./nodes";
 import { DailyPlankPage, dailyPlankCopy } from "./DailyPlankPage";
 import { TimeFlowerPage, timeFlowerCopy } from "./TimeFlowerPage";
 import { SHOW_HORROR_DOPAMINE } from "./visibility";
+import { useSiteMotion } from "./useSiteMotion";
 
 type RouteId = "root" | "channels" | "apps" | "dohwaji" | "timeflower" | "dailyplank" | "horror";
 type Copy = (typeof ui)[Locale];
 
 const basePath = import.meta.env.BASE_URL;
+const localeAccessibleNames: Record<Locale, string> = {
+  ko: "한국어",
+  en: "English",
+  ja: "日本語",
+};
 
 function routeHref(route: RouteId) {
   if (route === "root") return basePath;
@@ -43,23 +49,27 @@ function SiteHeader({ activeRoute, copy, locale, setLocale }: {
 
   return (
     <header className="network-bar">
+      <a className="skip-link" href="#page-content">{copy.skipToContent}</a>
       <a className="network-name" href={routeHref("root")}>
         <span className="record-dot" aria-hidden="true" />
         HIORIO
       </a>
       <div className="network-controls">
         <nav className="node-switcher" aria-label={copy.nodeNetworkLabel}>
-          {routes.map((route) => (
-            <a className={activeRoute === route.id
+          {routes.map((route) => {
+            const isActive = activeRoute === route.id
               || ((activeRoute === "dohwaji" || activeRoute === "timeflower" || activeRoute === "dailyplank") && route.id === "apps")
-              || (activeRoute === "horror" && route.id === "channels") ? "is-active" : ""} href={routeHref(route.id)} key={route.id}>
-              <span>{route.label}</span>
-            </a>
-          ))}
+              || (activeRoute === "horror" && route.id === "channels");
+            return (
+              <a aria-current={isActive ? "page" : undefined} className={isActive ? "is-active" : ""} href={routeHref(route.id)} key={route.id}>
+                <span>{route.label}</span>
+              </a>
+            );
+          })}
         </nav>
         <div className="language-switcher" role="group" aria-label={copy.languageLabel}>
           {supportedLocales.map((item) => (
-            <button className={item === locale ? "is-active" : ""} key={item} type="button"
+            <button aria-label={localeAccessibleNames[item]} className={item === locale ? "is-active" : ""} key={item} lang={item} type="button"
               aria-pressed={item === locale} onClick={() => setLocale(item)}>
               {localeLabels[item]}
             </button>
@@ -76,7 +86,7 @@ function RootPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
       <div className="root-grid-bg" aria-hidden="true" />
       <SiteHeader activeRoute="root" copy={copy} locale={locale} setLocale={setLocale} />
 
-      <section className="garden-hero" aria-labelledby="root-page-title">
+      <section className="garden-hero" id="page-content" aria-labelledby="root-page-title">
         <div className="garden-hero-copy">
           <div className="garden-eyebrow"><span>{copy.rootKicker}</span><i aria-hidden="true" /></div>
           <h1 id="root-page-title">{copy.rootTitle}</h1>
@@ -84,9 +94,12 @@ function RootPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
           <p className="garden-intro">
             {copy.rootDescription.map((line) => <span key={line}>{line}</span>)}
           </p>
-          <a className="garden-scroll-link" href="#work-index">
-            <span>01</span>{copy.rootSectionTitle}<b aria-hidden="true">↓</b>
-          </a>
+          <div className="garden-hero-actions">
+            <a className="garden-primary-link" href={routeHref("apps")}>{copy.appsCardTitle}<b aria-hidden="true">↗</b></a>
+            <a className="garden-scroll-link" href="#work-index">
+              <span>01</span>{copy.rootSectionTitle}<b aria-hidden="true">↓</b>
+            </a>
+          </div>
         </div>
 
         <div className="garden-hero-flower" aria-hidden="true">
@@ -194,7 +207,7 @@ function RootPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
                   return (
                     <li key={app.id}>
                       <a href={`${routeHref("apps")}#${app.id}`}>
-                        <span className="garden-app-icon"><img src={`${basePath}${app.icon}`} alt="" /></span>
+                        <span className="garden-app-icon"><img src={`${basePath}${app.icon}`} alt="" width="78" height="78" loading="lazy" decoding="async" /></span>
                         <strong>{content.displayName}</strong>
                         <small>{content.tagline}</small>
                       </a>
@@ -249,7 +262,7 @@ function ChannelsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale;
       <div className="channels-grid-bg" aria-hidden="true" />
       <SiteHeader activeRoute="channels" copy={copy} locale={locale} setLocale={setLocale} />
 
-      <section className="simple-node-hero" aria-labelledby="channels-page-title">
+      <section className="simple-node-hero" id="page-content" aria-labelledby="channels-page-title">
         <div className="simple-node-copy">
           <div className="simple-kicker"><span>{copy.channelsKicker}</span><span>SOCIAL / EXTERNAL</span></div>
           <h1 id="channels-page-title" className="simple-title">
@@ -290,6 +303,11 @@ function ChannelsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale;
 
 function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; setLocale: (locale: Locale) => void }) {
   const linkLabel = (kind: "web" | "appStore" | "support") => ({ web: copy.appLinkWeb, appStore: copy.appLinkAppStore, support: copy.appLinkSupport })[kind];
+  const statusLabel = (status: (typeof productApps)[number]["status"]) => ({
+    live: copy.appStatus,
+    preparing: copy.appStatusPreparing,
+    demo: copy.appStatusDemo,
+  })[status];
   const liveCount = productApps.filter((app) => app.status === "live").length;
   const detailHref = (id: string) => id === "dohwaji" ? routeHref("dohwaji") : id === "timeflower" ? routeHref("timeflower") : id === "dailyplank" ? routeHref("dailyplank") : undefined;
 
@@ -298,7 +316,7 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
       <div className="development-grid-bg" aria-hidden="true" />
       <SiteHeader activeRoute="apps" copy={copy} locale={locale} setLocale={setLocale} />
 
-      <section className="development-hero" aria-labelledby="apps-page-title">
+      <section className="development-hero" id="page-content" aria-labelledby="apps-page-title">
         <div className="development-copy">
           <div className="development-kicker"><span>{copy.appsKicker}</span><span>DESIGN / GROW / OPERATE</span></div>
           <h1 id="apps-page-title" className="development-title">{copy.appsTitle}</h1>
@@ -310,32 +328,16 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
             <i className="garden-stem" aria-hidden="true" />
             {productApps.map((app) => {
               const content = app.content[locale];
-              return <div className={`garden-bloom bloom-${app.order} garden-${app.accent}`} key={app.id}><span>{app.order}</span><img alt="" src={`${basePath}${app.icon}`} /><div><strong>{content.displayName}</strong><small>{copy.appStatus}</small></div></div>;
+              return <a aria-label={`${content.displayName} — ${copy.appDetail}`} className={`garden-bloom bloom-${app.order} garden-${app.accent}`} href={`#${app.id}`} key={app.id}><span>{app.order}</span><img alt="" src={`${basePath}${app.icon}`} width="70" height="70" decoding="async" /><div><strong>{content.displayName}</strong><small>{statusLabel(app.status)}</small></div></a>;
             })}
           </div>
           <div className="garden-foot"><span>{copy.appStatus} {String(liveCount).padStart(2, "0")}</span></div>
         </aside>
       </section>
 
-      <section className="development-principles" aria-labelledby="app-principles-title">
-        <div className="section-heading development-heading principles-heading">
-          <div><span className="section-index">01</span><h2 id="app-principles-title">{copy.appsPrinciplesTitle}</h2></div>
-          <p>{copy.appsPrinciplesHint.toUpperCase()}</p>
-        </div>
-        <div className="principles-list">
-          {copy.appsPrinciples.map((principle, index) => (
-            <article className="principle-card" key={principle.code}>
-              <div className="principle-meta"><span>{String(index + 1).padStart(2, "0")}</span><small>{principle.code}</small></div>
-              <h3>{principle.title}</h3>
-              <p>{principle.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section className="app-products development-products" aria-labelledby="app-products-title">
         <div className="section-heading development-heading">
-          <div><span className="section-index">02</span><h2 id="app-products-title">{copy.appsSectionTitle}</h2></div>
+          <div><span className="section-index">01</span><h2 id="app-products-title">{copy.appsSectionTitle}</h2></div>
           <p>{copy.appsSectionHint.toUpperCase()}</p>
         </div>
         <div className="product-catalog">
@@ -349,7 +351,7 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
                   <i />
                 </div>
                 <div className="catalog-identity">
-                  <img className="catalog-icon" src={`${basePath}${app.icon}`} alt="" />
+                  <img className="catalog-icon" src={`${basePath}${app.icon}`} alt="" width="112" height="112" loading="lazy" decoding="async" />
                   <div>
                     <span className="catalog-code">{app.code}</span>
                     <h3>{content.displayName}</h3>
@@ -359,7 +361,7 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
                 <div className="catalog-details">
                   <div className="catalog-meta">
                     <div>{app.platforms.map((platform) => <span key={platform}>{platform}</span>)}</div>
-                    <div><span>v{app.version}</span><span className="catalog-status"><i />{copy.appStatus}</span></div>
+                    <div><span>v{app.version}</span><span className={`catalog-status status-${app.status}`}><i />{statusLabel(app.status)}</span></div>
                   </div>
                   <p>{content.description}</p>
                   <ul>{content.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
@@ -374,6 +376,22 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
               </article>
             );
           })}
+        </div>
+      </section>
+
+      <section className="development-principles" aria-labelledby="app-principles-title">
+        <div className="section-heading development-heading principles-heading">
+          <div><span className="section-index">02</span><h2 id="app-principles-title">{copy.appsPrinciplesTitle}</h2></div>
+          <p>{copy.appsPrinciplesHint.toUpperCase()}</p>
+        </div>
+        <div className="principles-list">
+          {copy.appsPrinciples.map((principle, index) => (
+            <article className="principle-card" key={principle.code}>
+              <div className="principle-meta"><span>{String(index + 1).padStart(2, "0")}</span><small>{principle.code}</small></div>
+              <h3>{principle.title}</h3>
+              <p>{principle.description}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -395,7 +413,7 @@ function DohwajiPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; 
       <div className="dohwaji-grid-bg" aria-hidden="true" />
       <SiteHeader activeRoute="dohwaji" copy={copy} locale={locale} setLocale={setLocale} />
 
-      <section className="dohwaji-hero" aria-labelledby="dohwaji-page-title">
+      <section className="dohwaji-hero" id="page-content" aria-labelledby="dohwaji-page-title">
         <div className="dohwaji-copy">
           <div className="dohwaji-kicker"><span>APP NODE 01-A</span><span>MAP / DRAW / SHARE</span></div>
           <p className="dohwaji-eyebrow">{copy.dohwajiEyebrow}</p>
@@ -507,6 +525,7 @@ export default function App() {
   const [locale, setLocale] = useState<Locale>(detectLocale);
   const route = getRoute();
   const copy = ui[locale];
+  useSiteMotion(route);
 
   useEffect(() => {
     const metadata = {

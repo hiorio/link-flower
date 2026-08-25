@@ -1,0 +1,756 @@
+/* HIORIO / Living Index refinement layer
+   Shared navigation and motion stay consistent; each product keeps its own material. */
+
+@view-transition {
+  navigation: auto;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: rgba(169, 146, 125, .55) transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { border-radius: 999px; background: rgba(169, 146, 125, .48); }
+
+.network-name {
+  view-transition-name: hiorio-brand;
+}
+
+::view-transition-old(root) {
+  animation: hiorio-page-out 180ms ease both;
+}
+
+::view-transition-new(root) {
+  animation: hiorio-page-in 420ms cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.site-shell .network-bar {
+  --page-progress: 0%;
+  position: sticky;
+  z-index: 50;
+  top: 0;
+  isolation: isolate;
+  transition: box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.site-shell .network-bar::after {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  width: var(--page-progress);
+  height: 2px;
+  background: var(--page-accent, currentColor);
+  content: "";
+  opacity: .78;
+  pointer-events: none;
+}
+
+.site-shell.is-scrolled .network-bar {
+  box-shadow: 0 12px 34px rgba(15, 24, 22, .08);
+}
+
+.site-shell .record-dot {
+  animation: none;
+}
+
+.site-shell :where(.node-switcher a, .language-switcher button) {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.site-shell :where(a, button):focus-visible {
+  outline: 2px solid currentColor !important;
+  outline-offset: 4px !important;
+}
+
+.site-shell [id] {
+  scroll-margin-top: 92px;
+}
+
+.site-shell:not(.garden-root) .network-name {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 10px;
+  left: max(12px, calc(50% - 570px));
+  padding: 11px 15px;
+  border-radius: 999px;
+  background: #f2f4f3;
+  color: #22333b;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  translate: 0 -160%;
+  transition: translate 160ms ease;
+}
+
+.skip-link:focus {
+  translate: 0 0;
+}
+
+/* View-linked reveal system. Translate is used separately so existing art transforms remain intact. */
+.motion-ready .reveal-item {
+  opacity: 0;
+  translate: 0 28px;
+  transition:
+    opacity 700ms cubic-bezier(.2, .72, .2, 1) var(--reveal-delay, 0ms),
+    translate 850ms cubic-bezier(.16, 1, .3, 1) var(--reveal-delay, 0ms);
+}
+
+.motion-ready .reveal-item.is-revealed {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.depth-item {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --parallax-x: 0px;
+  --parallax-y: 0px;
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+}
+
+.garden-hero-flower.depth-item svg,
+.development-garden.depth-item .garden-plot {
+  transform: perspective(1200px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x));
+  transform-style: preserve-3d;
+  transition: transform 260ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.dohwaji-web-shot.depth-item {
+  transform: perspective(1300px) rotateZ(1deg) rotateX(var(--tilt-y)) rotateY(var(--tilt-x));
+  transition: transform 260ms cubic-bezier(.2, .8, .2, 1), box-shadow 260ms ease;
+}
+
+.dohwaji-web-shot.depth-item .dohwaji-shot-window img {
+  scale: 1.02;
+  translate: var(--parallax-x) var(--parallax-y);
+  transition: translate 260ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.timeflower-calendar.depth-item {
+  transform: perspective(1400px) rotateZ(-1deg) rotateX(var(--tilt-y)) rotateY(var(--tilt-x));
+  transition: transform 260ms cubic-bezier(.2, .8, .2, 1), box-shadow 260ms ease;
+}
+
+.dailyplank-console.depth-item .dailyplank-phone {
+  transform: translateX(-50%) rotate(2deg) perspective(1200px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x));
+  transition: transform 260ms cubic-bezier(.2, .8, .2, 1), box-shadow 260ms ease;
+}
+
+/* ROOT / top-level living index — priority palette: Slate, Soft White, Taupe. */
+.garden-root {
+  --garden-paper: #22333b;
+  --garden-paper-deep: #18262c;
+  --garden-ink: #f2f4f3;
+  --garden-ink-soft: #c5cbc8;
+  --garden-leaf: #7f9279;
+  --garden-coral: #a9927d;
+  --garden-line: rgba(242, 244, 243, .15);
+  --page-accent: #a9927d;
+  background:
+    repeating-linear-gradient(0deg, rgba(242, 244, 243, .017) 0, rgba(242, 244, 243, .017) 1px, transparent 1px, transparent 4px),
+    var(--garden-paper);
+  box-shadow: 0 0 0 100vmax var(--garden-paper);
+}
+
+html:has(.garden-root),
+body:has(.garden-root) {
+  background: #22333b;
+}
+
+.garden-root .root-grid-bg {
+  background:
+    radial-gradient(circle at 83% 12%, rgba(169, 146, 125, .18), transparent 29%),
+    radial-gradient(circle at 10% 58%, rgba(94, 80, 63, .24), transparent 26%),
+    linear-gradient(rgba(242, 244, 243, .026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242, 244, 243, .026) 1px, transparent 1px),
+    repeating-linear-gradient(0deg, rgba(242, 244, 243, .015) 0, rgba(242, 244, 243, .015) 1px, transparent 1px, transparent 4px),
+    #22333b;
+  background-size: auto, auto, 72px 72px, 72px 72px, auto, auto;
+}
+
+.garden-root::before,
+.garden-root::after {
+  background: rgba(242, 244, 243, .11);
+}
+
+.garden-root .network-bar {
+  border-color: var(--garden-line);
+  background: rgba(34, 51, 59, .86);
+  backdrop-filter: blur(18px) saturate(125%);
+}
+
+.garden-root .network-name,
+.garden-root .node-switcher a:hover,
+.garden-root .node-switcher a.is-active,
+.garden-root .language-switcher button.is-active {
+  color: var(--garden-ink);
+}
+
+.garden-root .record-dot {
+  background: #a9927d;
+}
+
+.garden-root .node-switcher a,
+.garden-root .language-switcher button {
+  color: #c0c5c2;
+}
+
+.garden-root .node-switcher a::after {
+  background: #a9927d;
+}
+
+.garden-root .language-switcher {
+  border-color: var(--garden-line);
+}
+
+.garden-eyebrow,
+.garden-index-heading div > p,
+.branch-content header p,
+.flower-caption {
+  color: #b8c0bc;
+}
+
+.garden-promise,
+.garden-hero h1 {
+  color: var(--garden-ink);
+}
+
+.garden-intro,
+.garden-index-heading > p,
+.branch-description,
+.garden-app-list small,
+.garden-content-entry small,
+.garden-root .root-footer {
+  color: var(--garden-ink-soft);
+}
+
+.garden-scroll-link,
+.branch-content header > a {
+  border-color: var(--garden-ink);
+  color: var(--garden-ink);
+}
+
+.garden-hero-actions {
+  display: flex;
+  margin-top: 42px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+}
+
+.garden-primary-link {
+  display: inline-flex;
+  min-height: 48px;
+  padding: 0 19px;
+  border: 1px solid #f2f4f3;
+  border-radius: 999px;
+  background: #f2f4f3;
+  color: #22333b;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: translate 180ms ease, box-shadow 180ms ease;
+}
+
+.garden-primary-link:hover {
+  box-shadow: 0 14px 30px rgba(9, 19, 23, .25);
+  translate: 0 -2px;
+}
+
+.garden-primary-link b {
+  color: #a26f50;
+  font-size: 15px;
+}
+
+.garden-hero-actions .garden-scroll-link {
+  margin-top: 0;
+}
+
+.garden-root .hero-flower-wash {
+  fill: rgba(242, 244, 243, .035);
+}
+
+.garden-root .hero-flower-orbit {
+  stroke: rgba(169, 146, 125, .42);
+}
+
+.garden-root .hero-flower-center {
+  fill: #a9927d;
+  stroke: #5e503f;
+}
+
+.garden-root .hero-flower-stamens path {
+  stroke: #a9927d;
+}
+
+.garden-root .hero-flower-stamens circle {
+  fill: #d4b08d;
+  stroke: #5e503f;
+}
+
+.garden-root .garden-trunk {
+  background: linear-gradient(#a9927d, #6d7567 72%, transparent);
+}
+
+.garden-root .garden-trunk::before,
+.garden-root .garden-trunk::after,
+.garden-root .garden-trunk i {
+  border-color: #778473;
+  background: #687a68;
+}
+
+.garden-root .garden-branch::before {
+  border-color: #a9927d;
+}
+
+.garden-root .garden-app-list a {
+  border-radius: 18px 18px 7px 18px;
+  transition: background-color 180ms ease, color 180ms ease, translate 180ms ease;
+}
+
+.garden-root .garden-app-list a:hover,
+.garden-root .garden-app-list a:focus-visible {
+  background: rgba(242, 244, 243, .055);
+  translate: 0 -4px;
+}
+
+.garden-root .future-buds {
+  border-color: #a9927d;
+}
+
+.garden-root .future-buds i {
+  border-color: #a9927d;
+  background: #5e503f;
+}
+
+.garden-root .root-footer .footer-node {
+  color: var(--garden-ink);
+}
+
+.garden-root .garden-branch-future {
+  opacity: .68;
+}
+
+.motion-ready .hero-stems path {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: hiorio-stem-draw 1500ms cubic-bezier(.2, .8, .2, 1) 160ms forwards;
+}
+
+.motion-ready .hero-flower-petals {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hiorio-bloom-in 1200ms cubic-bezier(.16, 1, .3, 1) 180ms both,
+    hiorio-bloom-breathe 8s ease-in-out 1500ms infinite;
+}
+
+.motion-ready .hero-leaves {
+  transform-box: fill-box;
+  transform-origin: 52% 88%;
+  animation: hiorio-leaf-sway 9s ease-in-out 1600ms infinite;
+}
+
+/* APPS / clickable product register */
+.development-shell {
+  --page-accent: #517454;
+  overflow-x: clip;
+  background: #f3f0e7;
+  box-shadow: 0 0 0 100vmax #f3f0e7;
+}
+
+html:has(.development-shell),
+body:has(.development-shell) {
+  background: #f3f0e7;
+}
+
+.development-shell .network-bar {
+  backdrop-filter: blur(18px) saturate(125%);
+}
+
+.garden-bloom {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: translate 220ms cubic-bezier(.2, .8, .2, 1), box-shadow 220ms ease, background-color 220ms ease;
+}
+
+.garden-bloom::after {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  color: var(--garden-accent);
+  content: "↓";
+  font-size: 12px;
+  opacity: 0;
+  translate: 0 -65%;
+  transition: opacity 180ms ease, translate 180ms ease;
+}
+
+.garden-bloom:hover,
+.garden-bloom:focus-visible {
+  background: #fffdf8;
+  box-shadow: 0 18px 38px rgba(64, 69, 54, .14);
+  translate: 0 -5px;
+}
+
+.garden-bloom:hover::after,
+.garden-bloom:focus-visible::after {
+  opacity: 1;
+  translate: 0 -50%;
+}
+
+.product-catalog {
+  perspective: 1400px;
+}
+
+.catalog-entry {
+  scroll-margin-top: 92px;
+  transition: transform 260ms cubic-bezier(.2, .8, .2, 1), box-shadow 260ms ease, border-color 260ms ease;
+  transform-origin: center bottom;
+}
+
+.catalog-entry:hover {
+  border-color: color-mix(in srgb, var(--catalog-accent) 42%, transparent);
+  box-shadow: 0 28px 70px rgba(53, 64, 51, .13);
+  transform: translateY(-6px) rotateX(.45deg);
+}
+
+.catalog-status.status-preparing {
+  color: #9a6b31;
+}
+
+.catalog-status.status-demo {
+  color: #4f6fc3;
+}
+
+.status-preparing i {
+  background: #c4944f;
+}
+
+.status-demo i {
+  background: #607ed0;
+}
+
+.development-principles {
+  margin-top: 104px;
+  padding: 92px 0 98px;
+  border-top: 1px solid rgba(48, 64, 52, .14);
+}
+
+.principle-card,
+.dohwaji-feature-grid article {
+  transition: translate 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.principle-card:hover,
+.dohwaji-feature-grid article:hover {
+  border-color: rgba(81, 116, 84, .3);
+  box-shadow: 0 22px 55px rgba(64, 69, 54, .09);
+  translate: 0 -4px;
+}
+
+/* Product-specific corrections and purposeful micro-motion. */
+.dohwaji-shell { --page-accent: var(--dh-coral); }
+.timeflower-shell { --page-accent: var(--tf-apricot); --tf-faint: #75685f; }
+.dailyplank-shell { --page-accent: var(--dp-blue); --dp-faint: #667085; }
+
+.timeflower-shell .node-switcher a,
+.timeflower-shell .language-switcher button {
+  color: #6f625b;
+}
+
+.timeflower-status {
+  border-color: rgba(154, 107, 49, .36);
+  background: rgba(196, 148, 79, .08);
+  color: #8a5f29;
+}
+
+.timeflower-status i {
+  background: #c4944f;
+  box-shadow: 0 0 0 4px rgba(196, 148, 79, .12);
+}
+
+.dailyplank-shell .node-switcher a,
+.dailyplank-shell .language-switcher button {
+  color: #667085;
+}
+
+.timeflower-hero {
+  grid-template-columns: minmax(0, .95fr) minmax(480px, 1.05fr);
+  gap: clamp(34px, 4vw, 64px);
+}
+
+.timeflower-hero-copy {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+
+.timeflower-hero-copy h1 {
+  font-size: clamp(58px, 6.2vw, 86px);
+  white-space: nowrap;
+}
+
+.timeflower-kicker,
+.timeflower-calendar-top span,
+.timeflower-calendar-key span,
+.dailyplank-kicker,
+.dailyplank-origin-copy > span,
+.dailyplank-section-intro > span,
+.dailyplank-coach-copy > span,
+.dailyplank-record-copy > span {
+  font-size: 10px;
+}
+
+.timeflower-status,
+.timeflower-actions a,
+.timeflower-final a,
+.dailyplank-status,
+.dailyplank-primary,
+.dailyplank-back {
+  font-size: 10px;
+}
+
+.dailyplank-origin-copy h2,
+.dailyplank-section-intro h2,
+.dailyplank-coach h2,
+.dailyplank-record h2,
+.dailyplank-final h2 {
+  font-size: clamp(39px, 4.55vw, 60px);
+  overflow-wrap: normal;
+  text-wrap: balance;
+  word-break: keep-all;
+}
+
+.motion-ready .timeflower-calendar .event {
+  transform-origin: left center;
+  animation: hiorio-note-in 600ms cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.motion-ready .timeflower-calendar .event-us { animation-delay: 140ms; }
+.motion-ready .timeflower-calendar .event-birthday { animation-delay: 240ms; }
+.motion-ready .timeflower-calendar .event-trip { animation-delay: 340ms; }
+
+.motion-ready .dailyplank-timer {
+  animation: hiorio-training-breathe 3.8s ease-in-out infinite;
+}
+
+.motion-ready .dailyplank-cue-timeline article:nth-child(1) .cue-dot { animation: hiorio-cue 3.6s ease-in-out infinite; }
+.motion-ready .dailyplank-cue-timeline article:nth-child(2) .cue-dot { animation: hiorio-cue 3.6s ease-in-out 1.2s infinite; }
+.motion-ready .dailyplank-cue-timeline article:nth-child(3) .cue-dot { animation: hiorio-cue 3.6s ease-in-out 2.4s infinite; }
+
+@media (max-width: 1000px) {
+  .timeflower-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .timeflower-hero-copy h1 {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 720px) {
+  html[lang="ko"] .garden-promise {
+    white-space: normal;
+    overflow-wrap: normal;
+    text-wrap: balance;
+    word-break: keep-all;
+  }
+
+  .garden-hero {
+    padding-top: 54px;
+  }
+
+  .garden-hero-actions {
+    margin-top: 31px;
+  }
+
+  .garden-hero-flower {
+    width: min(82%, 310px);
+  }
+
+  .garden-hero-flower svg {
+    max-height: 360px;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-shell .network-bar {
+    min-height: 98px;
+    padding: 11px 0;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .site-shell [id],
+  .catalog-entry {
+    scroll-margin-top: 122px;
+  }
+
+  .site-shell .network-name {
+    min-height: 28px;
+  }
+
+  .site-shell .network-controls {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .site-shell .node-switcher {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .site-shell .node-switcher a {
+    min-width: auto;
+    min-height: 42px;
+    padding: 7px 9px;
+    font-size: 11px;
+  }
+
+  .site-shell .language-switcher button {
+    min-width: 40px;
+    min-height: 42px;
+    padding-inline: 5px;
+    font-size: 10px;
+  }
+
+  .development-products {
+    padding-top: 58px;
+  }
+
+  .development-principles {
+    margin-top: 70px;
+    padding: 70px 0 76px;
+  }
+
+  .dailyplank-week {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .dailyplank-week small {
+    font-size: 10px;
+  }
+
+  .dailyplank-week b {
+    font-size: 11px;
+  }
+
+  .dailyplank-week i {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 430px) {
+  .garden-hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .garden-primary-link,
+  .garden-hero-actions .garden-scroll-link {
+    width: 100%;
+  }
+
+  .garden-hero-actions .garden-scroll-link {
+    display: grid;
+  }
+
+  .garden-hero-flower {
+    width: min(84%, 290px);
+  }
+
+  .timeflower-hero-copy h1 {
+    font-size: clamp(46px, 13vw, 58px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  .motion-ready .hero-stems path,
+  .motion-ready .hero-flower-petals,
+  .motion-ready .hero-leaves,
+  .motion-ready .timeflower-calendar .event,
+  .motion-ready .dailyplank-timer,
+  .motion-ready .dailyplank-cue-timeline .cue-dot {
+    animation: none !important;
+  }
+
+  .motion-ready .reveal-item {
+    opacity: 1;
+    translate: 0;
+    transition: none;
+  }
+
+  .catalog-entry,
+  .garden-bloom,
+  .principle-card,
+  .dohwaji-feature-grid article {
+    transition: none;
+  }
+}
+
+@keyframes hiorio-page-out {
+  to { opacity: 0; transform: scale(.995); }
+}
+
+@keyframes hiorio-page-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+@keyframes hiorio-stem-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes hiorio-bloom-in {
+  from { opacity: 0; transform: scale(.84) rotate(-2deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes hiorio-bloom-breathe {
+  0%, 100% { transform: scale(1) rotate(0); }
+  50% { transform: scale(1.012) rotate(.35deg); }
+}
+
+@keyframes hiorio-leaf-sway {
+  0%, 100% { transform: rotate(0); }
+  50% { transform: rotate(.8deg); }
+}
+
+@keyframes hiorio-note-in {
+  from { opacity: 0; transform: translateX(-10px) scaleX(.78); }
+  to { opacity: 1; transform: translateX(0) scaleX(1); }
+}
+
+@keyframes hiorio-training-breathe {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(56, 89, 217, 0)); }
+  50% { filter: drop-shadow(0 10px 18px rgba(56, 89, 217, .16)); }
+}
+
+@keyframes hiorio-cue {
+  0%, 18%, 100% { scale: 1; }
+  9% { scale: 1.32; }
+}

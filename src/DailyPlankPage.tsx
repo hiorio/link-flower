@@ -55,7 +55,7 @@ export const dailyPlankCopy: Record<Locale, DailyPlankCopy> = {
     heroLine: "5분만 정하면, 다음은 앱이 챙깁니다.",
     heroDescription: "준비부터 운동과 휴식, 마지막 카운트다운까지. 음성과 진동을 따라 오늘의 루틴을 끝내세요.",
     openDemo: "웹 데모 열기",
-    status: "운영 중",
+    status: "웹 데모",
     backToApps: "앱 목록",
     timerLabel: "전체 0:47 / 5:00",
     currentStep: "니 플랭크",
@@ -104,7 +104,7 @@ export const dailyPlankCopy: Record<Locale, DailyPlankCopy> = {
     heroLine: "Pick five minutes. The app handles what comes next.",
     heroDescription: "From warm-up to work, rest, and the final countdown, follow voice and haptic cues to finish today's routine.",
     openDemo: "Open web demo",
-    status: "Live",
+    status: "Web demo",
     backToApps: "App index",
     timerLabel: "TOTAL 0:47 / 5:00",
     currentStep: "Knee plank",
@@ -153,7 +153,7 @@ export const dailyPlankCopy: Record<Locale, DailyPlankCopy> = {
     heroLine: "5分を選べば、次の動きはアプリにおまかせ。",
     heroDescription: "準備、運動、休憩、最後のカウントダウンまで。音声と振動に沿って今日のルーティンを終えましょう。",
     openDemo: "Webデモを開く",
-    status: "運営中",
+    status: "ウェブデモ",
     backToApps: "アプリ一覧",
     timerLabel: "全体 0:47 / 5:00",
     currentStep: "膝つきプランク",
@@ -248,7 +248,7 @@ export function DailyPlankPage({ header, locale, appsHref }: { header: ReactNode
       <div className="dailyplank-field" aria-hidden="true" />
       {header}
 
-      <section className="dailyplank-hero" aria-labelledby="dailyplank-page-title">
+      <section className="dailyplank-hero" id="page-content" aria-labelledby="dailyplank-page-title">
         <div className="dailyplank-hero-copy">
           <div className="dailyplank-kicker"><span>{copy.kicker}</span><span>{copy.signal}</span></div>
           <p className="dailyplank-eyebrow">{copy.eyebrow}</p>

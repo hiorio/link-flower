@@ -46,7 +46,7 @@ export const timeFlowerCopy: Record<Locale, TimeFlowerCopy> = {
     title: "TimeFlower",
     heroLine: "각자의 시간을, 한 장의 달력에.",
     heroDescription: "가족, 연인, 친구와 캘린더를 나누고 일정 안에서 장소와 준비물, 다음 이야기를 함께 정리하세요.",
-    status: "운영 중",
+    status: "출시 준비",
     backToApps: "앱 목록 보기",
     calendarLabel: "TimeFlower 공유 캘린더 예시",
     month: "8월",
@@ -91,7 +91,7 @@ export const timeFlowerCopy: Record<Locale, TimeFlowerCopy> = {
     title: "TimeFlower",
     heroLine: "Different lives, one calendar.",
     heroDescription: "Share calendars with family, partners, and friends, then keep places, plans, and the next conversation inside each event.",
-    status: "Live",
+    status: "Preparing",
     backToApps: "View app index",
     calendarLabel: "Example TimeFlower shared calendar",
     month: "August",
@@ -136,7 +136,7 @@ export const timeFlowerCopy: Record<Locale, TimeFlowerCopy> = {
     title: "TimeFlower",
     heroLine: "それぞれの時間を、一つのカレンダーに。",
     heroDescription: "家族、恋人、友人とカレンダーを共有し、場所や持ち物、その先の会話まで予定の中でまとめましょう。",
-    status: "運営中",
+    status: "リリース準備中",
     backToApps: "アプリ一覧を見る",
     calendarLabel: "TimeFlower共有カレンダーの例",
     month: "8月",
@@ -215,7 +215,7 @@ export function TimeFlowerPage({ header, locale, appsHref }: { header: ReactNode
       <div className="timeflower-paper" aria-hidden="true" />
       {header}
 
-      <section className="timeflower-hero" aria-labelledby="timeflower-page-title">
+      <section className="timeflower-hero" id="page-content" aria-labelledby="timeflower-page-title">
         <div className="timeflower-hero-copy">
           <div className="timeflower-kicker"><span>{copy.kicker}</span><span>{copy.signal}</span></div>
           <p className="timeflower-eyebrow">{copy.eyebrow}</p>

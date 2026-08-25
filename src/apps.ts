@@ -15,7 +15,7 @@ export type ProductApp = {
   version: string;
   platforms: string[];
   accent: "cyan" | "amber" | "apricot" | "cobalt" | "sky";
-  status: "live";
+  status: "live" | "preparing" | "demo";
   content: Record<Locale, LocalizedAppCopy>;
   links: Array<{
     kind: "web" | "appStore" | "support";
@@ -100,7 +100,7 @@ export const productApps: ProductApp[] = [
     version: "1.0.0",
     platforms: ["iOS", "ANDROID"],
     accent: "apricot",
-    status: "live",
+    status: "preparing",
     content: {
       ko: {
         displayName: "TimeFlower",
@@ -131,7 +131,7 @@ export const productApps: ProductApp[] = [
     version: "0.2.1",
     platforms: ["iOS", "ANDROID", "WEB DEMO"],
     accent: "cobalt",
-    status: "live",
+    status: "demo",
     content: {
       ko: {
         displayName: "매일 플랭크",
