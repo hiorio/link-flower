@@ -92,6 +92,10 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   const socialImage = await stat(new URL("../dist/og.png", import.meta.url));
   assert.ok(socialImage.size > 50000, "social preview should contain the finished Hiorio artwork");
 
+  const botanicalHero = await stat(new URL("../dist/hero-botanical.webp", import.meta.url));
+  assert.ok(botanicalHero.size > 100000, "root hero should contain the finished botanical artwork");
+  assert.match(javascript, /hero-botanical\.webp/);
+
   const timeFlowerIcon = await readFile(new URL("../dist/app-icons/timeflower.png", import.meta.url));
   assert.equal(
     createHash("sha256").update(timeFlowerIcon).digest("hex"),

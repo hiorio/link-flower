@@ -103,82 +103,15 @@ function RootPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
         </div>
 
         <div className="garden-hero-flower" aria-hidden="true">
-          <svg viewBox="0 0 520 600" role="presentation">
-            <defs>
-              <radialGradient id="heroPetal" cx="45%" cy="22%" r="88%">
-                <stop offset="0" stopColor="#fffef9" />
-                <stop offset="0.7" stopColor="#f3eadc" />
-                <stop offset="1" stopColor="#d8c5b2" />
-              </radialGradient>
-              <linearGradient id="heroLeaf" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stopColor="#8ea080" />
-                <stop offset="0.55" stopColor="#5f795f" />
-                <stop offset="1" stopColor="#365440" />
-              </linearGradient>
-              <linearGradient id="heroLeafSoft" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stopColor="#a9b092" />
-                <stop offset="1" stopColor="#667e61" />
-              </linearGradient>
-              <filter id="heroPetalShadow" x="-30%" y="-30%" width="160%" height="170%">
-                <feDropShadow dx="0" dy="7" stdDeviation="6" floodColor="#5e5145" floodOpacity="0.09" />
-              </filter>
-            </defs>
-
-            <ellipse className="hero-flower-wash" cx="286" cy="294" rx="208" ry="270" />
-            <path className="hero-flower-orbit" d="M87 326C81 188 163 70 286 32C400 58 470 166 462 307" />
-
-            <g className="hero-stems">
-              <path d="M308 584C303 493 307 407 293 326C285 278 278 234 274 190" />
-              <path d="M300 422C248 395 205 352 170 286" />
-              <path d="M305 482C349 443 394 422 457 427" />
-              <path d="M290 350C333 326 367 292 390 255" />
-            </g>
-
-            <g className="hero-leaves">
-              <path fill="url(#heroLeaf)" d="M289 392C248 355 193 354 145 388C183 426 241 430 289 392Z" />
-              <path fill="url(#heroLeafSoft)" d="M336 454C370 413 425 409 472 438C441 476 385 482 336 454Z" />
-              <path fill="url(#heroLeaf)" d="M321 326C341 286 382 266 425 276C412 317 370 341 321 326Z" />
-              <path fill="url(#heroLeafSoft)" d="M241 365C208 326 161 315 123 340C149 377 197 389 241 365Z" />
-              <path fill="url(#heroLeaf)" d="M258 472C223 440 178 438 141 464C168 496 215 502 258 472Z" />
-            </g>
-
-            <g className="hero-leaf-veins">
-              <path d="M283 390C235 389 190 389 150 389" />
-              <path d="M341 451C389 442 430 438 467 438" />
-              <path d="M326 323C361 306 394 290 421 278" />
-              <path d="M235 362C194 352 158 345 128 341" />
-              <path d="M253 470C214 467 177 465 145 465" />
-            </g>
-
-            <g className="hero-flower-petals" filter="url(#heroPetalShadow)">
-              {Array.from({ length: 9 }, (_, index) => <ellipse key={index} cx="274" cy="106" rx="39" ry="91" transform={`rotate(${index * 40} 274 190)`} />)}
-            </g>
-            <g className="hero-petal-veins">
-              {Array.from({ length: 9 }, (_, index) => {
-                const angle = ((index * 40) - 90) * Math.PI / 180;
-                return <path key={index} d={`M${274 + Math.cos(angle) * 30} ${190 + Math.sin(angle) * 30}L${274 + Math.cos(angle) * 96} ${190 + Math.sin(angle) * 96}`} />;
-              })}
-            </g>
-
-            <circle className="hero-flower-center" cx="274" cy="190" r="31" />
-            <g className="hero-flower-stamens">
-              {Array.from({ length: 22 }, (_, index) => {
-                const angle = (index / 22) * Math.PI * 2;
-                const innerX = 274 + Math.cos(angle) * 26;
-                const innerY = 190 + Math.sin(angle) * 26;
-                const outerX = 274 + Math.cos(angle) * 43;
-                const outerY = 190 + Math.sin(angle) * 43;
-                return <g key={index}><path d={`M${innerX} ${innerY}L${outerX} ${outerY}`} /><circle cx={outerX} cy={outerY} r="2.6" /></g>;
-              })}
-            </g>
-
-            <g className="hero-flower-bud">
-              <path className="bud-stem" d="M171 288C165 267 160 246 160 224" />
-              <ellipse cx="160" cy="210" rx="20" ry="44" transform="rotate(-13 160 210)" />
-              <ellipse cx="176" cy="218" rx="17" ry="38" transform="rotate(24 176 218)" />
-              <path className="bud-sepal" d="M145 242C159 232 174 233 187 246C171 255 156 254 145 242Z" />
-            </g>
-          </svg>
+          <img
+            className="garden-flower-art"
+            src={`${basePath}hero-botanical.webp`}
+            alt=""
+            width="1024"
+            height="1536"
+            decoding="async"
+            fetchPriority="high"
+          />
           <span className="flower-caption">IDEAS → ROOTS → BLOOM</span>
         </div>
       </section>

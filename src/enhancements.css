@@ -123,9 +123,9 @@ html {
   --pointer-y: 50%;
 }
 
-.garden-hero-flower.depth-item svg,
+.garden-hero-flower.depth-item .garden-flower-art,
 .development-garden.depth-item .garden-plot {
-  transform: perspective(1200px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x));
+  transform: translate3d(var(--parallax-x), var(--parallax-y), 0) perspective(1200px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x));
   transform-style: preserve-3d;
   transition: transform 260ms cubic-bezier(.2, .8, .2, 1);
 }
@@ -284,28 +284,6 @@ body:has(.garden-root) {
   margin-top: 0;
 }
 
-.garden-root .hero-flower-wash {
-  fill: rgba(242, 244, 243, .035);
-}
-
-.garden-root .hero-flower-orbit {
-  stroke: rgba(169, 146, 125, .42);
-}
-
-.garden-root .hero-flower-center {
-  fill: #a9927d;
-  stroke: #5e503f;
-}
-
-.garden-root .hero-flower-stamens path {
-  stroke: #a9927d;
-}
-
-.garden-root .hero-flower-stamens circle {
-  fill: #d4b08d;
-  stroke: #5e503f;
-}
-
 .garden-root .garden-trunk {
   background: linear-gradient(#a9927d, #6d7567 72%, transparent);
 }
@@ -349,23 +327,20 @@ body:has(.garden-root) {
   opacity: .68;
 }
 
-.motion-ready .hero-stems path {
-  stroke-dasharray: 900;
-  stroke-dashoffset: 900;
-  animation: hiorio-stem-draw 1500ms cubic-bezier(.2, .8, .2, 1) 160ms forwards;
+.garden-flower-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(76vh, 720px);
+  object-fit: contain;
+  filter: saturate(.86) contrast(1.04) drop-shadow(0 24px 36px rgba(6, 13, 16, .22));
+  transform-origin: 54% 96%;
+  will-change: transform;
 }
 
-.motion-ready .hero-flower-petals {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: hiorio-bloom-in 1200ms cubic-bezier(.16, 1, .3, 1) 180ms both,
-    hiorio-bloom-breathe 8s ease-in-out 1500ms infinite;
-}
-
-.motion-ready .hero-leaves {
-  transform-box: fill-box;
-  transform-origin: 52% 88%;
-  animation: hiorio-leaf-sway 9s ease-in-out 1600ms infinite;
+.motion-ready .garden-flower-art {
+  animation: hiorio-botanical-enter 950ms cubic-bezier(.16, 1, .3, 1) 160ms both,
+    hiorio-botanical-sway 9.5s ease-in-out 1500ms infinite;
 }
 
 /* APPS / clickable product register */
@@ -587,8 +562,8 @@ body:has(.development-shell) {
     width: min(82%, 310px);
   }
 
-  .garden-hero-flower svg {
-    max-height: 360px;
+  .garden-flower-art {
+    max-height: 470px;
   }
 }
 
@@ -690,9 +665,7 @@ body:has(.development-shell) {
 
   ::view-transition-old(root),
   ::view-transition-new(root),
-  .motion-ready .hero-stems path,
-  .motion-ready .hero-flower-petals,
-  .motion-ready .hero-leaves,
+  .motion-ready .garden-flower-art,
   .motion-ready .timeflower-calendar .event,
   .motion-ready .dailyplank-timer,
   .motion-ready .dailyplank-cue-timeline .cue-dot {
@@ -721,23 +694,14 @@ body:has(.development-shell) {
   from { opacity: 0; transform: translateY(8px); }
 }
 
-@keyframes hiorio-stem-draw {
-  to { stroke-dashoffset: 0; }
+@keyframes hiorio-botanical-enter {
+  from { opacity: 0; translate: 0 16px; scale: .985; }
+  to { opacity: 1; translate: 0 0; scale: 1; }
 }
 
-@keyframes hiorio-bloom-in {
-  from { opacity: 0; transform: scale(.84) rotate(-2deg); }
-  to { opacity: 1; transform: scale(1) rotate(0); }
-}
-
-@keyframes hiorio-bloom-breathe {
-  0%, 100% { transform: scale(1) rotate(0); }
-  50% { transform: scale(1.012) rotate(.35deg); }
-}
-
-@keyframes hiorio-leaf-sway {
-  0%, 100% { transform: rotate(0); }
-  50% { transform: rotate(.8deg); }
+@keyframes hiorio-botanical-sway {
+  0%, 100% { rotate: -.28deg; }
+  50% { rotate: .28deg; }
 }
 
 @keyframes hiorio-note-in {

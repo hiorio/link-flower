@@ -3827,88 +3827,17 @@ html[lang="ko"] .garden-promise {
 
 .garden-hero-flower {
   position: relative;
-  width: min(92%, 470px);
+  width: min(96%, 500px);
   align-self: center;
   justify-self: center;
-  transform: translate(10px, 12px);
+  transform: translate(18px, 12px);
 }
 
-.garden-hero-flower svg {
+.garden-flower-art {
   display: block;
   width: 100%;
-  overflow: visible;
-  filter: drop-shadow(0 24px 24px rgba(48, 67, 46, 0.055));
-}
-
-.hero-flower-wash { fill: rgba(232, 229, 214, 0.56); }
-.hero-flower-orbit { fill: none; stroke: rgba(74, 103, 75, 0.2); stroke-width: 1; }
-
-.hero-stems {
-  fill: none;
-  stroke: #49644d;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 3.2;
-}
-
-.hero-leaves path {
-  stroke: #385641;
-  stroke-linejoin: round;
-  stroke-width: 1.15;
-}
-
-.hero-leaf-veins,
-.hero-petal-veins {
-  fill: none;
-  stroke-linecap: round;
-}
-
-.hero-leaf-veins {
-  stroke: rgba(49, 78, 56, 0.54);
-  stroke-width: 0.9;
-}
-
-.hero-flower-petals ellipse {
-  fill: url(#heroPetal);
-  stroke: #968979;
-  stroke-width: 1.05;
-}
-
-.hero-petal-veins {
-  stroke: rgba(130, 118, 99, 0.46);
-  stroke-width: 0.75;
-}
-
-.hero-flower-center {
-  fill: #bd6542;
-  stroke: #91482f;
-  stroke-width: 1.4;
-}
-
-.hero-flower-stamens path {
-  fill: none;
-  stroke: #a95536;
-  stroke-linecap: round;
-  stroke-width: 1.1;
-}
-
-.hero-flower-stamens circle {
-  fill: #d68a52;
-  stroke: #9f4f34;
-  stroke-width: 0.55;
-}
-
-.hero-flower-bud ellipse {
-  fill: url(#heroPetal);
-  stroke: #827a69;
-  stroke-width: 1;
-}
-
-.hero-flower-bud .bud-stem { fill: none; stroke: #49644d; stroke-linecap: round; stroke-width: 2.5; }
-.hero-flower-bud .bud-sepal {
-  fill: #60795d;
-  stroke: #405b46;
-  stroke-width: 1;
+  height: auto;
+  filter: drop-shadow(0 24px 36px rgba(48, 67, 46, 0.08));
 }
 
 .flower-caption {
