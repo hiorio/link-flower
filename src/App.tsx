@@ -246,90 +246,136 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
     demo: copy.appStatusDemo,
   })[status];
   const liveCount = productApps.filter((app) => app.status === "live").length;
+  const preparingCount = productApps.filter((app) => app.status === "preparing").length;
+  const demoCount = productApps.filter((app) => app.status === "demo").length;
+  const inProgressCount = preparingCount + demoCount;
   const detailHref = (id: string) => id === "dohwaji" ? routeHref("dohwaji") : id === "timeflower" ? routeHref("timeflower") : id === "dailyplank" ? routeHref("dailyplank") : undefined;
 
   return (
-    <main className="site-shell development-shell">
+    <main className="site-shell development-shell apps-showcase-shell">
       <div className="development-grid-bg" aria-hidden="true" />
       <SiteHeader activeRoute="apps" copy={copy} locale={locale} setLocale={setLocale} />
 
-      <section className="development-hero" id="page-content" aria-labelledby="apps-page-title">
-        <div className="development-copy">
-          <div className="development-kicker"><span>{copy.appsKicker}</span><span>DESIGN / GROW / OPERATE</span></div>
-          <h1 id="apps-page-title" className="development-title">{copy.appsTitle}</h1>
-          <p className="hero-description">{copy.appsDescription.map((line) => <span key={line}>{line}<br /></span>)}</p>
-        </div>
-        <aside className="development-garden" aria-label={copy.appsSectionTitle}>
-          <div className="garden-head"><span>HIORIO / SERVICES</span><b>{String(productApps.length).padStart(2, "0")}</b></div>
-          <div className="garden-plot">
-            <i className="garden-stem" aria-hidden="true" />
-            <div className="garden-plot-foliage" aria-hidden="true">
-              {botanicalLeafPaths.map((leaf, index) => (
-                <img className={`plot-leaf plot-leaf-${index + 1}`} src={`${basePath}${leaf}`} alt="" decoding="async" key={leaf} />
-              ))}
-            </div>
-            {productApps.map((app) => {
-              const content = app.content[locale];
-              return <a aria-label={`${content.displayName} — ${copy.appDetail}`} className={`garden-bloom bloom-${app.order} garden-${app.accent}`} href={`#${app.id}`} key={app.id}><span>{app.order}</span><img alt="" src={`${basePath}${app.icon}`} width="70" height="70" decoding="async" /><div><strong>{content.displayName}</strong><small>{statusLabel(app.status)}</small></div></a>;
-            })}
+      <section className="apps-showcase-hero" id="page-content" aria-labelledby="apps-page-title">
+        <div className="apps-hero-copy">
+          <div className="apps-hero-eyebrow">
+            <span>{copy.appsKicker}</span>
+            <span>DESIGN / GROW / OPERATE</span>
+            <b aria-hidden="true">2026</b>
           </div>
-          <div className="garden-foot"><span>{copy.appStatus} {String(liveCount).padStart(2, "0")}</span></div>
+          <h1 id="apps-page-title" className="apps-hero-title">{copy.appsTitle}</h1>
+          <p className="apps-hero-description">
+            {copy.appsDescription.map((line) => <span key={line}>{line}</span>)}
+          </p>
+          <nav className="apps-hero-actions" aria-label={copy.appsPageNavLabel}>
+            <a className="apps-hero-primary" href="#app-products-title">{copy.appsBrowseLabel}<span aria-hidden="true">↘</span></a>
+            <a href="#app-principles-title">{copy.appsPrinciplesLink}<span aria-hidden="true">→</span></a>
+          </nav>
+          <dl className="apps-hero-stats">
+            <div><dt>{copy.appsTotalLabel}</dt><dd>{String(productApps.length).padStart(2, "0")}</dd></div>
+            <div><dt>{copy.appsLiveLabel}</dt><dd>{String(liveCount).padStart(2, "0")}</dd></div>
+            <div><dt>{copy.appsInProgressLabel}</dt><dd>{String(inProgressCount).padStart(2, "0")}</dd></div>
+          </dl>
+        </div>
+        <aside className="apps-directory" aria-labelledby="apps-directory-title">
+          <header className="apps-directory-head">
+            <div><span>PRODUCT DIRECTORY</span><strong id="apps-directory-title">{copy.appsDirectoryLabel}</strong></div>
+            <b>{String(productApps.length).padStart(2, "0")}</b>
+          </header>
+          <nav className="apps-directory-nav" aria-label={copy.appsSectionTitle}>
+            <ul className="apps-directory-list">
+              {productApps.map((app) => {
+                const content = app.content[locale];
+                return (
+                  <li key={app.id}>
+                    <a className={`apps-directory-item directory-${app.accent}`} href={`#${app.id}`}>
+                      <span className="apps-directory-number">{app.order}</span>
+                      <img alt="" src={`${basePath}${app.icon}`} width="58" height="58" decoding="async" />
+                      <span className="apps-directory-name"><strong>{content.displayName}</strong><small>{content.tagline}</small></span>
+                      <span className={`apps-directory-status status-${app.status}`}><i />{statusLabel(app.status)}</span>
+                      <span className="apps-directory-arrow" aria-hidden="true">↓</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+          <footer className="apps-directory-foot">
+            <span>HIORIO / PRODUCT LAB</span>
+            <div aria-label={copy.appsStatusLegend}>
+              <span><i className="is-live" />{copy.appStatus} {liveCount}</span>
+              <span><i className="is-preparing" />{copy.appStatusPreparing} {preparingCount}</span>
+              <span><i className="is-demo" />{copy.appStatusDemo} {demoCount}</span>
+            </div>
+          </footer>
         </aside>
       </section>
 
-      <section className="app-products development-products" aria-labelledby="app-products-title">
-        <div className="section-heading development-heading">
-          <div><span className="section-index">01</span><h2 id="app-products-title">{copy.appsSectionTitle}</h2></div>
-          <p>{copy.appsSectionHint.toUpperCase()}</p>
-        </div>
-        <div className="product-catalog">
+      <section className="apps-showcase-products" aria-labelledby="app-products-title">
+        <header className="apps-section-heading">
+          <div><span className="apps-section-index">01</span><div><small>PRODUCT INDEX</small><h2 id="app-products-title">{copy.appsSectionTitle}</h2></div></div>
+          <p>{copy.appsSectionHint}</p>
+        </header>
+        <nav className="apps-catalog-jump" aria-label={copy.appsProductIndexLabel}>
+          <span>{copy.appsProductIndexLabel}</span>
+          <div>{productApps.map((app) => <a href={`#${app.id}`} key={app.id}><b>{app.order}</b>{app.content[locale].displayName}</a>)}</div>
+        </nav>
+        <div className="apps-product-list">
           {productApps.map((app) => {
             const content = app.content[locale];
             const internalHref = detailHref(app.id);
             return (
-              <article className={`catalog-entry catalog-${app.accent}`} id={app.id} key={app.id}>
-                <div className="catalog-sequence">
-                  <span>APP_{app.order}</span>
-                  <i />
-                </div>
-                <div className="catalog-identity">
-                  <img className="catalog-icon" src={`${basePath}${app.icon}`} alt="" width="112" height="112" loading="lazy" decoding="async" />
-                  <div>
-                    <span className="catalog-code">{app.code}</span>
-                    <h3>{content.displayName}</h3>
-                    <strong>{content.tagline}</strong>
+              <article className={`apps-product-card product-${app.accent}`} id={app.id} key={app.id} tabIndex={-1}>
+                <header className="apps-product-rail">
+                  <div><i /><span>APP / {app.order}</span><span>HIORIO PRODUCT</span></div>
+                  <span className={`apps-product-status status-${app.status}`}><i />{statusLabel(app.status)}</span>
+                </header>
+                <div className="apps-product-body">
+                  <div className="apps-product-identity">
+                    <span className="apps-product-icon"><img src={`${basePath}${app.icon}`} alt="" width="128" height="128" loading="lazy" decoding="async" /></span>
+                    <div>
+                      <span className="apps-product-code">{app.code}</span>
+                      <h3>{content.displayName}</h3>
+                      <strong>{content.tagline}</strong>
+                    </div>
+                  </div>
+                  <div className="apps-product-story">
+                    <p>{content.description}</p>
+                    <div className="apps-product-features">
+                      <span>{copy.appsFeaturesLabel}</span>
+                      <ol>{content.features.map((feature, index) => <li key={feature}><b>{String(index + 1).padStart(2, "0")}</b><span>{feature}</span></li>)}</ol>
+                    </div>
                   </div>
                 </div>
-                <div className="catalog-details">
-                  <div className="catalog-meta">
-                    <div>{app.platforms.map((platform) => <span key={platform}>{platform}</span>)}</div>
-                    <div><span>v{app.version}</span><span className={`catalog-status status-${app.status}`}><i />{statusLabel(app.status)}</span></div>
-                  </div>
-                  <p>{content.description}</p>
-                  <ul>{content.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
-                  <div className="catalog-links">
-                    {internalHref && <a className="catalog-detail-link" href={internalHref}>{copy.appDetail} <span aria-hidden="true">→</span></a>}
-                    {app.links.map((link) => <a href={link.href} key={link.kind} target="_blank" rel="noreferrer"
+                <footer className="apps-product-foot">
+                  <dl>
+                    <div><dt>{copy.appsPlatformsLabel}</dt><dd>{app.platforms.map((platform) => <span key={platform}>{platform}</span>)}</dd></div>
+                    <div><dt>{copy.appsVersionLabel}</dt><dd>v{app.version}</dd></div>
+                  </dl>
+                  <div className="apps-product-links">
+                    {internalHref && <a className="is-primary" href={internalHref}>{copy.appDetail} <span aria-hidden="true">→</span></a>}
+                    {app.links.map((link, index) => <a className={!internalHref && index === 0 ? "is-primary" : undefined} href={link.href} key={link.kind} target="_blank" rel="noreferrer"
                       aria-label={`${copy.appLinkLabel(content.displayName)} — ${linkLabel(link.kind)}`}>
                       {linkLabel(link.kind)} <span aria-hidden="true">↗</span>
                     </a>)}
                   </div>
-                </div>
+                </footer>
               </article>
             );
           })}
         </div>
       </section>
 
-      <section className="development-principles" aria-labelledby="app-principles-title">
-        <div className="section-heading development-heading principles-heading">
-          <div><span className="section-index">02</span><h2 id="app-principles-title">{copy.appsPrinciplesTitle}</h2></div>
-          <p>{copy.appsPrinciplesHint.toUpperCase()}</p>
+      <section className="apps-method" aria-labelledby="app-principles-title">
+        <div className="apps-method-intro">
+          <span>02 / OPERATING PRINCIPLES</span>
+          <h2 id="app-principles-title">{copy.appsPrinciplesTitle}</h2>
+          <p>{copy.appsPrinciplesHint}</p>
         </div>
-        <div className="principles-list">
+        <div className="apps-method-list">
           {copy.appsPrinciples.map((principle, index) => (
-            <article className="principle-card" key={principle.code}>
-              <div className="principle-meta"><span>{String(index + 1).padStart(2, "0")}</span><small>{principle.code}</small></div>
+            <article className="apps-method-item" key={principle.code}>
+              <header><span>{String(index + 1).padStart(2, "0")}</span><small>{principle.code}</small></header>
               <h3>{principle.title}</h3>
               <p>{principle.description}</p>
             </article>
@@ -337,8 +383,10 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
         </div>
       </section>
 
-      <footer className="site-footer development-footer">
-        <div><span className="footer-node">APPS / SERVICES</span><p>{copy.appsFooter}</p></div><span>© 2026 HIORIO</span>
+      <footer className="site-footer apps-showcase-footer">
+        <a href={routeHref("root")}>{copy.appsBackHome}<span aria-hidden="true">↖</span></a>
+        <div><span className="footer-node">APPS / SERVICES</span><p>{copy.appsFooter}</p></div>
+        <div><a href="#page-content">{copy.appsBackTop} <span aria-hidden="true">↑</span></a><span>© 2026 HIORIO</span></div>
       </footer>
     </main>
   );

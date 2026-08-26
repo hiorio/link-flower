@@ -4,12 +4,11 @@ const revealSelector = [
   ".garden-hero-copy",
   ".garden-index-heading",
   ".garden-branch",
-  ".development-copy",
-  ".development-garden",
-  ".development-products > .section-heading",
-  ".catalog-entry",
-  ".development-principles > .section-heading",
-  ".principle-card",
+  ".apps-section-heading",
+  ".apps-catalog-jump",
+  ".apps-product-card",
+  ".apps-method-intro",
+  ".apps-method-item",
   ".dohwaji-copy",
   ".dohwaji-web-shot",
   ".dohwaji-problem > *",
@@ -33,7 +32,6 @@ const revealSelector = [
 ].join(",");
 
 const depthSelector = [
-  ".development-garden",
   ".dohwaji-web-shot",
   ".timeflower-calendar",
   ".dailyplank-console",

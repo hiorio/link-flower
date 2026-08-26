@@ -5,7 +5,7 @@ import test from "node:test";
 
 const pages = [
   ["../dist/index.html", "Hiorio — 아이디어를 오래 쓰이는 형태로 피우는 사람"],
-  ["../dist/apps/index.html", "틔운 앱들 | Link Flower"],
+  ["../dist/apps/index.html", "틔운 앱들 | Hiorio"],
   ["../dist/apps/dohwaji/index.html", "도화지 | 함께 만드는 모임 동선 지도"],
   ["../dist/apps/timeflower/index.html", "TimeFlower | 함께 쓰는 공유 캘린더"],
   ["../dist/apps/daily-plank/index.html", "매일 플랭크 | 5분부터 시작하는 플랭크 가이드"],
@@ -76,6 +76,10 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /다음 가지/);
   assert.doesNotMatch(javascript, /👀|GROWING SINCE|2024 · SEOUL/);
   assert.match(javascript, /APPS IN BLOOM\./);
+  assert.match(javascript, /제품 디렉터리/);
+  assert.match(javascript, /Product directory/);
+  assert.match(javascript, /プロダクト一覧/);
+  assert.match(javascript, /제품 살펴보기/);
   assert.match(javascript, /사용자에게 비용을 받지 않습니다/);
   assert.match(javascript, /필요한 정보에만 접근합니다/);
   assert.match(javascript, /운영하며 계속 고쳐 나갑니다/);
@@ -121,6 +125,11 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /botanical\/center\.webp/);
   assert.doesNotMatch(javascript, /hero-botanical\.webp/);
   assert.match(stylesheet, /hiorio-petal-open/);
+  assert.match(stylesheet, /apps-showcase-hero/);
+  assert.match(stylesheet, /apps-directory-item/);
+  assert.match(stylesheet, /apps-product-card/);
+  assert.match(stylesheet, /apps-method-item/);
+  assert.match(stylesheet, /\.apps-product-links a\{[^}]*min-height:44px/);
   assert.match(stylesheet, /prefers-reduced-motion:reduce/);
   assert.doesNotMatch(stylesheet, /hiorio-botanical-sway/);
 
