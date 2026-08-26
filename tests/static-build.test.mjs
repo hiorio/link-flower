@@ -19,6 +19,21 @@ const operatingIcons = [
   "../dist/app-icons/biondamae.png",
 ];
 
+const botanicalLayers = [
+  "../dist/botanical/stem.webp",
+  "../dist/botanical/center.webp",
+  "../dist/botanical/petal-01.webp",
+  "../dist/botanical/petal-02.webp",
+  "../dist/botanical/petal-03.webp",
+  "../dist/botanical/petal-04.webp",
+  "../dist/botanical/petal-05.webp",
+  "../dist/botanical/petal-06.webp",
+  "../dist/botanical/petal-07.webp",
+  "../dist/botanical/leaf-01.webp",
+  "../dist/botanical/leaf-02.webp",
+  "../dist/botanical/leaf-03.webp",
+];
+
 test("루트와 하위 노드의 정적 페이지가 생성된다", async () => {
   for (const [path, title] of pages) {
     const html = await readFile(new URL(path, import.meta.url), "utf8");
@@ -38,9 +53,12 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
 
   const assetsDirectory = new URL("../dist/assets/", import.meta.url);
   const javascriptFile = (await readdir(assetsDirectory)).find((file) => file.endsWith(".js"));
+  const stylesheetFile = (await readdir(assetsDirectory)).find((file) => file.endsWith(".css"));
   assert.ok(javascriptFile, "JavaScript bundle should exist");
+  assert.ok(stylesheetFile, "CSS bundle should exist");
 
   const javascript = await readFile(new URL(javascriptFile, assetsDirectory), "utf8");
+  const stylesheet = await readFile(new URL(stylesheetFile, assetsDirectory), "utf8");
   assert.match(javascript, /Select language/);
   assert.match(javascript, /言語を選択/);
   assert.match(javascript, /link-flower-locale/);
@@ -92,9 +110,19 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   const socialImage = await stat(new URL("../dist/og.png", import.meta.url));
   assert.ok(socialImage.size > 50000, "social preview should contain the finished Hiorio artwork");
 
-  const botanicalHero = await stat(new URL("../dist/hero-botanical.webp", import.meta.url));
-  assert.ok(botanicalHero.size > 100000, "root hero should contain the finished botanical artwork");
-  assert.match(javascript, /hero-botanical\.webp/);
+  let botanicalBytes = 0;
+  for (const path of botanicalLayers) {
+    const layer = await stat(new URL(path, import.meta.url));
+    assert.ok(layer.size > 5000, `${path} should contain finished botanical artwork`);
+    botanicalBytes += layer.size;
+  }
+  assert.ok(botanicalBytes > 150000, "the layered bloom should contain the complete botanical artwork");
+  assert.match(javascript, /botanical\/petal-01\.webp/);
+  assert.match(javascript, /botanical\/center\.webp/);
+  assert.doesNotMatch(javascript, /hero-botanical\.webp/);
+  assert.match(stylesheet, /hiorio-petal-open/);
+  assert.match(stylesheet, /prefers-reduced-motion:reduce/);
+  assert.doesNotMatch(stylesheet, /hiorio-botanical-sway/);
 
   const timeFlowerIcon = await readFile(new URL("../dist/app-icons/timeflower.png", import.meta.url));
   assert.equal(

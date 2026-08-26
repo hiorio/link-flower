@@ -4,6 +4,7 @@ import { detectLocale, localeLabels, supportedLocales, ui, type Locale } from ".
 import { defaultNodeId, nodes } from "./nodes";
 import { DailyPlankPage, dailyPlankCopy } from "./DailyPlankPage";
 import { TimeFlowerPage, timeFlowerCopy } from "./TimeFlowerPage";
+import { BotanicalBloom, botanicalLeafPaths } from "./BotanicalBloom";
 import { SHOW_HORROR_DOPAMINE } from "./visibility";
 import { useSiteMotion } from "./useSiteMotion";
 
@@ -16,6 +17,9 @@ const localeAccessibleNames: Record<Locale, string> = {
   en: "English",
   ja: "日本語",
 };
+
+const spineLeafOrder = [0, 2, 1, 0, 2] as const;
+const futureLeafOrder = [2, 0, 1] as const;
 
 function routeHref(route: RouteId) {
   if (route === "root") return basePath;
@@ -103,15 +107,7 @@ function RootPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
         </div>
 
         <div className="garden-hero-flower" aria-hidden="true">
-          <img
-            className="garden-flower-art"
-            src={`${basePath}hero-botanical.webp`}
-            alt=""
-            width="1024"
-            height="1536"
-            decoding="async"
-            fetchPriority="high"
-          />
+          <BotanicalBloom basePath={basePath} />
           <span className="flower-caption">IDEAS → ROOTS → BLOOM</span>
         </div>
       </section>
@@ -124,7 +120,11 @@ function RootPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
         </header>
 
         <div className="garden-work-tree">
-          <div className="garden-trunk" aria-hidden="true"><i /><i /><i /><i /></div>
+          <div className="garden-trunk" aria-hidden="true">
+            {spineLeafOrder.map((leaf, index) => (
+              <img className={`spine-leaf spine-leaf-${index + 1}`} src={`${basePath}${botanicalLeafPaths[leaf]}`} alt="" loading="lazy" decoding="async" key={`${leaf}-${index}`} />
+            ))}
+          </div>
 
           <article className="garden-branch garden-branch-apps">
             <span className="branch-number">01</span>
@@ -174,7 +174,11 @@ function RootPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
             <div className="branch-content">
               <header><div><p>NEXT BLOOM</p><h3>{copy.rootFutureTitle}</h3></div></header>
               <p className="branch-description">{copy.rootFutureDescription}</p>
-              <div className="future-buds" aria-hidden="true"><i /><i /><i /></div>
+              <div className="future-buds" aria-hidden="true">
+                {futureLeafOrder.map((leaf, index) => (
+                  <img className={`future-leaf future-leaf-${index + 1}`} src={`${basePath}${botanicalLeafPaths[leaf]}`} alt="" loading="lazy" decoding="async" key={`${leaf}-${index}`} />
+                ))}
+              </div>
             </div>
           </article>
         </div>
@@ -259,6 +263,11 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
           <div className="garden-head"><span>HIORIO / SERVICES</span><b>{String(productApps.length).padStart(2, "0")}</b></div>
           <div className="garden-plot">
             <i className="garden-stem" aria-hidden="true" />
+            <div className="garden-plot-foliage" aria-hidden="true">
+              {botanicalLeafPaths.map((leaf, index) => (
+                <img className={`plot-leaf plot-leaf-${index + 1}`} src={`${basePath}${leaf}`} alt="" decoding="async" key={leaf} />
+              ))}
+            </div>
             {productApps.map((app) => {
               const content = app.content[locale];
               return <a aria-label={`${content.displayName} — ${copy.appDetail}`} className={`garden-bloom bloom-${app.order} garden-${app.accent}`} href={`#${app.id}`} key={app.id}><span>{app.order}</span><img alt="" src={`${basePath}${app.icon}`} width="70" height="70" decoding="async" /><div><strong>{content.displayName}</strong><small>{statusLabel(app.status)}</small></div></a>;

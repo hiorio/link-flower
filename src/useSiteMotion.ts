@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 const revealSelector = [
   ".garden-hero-copy",
-  ".garden-hero-flower",
   ".garden-index-heading",
   ".garden-branch",
   ".development-copy",
@@ -34,7 +33,6 @@ const revealSelector = [
 ].join(",");
 
 const depthSelector = [
-  ".garden-hero-flower",
   ".development-garden",
   ".dohwaji-web-shot",
   ".timeflower-calendar",
@@ -86,18 +84,15 @@ export function useSiteMotion(route: string) {
     if (!reduceMotion && hasPrecisePointer) {
       shell.querySelectorAll<HTMLElement>(depthSelector).forEach((item) => {
         item.classList.add("depth-item");
-        const isBotanical = item.classList.contains("garden-hero-flower");
-        const tiltStrength = isBotanical ? 0.8 : 4;
-        const parallaxStrength = isBotanical ? 5 : 10;
 
         const move = (event: PointerEvent) => {
           const bounds = item.getBoundingClientRect();
           const x = (event.clientX - bounds.left) / bounds.width;
           const y = (event.clientY - bounds.top) / bounds.height;
-          item.style.setProperty("--tilt-x", `${(x - 0.5) * tiltStrength}deg`);
-          item.style.setProperty("--tilt-y", `${(0.5 - y) * tiltStrength}deg`);
-          item.style.setProperty("--parallax-x", `${(x - 0.5) * parallaxStrength}px`);
-          item.style.setProperty("--parallax-y", `${(y - 0.5) * parallaxStrength}px`);
+          item.style.setProperty("--tilt-x", `${(x - 0.5) * 4}deg`);
+          item.style.setProperty("--tilt-y", `${(0.5 - y) * 4}deg`);
+          item.style.setProperty("--parallax-x", `${(x - 0.5) * 10}px`);
+          item.style.setProperty("--parallax-y", `${(y - 0.5) * 10}px`);
           item.style.setProperty("--pointer-x", `${x * 100}%`);
           item.style.setProperty("--pointer-y", `${y * 100}%`);
         };
