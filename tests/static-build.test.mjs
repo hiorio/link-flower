@@ -80,6 +80,8 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /Product directory/);
   assert.match(javascript, /プロダクト一覧/);
   assert.match(javascript, /제품 살펴보기/);
+  assert.match(javascript, /apps-showcase-copy/);
+  assert.doesNotMatch(javascript, /apps-hero-copy/);
   assert.match(javascript, /사용자에게 비용을 받지 않습니다/);
   assert.match(javascript, /필요한 정보에만 접근합니다/);
   assert.match(javascript, /운영하며 계속 고쳐 나갑니다/);

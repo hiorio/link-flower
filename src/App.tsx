@@ -257,7 +257,7 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
       <SiteHeader activeRoute="apps" copy={copy} locale={locale} setLocale={setLocale} />
 
       <section className="apps-showcase-hero" id="page-content" aria-labelledby="apps-page-title">
-        <div className="apps-hero-copy">
+        <div className="apps-showcase-copy">
           <div className="apps-hero-eyebrow">
             <span>{copy.appsKicker}</span>
             <span>DESIGN / GROW / OPERATE</span>
