@@ -82,9 +82,14 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /제품 살펴보기/);
   assert.match(javascript, /apps-showcase-copy/);
   assert.doesNotMatch(javascript, /apps-hero-copy/);
-  assert.match(javascript, /사용자에게 비용을 받지 않습니다/);
-  assert.match(javascript, /필요한 정보에만 접근합니다/);
-  assert.match(javascript, /운영하며 계속 고쳐 나갑니다/);
+  assert.match(javascript, /나부터 필요로 하는 것을 만듭니다/);
+  assert.match(javascript, /더 많은 사람이 쉽게 닿을 수 있도록/);
+  assert.match(javascript, /필요한 순간에만 묻습니다/);
+  assert.match(javascript, /BUILT FROM NEED/);
+  assert.match(javascript, /ACCESS FIRST/);
+  assert.match(javascript, /ASK WITH CONTEXT/);
+  assert.doesNotMatch(javascript, /사용자에게 비용을 받지 않습니다/);
+  assert.doesNotMatch(javascript, /FREE TO USE/);
   assert.match(javascript, /친구, 연인, 가족과 어디서 만나 어디로 이동할지/);
   assert.match(javascript, /매일 플랭크는 제 첫 앱이 되었습니다/);
   assert.match(javascript, /현재 운영 중인 도화지 웹 화면/);
