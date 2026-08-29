@@ -166,7 +166,7 @@ export const productApps: ProductApp[] = [
     content: {
       ko: {
         displayName: "비온다매",
-        tagline: "비 온다던 예보가 정말 맞았는지 끝까지 확인합니다.",
+        tagline: "비 온다던 예보, 맞았는지까지 한눈에",
         description: "현재 관측과 7일 날씨를 보고, 과거 예보와 6개 예보사를 같은 시간 기준으로 맞대어 실제로 얼마나 맞았는지 기록합니다.",
         features: ["현재 관측과 7일 예보", "6개 예보사 맞비교", "과거 예보와 정확도 기록"],
       },
@@ -178,7 +178,7 @@ export const productApps: ProductApp[] = [
       },
       ja: {
         displayName: "ビオンダメ",
-        tagline: "雨予報が本当に当たったか最後まで確かめます。",
+        tagline: "雨予報、本当に当たったかまで一目で",
         description: "現在の観測と7日間予報を確認し、過去の予報と6つの予報元を同じ時刻基準で比較して、実際にどれだけ当たったかを記録します。",
         features: ["現在の観測と7日間予報", "6つの予報元を比較", "過去予報と精度の記録"],
       },
@@ -228,7 +228,7 @@ export const productApps: ProductApp[] = [
     content: {
       ko: {
         displayName: "Leaf Message",
-        tagline: "마음을 남기고, 상대의 홈 화면을 꾸밉니다.",
+        tagline: "상대의 홈 화면에 남기는 짧은 마음",
         description: "40자 안에 감성 메시지를 남기고 배경과 도착 효과를 고르면, 상대의 iPhone 홈 화면 위젯 한 칸을 그 마음에 어울리는 장면으로 꾸밉니다.",
         features: ["40자에 담는 감성 메시지", "배경 14종과 효과 12종으로 화면 꾸미기", "보내기 전 내 위젯에서 미리 보기"],
       },
@@ -240,7 +240,7 @@ export const productApps: ProductApp[] = [
       },
       ja: {
         displayName: "Leaf Message",
-        tagline: "想いを残し、相手のホーム画面を彩ります。",
+        tagline: "相手のホーム画面に残す短い想い",
         description: "40文字以内の想いを込めたメッセージに背景と到着演出を添え、相手のiPhoneホーム画面ウィジェットの一角を、その気持ちに合う景色へ変えます。",
         features: ["40文字に込める想い", "背景14種と演出12種で画面を彩る", "送信前に自分のウィジェットで確認"],
       },
