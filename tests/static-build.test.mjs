@@ -10,7 +10,7 @@ const pages = [
   ["../dist/apps/timeflower/index.html", "TimeFlower | 함께 쓰는 공유 캘린더"],
   ["../dist/apps/daily-plank/index.html", "매일 플랭크 | 5분부터 시작하는 플랭크 가이드"],
   ["../dist/apps/ssak-memo/index.html", "싹 메모 | 떠오른 순간, 바로 기록"],
-  ["../dist/apps/leaf-message/index.html", "Leaf Message | 홈 화면에 도착하는 짧은 한마디"],
+  ["../dist/apps/leaf-message/index.html", "Leaf Message | 마음을 남기고, 상대의 홈 화면을 꾸미는 메시지"],
 ];
 
 const operatingIcons = [
@@ -88,7 +88,9 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /비온다매/);
   assert.match(javascript, /싹 메모/);
   assert.match(javascript, /Leaf Message/);
-  assert.match(javascript, /상대방의 홈 화면에 짧은 말을 남기는 앱/);
+  assert.match(javascript, /마음을 남기고, 상대의 홈 화면을 꾸미는 앱/);
+  assert.match(javascript, /감성 메시지를 남기고, 상대의 홈 화면 한 칸을 꾸밉니다/);
+  assert.match(javascript, /STYLE THEIR SCREEN/);
   assert.match(javascript, /TestFlight 내부 베타/);
   assert.match(javascript, /출시 준비/);
   assert.match(javascript, /웹 데모/);
