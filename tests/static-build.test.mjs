@@ -121,7 +121,7 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /apps\/daily-plank/);
   assert.match(javascript, /apps\/ssak-memo/);
   assert.match(javascript, /apps\/leaf-message/);
-  assert.match(javascript, /작은 생각을 놓치지 않고 쌓아두세요/);
+  assert.match(javascript, /그 싹을 무엇으로 피워낼지는, 기록한 우리가 결정합니다/);
   assert.doesNotMatch(javascript, /PRIMARY SIGNAL|horror_dopamine|horrordopamine/);
 
   for (const path of operatingIcons) {

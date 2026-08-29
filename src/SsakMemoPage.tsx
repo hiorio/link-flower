@@ -60,9 +60,9 @@ export const ssakMemoCopy: Record<Locale, SsakMemoCopy> = {
     backToApps: "앱 목록 보기",
     heroVisualLabel: "싹 메모의 실제 보관함 화면",
     heroScreenLabel: "오늘의 메모가 시간순으로 쌓이는 보관함",
-    captureKicker: "가장 짧은 기록 동선",
-    captureTitle: "한 번 탭하면, 바로 말하거나 씁니다.",
-    captureDescription: "메모를 남기려던 이유를 잊기 전에 입력부터 시작합니다. 캡처 화면은 기록에 필요한 것만 남겼습니다.",
+    captureKicker: "싹 메모를 시작한 생각",
+    captureTitle: "무슨 생각이든, 떠오른 순간에는 우선 바로 메모할 수 있어야 했습니다.",
+    captureDescription: "그래서 메모를 등록하는 가장 쉽고 짧은 방법을 고민했습니다. 앱을 찾아 열지 않아도, 위젯이나 제어 센터에서 곧바로 말하거나 쓸 수 있도록.",
     captureModes: [
       {
         label: "VOICE",
@@ -105,8 +105,8 @@ export const ssakMemoCopy: Record<Locale, SsakMemoCopy> = {
       { term: "CAPTURE", value: "Widget · Control Center*" },
     ],
     controlCenterNote: "* 제어 센터 캡처는 iOS 18 이상에서 사용할 수 있습니다.",
-    finalKicker: "SMALL THOUGHTS, READY TO GROW.",
-    finalTitle: "작은 생각을 놓치지 않고 쌓아두세요.",
+    finalKicker: "EVERY MEMO STARTS AS A SPROUT.",
+    finalTitle: "그렇게 모인 메모는 하나씩 싹이 됩니다. 그 싹을 무엇으로 피워낼지는, 기록한 우리가 결정합니다.",
     footer: "떠오른 순간을 가장 짧은 동선으로 붙잡는 로컬 메모 앱",
   },
   en: {
@@ -123,9 +123,9 @@ export const ssakMemoCopy: Record<Locale, SsakMemoCopy> = {
     backToApps: "View app index",
     heroVisualLabel: "The real library screen in 싹 메모",
     heroScreenLabel: "A library where today's notes collect in time order",
-    captureKicker: "The shortest path to a note",
-    captureTitle: "One tap, then speak or type.",
-    captureDescription: "Capture begins before you forget why you reached for the app. Each screen keeps only what the moment needs.",
+    captureKicker: "The thought that started 싹 메모",
+    captureTitle: "Whatever the thought, it should be easy to capture the moment it appears.",
+    captureDescription: "So we looked for the shortest, simplest way to make a memo: speak or type straight from a widget or Control Center, without first hunting for the app.",
     captureModes: [
       {
         label: "VOICE",
@@ -168,8 +168,8 @@ export const ssakMemoCopy: Record<Locale, SsakMemoCopy> = {
       { term: "CAPTURE", value: "Widget · Control Center*" },
     ],
     controlCenterNote: "* Control Center capture requires iOS 18 or later.",
-    finalKicker: "SMALL THOUGHTS, READY TO GROW.",
-    finalTitle: "Keep small thoughts from slipping away.",
+    finalKicker: "EVERY MEMO STARTS AS A SPROUT.",
+    finalTitle: "The notes we gather become sprouts. What they grow into is ours to decide.",
     footer: "A local memo app with the shortest path from thought to note",
   },
   ja: {
@@ -186,9 +186,9 @@ export const ssakMemoCopy: Record<Locale, SsakMemoCopy> = {
     backToApps: "アプリ一覧を見る",
     heroVisualLabel: "싹 메모の実際の保管庫画面",
     heroScreenLabel: "今日のメモが時刻順に積み重なる保管庫",
-    captureKicker: "記録までの最短ルート",
-    captureTitle: "ワンタップで、すぐ話すか書く。",
-    captureDescription: "なぜメモしようとしたのか忘れる前に、入力から始めます。画面にはその瞬間に必要なものだけを残しました。",
+    captureKicker: "싹 메모の原点",
+    captureTitle: "どんな考えでも、思いついた瞬間にまず記録できるべきだと考えました。",
+    captureDescription: "そこで、メモを残すための最も簡単で短い方法を考えました。アプリを探して開かなくても、ウィジェットやコントロールセンターからすぐ話すか書けるように。",
     captureModes: [
       {
         label: "VOICE",
@@ -231,8 +231,8 @@ export const ssakMemoCopy: Record<Locale, SsakMemoCopy> = {
       { term: "CAPTURE", value: "Widget · Control Center*" },
     ],
     controlCenterNote: "* コントロールセンターからの記録にはiOS 18以降が必要です。",
-    finalKicker: "SMALL THOUGHTS, READY TO GROW.",
-    finalTitle: "小さな考えを逃さず、積み重ねてください。",
+    finalKicker: "EVERY MEMO STARTS AS A SPROUT.",
+    finalTitle: "集まったメモは、一つずつ芽になります。その芽を何に育てるかは、記録した私たちが決めます。",
     footer: "思いついた瞬間を最短ルートでつかまえるローカルメモアプリ",
   },
 };
