@@ -14,7 +14,7 @@ export type ProductApp = {
   icon: string;
   version: string;
   platforms: string[];
-  accent: "cyan" | "amber" | "apricot" | "cobalt" | "sky" | "sprout";
+  accent: "cyan" | "amber" | "apricot" | "cobalt" | "sky" | "sprout" | "leaf";
   status: "live" | "preparing" | "demo";
   content: Record<Locale, LocalizedAppCopy>;
   links: Array<{
@@ -215,5 +215,36 @@ export const productApps: ProductApp[] = [
       },
     },
     links: [{ kind: "support", href: "https://hiorio.github.io/ssak-memo-support/" }],
+  },
+  {
+    id: "leaf-message",
+    order: "07",
+    code: "WRITE / REVEAL / STAY",
+    icon: "app-icons/leaf-message.png",
+    version: "0.1.0",
+    platforms: ["iOS", "WIDGET"],
+    accent: "leaf",
+    status: "preparing",
+    content: {
+      ko: {
+        displayName: "Leaf Message",
+        tagline: "상대방의 홈 화면에 짧은 말을 남기는 앱",
+        description: "연결된 두 사람이 40자 이하의 짧은 말을 주고받고, 상대가 보낸 최신 말을 iPhone 홈 화면 위젯에서 확인하는 앱입니다.",
+        features: ["40자 이하의 짧은 말", "배경 14종과 도착 효과 12종", "초대 전 나에게 보내보기"],
+      },
+      en: {
+        displayName: "Leaf Message",
+        tagline: "Leave a short note on someone else’s Home Screen",
+        description: "An iPhone app where two connected people exchange messages of up to 40 characters and see the latest incoming note in a Home Screen widget.",
+        features: ["Notes up to 40 characters", "14 backgrounds and 12 reveal styles", "Try it on your own widget first"],
+      },
+      ja: {
+        displayName: "Leaf Message",
+        tagline: "相手のホーム画面に短い言葉を残すアプリ",
+        description: "つながった二人が40文字以内の短いメッセージを送り合い、相手から届いた最新の言葉をiPhoneのホーム画面ウィジェットで確認できるアプリです。",
+        features: ["40文字以内の短い言葉", "背景14種と到着演出12種", "招待前に自分のウィジェットで体験"],
+      },
+    },
+    links: [],
   },
 ];

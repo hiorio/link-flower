@@ -10,6 +10,7 @@ const pages = [
   ["../dist/apps/timeflower/index.html", "TimeFlower | 함께 쓰는 공유 캘린더"],
   ["../dist/apps/daily-plank/index.html", "매일 플랭크 | 5분부터 시작하는 플랭크 가이드"],
   ["../dist/apps/ssak-memo/index.html", "싹 메모 | 떠오른 순간, 바로 기록"],
+  ["../dist/apps/leaf-message/index.html", "Leaf Message | 홈 화면에 도착하는 짧은 한마디"],
 ];
 
 const operatingIcons = [
@@ -19,6 +20,7 @@ const operatingIcons = [
   "../dist/app-icons/daily-plank.png",
   "../dist/app-icons/biondamae.png",
   "../dist/app-icons/ssak-memo.webp",
+  "../dist/app-icons/leaf-message.png",
 ];
 
 const ssakMemoShots = [
@@ -27,6 +29,12 @@ const ssakMemoShots = [
   "../dist/product-shots/ssak-memo/03-voice.webp",
   "../dist/product-shots/ssak-memo/04-detail.webp",
   "../dist/product-shots/ssak-memo/05-filter.webp",
+];
+
+const leafMessageShots = [
+  "../dist/product-shots/leaf-message-widget-medium.png",
+  "../dist/product-shots/leaf-message-widget-large.png",
+  "../dist/product-shots/leaf-message-composer.png",
 ];
 
 const botanicalLayers = [
@@ -79,6 +87,9 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /매일 플랭크/);
   assert.match(javascript, /비온다매/);
   assert.match(javascript, /싹 메모/);
+  assert.match(javascript, /Leaf Message/);
+  assert.match(javascript, /상대방의 홈 화면에 짧은 말을 남기는 앱/);
+  assert.match(javascript, /TestFlight 내부 베타/);
   assert.match(javascript, /출시 준비/);
   assert.match(javascript, /웹 데모/);
   assert.match(javascript, /HIORIO \/ INDEPENDENT MAKER/);
@@ -109,6 +120,7 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /apps\/timeflower/);
   assert.match(javascript, /apps\/daily-plank/);
   assert.match(javascript, /apps\/ssak-memo/);
+  assert.match(javascript, /apps\/leaf-message/);
   assert.match(javascript, /작은 생각을 놓치지 않고 쌓아두세요/);
   assert.doesNotMatch(javascript, /PRIMARY SIGNAL|horror_dopamine|horrordopamine/);
 
@@ -123,11 +135,20 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /app-icons\/daily-plank\.png/);
   assert.match(javascript, /app-icons\/biondamae\.png/);
   assert.match(javascript, /app-icons\/ssak-memo\.webp/);
+  assert.match(javascript, /app-icons\/leaf-message\.png/);
 
   for (const path of ssakMemoShots) {
     const screenshot = await stat(new URL(path, import.meta.url));
     assert.ok(screenshot.size > 10000, `${path} should contain the optimized App Store screen`);
   }
+
+  for (const path of leafMessageShots) {
+    const screenshot = await stat(new URL(path, import.meta.url));
+    assert.ok(screenshot.size > 150000, `${path} should contain an actual Leaf Message beta screen`);
+  }
+  assert.match(javascript, /leaf-message-widget-medium\.png/);
+  assert.match(javascript, /leaf-message-widget-large\.png/);
+  assert.match(javascript, /leaf-message-composer\.png/);
 
   const rootHtml = await readFile(new URL("../dist/index.html", import.meta.url), "utf8");
   assert.match(rootHtml, /https:\/\/hiorio\.com\/og\.png/);
@@ -156,8 +177,11 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(stylesheet, /apps-product-card/);
   assert.match(stylesheet, /apps-method-item/);
   assert.match(stylesheet, /product-sprout/);
+  assert.match(stylesheet, /product-leaf/);
   assert.match(stylesheet, /ssak-hero/);
   assert.match(stylesheet, /ssak-capture-grid/);
+  assert.match(stylesheet, /leafmessage-hero/);
+  assert.match(stylesheet, /leafmessage-presentation/);
   assert.match(stylesheet, /\.apps-product-links a\{[^}]*min-height:44px/);
   assert.match(stylesheet, /prefers-reduced-motion:reduce/);
   assert.doesNotMatch(stylesheet, /hiorio-botanical-sway/);
@@ -183,8 +207,20 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
     "Ssak Memo should use the iPhone build 5 operating icon",
   );
 
+  const leafMessageIcon = await readFile(new URL("../dist/app-icons/leaf-message.png", import.meta.url));
+  assert.equal(
+    createHash("sha256").update(leafMessageIcon).digest("hex"),
+    "4d44f4ad58de05d14b834c746f17903c91b7df799980cf68091deac6ea7df135",
+    "Leaf Message should use the TestFlight Build 17 operating icon",
+  );
+
   const ssakMemoHtml = await readFile(new URL("../dist/apps/ssak-memo/index.html", import.meta.url), "utf8");
   assert.match(ssakMemoHtml, /https:\/\/hiorio\.com\/apps\/ssak-memo\//);
   assert.match(ssakMemoHtml, /https:\/\/hiorio\.com\/app-icons\/ssak-memo\.png/);
   assert.match(ssakMemoHtml, /twitter:card/);
+
+  const leafMessageHtml = await readFile(new URL("../dist/apps/leaf-message/index.html", import.meta.url), "utf8");
+  assert.match(leafMessageHtml, /https:\/\/hiorio\.com\/apps\/leaf-message\//);
+  assert.match(leafMessageHtml, /https:\/\/hiorio\.com\/app-icons\/leaf-message\.png/);
+  assert.match(leafMessageHtml, /twitter:card/);
 });

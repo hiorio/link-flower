@@ -289,6 +289,7 @@
 .directory-cobalt { --directory-accent: #4962a5; }
 .directory-sky { --directory-accent: #08739f; }
 .directory-sprout { --directory-accent: #2d745d; }
+.directory-leaf { --directory-accent: #456d4d; }
 
 .apps-directory-item::before {
   position: absolute;
@@ -575,6 +576,7 @@
 .product-cobalt { --product-accent: #4863a8; }
 .product-sky { --product-accent: #0873a3; }
 .product-sprout { --product-accent: #2d745d; }
+.product-leaf { --product-accent: #456d4d; }
 
 .apps-product-card::before {
   position: absolute;
@@ -628,6 +630,13 @@
     linear-gradient(to top, currentColor 0 43%, transparent 43%) 72px 100% / 14px 100% no-repeat,
     linear-gradient(to top, currentColor 0 68%, transparent 68%) 108px 100% / 14px 100% no-repeat,
     linear-gradient(to top, currentColor 0 31%, transparent 31%) 144px 100% / 14px 100% no-repeat;
+}
+
+.product-leaf::before {
+  background:
+    radial-gradient(circle, currentColor 0 2px, transparent 3px) 0 0 / 28px 28px,
+    linear-gradient(135deg, transparent 38%, currentColor 39% 40%, transparent 41% 68%, currentColor 69% 70%, transparent 71%);
+  transform: rotate(-7deg);
 }
 
 .apps-product-card:target,

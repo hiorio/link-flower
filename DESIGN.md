@@ -81,6 +81,7 @@ Link Flower의 기본 디자인과 이후 색상 수정은 **팔레트 02 — Sl
 | 콘텐츠 채널 | 외부 출구가 명확한 단순 디렉터리 | 루트와 비슷한 노드 다이어그램을 줄이고 채널을 더 빨리 노출 |
 | 비온다매 `/about` | 예보 ↔ 관측 보드, 분통 캐릭터, 구어체 판정 | 모바일 약 9,400px 길이를 줄이고 반복 설명을 압축 |
 | 싹 메모 | 실제 보관함과 음성·타이핑 캡처 화면, 아이콘의 남색·새싹색·씨앗색 | App Store 공개 후 상태와 직접 설치 링크 갱신 |
+| Leaf Message | 실제 iOS 위젯 미리보기, 종이와 잎의 질감, 40자 한마디 | App Store 공개 후 상태와 직접 설치 링크 갱신 |
 
 ### 앱 목록 운영 아이콘 기준
 
@@ -95,6 +96,7 @@ Link Flower의 기본 디자인과 이후 색상 수정은 **팔레트 02 — Sl
 | 매일 플랭크 | 앱 빌드 설정의 `src/assets/branding/icon.png` | `0.2.1` |
 | 비온다매 | 운영 앱 설정의 `apps/mobile/assets/biondamae-icon.png` | `1.1.0` |
 | 싹 메모 | iPhone release build 5의 `AppIcon.appiconset/AppIcon-1024.png` | `1.0` |
+| Leaf Message | TestFlight Build 17의 `Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` | `0.1.0 (17)` |
 
 ### 페이지 추가 시 통과할 기준
 
@@ -111,3 +113,10 @@ Link Flower의 기본 디자인과 이후 색상 수정은 **팔레트 02 — Sl
 - `5 / 7 / 10분` 선택, 음성·휴식·진동 큐, 연속 기록을 하나의 운동 흐름으로 보여 준다.
 - 마스코트는 장식용 캐릭터 카드가 아니라 사용자가 플랭크 중일 때 함께 자세를 취하는 코치로 사용한다.
 - TimeFlower의 따뜻한 종이 질감과 달력/대화 구조를 재사용하지 않고, 밝은 훈련 보드와 코발트 진행 링을 기본 물성으로 삼는다.
+
+### Leaf Message Page DNA
+
+- 첫 화면의 주인공은 채팅 버블이 아니라 실제 iOS 홈 화면 위젯 미리보기다.
+- `40자`, `배경 14종`, `도착 효과 12종`과 Small/Medium/Large 미리보기를 짧은 메시지 한 번의 흐름으로 보여 준다.
+- 공개 App Store 링크가 생기기 전에는 TestFlight 내부 베타 상태만 표시하고 설치 CTA를 만들지 않는다.
+- 종이와 잎의 질감을 쓰되 TimeFlower의 캘린더·이벤트 대화 구조는 재사용하지 않는다.

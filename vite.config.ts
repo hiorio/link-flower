@@ -17,6 +17,7 @@ export default defineConfig({
         timeflower: `${root}apps/timeflower/index.html`,
         dailyPlank: `${root}apps/daily-plank/index.html`,
         ssakMemo: `${root}apps/ssak-memo/index.html`,
+        leafMessage: `${root}apps/leaf-message/index.html`,
         ...(SHOW_HORROR_DOPAMINE ? {
           channels: `${root}channels/index.html`,
           horror: `${root}horror/index.html`,

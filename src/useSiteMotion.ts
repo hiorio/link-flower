@@ -29,12 +29,20 @@ const revealSelector = [
   ".dailyplank-coach > *",
   ".dailyplank-record > *",
   ".dailyplank-final > *",
+  ".leafmessage-hero > *",
+  ".leafmessage-premise > *",
+  ".leafmessage-section-heading",
+  ".leafmessage-presentation-grid > *",
+  ".leafmessage-steps > li",
+  ".leafmessage-self > *",
+  ".leafmessage-final > *",
 ].join(",");
 
 const depthSelector = [
   ".dohwaji-web-shot",
   ".timeflower-calendar",
   ".dailyplank-console",
+  ".leafmessage-hero-screen",
 ].join(",");
 
 export function useSiteMotion(route: string) {

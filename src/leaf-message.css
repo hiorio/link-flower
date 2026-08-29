@@ -1,0 +1,504 @@
+.leafmessage-shell {
+  --lm-paper: #f6f1e7;
+  --lm-paper-deep: #ebe3d4;
+  --lm-card: #fffdf8;
+  --lm-ink: #173526;
+  --lm-forest: #254c35;
+  --lm-leaf: #507057;
+  --lm-sage: #aab8a0;
+  --lm-mist: #dfe6da;
+  --lm-muted: #58635a;
+  --lm-faint: #626c63;
+  --lm-line: rgba(34, 70, 47, 0.18);
+  position: relative;
+  background: var(--lm-paper);
+  box-shadow: 0 0 0 100vmax var(--lm-paper);
+  color: var(--lm-ink);
+}
+
+.leafmessage-paper {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 86% 9%, rgba(100, 128, 102, 0.18), transparent 28%),
+    radial-gradient(circle at 10% 34%, rgba(218, 199, 164, 0.22), transparent 27%),
+    repeating-linear-gradient(0deg, rgba(23, 53, 38, 0.017) 0 1px, transparent 1px 6px),
+    var(--lm-paper);
+  pointer-events: none;
+}
+
+.leafmessage-shell > *:not(.leafmessage-paper) {
+  position: relative;
+  z-index: 1;
+}
+
+.leafmessage-shell::before,
+.leafmessage-shell::after { background: rgba(35, 68, 47, 0.1); }
+
+.leafmessage-shell .network-bar {
+  z-index: 20;
+  border-color: var(--lm-line);
+  background: rgba(246, 241, 231, 0.9);
+  color: var(--lm-ink);
+  backdrop-filter: blur(16px) saturate(120%);
+}
+
+.leafmessage-shell .record-dot {
+  background: var(--lm-leaf);
+  box-shadow: 0 0 0 5px rgba(100, 128, 102, 0.12), 0 0 16px rgba(100, 128, 102, 0.35);
+}
+
+.leafmessage-shell .node-switcher {
+  border-color: var(--lm-line);
+  background: rgba(255, 253, 248, 0.62);
+}
+
+.leafmessage-shell .node-switcher a,
+.leafmessage-shell .language-switcher button { color: var(--lm-faint); }
+.leafmessage-shell .node-switcher a:hover,
+.leafmessage-shell .language-switcher button:hover { color: var(--lm-ink); }
+.leafmessage-shell .node-switcher a.is-active {
+  background: var(--lm-mist);
+  color: var(--lm-forest);
+}
+.leafmessage-shell .language-switcher button.is-active {
+  border-color: rgba(37, 76, 53, 0.36);
+  background: rgba(100, 128, 102, 0.1);
+  color: var(--lm-forest);
+}
+
+.leafmessage-hero {
+  display: grid;
+  min-height: 850px;
+  padding: 88px 0 104px;
+  border-bottom: 1px solid var(--lm-line);
+  grid-template-columns: minmax(0, 0.9fr) minmax(450px, 1.1fr);
+  gap: clamp(54px, 7vw, 100px);
+  align-items: center;
+}
+
+.leafmessage-kicker {
+  display: flex;
+  margin-bottom: 44px;
+  gap: 22px;
+  color: var(--lm-faint);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+.leafmessage-kicker span:first-child { color: var(--lm-forest); }
+.leafmessage-eyebrow {
+  margin: 0 0 18px;
+  color: var(--lm-leaf);
+  font-size: 13px;
+  font-weight: 760;
+}
+
+.leafmessage-hero-copy h1 {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  color: var(--lm-ink);
+  font-family: "Arial Black", "Arial Narrow", sans-serif;
+  font-size: clamp(68px, 8vw, 108px);
+  letter-spacing: -0.095em;
+  line-height: 0.78;
+}
+
+.leafmessage-hero-copy h1 span:last-child {
+  padding-left: clamp(18px, 4vw, 54px);
+  color: var(--lm-forest);
+}
+
+.leafmessage-hero-copy > strong {
+  display: block;
+  max-width: 500px;
+  margin-top: 42px;
+  font-size: clamp(23px, 2.5vw, 34px);
+  letter-spacing: -0.055em;
+  line-height: 1.22;
+}
+
+.leafmessage-hero-copy > p:last-of-type {
+  max-width: 500px;
+  margin: 20px 0 0;
+  color: var(--lm-muted);
+  font-size: 14px;
+  line-height: 1.85;
+  word-break: keep-all;
+}
+
+.leafmessage-actions {
+  display: flex;
+  margin-top: 31px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 11px;
+}
+
+.leafmessage-status,
+.leafmessage-actions a,
+.leafmessage-final a {
+  display: inline-flex;
+  min-height: 48px;
+  padding: 0 17px;
+  border: 1px solid var(--lm-line);
+  align-items: center;
+  gap: 11px;
+  color: var(--lm-muted);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.045em;
+  text-decoration: none;
+}
+
+.leafmessage-status {
+  border-color: rgba(37, 76, 53, 0.34);
+  background: rgba(100, 128, 102, 0.07);
+  color: var(--lm-forest);
+}
+
+.leafmessage-status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #66876c;
+  box-shadow: 0 0 0 4px rgba(102, 135, 108, 0.12);
+}
+
+.leafmessage-actions a { min-width: 126px; justify-content: space-between; color: var(--lm-ink); }
+.leafmessage-actions a span,
+.leafmessage-final a span { color: var(--lm-leaf); font-size: 14px; }
+.leafmessage-actions a:hover,
+.leafmessage-final a:hover { border-color: var(--lm-leaf); background: rgba(100, 128, 102, 0.08); }
+.leafmessage-actions a:focus-visible,
+.leafmessage-final a:focus-visible { outline: 2px solid var(--lm-forest); outline-offset: 3px; }
+
+.leafmessage-stats {
+  display: grid;
+  max-width: 510px;
+  margin: 40px 0 0;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.leafmessage-stats div {
+  display: flex;
+  min-width: 0;
+  padding: 18px 14px 2px 0;
+  border-top: 1px solid var(--lm-line);
+  flex-direction: column;
+}
+
+.leafmessage-stats div + div { padding-left: 14px; border-left: 1px solid var(--lm-line); }
+.leafmessage-stats dd {
+  order: -1;
+  margin: 0;
+  color: var(--lm-forest);
+  font-family: "Arial Black", sans-serif;
+  font-size: 33px;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+.leafmessage-stats dt { margin-top: 9px; color: var(--lm-faint); font-size: 9px; line-height: 1.45; word-break: keep-all; }
+
+.leafmessage-hero-screen {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(37, 76, 53, 0.28);
+  border-radius: 42px 42px 18px 42px;
+  background: #e9e9ef;
+  box-shadow: 20px 26px 0 rgba(37, 76, 53, 0.06), 0 34px 76px rgba(35, 68, 47, 0.18);
+  transform: rotate(1deg);
+}
+
+.leafmessage-screen-rail {
+  display: flex;
+  min-height: 48px;
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(37, 76, 53, 0.17);
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 253, 248, 0.96);
+  color: var(--lm-forest);
+  font: 750 8px ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: 0.1em;
+}
+
+.leafmessage-screen-rail b { padding: 6px 8px; border-radius: 99px; background: var(--lm-mist); font-size: 8px; }
+.leafmessage-phone-crop { overflow: hidden; height: 660px; background: #f1f1f7; }
+.leafmessage-phone-crop img { display: block; width: 100%; height: auto; }
+.leafmessage-hero-screen figcaption,
+.leafmessage-composer-shot figcaption,
+.leafmessage-large-shot figcaption {
+  padding: 15px 20px 17px;
+  background: var(--lm-card);
+  color: var(--lm-faint);
+  font: 700 8px ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: 0.1em;
+}
+
+.leafmessage-hero-screen.depth-item {
+  transform: perspective(1400px) rotateZ(1deg) rotateX(var(--tilt-y)) rotateY(var(--tilt-x));
+  transition: transform 260ms cubic-bezier(.2, .8, .2, 1), box-shadow 260ms ease;
+}
+.leafmessage-hero-screen.depth-item img {
+  translate: var(--parallax-x) var(--parallax-y);
+  scale: 1.015;
+  transition: translate 260ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.leafmessage-premise {
+  display: grid;
+  padding: 112px 0;
+  border-bottom: 1px solid var(--lm-line);
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.72fr);
+  gap: clamp(58px, 9vw, 126px);
+  align-items: center;
+}
+
+.leafmessage-premise-copy > span,
+.leafmessage-section-heading span,
+.leafmessage-self > div:first-child > span {
+  color: var(--lm-leaf);
+  font: 750 9px ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: 0.12em;
+}
+.leafmessage-premise-copy > p,
+.leafmessage-section-heading > div > p,
+.leafmessage-self > div:first-child > p { margin: 33px 0 13px; color: var(--lm-muted); font-size: 13px; font-weight: 720; }
+.leafmessage-premise-copy h2,
+.leafmessage-section-heading h2,
+.leafmessage-self h2,
+.leafmessage-final h2 {
+  margin: 0;
+  color: var(--lm-ink);
+  font-size: clamp(40px, 5.3vw, 68px);
+  letter-spacing: -0.075em;
+  line-height: 1.03;
+  word-break: keep-all;
+}
+.leafmessage-premise-copy > div {
+  display: grid;
+  max-width: 600px;
+  margin-top: 36px;
+  grid-template-columns: 40px 1fr;
+  gap: 18px;
+}
+.leafmessage-premise-copy > div i { width: 32px; height: 1px; margin-top: 11px; background: var(--lm-leaf); }
+.leafmessage-premise-copy > div p { margin: 0; color: var(--lm-muted); font-size: 14px; line-height: 1.9; word-break: keep-all; }
+
+.leafmessage-composer-shot {
+  position: relative;
+  overflow: hidden;
+  max-width: 430px;
+  margin: 0;
+  border: 1px solid var(--lm-line);
+  border-radius: 30px 30px 30px 9px;
+  background: #f1f1f7;
+  box-shadow: 14px 18px 0 rgba(100, 128, 102, 0.08), 0 26px 58px rgba(35, 68, 47, 0.12);
+}
+.leafmessage-shot-label { display: flex; min-height: 42px; padding: 0 15px; align-items: center; justify-content: space-between; background: var(--lm-forest); color: white; font: 700 8px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .09em; }
+.leafmessage-shot-label b { color: #dfe8da; }
+.leafmessage-composer-shot img { display: block; width: 100%; height: 590px; object-fit: cover; object-position: top center; }
+
+.leafmessage-presentation {
+  margin-inline: -28px;
+  padding: 112px 28px 118px;
+  background:
+    radial-gradient(circle at 82% 24%, rgba(174, 191, 159, 0.15), transparent 30%),
+    linear-gradient(145deg, #173526, #234731 58%, #1b3b2a);
+  box-shadow: 0 0 0 100vmax #173526;
+  clip-path: inset(0 -100vmax);
+  color: #f6f1e7;
+}
+
+.leafmessage-presentation .leafmessage-section-heading { border-color: rgba(246, 241, 231, 0.2); }
+.leafmessage-presentation .leafmessage-section-heading span { color: #b9c9ae; }
+.leafmessage-presentation .leafmessage-section-heading > div > p { color: #d6dfd0; }
+.leafmessage-presentation .leafmessage-section-heading h2 { color: #fffdf8; }
+.leafmessage-presentation .leafmessage-section-heading > p { color: #bfcabd; }
+
+.leafmessage-section-heading {
+  display: grid;
+  padding-bottom: 45px;
+  border-bottom: 1px solid var(--lm-line);
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.7fr);
+  gap: clamp(46px, 7vw, 100px);
+  align-items: end;
+}
+.leafmessage-section-heading > p { margin: 0 0 7px; color: var(--lm-muted); font-size: 14px; line-height: 1.85; word-break: keep-all; }
+
+.leafmessage-presentation-grid {
+  display: grid;
+  padding-top: 62px;
+  grid-template-columns: minmax(0, 1.3fr) minmax(310px, 0.7fr);
+  gap: clamp(46px, 7vw, 90px);
+  align-items: start;
+}
+.leafmessage-large-shot {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(255, 253, 248, 0.3);
+  border-radius: 34px 34px 12px 34px;
+  background: #f1f1f7;
+  box-shadow: 18px 24px 0 rgba(0, 0, 0, 0.12), 0 32px 70px rgba(0, 0, 0, 0.24);
+}
+.leafmessage-large-shot img { display: block; width: 100%; height: 700px; object-fit: cover; object-position: top center; }
+.leafmessage-large-shot figcaption { background: rgba(255, 253, 248, 0.96); color: #6a776b; }
+
+.leafmessage-presentation-facts { display: grid; margin: 0; padding: 0; border-top: 1px solid rgba(246, 241, 231, 0.22); list-style: none; }
+.leafmessage-presentation-facts li {
+  display: grid;
+  min-height: 174px;
+  padding: 25px 0;
+  border-bottom: 1px solid rgba(246, 241, 231, 0.22);
+  grid-template-columns: 34px 70px 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: 12px;
+}
+.leafmessage-presentation-facts span { color: #9fb29b; font: 700 8px ui-monospace, SFMono-Regular, Consolas, monospace; }
+.leafmessage-presentation-facts strong { grid-row: 1 / span 2; grid-column: 2; color: #f6f1e7; font: 800 47px "Arial Black", sans-serif; letter-spacing: -0.08em; line-height: .9; }
+.leafmessage-presentation-facts li > div { grid-row: 1 / span 2; grid-column: 3; }
+.leafmessage-presentation-facts h3 { margin: 0; color: #fffdf8; font-size: 19px; font-weight: 770; letter-spacing: -0.04em; }
+.leafmessage-presentation-facts p { margin: 12px 0 0; color: #bfcabd; font-size: 12px; line-height: 1.7; word-break: keep-all; }
+
+.leafmessage-flow { padding: 112px 0 120px; }
+.leafmessage-flow .leafmessage-section-heading { grid-template-columns: 1fr; }
+.leafmessage-flow .leafmessage-section-heading h2 { max-width: 850px; }
+
+.leafmessage-steps { display: grid; margin: 0; padding: 62px 0 96px; grid-template-columns: repeat(3, 1fr); list-style: none; }
+.leafmessage-steps li {
+  display: grid;
+  min-height: 236px;
+  padding: 28px 30px 30px 0;
+  border-top: 1px solid var(--lm-line);
+  grid-template-columns: 45px 1fr;
+  gap: 16px;
+}
+.leafmessage-steps li + li { padding-left: 26px; border-left: 1px solid var(--lm-line); }
+.leafmessage-steps > li > span { color: var(--lm-leaf); font: 750 10px ui-monospace, SFMono-Regular, Consolas, monospace; }
+.leafmessage-steps h3 { margin: 0; color: var(--lm-ink); font-size: 22px; letter-spacing: -0.05em; line-height: 1.25; word-break: keep-all; }
+.leafmessage-steps p { margin: 20px 0 0; color: var(--lm-muted); font-size: 13px; line-height: 1.82; word-break: keep-all; }
+
+.leafmessage-self {
+  display: grid;
+  padding: 58px;
+  border: 1px solid var(--lm-line);
+  border-radius: 38px 38px 11px 38px;
+  background:
+    linear-gradient(135deg, rgba(255, 253, 248, 0.93), rgba(225, 233, 220, 0.82));
+  box-shadow: 0 24px 62px rgba(35, 68, 47, 0.09);
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 0.8fr);
+  gap: clamp(54px, 8vw, 110px);
+}
+.leafmessage-self > div:first-child > p { margin-top: 26px; }
+.leafmessage-self h2 { font-size: clamp(38px, 4.7vw, 60px); }
+.leafmessage-self-detail > p { margin: 35px 0 0; color: var(--lm-muted); font-size: 14px; line-height: 1.9; word-break: keep-all; }
+.leafmessage-self-detail ul { display: grid; margin: 31px 0 0; padding: 0; list-style: none; }
+.leafmessage-self-detail li { display: grid; padding: 14px 0; border-top: 1px solid var(--lm-line); grid-template-columns: 15px 1fr; gap: 11px; color: var(--lm-forest); font-size: 12px; line-height: 1.55; }
+.leafmessage-self-detail li:last-child { border-bottom: 1px solid var(--lm-line); }
+.leafmessage-self-detail li i { width: 7px; height: 7px; margin-top: 5px; border-radius: 50%; background: var(--lm-leaf); box-shadow: 0 0 0 4px rgba(100, 128, 102, 0.1); }
+
+.leafmessage-final {
+  display: grid;
+  min-height: 380px;
+  padding: 82px 0;
+  border-top: 1px solid var(--lm-line);
+  align-items: center;
+  grid-template-columns: 150px minmax(0, 1fr) auto;
+  gap: clamp(30px, 5vw, 64px);
+}
+.leafmessage-final img { width: 142px; height: 142px; border-radius: 31px; box-shadow: 0 18px 44px rgba(35, 68, 47, 0.13); }
+.leafmessage-final p { margin: 0 0 18px; color: var(--lm-leaf); font: 750 9px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; }
+.leafmessage-final h2 { max-width: 650px; font-size: clamp(34px, 4.8vw, 58px); }
+.leafmessage-final a { min-width: 126px; justify-content: space-between; color: var(--lm-ink); }
+
+.leafmessage-footer { border-top-color: var(--lm-line); color: var(--lm-muted); }
+.leafmessage-footer .footer-node { color: var(--lm-forest); }
+
+@media (max-width: 1020px) {
+  .leafmessage-hero { grid-template-columns: 1fr; }
+  .leafmessage-hero-copy { max-width: 760px; }
+  .leafmessage-hero-screen { width: min(100%, 650px); justify-self: center; }
+  .leafmessage-phone-crop { height: 760px; }
+  .leafmessage-premise { grid-template-columns: 1fr 360px; gap: 50px; }
+  .leafmessage-presentation-grid { grid-template-columns: minmax(0, 1fr) 300px; }
+  .leafmessage-self { padding: 48px; grid-template-columns: 1fr; gap: 20px; }
+  .leafmessage-self-detail > p { margin-top: 0; }
+  .leafmessage-final { grid-template-columns: 120px minmax(0, 1fr); }
+  .leafmessage-final img { width: 112px; height: 112px; border-radius: 25px; }
+  .leafmessage-final a { grid-column: 2; justify-self: start; }
+}
+
+@media (max-width: 760px) {
+  .leafmessage-hero { min-height: auto; padding: 70px 0 80px; }
+  .leafmessage-kicker { margin-bottom: 39px; }
+  .leafmessage-hero-copy h1 { font-size: clamp(65px, 18vw, 94px); }
+  .leafmessage-hero-copy h1 span:last-child { padding-left: 13px; }
+  .leafmessage-hero-copy > strong { margin-top: 36px; }
+  .leafmessage-phone-crop { height: 620px; }
+  .leafmessage-premise { padding: 86px 0; grid-template-columns: 1fr; }
+  .leafmessage-composer-shot { width: min(100%, 460px); justify-self: center; }
+  .leafmessage-composer-shot img { height: 610px; }
+  .leafmessage-presentation { margin-inline: -17px; padding: 86px 17px 94px; }
+  .leafmessage-section-heading { grid-template-columns: 1fr; gap: 28px; }
+  .leafmessage-presentation-grid { grid-template-columns: 1fr; }
+  .leafmessage-large-shot { width: min(100%, 610px); }
+  .leafmessage-large-shot img { height: 680px; }
+  .leafmessage-presentation-facts { grid-template-columns: repeat(3, 1fr); }
+  .leafmessage-presentation-facts li { min-height: 210px; padding: 22px 14px; grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; }
+  .leafmessage-presentation-facts li + li { border-left: 1px solid rgba(246, 241, 231, 0.22); }
+  .leafmessage-presentation-facts strong { grid-row: auto; grid-column: auto; margin-top: 17px; font-size: 38px; }
+  .leafmessage-presentation-facts li > div { grid-row: auto; grid-column: auto; }
+  .leafmessage-presentation-facts h3 { margin-top: 10px; font-size: 15px; }
+  .leafmessage-presentation-facts p { font-size: 10px; }
+  .leafmessage-flow { padding: 86px 0 92px; }
+  .leafmessage-steps { padding: 48px 0 72px; grid-template-columns: 1fr; }
+  .leafmessage-steps li { min-height: 0; padding: 27px 0; }
+  .leafmessage-steps li + li { padding-left: 0; border-left: 0; }
+  .leafmessage-self { padding: 36px 30px; }
+  .leafmessage-final { grid-template-columns: 88px 1fr; }
+  .leafmessage-final img { width: 82px; height: 82px; border-radius: 19px; }
+}
+
+@media (max-width: 520px) {
+  .leafmessage-kicker { flex-direction: column; gap: 10px; }
+  .leafmessage-eyebrow { line-height: 1.6; }
+  .leafmessage-hero-copy h1 { font-size: clamp(58px, 17.5vw, 82px); }
+  .leafmessage-actions { align-items: stretch; flex-direction: column; }
+  .leafmessage-actions > * { width: 100%; justify-content: center; }
+  .leafmessage-stats dd { font-size: 28px; }
+  .leafmessage-stats dt { font-size: 8px; }
+  .leafmessage-hero-screen { border-radius: 30px 30px 12px 30px; }
+  .leafmessage-phone-crop { height: 500px; }
+  .leafmessage-premise-copy > div { grid-template-columns: 28px 1fr; gap: 12px; }
+  .leafmessage-premise-copy > div i { width: 23px; }
+  .leafmessage-composer-shot img { height: 510px; }
+  .leafmessage-presentation-grid { padding-top: 45px; }
+  .leafmessage-large-shot img { height: 530px; }
+  .leafmessage-presentation-facts { grid-template-columns: 1fr; }
+  .leafmessage-presentation-facts li { min-height: 0; grid-template-columns: 30px 55px 1fr; grid-template-rows: auto 1fr; }
+  .leafmessage-presentation-facts li + li { border-left: 0; }
+  .leafmessage-presentation-facts strong { grid-row: 1 / span 2; grid-column: 2; margin: 0; font-size: 34px; }
+  .leafmessage-presentation-facts li > div { grid-row: 1 / span 2; grid-column: 3; }
+  .leafmessage-presentation-facts h3 { margin: 0; font-size: 15px; }
+  .leafmessage-presentation-facts p { margin-top: 7px; }
+  .leafmessage-steps li { grid-template-columns: 34px 1fr; gap: 9px; }
+  .leafmessage-self { padding: 31px 22px; border-radius: 27px 27px 8px 27px; }
+  .leafmessage-final { padding: 70px 0; grid-template-columns: 70px 1fr; gap: 18px; }
+  .leafmessage-final img { width: 66px; height: 66px; border-radius: 15px; }
+  .leafmessage-final h2 { font-size: 31px; }
+  .leafmessage-final a { grid-column: 1 / -1; width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leafmessage-hero-screen,
+  .leafmessage-hero-screen.depth-item,
+  .leafmessage-hero-screen.depth-item img { transform: none; translate: none; transition: none; }
+}
