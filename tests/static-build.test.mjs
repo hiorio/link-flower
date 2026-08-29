@@ -92,11 +92,11 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /비온다매/);
   assert.match(javascript, /싹 메모/);
   assert.match(javascript, /Leaf Message/);
-  assert.match(javascript, /마음을 남기고, 상대의 홈 화면을 꾸미는/);
+  assert.match(javascript, /마음을 남기고, 상대의 홈 화면을 꾸밉니다/);
   assert.match(javascript, /감성 메시지를 남기고, 상대의 홈 화면 한 칸을 꾸밉니다/);
   assert.match(javascript, /STYLE THEIR SCREEN/);
-  assert.match(javascript, /비 온다던 예보, 정말 맞았는지 확인하는/);
-  assert.doesNotMatch(javascript, /마음을 남기고, 상대의 홈 화면을 꾸미는 앱|꾸미는 앱입니다|날씨 앱입니다|메모 앱입니다|확인하는 앱입니다/);
+  assert.match(javascript, /비 온다던 예보가 정말 맞았는지 끝까지 확인합니다/);
+  assert.doesNotMatch(javascript, /마음을 남기고, 상대의 홈 화면을 꾸미는 앱|비 온다던 예보, 정말 맞았는지 확인하는|꾸미는 앱입니다|날씨 앱입니다|메모 앱입니다|확인하는 앱입니다/);
   assert.match(javascript, /웹 데모/);
   assert.match(javascript, /HIORIO \/ INDEPENDENT MAKER/);
   assert.match(javascript, /아이디어를 오래 쓰이는 형태로 만듭니다/);
