@@ -80,6 +80,7 @@ Link Flower의 기본 디자인과 이후 색상 수정은 **팔레트 02 — Sl
 | 공포도파민 | 발견된 기록, 타임코드, 신호 화면 | 추상 레이더 대신 실제 대표 영상의 스틸을 증거로 사용 |
 | 콘텐츠 채널 | 외부 출구가 명확한 단순 디렉터리 | 루트와 비슷한 노드 다이어그램을 줄이고 채널을 더 빨리 노출 |
 | 비온다매 `/about` | 예보 ↔ 관측 보드, 분통 캐릭터, 구어체 판정 | 모바일 약 9,400px 길이를 줄이고 반복 설명을 압축 |
+| 싹 메모 | 실제 보관함과 음성·타이핑 캡처 화면, 아이콘의 남색·새싹색·씨앗색 | App Store 공개 후 상태와 직접 설치 링크 갱신 |
 
 ### 앱 목록 운영 아이콘 기준
 
@@ -93,6 +94,7 @@ Link Flower의 기본 디자인과 이후 색상 수정은 **팔레트 02 — Sl
 | TimeFlower | 최신 iPhone release build 6의 `assets/images/icon.png` (`codex/timeline-release`) | `1.0.0` |
 | 매일 플랭크 | 앱 빌드 설정의 `src/assets/branding/icon.png` | `0.2.1` |
 | 비온다매 | 운영 앱 설정의 `apps/mobile/assets/biondamae-icon.png` | `1.1.0` |
+| 싹 메모 | iPhone release build 5의 `AppIcon.appiconset/AppIcon-1024.png` | `1.0` |
 
 ### 페이지 추가 시 통과할 기준
 

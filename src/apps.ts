@@ -14,7 +14,7 @@ export type ProductApp = {
   icon: string;
   version: string;
   platforms: string[];
-  accent: "cyan" | "amber" | "apricot" | "cobalt" | "sky";
+  accent: "cyan" | "amber" | "apricot" | "cobalt" | "sky" | "sprout";
   status: "live" | "preparing" | "demo";
   content: Record<Locale, LocalizedAppCopy>;
   links: Array<{
@@ -184,5 +184,36 @@ export const productApps: ProductApp[] = [
       },
     },
     links: [{ kind: "web", href: "https://weather-forecast-production-0aac.up.railway.app/" }],
+  },
+  {
+    id: "ssakmemo",
+    order: "06",
+    code: "CAPTURE / SEARCH / KEEP",
+    icon: "app-icons/ssak-memo.webp",
+    version: "1.0",
+    platforms: ["iOS", "WIDGET"],
+    accent: "sprout",
+    status: "preparing",
+    content: {
+      ko: {
+        displayName: "싹 메모",
+        tagline: "떠오른 순간, 바로 기록",
+        description: "위젯과 제어 센터에서 한 번 탭해 녹음하거나 타이핑하고, 작은 생각을 기기 안의 보관함과 날짜별 Markdown에 차곡차곡 남기는 iPhone 메모 앱입니다.",
+        features: ["위젯·제어 센터 원탭 기록", "온디바이스 한국어 받아쓰기", "검색 보관함과 날짜별 Markdown"],
+      },
+      en: {
+        displayName: "싹 메모",
+        tagline: "Capture it the moment it appears",
+        description: "An iPhone memo app that starts voice or text capture in one tap from a widget or Control Center, then keeps every thought locally with daily Markdown output.",
+        features: ["One-tap widget and Control Center capture", "On-device Korean dictation", "Searchable library and daily Markdown"],
+      },
+      ja: {
+        displayName: "싹 메모",
+        tagline: "思いついた瞬間、すぐ記録",
+        description: "ウィジェットやコントロールセンターからワンタップで音声・テキスト入力を始め、小さな考えを端末内の保管庫と日別Markdownに残すiPhoneメモアプリです。",
+        features: ["ウィジェット・コントロールセンターから記録", "韓国語のオンデバイス音声入力", "検索できる保管庫と日別Markdown"],
+      },
+    },
+    links: [{ kind: "support", href: "https://hiorio.github.io/ssak-memo-support/" }],
   },
 ];

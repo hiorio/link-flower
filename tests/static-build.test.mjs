@@ -9,6 +9,7 @@ const pages = [
   ["../dist/apps/dohwaji/index.html", "도화지 | 함께 만드는 모임 동선 지도"],
   ["../dist/apps/timeflower/index.html", "TimeFlower | 함께 쓰는 공유 캘린더"],
   ["../dist/apps/daily-plank/index.html", "매일 플랭크 | 5분부터 시작하는 플랭크 가이드"],
+  ["../dist/apps/ssak-memo/index.html", "싹 메모 | 떠오른 순간, 바로 기록"],
 ];
 
 const operatingIcons = [
@@ -17,6 +18,15 @@ const operatingIcons = [
   "../dist/app-icons/timeflower.png",
   "../dist/app-icons/daily-plank.png",
   "../dist/app-icons/biondamae.png",
+  "../dist/app-icons/ssak-memo.webp",
+];
+
+const ssakMemoShots = [
+  "../dist/product-shots/ssak-memo/01-library.webp",
+  "../dist/product-shots/ssak-memo/02-text.webp",
+  "../dist/product-shots/ssak-memo/03-voice.webp",
+  "../dist/product-shots/ssak-memo/04-detail.webp",
+  "../dist/product-shots/ssak-memo/05-filter.webp",
 ];
 
 const botanicalLayers = [
@@ -68,6 +78,7 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /TimeFlower/);
   assert.match(javascript, /매일 플랭크/);
   assert.match(javascript, /비온다매/);
+  assert.match(javascript, /싹 메모/);
   assert.match(javascript, /출시 준비/);
   assert.match(javascript, /웹 데모/);
   assert.match(javascript, /HIORIO \/ INDEPENDENT MAKER/);
@@ -97,6 +108,8 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /apps\/dohwaji/);
   assert.match(javascript, /apps\/timeflower/);
   assert.match(javascript, /apps\/daily-plank/);
+  assert.match(javascript, /apps\/ssak-memo/);
+  assert.match(javascript, /작은 생각을 놓치지 않고 쌓아두세요/);
   assert.doesNotMatch(javascript, /PRIMARY SIGNAL|horror_dopamine|horrordopamine/);
 
   for (const path of operatingIcons) {
@@ -109,6 +122,12 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /app-icons\/timeflower\.png/);
   assert.match(javascript, /app-icons\/daily-plank\.png/);
   assert.match(javascript, /app-icons\/biondamae\.png/);
+  assert.match(javascript, /app-icons\/ssak-memo\.webp/);
+
+  for (const path of ssakMemoShots) {
+    const screenshot = await stat(new URL(path, import.meta.url));
+    assert.ok(screenshot.size > 10000, `${path} should contain the optimized App Store screen`);
+  }
 
   const rootHtml = await readFile(new URL("../dist/index.html", import.meta.url), "utf8");
   assert.match(rootHtml, /https:\/\/hiorio\.com\/og\.png/);
@@ -136,6 +155,9 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(stylesheet, /apps-directory-item/);
   assert.match(stylesheet, /apps-product-card/);
   assert.match(stylesheet, /apps-method-item/);
+  assert.match(stylesheet, /product-sprout/);
+  assert.match(stylesheet, /ssak-hero/);
+  assert.match(stylesheet, /ssak-capture-grid/);
   assert.match(stylesheet, /\.apps-product-links a\{[^}]*min-height:44px/);
   assert.match(stylesheet, /prefers-reduced-motion:reduce/);
   assert.doesNotMatch(stylesheet, /hiorio-botanical-sway/);
@@ -153,4 +175,16 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
     "b30c8eab930b18f2d2169f105b17c7ca925bdcc978fc9cf496965aecd9d0d1a8",
     "Biondamae should use the version 1.1.0 operating icon",
   );
+
+  const ssakMemoIcon = await readFile(new URL("../dist/app-icons/ssak-memo.png", import.meta.url));
+  assert.equal(
+    createHash("sha256").update(ssakMemoIcon).digest("hex"),
+    "71c1eeb3085dd5111598a67e1f650f43bb0962e4eb31b6d317141620a02b3c1c",
+    "Ssak Memo should use the iPhone build 5 operating icon",
+  );
+
+  const ssakMemoHtml = await readFile(new URL("../dist/apps/ssak-memo/index.html", import.meta.url), "utf8");
+  assert.match(ssakMemoHtml, /https:\/\/hiorio\.com\/apps\/ssak-memo\//);
+  assert.match(ssakMemoHtml, /https:\/\/hiorio\.com\/app-icons\/ssak-memo\.png/);
+  assert.match(ssakMemoHtml, /twitter:card/);
 });

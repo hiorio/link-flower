@@ -288,6 +288,7 @@
 .directory-apricot { --directory-accent: #a8543f; }
 .directory-cobalt { --directory-accent: #4962a5; }
 .directory-sky { --directory-accent: #08739f; }
+.directory-sprout { --directory-accent: #2d745d; }
 
 .apps-directory-item::before {
   position: absolute;
@@ -573,6 +574,7 @@
 .product-apricot { --product-accent: #a9563f; }
 .product-cobalt { --product-accent: #4863a8; }
 .product-sky { --product-accent: #0873a3; }
+.product-sprout { --product-accent: #2d745d; }
 
 .apps-product-card::before {
   position: absolute;

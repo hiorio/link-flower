@@ -6,10 +6,11 @@ Hiorio가 직접 틔운 앱과 운영하는 콘텐츠를 소개하는 개인 작
 ## 페이지 구조
 
 - `/`: Hiorio 소개와 전체 작업 인덱스
-- `/apps/`: 틔운 앱들 — 도화지, TimeRoots, TimeFlower, 매일 플랭크, 비온다매
+- `/apps/`: 틔운 앱들 — 도화지, TimeRoots, TimeFlower, 매일 플랭크, 비온다매, 싹 메모
 - `/apps/dohwaji/`: NODE_01-A 도화지 제품 소개 — 공식 서비스 `https://dohwaji.app`
 - `/apps/timeflower/`: NODE_01-C TimeFlower 제품 소개 — 공유 캘린더, 출시 준비 중
 - `/apps/daily-plank/`: NODE_01-D 매일 플랭크 제품 소개 — 5·7·10분 가이드 루틴, 테스트앱 준비 중
+- `/apps/ssak-memo/`: NODE_01-F 싹 메모 제품 소개 — 원탭 캡처, 로컬 보관함, 날짜별 Markdown
 - `/horror/`: NODE_02 공포도파민 브랜드
 - `/channels/`: NODE_02-A 공포도파민의 외부 채널 연결 페이지
 
