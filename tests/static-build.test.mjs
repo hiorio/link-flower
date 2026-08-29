@@ -77,6 +77,10 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
 
   const javascript = await readFile(new URL(javascriptFile, assetsDirectory), "utf8");
   const stylesheet = await readFile(new URL(stylesheetFile, assetsDirectory), "utf8");
+  const productSource = await readFile(new URL("../src/apps.ts", import.meta.url), "utf8");
+  const productStatuses = [...productSource.matchAll(/^    status: "([^"]+)",$/gm)].map((match) => match[1]);
+  assert.equal(productStatuses.length, operatingIcons.length);
+  assert.ok(productStatuses.every((status) => status === "live"), "제품 디렉터리의 모든 앱은 운영 중이어야 합니다");
   assert.match(javascript, /Select language/);
   assert.match(javascript, /言語を選択/);
   assert.match(javascript, /link-flower-locale/);
@@ -88,11 +92,11 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /비온다매/);
   assert.match(javascript, /싹 메모/);
   assert.match(javascript, /Leaf Message/);
-  assert.match(javascript, /마음을 남기고, 상대의 홈 화면을 꾸미는 앱/);
+  assert.match(javascript, /마음을 남기고, 상대의 홈 화면을 꾸미는/);
   assert.match(javascript, /감성 메시지를 남기고, 상대의 홈 화면 한 칸을 꾸밉니다/);
   assert.match(javascript, /STYLE THEIR SCREEN/);
-  assert.match(javascript, /TestFlight 내부 베타/);
-  assert.match(javascript, /출시 준비/);
+  assert.match(javascript, /비 온다던 예보, 정말 맞았는지 확인하는/);
+  assert.doesNotMatch(javascript, /마음을 남기고, 상대의 홈 화면을 꾸미는 앱|꾸미는 앱입니다|날씨 앱입니다|메모 앱입니다|확인하는 앱입니다/);
   assert.match(javascript, /웹 데모/);
   assert.match(javascript, /HIORIO \/ INDEPENDENT MAKER/);
   assert.match(javascript, /아이디어를 오래 쓰이는 형태로 만듭니다/);

@@ -100,7 +100,7 @@ export const productApps: ProductApp[] = [
     version: "1.0.0",
     platforms: ["iOS", "ANDROID"],
     accent: "apricot",
-    status: "preparing",
+    status: "live",
     content: {
       ko: {
         displayName: "TimeFlower",
@@ -131,7 +131,7 @@ export const productApps: ProductApp[] = [
     version: "0.2.1",
     platforms: ["iOS", "ANDROID", "WEB DEMO"],
     accent: "cobalt",
-    status: "demo",
+    status: "live",
     content: {
       ko: {
         displayName: "매일 플랭크",
@@ -166,20 +166,20 @@ export const productApps: ProductApp[] = [
     content: {
       ko: {
         displayName: "비온다매",
-        tagline: "예보가 맞았는지 끝까지 보는 날씨 앱",
-        description: "현재 관측과 7일 날씨를 보고, 과거 예보와 6개 예보사를 같은 시간 기준으로 맞대어 실제로 얼마나 맞았는지 기록하는 날씨 앱입니다.",
+        tagline: "비 온다던 예보, 정말 맞았는지 확인하는",
+        description: "현재 관측과 7일 날씨를 보고, 과거 예보와 6개 예보사를 같은 시간 기준으로 맞대어 실제로 얼마나 맞았는지 기록합니다.",
         features: ["현재 관측과 7일 예보", "6개 예보사 맞비교", "과거 예보와 정확도 기록"],
       },
       en: {
         displayName: "Biondamae",
-        tagline: "A weather app that checks how the forecast actually did",
+        tagline: "See whether that rain forecast was actually right",
         description: "See current observations and the seven-day outlook, then compare six providers and past forecasts at the same point in time to learn what really held up.",
         features: ["Current conditions and 7-day outlook", "Six-provider comparison", "Past forecasts and accuracy history"],
       },
       ja: {
         displayName: "ビオンダメ",
-        tagline: "予報が本当に当たったか、最後まで見る天気アプリ",
-        description: "現在の観測と7日間予報を確認し、過去の予報と6つの予報元を同じ時刻基準で比較して、実際にどれだけ当たったかを記録する天気アプリです。",
+        tagline: "雨予報が本当に当たったか確かめる",
+        description: "現在の観測と7日間予報を確認し、過去の予報と6つの予報元を同じ時刻基準で比較して、実際にどれだけ当たったかを記録します。",
         features: ["現在の観測と7日間予報", "6つの予報元を比較", "過去予報と精度の記録"],
       },
     },
@@ -193,24 +193,24 @@ export const productApps: ProductApp[] = [
     version: "1.0",
     platforms: ["iOS", "WIDGET"],
     accent: "sprout",
-    status: "preparing",
+    status: "live",
     content: {
       ko: {
         displayName: "싹 메모",
         tagline: "떠오른 순간, 바로 기록",
-        description: "위젯과 제어 센터에서 한 번 탭해 녹음하거나 타이핑하고, 작은 생각을 기기 안의 보관함과 날짜별 Markdown에 차곡차곡 남기는 iPhone 메모 앱입니다.",
+        description: "위젯과 제어 센터에서 한 번 탭해 녹음하거나 타이핑하고, 작은 생각을 기기 안의 보관함과 날짜별 Markdown에 차곡차곡 남깁니다.",
         features: ["위젯·제어 센터 원탭 기록", "온디바이스 한국어 받아쓰기", "검색 보관함과 날짜별 Markdown"],
       },
       en: {
         displayName: "싹 메모",
         tagline: "Capture it the moment it appears",
-        description: "An iPhone memo app that starts voice or text capture in one tap from a widget or Control Center, then keeps every thought locally with daily Markdown output.",
+        description: "Start voice or text capture in one tap from a widget or Control Center, then keep every thought locally with daily Markdown output.",
         features: ["One-tap widget and Control Center capture", "On-device Korean dictation", "Searchable library and daily Markdown"],
       },
       ja: {
         displayName: "싹 메모",
         tagline: "思いついた瞬間、すぐ記録",
-        description: "ウィジェットやコントロールセンターからワンタップで音声・テキスト入力を始め、小さな考えを端末内の保管庫と日別Markdownに残すiPhoneメモアプリです。",
+        description: "ウィジェットやコントロールセンターからワンタップで音声・テキスト入力を始め、小さな考えを端末内の保管庫と日別Markdownに残します。",
         features: ["ウィジェット・コントロールセンターから記録", "韓国語のオンデバイス音声入力", "検索できる保管庫と日別Markdown"],
       },
     },
@@ -224,12 +224,12 @@ export const productApps: ProductApp[] = [
     version: "0.1.0",
     platforms: ["iOS", "WIDGET"],
     accent: "leaf",
-    status: "preparing",
+    status: "live",
     content: {
       ko: {
         displayName: "Leaf Message",
-        tagline: "마음을 남기고, 상대의 홈 화면을 꾸미는 앱",
-        description: "40자 안에 감성 메시지를 남기고 배경과 도착 효과를 고르면, 상대의 iPhone 홈 화면 위젯 한 칸을 그 마음에 어울리는 장면으로 꾸미는 앱입니다.",
+        tagline: "마음을 남기고, 상대의 홈 화면을 꾸미는",
+        description: "40자 안에 감성 메시지를 남기고 배경과 도착 효과를 고르면, 상대의 iPhone 홈 화면 위젯 한 칸을 그 마음에 어울리는 장면으로 꾸밉니다.",
         features: ["40자에 담는 감성 메시지", "배경 14종과 효과 12종으로 화면 꾸미기", "보내기 전 내 위젯에서 미리 보기"],
       },
       en: {
@@ -240,8 +240,8 @@ export const productApps: ProductApp[] = [
       },
       ja: {
         displayName: "Leaf Message",
-        tagline: "想いを残し、相手のホーム画面を彩るアプリ",
-        description: "40文字以内の想いを込めたメッセージに背景と到着演出を添え、相手のiPhoneホーム画面ウィジェットの一角を、その気持ちに合う景色へ変えるアプリです。",
+        tagline: "想いを残し、相手のホーム画面を彩る",
+        description: "40文字以内の想いを込めたメッセージに背景と到着演出を添え、相手のiPhoneホーム画面ウィジェットの一角を、その気持ちに合う景色へ変えます。",
         features: ["40文字に込める想い", "背景14種と演出12種で画面を彩る", "送信前に自分のウィジェットで確認"],
       },
     },

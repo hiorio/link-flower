@@ -49,7 +49,7 @@ export const leafMessageCopy: Record<Locale, LeafMessageCopy> = {
     title: ["Leaf", "Message"],
     heroLine: "감성 메시지를 남기고, 상대의 홈 화면 한 칸을 꾸밉니다.",
     heroDescription: "40자 안에 마음을 쓰고, 14가지 배경과 12가지 도착 효과를 골라 상대의 iPhone 홈 화면 위젯으로 보냅니다.",
-    status: "TestFlight 내부 베타",
+    status: "운영 중",
     backToApps: "앱 목록",
     heroImageAlt: "Leaf Message 실제 iOS 베타의 Medium 홈 화면 위젯 미리보기",
     heroCaption: "TESTFLIGHT BUILD 17 · ACTUAL iOS PREVIEW",
@@ -86,7 +86,7 @@ export const leafMessageCopy: Record<Locale, LeafMessageCopy> = {
     privacyPoints: ["전화번호·이메일·비밀번호 없이 닉네임으로 시작", "푸시 알림에는 메시지 본문을 담지 않음", "자유로운 답장은 앱 안의 둘만의 대화에서 작성"],
     finalKicker: "LEAVE A FEELING. STYLE THEIR SCREEN.",
     finalTitle: "마음을 남기고, 상대의 홈 화면 한 칸을 꾸며 보세요.",
-    footer: "감성 메시지와 장면으로 상대의 iPhone 홈 화면을 꾸미는 위젯 앱",
+    footer: "감성 메시지와 장면으로 상대의 iPhone 홈 화면을 꾸밉니다.",
   },
   en: {
     pageTitle: "Leaf Message | Heartfelt Notes for Their Home Screen",
@@ -97,7 +97,7 @@ export const leafMessageCopy: Record<Locale, LeafMessageCopy> = {
     title: ["Leaf", "Message"],
     heroLine: "Leave a heartfelt note. Style a space on their Home Screen.",
     heroDescription: "Write what you feel in up to 40 characters, then choose from 14 backgrounds and 12 arrival effects before sending it to their iPhone Home Screen widget.",
-    status: "TestFlight internal beta",
+    status: "Live",
     backToApps: "App index",
     heroImageAlt: "The actual Medium Home Screen widget preview in the Leaf Message iOS beta",
     heroCaption: "TESTFLIGHT BUILD 17 · ACTUAL iOS PREVIEW",
@@ -134,7 +134,7 @@ export const leafMessageCopy: Record<Locale, LeafMessageCopy> = {
     privacyPoints: ["Start with a nickname—no phone number, email, or password", "Push notifications never contain the message body", "Write free-form replies inside the private in-app conversation"],
     finalKicker: "LEAVE A FEELING. STYLE THEIR SCREEN.",
     finalTitle: "Leave a heartfelt note and style a space on the screen they see every day.",
-    footer: "An iPhone widget app for leaving heartfelt notes and styling someone else’s Home Screen",
+    footer: "Leave heartfelt notes and style someone else’s iPhone Home Screen.",
   },
   ja: {
     pageTitle: "Leaf Message | 想いを残し、相手のホーム画面を彩る",
@@ -145,7 +145,7 @@ export const leafMessageCopy: Record<Locale, LeafMessageCopy> = {
     title: ["Leaf", "Message"],
     heroLine: "想いを込めた言葉を残し、相手のホーム画面の一角を彩ります。",
     heroDescription: "40文字以内で想いを綴り、14種類の背景と12種類の到着演出を選んで、相手のiPhoneホーム画面ウィジェットへ届けます。",
-    status: "TestFlight 内部ベータ",
+    status: "運用中",
     backToApps: "アプリ一覧",
     heroImageAlt: "Leaf Message iOSベータの実際のMediumホーム画面ウィジェットプレビュー",
     heroCaption: "TESTFLIGHT BUILD 17 · ACTUAL iOS PREVIEW",
@@ -182,7 +182,7 @@ export const leafMessageCopy: Record<Locale, LeafMessageCopy> = {
     privacyPoints: ["電話番号・メール・パスワードなしでニックネームから開始", "プッシュ通知にメッセージ本文を含めない", "自由な返信はアプリ内の二人の会話で作成"],
     finalKicker: "LEAVE A FEELING. STYLE THEIR SCREEN.",
     finalTitle: "想いを残し、相手のホーム画面の一角を彩ってみませんか。",
-    footer: "想いを込めたメッセージと景色で相手のiPhoneホーム画面を彩るウィジェットアプリ",
+    footer: "想いを込めたメッセージと景色で相手のiPhoneホーム画面を彩ります。",
   },
 };
 

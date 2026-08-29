@@ -47,7 +47,7 @@ type DailyPlankCopy = {
 export const dailyPlankCopy: Record<Locale, DailyPlankCopy> = {
   ko: {
     pageTitle: "매일 플랭크 | 5분부터 시작하는 플랭크 가이드",
-    pageDescription: "5·7·10분 루틴과 음성·진동 안내, 운동 기록으로 매일의 플랭크를 이어 주는 운동 가이드 앱",
+    pageDescription: "5·7·10분 루틴과 음성·진동 안내, 운동 기록으로 매일의 플랭크를 이어 갑니다.",
     kicker: "APP NODE 01-D",
     signal: "GUIDED WORKOUT / DAILY STREAK",
     eyebrow: "버티는 동안 화면의 숫자까지 셀 필요는 없으니까.",
@@ -55,7 +55,7 @@ export const dailyPlankCopy: Record<Locale, DailyPlankCopy> = {
     heroLine: "5분만 정하면, 다음은 앱이 챙깁니다.",
     heroDescription: "준비부터 운동과 휴식, 마지막 카운트다운까지. 음성과 진동을 따라 오늘의 루틴을 끝내세요.",
     openDemo: "웹 데모 열기",
-    status: "웹 데모",
+    status: "운영 중",
     backToApps: "앱 목록",
     timerLabel: "전체 0:47 / 5:00",
     currentStep: "니 플랭크",
@@ -96,7 +96,7 @@ export const dailyPlankCopy: Record<Locale, DailyPlankCopy> = {
   },
   en: {
     pageTitle: "Daily Plank | Guided Plank Routines from 5 Minutes",
-    pageDescription: "A guided workout app with 5, 7, and 10-minute routines, voice and haptic cues, and daily progress tracking.",
+    pageDescription: "Continue a daily plank practice with 5, 7, and 10-minute routines, voice and haptic cues, and progress tracking.",
     kicker: "APP NODE 01-D",
     signal: "GUIDED WORKOUT / DAILY STREAK",
     eyebrow: "Because holding a plank is enough work without counting the screen.",
@@ -104,7 +104,7 @@ export const dailyPlankCopy: Record<Locale, DailyPlankCopy> = {
     heroLine: "Pick five minutes. The app handles what comes next.",
     heroDescription: "From warm-up to work, rest, and the final countdown, follow voice and haptic cues to finish today's routine.",
     openDemo: "Open web demo",
-    status: "Web demo",
+    status: "Live",
     backToApps: "App index",
     timerLabel: "TOTAL 0:47 / 5:00",
     currentStep: "Knee plank",
@@ -145,7 +145,7 @@ export const dailyPlankCopy: Record<Locale, DailyPlankCopy> = {
   },
   ja: {
     pageTitle: "毎日プランク | 5分から始めるプランクガイド",
-    pageDescription: "5・7・10分のルーティン、音声と振動の案内、運動記録で毎日のプランクを続けるガイドアプリ。",
+    pageDescription: "5・7・10分のルーティン、音声と振動の案内、運動記録で毎日のプランクを続けます。",
     kicker: "APP NODE 01-D",
     signal: "GUIDED WORKOUT / DAILY STREAK",
     eyebrow: "耐えている間まで、画面の数字を数えなくていいように。",
@@ -153,7 +153,7 @@ export const dailyPlankCopy: Record<Locale, DailyPlankCopy> = {
     heroLine: "5分を選べば、次の動きはアプリにおまかせ。",
     heroDescription: "準備、運動、休憩、最後のカウントダウンまで。音声と振動に沿って今日のルーティンを終えましょう。",
     openDemo: "Webデモを開く",
-    status: "ウェブデモ",
+    status: "運用中",
     backToApps: "アプリ一覧",
     timerLabel: "全体 0:47 / 5:00",
     currentStep: "膝つきプランク",

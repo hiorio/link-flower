@@ -103,7 +103,7 @@ export const ui = {
     appsFooter: "필요에서 싹트고, 서로 다른 쓰임으로 피어나는 앱과 서비스",
 
     dohwajiPageTitle: "도화지 | 함께 만드는 모임 동선 지도",
-    dohwajiPageDescription: "핀, 메모, 손그림과 이동 경로를 한 장의 지도에 담아 링크로 공유하는 도화지 앱",
+    dohwajiPageDescription: "핀, 메모, 손그림과 이동 경로를 한 장의 지도에 담아 링크 하나로 나눕니다.",
     dohwajiEyebrow: "함께 만드는 모임 동선 지도",
     dohwajiHeroLine: "함께할 하루를 한 장에 그리다.",
     dohwajiHeroDescription: "친구, 연인, 가족과 함께하는 만남과 여행의 동선을 지도 한 장에 그리고 링크 하나로 나누세요.",

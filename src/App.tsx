@@ -252,9 +252,6 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
     demo: copy.appStatusDemo,
   })[status];
   const liveCount = productApps.filter((app) => app.status === "live").length;
-  const preparingCount = productApps.filter((app) => app.status === "preparing").length;
-  const demoCount = productApps.filter((app) => app.status === "demo").length;
-  const inProgressCount = preparingCount + demoCount;
   const detailHref = (id: string) => id === "dohwaji" ? routeHref("dohwaji") : id === "timeflower" ? routeHref("timeflower") : id === "dailyplank" ? routeHref("dailyplank") : id === "ssakmemo" ? routeHref("ssakmemo") : id === "leaf-message" ? routeHref("leafmessage") : undefined;
 
   return (
@@ -280,7 +277,6 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
           <dl className="apps-hero-stats">
             <div><dt>{copy.appsTotalLabel}</dt><dd>{String(productApps.length).padStart(2, "0")}</dd></div>
             <div><dt>{copy.appsLiveLabel}</dt><dd>{String(liveCount).padStart(2, "0")}</dd></div>
-            <div><dt>{copy.appsInProgressLabel}</dt><dd>{String(inProgressCount).padStart(2, "0")}</dd></div>
           </dl>
         </div>
         <aside className="apps-directory" aria-labelledby="apps-directory-title">
@@ -310,8 +306,6 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
             <span>HIORIO / PRODUCT LAB</span>
             <div aria-label={copy.appsStatusLegend}>
               <span><i className="is-live" />{copy.appStatus} {liveCount}</span>
-              <span><i className="is-preparing" />{copy.appStatusPreparing} {preparingCount}</span>
-              <span><i className="is-demo" />{copy.appStatusDemo} {demoCount}</span>
             </div>
           </footer>
         </aside>
