@@ -378,6 +378,45 @@ body:has(.garden-root) {
   z-index: 3;
 }
 
+.botanical-stage.botanical-pointer-ready {
+  transform: translate3d(var(--flower-stage-x, 0px), var(--flower-stage-y, 0px), 0)
+    rotate(var(--flower-stage-rotate, 0deg));
+  transform-origin: 50% 88%;
+  will-change: transform;
+}
+
+.botanical-pointer-ready .botanical-bloom-head {
+  transform: translate3d(var(--flower-head-x, 0px), var(--flower-head-y, 0px), 0)
+    rotate(var(--flower-head-rotate, 0deg));
+  transform-origin: 50% 31%;
+  will-change: transform;
+}
+
+.botanical-pointer-ready .botanical-stem-art {
+  translate: var(--flower-stem-x, 0px) 0;
+  rotate: var(--flower-stem-rotate, 0deg);
+  transform-origin: 50% 96%;
+  will-change: translate, rotate;
+}
+
+.botanical-pointer-ready .botanical-petal {
+  translate: var(--petal-react-x, 0px) var(--petal-react-y, 0px);
+  rotate: var(--petal-react-rotate, 0deg);
+  will-change: transform, translate, rotate;
+}
+
+.botanical-pointer-ready .botanical-center-art {
+  translate: var(--flower-center-x, 0px) var(--flower-center-y, 0px);
+  will-change: translate;
+}
+
+.garden-pointer-ready .spine-leaf,
+.garden-pointer-ready .future-leaf {
+  translate: var(--garden-leaf-x, 0px) var(--garden-leaf-y, 0px);
+  rotate: var(--garden-leaf-rotate, 0deg);
+  will-change: translate, rotate;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .botanical-stem-art {
     animation: hiorio-stem-grow 760ms var(--studio-ease) 80ms both;
@@ -1038,6 +1077,19 @@ body:has(.development-shell) {
     opacity: 1 !important;
     clip-path: none !important;
     transform: none !important;
+    translate: none !important;
+    rotate: none !important;
+  }
+
+  .botanical-stage.botanical-pointer-ready,
+  .botanical-pointer-ready .botanical-bloom-head {
+    transform: none !important;
+  }
+
+  .garden-pointer-ready .spine-leaf,
+  .garden-pointer-ready .future-leaf {
+    translate: none !important;
+    rotate: none !important;
   }
 
   .motion-ready .reveal-item {

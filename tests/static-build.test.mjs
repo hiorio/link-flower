@@ -178,6 +178,10 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /botanical\/center\.webp/);
   assert.doesNotMatch(javascript, /hero-botanical\.webp/);
   assert.match(stylesheet, /hiorio-petal-open/);
+  assert.match(stylesheet, /botanical-pointer-ready/);
+  assert.match(stylesheet, /garden-pointer-ready/);
+  assert.match(javascript, /--flower-stage-x/);
+  assert.match(javascript, /--garden-leaf-x/);
   assert.match(stylesheet, /apps-showcase-hero/);
   assert.match(stylesheet, /apps-directory-item/);
   assert.match(stylesheet, /apps-product-card/);
