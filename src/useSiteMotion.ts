@@ -70,9 +70,11 @@ function setupBotanicalPointerMotion(shell: HTMLElement) {
   const petals = Array.from(stage.querySelectorAll<HTMLElement>(".botanical-petal"));
   const horizontal: SpringAxis = { position: 0, target: 0, velocity: 0 };
   const vertical: SpringAxis = { position: 0, target: 0, velocity: 0 };
+  const scrollSway: SpringAxis = { position: 0, target: 0, velocity: 0 };
   let gust = 0;
   let gustTarget = 0;
   let animationFrame = 0;
+  let lastScrollY = window.scrollY;
   let lastPointerX = 0;
   let lastPointerY = 0;
   let lastPointerTime = 0;
@@ -80,12 +82,13 @@ function setupBotanicalPointerMotion(shell: HTMLElement) {
   const render = () => {
     advanceSpring(horizontal);
     advanceSpring(vertical);
+    advanceSpring(scrollSway, 0.038, 0.84);
     gust += (gustTarget - gust) * 0.16;
     gustTarget *= 0.82;
 
-    const x = horizontal.position;
+    const x = clampMotion(horizontal.position + scrollSway.position, -1.1, 1.1);
     const y = vertical.position;
-    const momentumX = horizontal.velocity;
+    const momentumX = clampMotion(horizontal.velocity + scrollSway.velocity, -0.25, 0.25);
     const momentumY = vertical.velocity;
 
     stage.style.setProperty("--flower-stage-x", `${(x * 5.5).toFixed(3)}px`);
@@ -113,7 +116,8 @@ function setupBotanicalPointerMotion(shell: HTMLElement) {
       petal.style.setProperty("--petal-react-rotate", `${petalRotate.toFixed(3)}deg`);
     });
 
-    if (!springIsSettled(horizontal) || !springIsSettled(vertical) || gust > 0.002 || gustTarget > 0.002) {
+    if (!springIsSettled(horizontal) || !springIsSettled(vertical) || !springIsSettled(scrollSway)
+      || gust > 0.002 || gustTarget > 0.002) {
       animationFrame = window.requestAnimationFrame(render);
     } else {
       animationFrame = 0;
@@ -161,12 +165,26 @@ function setupBotanicalPointerMotion(shell: HTMLElement) {
     if (event.pointerType !== "mouse") settle();
   };
 
+  const scroll = () => {
+    const nextScrollY = window.scrollY;
+    const delta = nextScrollY - lastScrollY;
+    lastScrollY = nextScrollY;
+    if (Math.abs(delta) < 0.25) return;
+
+    const wave = Math.sin((nextScrollY + delta * 3) * 0.018);
+    const impulse = wave * Math.min(Math.abs(delta) * 0.0028, 0.11);
+    scrollSway.velocity = clampMotion(scrollSway.velocity + impulse, -0.14, 0.14);
+    gust = Math.max(gust, clampMotion(Math.abs(delta) * 0.006, 0, 0.28));
+    wake();
+  };
+
   stage.classList.add("botanical-pointer-ready");
   hero.addEventListener("pointerdown", press);
   hero.addEventListener("pointermove", move);
   hero.addEventListener("pointerup", release);
   hero.addEventListener("pointercancel", release);
   hero.addEventListener("pointerleave", settle);
+  window.addEventListener("scroll", scroll, { passive: true });
   window.addEventListener("blur", settle);
 
   return () => {
@@ -176,6 +194,7 @@ function setupBotanicalPointerMotion(shell: HTMLElement) {
     hero.removeEventListener("pointerup", release);
     hero.removeEventListener("pointercancel", release);
     hero.removeEventListener("pointerleave", settle);
+    window.removeEventListener("scroll", scroll);
     window.removeEventListener("blur", settle);
     stage.classList.remove("botanical-pointer-ready");
     [
@@ -205,9 +224,11 @@ function setupGardenLeafMotion(shell: HTMLElement) {
 
   const horizontal: SpringAxis = { position: 0, target: 0, velocity: 0 };
   const vertical: SpringAxis = { position: 0, target: 0, velocity: 0 };
+  const scrollSway: SpringAxis = { position: 0, target: 0, velocity: 0 };
   let gust = 0;
   let gustTarget = 0;
   let animationFrame = 0;
+  let lastScrollY = window.scrollY;
   let lastPointerX = 0;
   let lastPointerY = 0;
   let lastPointerTime = 0;
@@ -215,16 +236,19 @@ function setupGardenLeafMotion(shell: HTMLElement) {
   const render = () => {
     advanceSpring(horizontal, 0.065, 0.8);
     advanceSpring(vertical, 0.065, 0.8);
+    advanceSpring(scrollSway, 0.034, 0.85);
     gust += (gustTarget - gust) * 0.14;
     gustTarget *= 0.84;
 
     leaves.forEach((leaf, index) => {
       const depth = 0.42 + (index % 4) * 0.12;
       const direction = index % 2 === 0 ? -1 : 1;
-      const leafX = horizontal.position * depth * 2.2 + horizontal.velocity * depth * 6;
+      const combinedX = clampMotion(horizontal.position + scrollSway.position, -1.15, 1.15);
+      const combinedVelocity = clampMotion(horizontal.velocity + scrollSway.velocity, -0.28, 0.28);
+      const leafX = combinedX * depth * 2.2 + combinedVelocity * depth * 6;
       const leafY = vertical.position * depth * 0.65;
-      const leafRotate = horizontal.position * direction * depth * 1.8
-        + horizontal.velocity * direction * depth * 9
+      const leafRotate = combinedX * direction * depth * 1.8
+        + combinedVelocity * direction * depth * 9
         + gust * direction * depth * 1.15;
 
       leaf.style.setProperty("--garden-leaf-x", `${leafX.toFixed(3)}px`);
@@ -232,7 +256,8 @@ function setupGardenLeafMotion(shell: HTMLElement) {
       leaf.style.setProperty("--garden-leaf-rotate", `${leafRotate.toFixed(3)}deg`);
     });
 
-    if (!springIsSettled(horizontal) || !springIsSettled(vertical) || gust > 0.002 || gustTarget > 0.002) {
+    if (!springIsSettled(horizontal) || !springIsSettled(vertical) || !springIsSettled(scrollSway)
+      || gust > 0.002 || gustTarget > 0.002) {
       animationFrame = window.requestAnimationFrame(render);
     } else {
       animationFrame = 0;
@@ -277,12 +302,26 @@ function setupGardenLeafMotion(shell: HTMLElement) {
     if (event.pointerType !== "mouse") settle();
   };
 
+  const scroll = () => {
+    const nextScrollY = window.scrollY;
+    const delta = nextScrollY - lastScrollY;
+    lastScrollY = nextScrollY;
+    if (Math.abs(delta) < 0.25) return;
+
+    const wave = Math.sin((nextScrollY + delta * 3) * 0.021 + 0.7);
+    const impulse = wave * Math.min(Math.abs(delta) * 0.0032, 0.13);
+    scrollSway.velocity = clampMotion(scrollSway.velocity + impulse, -0.16, 0.16);
+    gust = Math.max(gust, clampMotion(Math.abs(delta) * 0.005, 0, 0.24));
+    wake();
+  };
+
   shell.classList.add("garden-pointer-ready");
   region.addEventListener("pointerdown", press);
   region.addEventListener("pointermove", move);
   region.addEventListener("pointerup", release);
   region.addEventListener("pointercancel", release);
   region.addEventListener("pointerleave", settle);
+  window.addEventListener("scroll", scroll, { passive: true });
   window.addEventListener("blur", settle);
 
   return () => {
@@ -292,6 +331,7 @@ function setupGardenLeafMotion(shell: HTMLElement) {
     region.removeEventListener("pointerup", release);
     region.removeEventListener("pointercancel", release);
     region.removeEventListener("pointerleave", settle);
+    window.removeEventListener("scroll", scroll);
     window.removeEventListener("blur", settle);
     shell.classList.remove("garden-pointer-ready");
     leaves.forEach((leaf) => {
