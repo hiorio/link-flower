@@ -151,14 +151,30 @@ function setupBotanicalPointerMotion(shell: HTMLElement) {
     wake();
   };
 
+  const press = (event: PointerEvent) => {
+    if (event.pointerType === "mouse") return;
+    gust = Math.max(gust, 0.38);
+    move(event);
+  };
+
+  const release = (event: PointerEvent) => {
+    if (event.pointerType !== "mouse") settle();
+  };
+
   stage.classList.add("botanical-pointer-ready");
+  hero.addEventListener("pointerdown", press);
   hero.addEventListener("pointermove", move);
+  hero.addEventListener("pointerup", release);
+  hero.addEventListener("pointercancel", release);
   hero.addEventListener("pointerleave", settle);
   window.addEventListener("blur", settle);
 
   return () => {
     if (animationFrame) window.cancelAnimationFrame(animationFrame);
+    hero.removeEventListener("pointerdown", press);
     hero.removeEventListener("pointermove", move);
+    hero.removeEventListener("pointerup", release);
+    hero.removeEventListener("pointercancel", release);
     hero.removeEventListener("pointerleave", settle);
     window.removeEventListener("blur", settle);
     stage.classList.remove("botanical-pointer-ready");
@@ -251,14 +267,30 @@ function setupGardenLeafMotion(shell: HTMLElement) {
     wake();
   };
 
+  const press = (event: PointerEvent) => {
+    if (event.pointerType === "mouse") return;
+    gust = Math.max(gust, 0.3);
+    move(event);
+  };
+
+  const release = (event: PointerEvent) => {
+    if (event.pointerType !== "mouse") settle();
+  };
+
   shell.classList.add("garden-pointer-ready");
+  region.addEventListener("pointerdown", press);
   region.addEventListener("pointermove", move);
+  region.addEventListener("pointerup", release);
+  region.addEventListener("pointercancel", release);
   region.addEventListener("pointerleave", settle);
   window.addEventListener("blur", settle);
 
   return () => {
     if (animationFrame) window.cancelAnimationFrame(animationFrame);
+    region.removeEventListener("pointerdown", press);
     region.removeEventListener("pointermove", move);
+    region.removeEventListener("pointerup", release);
+    region.removeEventListener("pointercancel", release);
     region.removeEventListener("pointerleave", settle);
     window.removeEventListener("blur", settle);
     shell.classList.remove("garden-pointer-ready");
@@ -347,10 +379,11 @@ export function useSiteMotion(route: string) {
         });
       });
 
-      if (route === "root") {
-        depthCleanups.push(setupBotanicalPointerMotion(shell));
-        depthCleanups.push(setupGardenLeafMotion(shell));
-      }
+    }
+
+    if (!reduceMotion && route === "root") {
+      depthCleanups.push(setupBotanicalPointerMotion(shell));
+      depthCleanups.push(setupGardenLeafMotion(shell));
     }
 
     return () => {
