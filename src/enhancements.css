@@ -310,6 +310,10 @@ body:has(.garden-root) {
   border-color: #a9927d;
 }
 
+.garden-root .garden-branch::after {
+  background: #a9927d;
+}
+
 .garden-root .garden-app-list a {
   border-radius: 18px 18px 7px 18px;
   transition: background-color 180ms ease, color 180ms ease, translate 180ms ease;
@@ -414,6 +418,32 @@ body:has(.garden-root) {
 .garden-pointer-ready .future-leaf {
   translate: var(--garden-leaf-x, 0px) var(--garden-leaf-y, 0px);
   rotate: var(--garden-leaf-rotate, 0deg);
+}
+
+.garden-pointer-ready .garden-trunk {
+  translate: var(--garden-trunk-x, 0px) 0;
+}
+
+.garden-pointer-ready .garden-branch::before {
+  translate: var(--garden-branch-x, 0px) var(--garden-branch-y, 0px);
+  rotate: var(--garden-branch-rotate, 0deg);
+}
+
+.garden-pointer-ready .garden-branch::after {
+  translate: var(--garden-branch-x, 0px) var(--garden-branch-y, 0px);
+}
+
+.garden-pointer-ready .future-buds {
+  translate: var(--garden-future-x, 0px) var(--garden-future-y, 0px);
+  rotate: var(--garden-future-rotate, 0deg);
+}
+
+.garden-pointer-ready.is-tree-moving .spine-leaf,
+.garden-pointer-ready.is-tree-moving .future-leaf,
+.garden-pointer-ready.is-tree-moving .garden-trunk,
+.garden-pointer-ready.is-tree-moving .garden-branch::before,
+.garden-pointer-ready.is-tree-moving .garden-branch::after,
+.garden-pointer-ready.is-tree-moving .future-buds {
   will-change: translate, rotate;
 }
 
@@ -1087,7 +1117,11 @@ body:has(.development-shell) {
   }
 
   .garden-pointer-ready .spine-leaf,
-  .garden-pointer-ready .future-leaf {
+  .garden-pointer-ready .future-leaf,
+  .garden-pointer-ready .garden-trunk,
+  .garden-pointer-ready .garden-branch::before,
+  .garden-pointer-ready .garden-branch::after,
+  .garden-pointer-ready .future-buds {
     translate: none !important;
     rotate: none !important;
   }

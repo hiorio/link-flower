@@ -20,7 +20,7 @@ const localeAccessibleNames: Record<Locale, string> = {
   ja: "日本語",
 };
 
-const spineLeafOrder = [0, 2, 1, 0, 2] as const;
+const spineLeafOrder = [0, 1, 2, 1, 0] as const;
 const futureLeafOrder = [2, 0, 1] as const;
 
 function routeHref(route: RouteId) {

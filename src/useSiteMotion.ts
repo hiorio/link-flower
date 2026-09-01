@@ -229,6 +229,9 @@ function setupGardenLeafMotion(shell: HTMLElement) {
   let gustTarget = 0;
   let animationFrame = 0;
   let lastScrollY = window.scrollY;
+  let lastScrollTime = performance.now();
+  let scrollPhase = 0.65;
+  let regionIsNearViewport = true;
   let lastPointerX = 0;
   let lastPointerY = 0;
   let lastPointerTime = 0;
@@ -240,11 +243,21 @@ function setupGardenLeafMotion(shell: HTMLElement) {
     gust += (gustTarget - gust) * 0.14;
     gustTarget *= 0.84;
 
+    const combinedX = clampMotion(horizontal.position + scrollSway.position, -1.15, 1.15);
+    const combinedVelocity = clampMotion(horizontal.velocity + scrollSway.velocity, -0.28, 0.28);
+    const treeLineX = combinedX * 0.55 + combinedVelocity * 1.1;
+    shell.style.setProperty("--garden-trunk-x", `${treeLineX.toFixed(3)}px`);
+    shell.style.setProperty("--garden-branch-x", `${treeLineX.toFixed(3)}px`);
+    shell.style.setProperty("--garden-branch-y", `${(vertical.position * 0.18).toFixed(3)}px`);
+    shell.style.setProperty("--garden-branch-rotate", `${(combinedX * 0.12 + combinedVelocity * 1.35).toFixed(3)}deg`);
+    shell.style.setProperty("--garden-future-x", `${(combinedX * 1.1 + combinedVelocity * 2.5).toFixed(3)}px`);
+    shell.style.setProperty("--garden-future-y", `${(vertical.position * 0.24).toFixed(3)}px`);
+    shell.style.setProperty("--garden-future-rotate", `${(combinedX * 0.18 + combinedVelocity * 1.45).toFixed(3)}deg`);
+
+    const leafDirections = [-1, 1, -1, 1, -1, -1, -1, 1];
     leaves.forEach((leaf, index) => {
       const depth = 0.42 + (index % 4) * 0.12;
-      const direction = index % 2 === 0 ? -1 : 1;
-      const combinedX = clampMotion(horizontal.position + scrollSway.position, -1.15, 1.15);
-      const combinedVelocity = clampMotion(horizontal.velocity + scrollSway.velocity, -0.28, 0.28);
+      const direction = leafDirections[index] ?? (index % 2 === 0 ? -1 : 1);
       const leafX = combinedX * depth * 2.2 + combinedVelocity * depth * 6;
       const leafY = vertical.position * depth * 0.65;
       const leafRotate = combinedX * direction * depth * 1.8
@@ -261,11 +274,15 @@ function setupGardenLeafMotion(shell: HTMLElement) {
       animationFrame = window.requestAnimationFrame(render);
     } else {
       animationFrame = 0;
+      shell.classList.remove("is-tree-moving");
     }
   };
 
   const wake = () => {
-    if (!animationFrame) animationFrame = window.requestAnimationFrame(render);
+    if (!animationFrame) {
+      shell.classList.add("is-tree-moving");
+      animationFrame = window.requestAnimationFrame(render);
+    }
   };
 
   const move = (event: PointerEvent) => {
@@ -303,17 +320,32 @@ function setupGardenLeafMotion(shell: HTMLElement) {
   };
 
   const scroll = () => {
+    const now = performance.now();
     const nextScrollY = window.scrollY;
     const delta = nextScrollY - lastScrollY;
+    const elapsed = Math.max(now - lastScrollTime, 16);
     lastScrollY = nextScrollY;
-    if (Math.abs(delta) < 0.25) return;
+    lastScrollTime = now;
+    if (!regionIsNearViewport || Math.abs(delta) < 0.25) return;
 
-    const wave = Math.sin((nextScrollY + delta * 3) * 0.021 + 0.7);
-    const impulse = wave * Math.min(Math.abs(delta) * 0.0032, 0.13);
+    const viewport = Math.max(window.innerHeight, 1);
+    const normalizedVelocity = delta / viewport / (elapsed / 16.667);
+    scrollPhase += (delta / viewport) * 9;
+    const impulse = Math.sin(scrollPhase) * Math.min(Math.abs(normalizedVelocity) * 5, 0.11);
     scrollSway.velocity = clampMotion(scrollSway.velocity + impulse, -0.16, 0.16);
-    gust = Math.max(gust, clampMotion(Math.abs(delta) * 0.005, 0, 0.24));
+    gust = Math.max(gust, clampMotion(Math.abs(normalizedVelocity) * 3, 0, 0.24));
     wake();
   };
+
+  let visibilityObserver: IntersectionObserver | undefined;
+  if ("IntersectionObserver" in window) {
+    visibilityObserver = new IntersectionObserver(([entry]) => {
+      regionIsNearViewport = entry?.isIntersecting ?? false;
+      lastScrollY = window.scrollY;
+      lastScrollTime = performance.now();
+    }, { rootMargin: "35% 0px", threshold: 0 });
+    visibilityObserver.observe(region);
+  }
 
   shell.classList.add("garden-pointer-ready");
   region.addEventListener("pointerdown", press);
@@ -326,6 +358,7 @@ function setupGardenLeafMotion(shell: HTMLElement) {
 
   return () => {
     if (animationFrame) window.cancelAnimationFrame(animationFrame);
+    visibilityObserver?.disconnect();
     region.removeEventListener("pointerdown", press);
     region.removeEventListener("pointermove", move);
     region.removeEventListener("pointerup", release);
@@ -333,7 +366,16 @@ function setupGardenLeafMotion(shell: HTMLElement) {
     region.removeEventListener("pointerleave", settle);
     window.removeEventListener("scroll", scroll);
     window.removeEventListener("blur", settle);
-    shell.classList.remove("garden-pointer-ready");
+    shell.classList.remove("garden-pointer-ready", "is-tree-moving");
+    [
+      "--garden-trunk-x",
+      "--garden-branch-x",
+      "--garden-branch-y",
+      "--garden-branch-rotate",
+      "--garden-future-x",
+      "--garden-future-y",
+      "--garden-future-rotate",
+    ].forEach((property) => shell.style.removeProperty(property));
     leaves.forEach((leaf) => {
       leaf.style.removeProperty("--garden-leaf-x");
       leaf.style.removeProperty("--garden-leaf-y");
