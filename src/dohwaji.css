@@ -67,6 +67,7 @@ html:has(.dh-page) { min-width: 0; background: #f8f8f2; }
 .dh-days { display: flex; gap: 3px; padding: 0; border-bottom: 1px solid var(--dh-line); }
 .dh-days button { display: flex; flex: 1; align-items: center; justify-content: space-between; gap: 8px; min-height: 47px; padding: 8px 13px; border: 0; border-bottom: 2px solid transparent; border-radius: 5px 5px 0 0; background: transparent; color: var(--dh-muted); font-size: 14px; }
 .dh-days button i { font-family: Georgia, serif; font-size: 15px; font-style: normal; opacity: .6; }
+.dh-days button span, .dh-days button i { white-space: nowrap; }
 .dh-days button[aria-pressed="true"] { border-bottom-color: var(--dh-accent); background: #f4ede2; color: var(--dh-ink); font-weight: 700; }
 .dh-days button:hover { background: #f2f4ec; }
 .dh-map-preview { margin: 0 -24px !important; }
@@ -181,7 +182,8 @@ html:has(.dh-page) { min-width: 0; background: #f8f8f2; }
   .dh-sheet-heading { gap: 10px; margin-bottom: 18px; }
   .dh-sheet-heading h2 { font-size: 19px; }
   .dh-sheet-heading p { font-size: 12px; }
-  .dh-days button { padding-inline: 10px; font-size: 14px; }
+  .dh-days button { justify-content: center; padding-inline: 10px; font-size: 14px; }
+  .dh-days button i { display: none; }
   .dh-map-preview { margin-inline: -17px !important; }
   .dh-map-preview figcaption { padding-inline: 17px; font-size: 11px; }
   .dh-zoom-label { right: 7px; bottom: 7px; min-height: 30px; padding: 3px 6px; font-size: 11px; }
