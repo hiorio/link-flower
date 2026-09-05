@@ -1,9 +1,12 @@
 :root {
   --hub-page: #22333b;
-  --hub-paper: #f2f4f3;
-  --hub-accent: #a9927d;
-  --hub-muted: #b8c2c5;
-  --hub-line: rgba(242, 244, 243, 0.16);
+  --hub-paper: #eee3d3;
+  --hub-accent: #d8c6ae;
+  --hub-muted: #cfc4b5;
+  --hub-line: rgba(169, 146, 125, 0.38);
+  --hub-card: #3c403c;
+  --hub-card-hover: #45473f;
+  --hub-button-ink: #29363b;
   --black: #070706;
   --panel: #0e0d0c;
   --panel-light: #151311;

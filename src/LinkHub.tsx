@@ -17,7 +17,7 @@ const detailPaths: Record<string, string> = {
   "leaf-message": "apps/leaf-message/",
 };
 
-function ProjectLink({ app, locale, basePath, featured }: { app: ProductApp; locale: Locale; basePath: string; featured: boolean }) {
+function ProjectLink({ app, locale, basePath, priority }: { app: ProductApp; locale: Locale; basePath: string; priority: boolean }) {
   const content = app.content[locale];
   const labels = hubCopy[locale];
   const external = app.links.find((link) => link.kind === "web") ?? app.links.find((link) => link.kind === "appStore");
@@ -27,11 +27,11 @@ function ProjectLink({ app, locale, basePath, featured }: { app: ProductApp; loc
     : labels.about;
 
   return (
-    <li className={`hub-card hub-card-${app.accent}${featured ? " hub-card-featured" : ""}`}>
+    <li className={`hub-card hub-card-${app.accent}`}>
       <a className="hub-card-main" href={external?.href ?? aboutHref}
         target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}
         aria-label={`${content.displayName} · ${destination}${external ? ` · ${labels.newWindow}` : ""}`}>
-        <img className="hub-app-icon" src={`${basePath}${app.icon}`} alt="" width="64" height="64" decoding="async" loading={featured ? "eager" : "lazy"} />
+        <img className="hub-app-icon" src={`${basePath}${app.icon}`} alt="" width="64" height="64" decoding="async" loading={priority ? "eager" : "lazy"} />
         <div className="hub-card-copy"><h3>{content.displayName}</h3><p>{content.tagline}</p></div>
         <span className="hub-card-arrow" aria-hidden="true">{external ? "↗" : "→"}</span>
         <span className="hub-destination">{destination}</span>
@@ -66,7 +66,7 @@ export function LinkHub({ locale, basePath }: { locale: Locale; basePath: string
           <a className="hub-collection-link" href={`${basePath}apps/`}>{labels.browse}<span aria-hidden="true">↗</span></a>
         </header>
         <ul className="hub-link-list">
-          {productApps.map((app, index) => <ProjectLink key={app.id} app={app} locale={locale} basePath={basePath} featured={index === 0} />)}
+          {productApps.map((app, index) => <ProjectLink key={app.id} app={app} locale={locale} basePath={basePath} priority={index < 2} />)}
         </ul>
 
         {SHOW_HORROR_DOPAMINE && <a className="hub-channel-link" href={`${basePath}channels/`}><span>{copy.channelsCardTitle}</span><span aria-hidden="true">↗</span></a>}

@@ -10,7 +10,7 @@
 .link-hub::after { display: none; }
 
 .link-hub .root-grid-bg {
-  background: radial-gradient(ellipse at 0 34%, rgba(169, 146, 125, .09), transparent 50%);
+  background: radial-gradient(ellipse at 0 34%, rgba(169, 146, 125, .17), transparent 58%);
   opacity: 1;
 }
 
@@ -21,7 +21,11 @@
   background: var(--hub-page);
 }
 
-.link-hub .network-name { font-size: 14px; letter-spacing: .14em; }
+.link-hub .network-name { color: var(--hub-paper); font-size: 14px; letter-spacing: .14em; }
+.link-hub .record-dot { background: var(--hub-accent); }
+.link-hub .node-switcher a::after { background: var(--hub-accent); }
+.link-hub .node-switcher a.is-active,
+.link-hub .language-switcher button.is-active { color: var(--hub-accent); }
 .link-hub .network-controls { width: auto; gap: 24px; }
 .link-hub .node-switcher a { padding: 12px 8px; font-size: 14px; letter-spacing: 0; }
 .link-hub .language-switcher { padding-left: 18px; }
@@ -55,6 +59,7 @@
 }
 
 .link-hub .hub-profile h1 {
+  color: var(--hub-paper);
   margin: 0 0 22px;
   font-family: Georgia, "Noto Serif KR", serif;
   font-size: clamp(64px, 6.3vw, 80px);
@@ -74,31 +79,22 @@
 .hub-index-heading { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 12px 20px; margin-bottom: 24px; }
 .hub-index-heading .hub-eyebrow { margin-bottom: 8px; letter-spacing: .02em; font-size: 14px; }
 .hub-index-heading h2 { display: flex; align-items: center; gap: 14px; margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -.04em; line-height: 1.35; }
-.hub-count { padding: 3px 7px; border: 1px solid var(--hub-line); border-radius: 5px; color: var(--hub-accent); font-size: 12px; font-weight: 400; letter-spacing: .04em; }
+.hub-count { padding: 3px 7px; border: 1px solid var(--hub-accent); border-radius: 5px; background: var(--hub-accent); color: var(--hub-button-ink); font-size: 12px; font-weight: 500; letter-spacing: .04em; }
 .hub-collection-link { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--hub-muted); font-size: 14px; text-decoration: none; }
 .hub-collection-link:hover { color: var(--hub-paper); }
 
 .hub-link-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
-.hub-card { position: relative; display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--hub-line); border-radius: 18px; background: rgba(242, 244, 243, .035); transition: border-color 180ms ease, background 180ms ease, transform 180ms ease; }
-.hub-card-featured { grid-column: 1 / -1; border-color: var(--hub-paper); background: var(--hub-paper); color: var(--hub-page); }
+.hub-card { position: relative; display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--hub-line); border-radius: 18px; background: var(--hub-card); transition: border-color 180ms ease, background 180ms ease, transform 180ms ease; }
 .hub-card-main { display: grid; flex: 1; grid-template-columns: 56px minmax(0, 1fr) 20px; align-items: start; gap: 16px 14px; min-height: 184px; padding: 22px 20px 20px; border-radius: 17px; text-decoration: none; }
 .hub-app-icon { display: block; width: 56px; height: 56px; border-radius: 14px; object-fit: cover; box-shadow: 0 3px 10px #101b2024; }
 .hub-card-copy { align-self: center; min-width: 0; }
 .hub-card-copy h3 { margin: 0; font-size: 18px; font-weight: 600; line-height: 1.4; letter-spacing: -.03em; overflow-wrap: anywhere; }
 .hub-card-copy p { margin: 7px 0 0; color: var(--hub-muted); font-size: 14px; line-height: 1.65; word-break: keep-all; overflow-wrap: anywhere; }
 .hub-card-arrow { align-self: start; color: var(--hub-accent); font-size: 24px; line-height: 1; transition: transform 180ms ease; }
-.hub-destination { display: inline-flex; grid-column: 1 / -1; align-self: end; align-items: center; width: fit-content; min-height: 28px; color: var(--hub-paper); font-size: 14px; font-weight: 500; }
+.hub-destination { display: inline-flex; grid-column: 1 / -1; align-self: end; align-items: center; width: fit-content; min-height: 34px; padding: 5px 12px; border-radius: 7px; background: var(--hub-accent); color: var(--hub-button-ink); font-size: 14px; font-weight: 600; line-height: 1.5; }
 .hub-about-link { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 44px; margin: 0 20px; border-top: 1px solid var(--hub-line); color: var(--hub-muted); font-size: 14px; text-decoration: none; }
-.hub-card-featured .hub-card-main { grid-template-columns: 64px minmax(0, 1fr) 32px; align-items: center; min-height: 0; gap: 8px 20px; padding: 24px; }
-.hub-card-featured .hub-app-icon { grid-row: 1 / 3; width: 64px; height: 64px; border-radius: 16px; }
-.hub-card-featured .hub-card-copy h3 { font-size: 22px; }
-.hub-card-featured .hub-card-copy p { color: #53636b; font-size: 16px; }
-.hub-card-featured .hub-card-arrow { grid-column: 3; grid-row: 1 / 3; align-self: center; color: #5e503f; font-size: 32px; }
-.hub-card-featured .hub-destination { grid-column: 2; color: #5e503f; }
-.hub-card-featured .hub-about-link { margin-inline: 24px; border-color: #22333b24; color: #53636b; }
 .hub-card-main:hover .hub-card-arrow { transform: translate(2px, -2px); }
 .hub-about-link:hover { color: var(--hub-paper); text-decoration: underline; text-underline-offset: 4px; }
-.hub-card-featured .hub-about-link:hover { color: var(--hub-page); }
 .hub-card:focus-within { border-color: var(--hub-accent); }
 .link-hub a:focus-visible,
 .link-hub button:focus-visible { outline: 2px solid var(--hub-accent); outline-offset: 4px; }
@@ -113,12 +109,11 @@
 .hub-next .future-leaf-2 { left: 52%; width: 28%; }
 .hub-next .future-leaf-3 { left: 76%; width: 24%; }
 .link-hub .root-footer { min-height: 80px; margin-top: 0; padding-block: 20px; border-color: var(--hub-line); color: var(--hub-muted); font-size: 12px; }
-.link-hub .root-footer .footer-node { font-size: 12px; }
+.link-hub .root-footer .footer-node { color: var(--hub-accent); font-size: 12px; }
 .link-hub .root-footer p { display: none; }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .hub-card:hover { transform: translateY(-3px); border-color: #a9927d99; background: #30424a; }
-  .hub-card-featured:hover { background: #fff; }
+  .hub-card:hover { transform: translateY(-3px); border-color: #8d7a66; background: var(--hub-card-hover); }
 }
 
 @media (max-width: 1000px) {
@@ -151,14 +146,8 @@
   .hub-collection-link { font-size: 14px; }
   .hub-link-list { gap: 12px; }
   .hub-card { border-radius: 16px; }
-  .hub-card-main,
-  .hub-card-featured .hub-card-main { grid-template-columns: 56px minmax(0, 1fr) 20px; padding: 18px; gap: 7px 14px; }
-  .hub-card-featured .hub-app-icon { width: 56px; height: 56px; border-radius: 14px; }
-  .hub-card-featured .hub-card-copy h3 { font-size: 18px; }
-  .hub-card-featured .hub-card-copy p { font-size: 14px; }
-  .hub-card-featured .hub-card-arrow { font-size: 26px; }
-  .hub-about-link,
-  .hub-card-featured .hub-about-link { margin-inline: 18px; }
+  .hub-card-main { grid-template-columns: 56px minmax(0, 1fr) 20px; padding: 18px; gap: 10px 14px; }
+  .hub-about-link { margin-inline: 18px; }
   .hub-next { margin-top: 24px; padding-top: 20px; }
   .link-hub .hub-next .future-buds { flex-basis: 96px; width: 96px; height: 58px; }
   .link-hub .root-footer { align-items: center; flex-direction: row; gap: 12px; font-size: 12px; }
