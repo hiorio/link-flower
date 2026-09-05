@@ -28,15 +28,22 @@ function ProjectLink({ app, locale, basePath, priority }: { app: ProductApp; loc
 
   return (
     <li className={`hub-card hub-card-${app.accent}`}>
-      <a className="hub-card-main" href={external?.href ?? aboutHref}
-        target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}
-        aria-label={`${content.displayName} · ${destination}${external ? ` · ${labels.newWindow}` : ""}`}>
-        <img className="hub-app-icon" src={`${basePath}${app.icon}`} alt="" width="64" height="64" decoding="async" loading={priority ? "eager" : "lazy"} />
-        <div className="hub-card-copy"><h3>{content.displayName}</h3><p>{content.tagline}</p></div>
-        <span className="hub-card-arrow" aria-hidden="true">{external ? "↗" : "→"}</span>
-        <span className="hub-destination">{destination}</span>
-      </a>
-      {external && <a className="hub-about-link" href={aboutHref} aria-label={`${content.displayName} · ${labels.about}`}>{labels.about}<span aria-hidden="true">→</span></a>}
+      <img className="hub-app-icon" src={`${basePath}${app.icon}`} alt="" width="56" height="56" decoding="async" loading={priority ? "eager" : "lazy"} />
+      <div className="hub-card-copy">
+        <h3>
+          <a className="hub-card-main" href={external?.href ?? aboutHref}
+            target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}
+            aria-label={`${content.displayName} · ${destination}${external ? ` · ${labels.newWindow}` : ""}`}>
+            {content.displayName}
+          </a>
+        </h3>
+        <p>{content.tagline}</p>
+        <div className="hub-card-actions">
+          <span className="hub-destination">{destination}</span>
+          {external && <a className="hub-about-link" href={aboutHref} aria-label={`${content.displayName} · ${labels.about}`}>{labels.about}</a>}
+        </div>
+      </div>
+      <span className="hub-card-arrow" aria-hidden="true">{external ? "↗" : "→"}</span>
     </li>
   );
 }
