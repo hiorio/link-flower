@@ -6,7 +6,7 @@ import { DailyPlankPage, dailyPlankCopy } from "./DailyPlankPage";
 import { LeafMessagePage, leafMessageCopy } from "./LeafMessagePage";
 import { SsakMemoPage, ssakMemoCopy } from "./SsakMemoPage";
 import { TimeFlowerPage, timeFlowerCopy } from "./TimeFlowerPage";
-import { BotanicalBloom, botanicalLeafPaths } from "./BotanicalBloom";
+import { LinkHub } from "./LinkHub";
 import { SHOW_HORROR_DOPAMINE } from "./visibility";
 import { useSiteMotion } from "./useSiteMotion";
 
@@ -19,9 +19,6 @@ const localeAccessibleNames: Record<Locale, string> = {
   en: "English",
   ja: "日本語",
 };
-
-const spineLeafOrder = [0, 1, 2, 1, 0] as const;
-const futureLeafOrder = [2, 0, 1] as const;
 
 function routeHref(route: RouteId) {
   if (route === "root") return basePath;
@@ -92,103 +89,11 @@ function SiteHeader({ activeRoute, copy, locale, setLocale }: {
 
 function RootPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; setLocale: (locale: Locale) => void }) {
   return (
-    <main className="site-shell root-shell garden-root">
+    <main className="site-shell root-shell garden-root link-hub">
       <div className="root-grid-bg" aria-hidden="true" />
       <SiteHeader activeRoute="root" copy={copy} locale={locale} setLocale={setLocale} />
 
-      <section className="garden-hero" id="page-content" aria-labelledby="root-page-title">
-        <div className="garden-hero-copy">
-          <div className="garden-eyebrow"><span>{copy.rootKicker}</span><i aria-hidden="true" /></div>
-          <h1 id="root-page-title">{copy.rootTitle}</h1>
-          <p className="garden-promise">{copy.rootTitleAccent}</p>
-          <p className="garden-intro">
-            {copy.rootDescription.map((line) => <span key={line}>{line}</span>)}
-          </p>
-          <div className="garden-hero-actions">
-            <a className="garden-primary-link" href={routeHref("apps")}>{copy.appsCardTitle}<b aria-hidden="true">↗</b></a>
-            <a className="garden-scroll-link" href="#work-index">
-              <span>01</span>{copy.rootSectionTitle}<b aria-hidden="true">↓</b>
-            </a>
-          </div>
-        </div>
-
-        <div className="garden-hero-flower" aria-hidden="true">
-          <BotanicalBloom basePath={basePath} />
-          <span className="flower-caption">IDEAS → ROOTS → BLOOM</span>
-        </div>
-      </section>
-
-      <section className="garden-index" id="work-index" aria-labelledby="root-work-title">
-        <header className="garden-index-heading">
-          <span className="garden-section-number">01</span>
-          <div><p>BLOOMED WORK / LIVING INDEX</p><h2 id="root-work-title">{copy.rootSectionTitle}</h2></div>
-          <p>{copy.rootSectionHint}</p>
-        </header>
-
-        <div className="garden-work-tree">
-          <div className="garden-trunk" aria-hidden="true">
-            {spineLeafOrder.map((leaf, index) => (
-              <img className={`spine-leaf spine-leaf-${index + 1}`} src={`${basePath}${botanicalLeafPaths[leaf]}`} alt="" loading="lazy" decoding="async" key={`${leaf}-${index}`} />
-            ))}
-          </div>
-
-          <article className="garden-branch garden-branch-apps">
-            <span className="branch-number">01</span>
-            <div className="branch-content">
-              <header>
-                <div><p>APPS / SERVICES</p><h3>{copy.appsCardTitle}</h3></div>
-                <a href={routeHref("apps")} aria-label={`${copy.appsCardTitle} ${copy.enterNode}`}>{copy.enterNode}<span aria-hidden="true">↗</span></a>
-              </header>
-              <p className="branch-description">{copy.appsCardDescription}</p>
-              <ul className="garden-app-list">
-                {productApps.map((app) => {
-                  const content = app.content[locale];
-                  return (
-                    <li key={app.id}>
-                      <a href={`${routeHref("apps")}#${app.id}`}>
-                        <span className="garden-app-icon"><img src={`${basePath}${app.icon}`} alt="" width="78" height="78" loading="lazy" decoding="async" /></span>
-                        <strong>{content.displayName}</strong>
-                        <small>{content.tagline}</small>
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </article>
-
-          {SHOW_HORROR_DOPAMINE && (
-            <article className="garden-branch garden-branch-content">
-              <span className="branch-number">02</span>
-              <div className="branch-content">
-                <header>
-                  <div><p>CONTENT / CHANNELS</p><h3>{copy.channelsCardTitle}</h3></div>
-                  <a href={routeHref("channels")} aria-label={`${copy.channelsCardTitle} ${copy.enterNode}`}>{copy.enterNode}<span aria-hidden="true">↗</span></a>
-                </header>
-                <p className="branch-description">{copy.channelsCardDescription}</p>
-                <a className="garden-content-entry" href={routeHref("horror")}>
-                  <span className="content-entry-mark" aria-hidden="true"><i />REC</span>
-                  <span><strong>{copy.horrorCardTitle}</strong><small>{copy.horrorCardDescription}</small></span>
-                  <b aria-hidden="true">→</b>
-                </a>
-              </div>
-            </article>
-          )}
-
-          <article className="garden-branch garden-branch-future">
-            <span className="branch-number">{SHOW_HORROR_DOPAMINE ? "03" : "02"}</span>
-            <div className="branch-content">
-              <header><div><p>NEXT BLOOM</p><h3>{copy.rootFutureTitle}</h3></div></header>
-              <p className="branch-description">{copy.rootFutureDescription}</p>
-              <div className="future-buds" aria-hidden="true">
-                {futureLeafOrder.map((leaf, index) => (
-                  <img className={`future-leaf future-leaf-${index + 1}`} src={`${basePath}${botanicalLeafPaths[leaf]}`} alt="" loading="lazy" decoding="async" key={`${leaf}-${index}`} />
-                ))}
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
+      <LinkHub locale={locale} basePath={basePath} />
 
       <footer className="site-footer root-footer">
         <div><span className="footer-node">HIORIO</span><p>{copy.rootFooter}</p></div><span>LINK FLOWER · © 2026</span>
