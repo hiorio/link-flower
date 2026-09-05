@@ -3,6 +3,7 @@ import { productApps } from "./apps";
 import { detectLocale, localeLabels, supportedLocales, ui, type Locale } from "./i18n";
 import { defaultNodeId, nodes } from "./nodes";
 import { DailyPlankPage, dailyPlankCopy } from "./DailyPlankPage";
+import { DohwajiExperience } from "./DohwajiPage";
 import { LeafMessagePage, leafMessageCopy } from "./LeafMessagePage";
 import { SsakMemoPage, ssakMemoCopy } from "./SsakMemoPage";
 import { TimeFlowerPage, timeFlowerCopy } from "./TimeFlowerPage";
@@ -298,70 +299,7 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
 }
 
 function DohwajiPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; setLocale: (locale: Locale) => void }) {
-  const app = productApps.find((item) => item.id === "dohwaji")!;
-  const content = app.content[locale];
-  const webUrl = app.links.find((link) => link.kind === "web")!.href;
-  const appStoreUrl = app.links.find((link) => link.kind === "appStore")!.href;
-
-  return (
-    <main className="site-shell dohwaji-shell">
-      <div className="dohwaji-grid-bg" aria-hidden="true" />
-      <SiteHeader activeRoute="dohwaji" copy={copy} locale={locale} setLocale={setLocale} />
-
-      <section className="dohwaji-hero" id="page-content" aria-labelledby="dohwaji-page-title">
-        <div className="dohwaji-copy">
-          <div className="dohwaji-kicker"><span>APP NODE 01-A</span><span>MAP / DRAW / SHARE</span></div>
-          <p className="dohwaji-eyebrow">{copy.dohwajiEyebrow}</p>
-          <h1 id="dohwaji-page-title">{content.displayName}</h1>
-          <strong>{copy.dohwajiHeroLine}</strong>
-          <p>{copy.dohwajiHeroDescription}</p>
-          <div className="dohwaji-actions">
-            <a className="dohwaji-primary" href={webUrl} target="_blank" rel="noreferrer">{copy.dohwajiTryWeb}<span aria-hidden="true">↗</span></a>
-            <a className="dohwaji-secondary" href={appStoreUrl} target="_blank" rel="noreferrer">App Store<span aria-hidden="true">↗</span></a>
-          </div>
-        </div>
-
-        <figure className="dohwaji-web-shot">
-          <div className="dohwaji-shot-head"><span>DOHWAJI.APP / LIVE WEB</span><b>{copy.appStatus}</b></div>
-          <div className="dohwaji-shot-window">
-            <img src={`${basePath}product-shots/dohwaji-web-home.png`} alt={copy.dohwajiWebShotAlt} />
-          </div>
-          <figcaption>{copy.dohwajiWebShotCaption}</figcaption>
-          <i className="dohwaji-shot-tape" aria-hidden="true">ACTUAL WEB</i>
-        </figure>
-      </section>
-
-      <section className="dohwaji-problem" aria-labelledby="dohwaji-problem-title">
-        <span className="dohwaji-section-no">01</span>
-        <div><p>{copy.dohwajiProblemKicker}</p><h2 id="dohwaji-problem-title">{copy.dohwajiProblemTitle}</h2></div>
-        <p>{copy.dohwajiProblemDescription}</p>
-      </section>
-
-      <section className="dohwaji-features" aria-labelledby="dohwaji-features-title">
-        <div className="dohwaji-section-heading"><span>02 / CORE FEATURES</span><h2 id="dohwaji-features-title">{copy.dohwajiFeaturesTitle}</h2></div>
-        <div className="dohwaji-feature-grid">
-          {copy.dohwajiFeatures.map((feature, index) => (
-            <article key={feature.title}>
-              <span>0{index + 1}</span><div className={`feature-symbol symbol-${index + 1}`} aria-hidden="true"><i /><i /><b /></div>
-              <h3>{feature.title}</h3><p>{feature.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="dohwaji-flow" aria-labelledby="dohwaji-flow-title">
-        <div className="dohwaji-section-heading"><span>03 / HOW IT WORKS</span><h2 id="dohwaji-flow-title">{copy.dohwajiFlowTitle}</h2></div>
-        <ol>{copy.dohwajiSteps.map((step, index) => <li key={step}><span>0{index + 1}</span><p>{step}</p></li>)}</ol>
-      </section>
-
-      <section className="dohwaji-final">
-        <p>ONE MAP. ONE LINK.</p><h2>{copy.dohwajiFinalTitle}</h2>
-        <div className="dohwaji-actions"><a className="dohwaji-primary" href={webUrl} target="_blank" rel="noreferrer">{copy.dohwajiTryWeb}<span aria-hidden="true">↗</span></a><a className="dohwaji-secondary" href={routeHref("apps")}>{copy.dohwajiBackApps}<span aria-hidden="true">←</span></a></div>
-      </section>
-
-      <footer className="site-footer dohwaji-footer"><div><span className="footer-node">NODE_01-A</span><p>{copy.dohwajiFooter}</p></div><span>© 2026 DOHWAJI</span></footer>
-    </main>
-  );
+  return <DohwajiExperience header={<SiteHeader activeRoute="dohwaji" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} appsHref={routeHref("apps")} />;
 }
 
 function HorrorPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; setLocale: (locale: Locale) => void }) {

@@ -1,0 +1,209 @@
+html:has(.dh-page) { min-width: 0; background: #f8f8f2; }
+.site-shell.dh-page {
+  --dh-paper: #f8f8f2;
+  --dh-ink: #263d32;
+  --dh-slate: #22333b;
+  --dh-muted: #627066;
+  --dh-line: #dbe0d5;
+  --dh-accent: #bd5037;
+  --page-accent: #bd5037;
+  width: min(100%, 1360px);
+  padding-inline: 48px;
+  background: var(--dh-paper);
+  box-shadow: 0 0 0 100vmax var(--dh-paper);
+  color: var(--dh-ink);
+  font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Noto Sans JP", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.site-shell.dh-page::before, .site-shell.dh-page::after { display: none; }
+.dh-page :where(h1, h2, h3, p, figure) { margin: 0; }
+.dh-page :where(h1, h2, h3) { color: var(--dh-ink); text-shadow: none; font-family: inherit; }
+.dh-page :where(button, a) { -webkit-tap-highlight-color: transparent; }
+.dh-page button { font: inherit; cursor: pointer; }
+.dh-page :where(a, button, [tabindex]):focus-visible { outline: 3px solid var(--dh-accent); outline-offset: 5px; }
+.dh-page .network-bar { min-height: 84px; background: var(--dh-paper); color: var(--dh-slate); border-color: var(--dh-line); }
+.dh-page .network-name { font-size: 15px; }
+.dh-page .record-dot { background: var(--dh-ink); box-shadow: none; }
+.dh-page .node-switcher { border: 0; background: transparent; }
+.dh-page .node-switcher a, .dh-page .language-switcher button { min-height: 44px; color: var(--dh-muted); font-size: 13px; }
+.dh-page .node-switcher a { display: inline-flex; align-items: center; }
+.dh-page .node-switcher a.is-active, .dh-page .language-switcher button.is-active { color: var(--dh-ink); background: #e8ede2; border-color: transparent; border-radius: 4px; }
+.dh-page .node-switcher a:hover, .dh-page .language-switcher button:hover { color: var(--dh-accent); }
+
+.dh-hero { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: 48px; padding: 68px 0 64px; }
+.dh-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 44px; }
+.dh-brand img { border-radius: 13px; }
+.dh-brand > span { font-size: 26px; font-weight: 750; letter-spacing: -.05em; }
+.dh-brand small { display: inline-flex; align-items: center; gap: 7px; margin-left: 5px; color: var(--dh-muted); font-size: 12px; }
+.dh-brand small i { width: 6px; height: 6px; border-radius: 50%; background: #527e56; }
+.dh-page .dh-eyebrow { font-size: 13px; font-weight: 650; letter-spacing: .01em; color: var(--dh-accent); }
+.dh-page .dh-hero h1 { display: flex; align-items: flex-start; flex-direction: column; gap: 6px; margin-top: 19px; font-size: clamp(35px, 4.1vw, 59px); font-weight: 650; letter-spacing: -.07em; line-height: 1.32; }
+.dh-title-route { position: relative; }
+.dh-title-route svg { position: absolute; bottom: -8px; left: 0; width: 100%; height: 14px; overflow: visible; }
+.dh-title-route path { fill: none; stroke: #bd5037; stroke-width: 2.4; stroke-linecap: round; }
+.dh-lead { max-width: 450px; margin-top: 30px !important; font-size: 16px; line-height: 1.85; color: var(--dh-muted); }
+.dh-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 30px; }
+.dh-button { display: inline-flex; min-height: 54px; align-items: center; justify-content: space-between; gap: 28px; padding: 13px 23px; border: 1px solid transparent; border-radius: 5px; font-size: 15px; font-weight: 650; text-decoration: none; transition: background .2s, transform .2s; }
+.dh-button-primary { color: #fffef8; background: var(--dh-ink); }
+.dh-button-primary:hover { background: #3f5a46; transform: translateY(-2px); }
+.dh-app-store { display: inline-flex; min-height: 44px; align-items: center; gap: 12px; font-size: 14px; text-underline-offset: 5px; text-decoration-color: #b5beb2; }
+.dh-app-store:hover { color: var(--dh-accent); }
+.dh-start-note { max-width: 380px; margin-top: 17px !important; color: var(--dh-muted); font-size: 13px; line-height: 1.65; }
+.dh-scroll-link { display: inline-flex; align-items: center; gap: 12px; margin-top: 42px; color: var(--dh-muted); font-size: 13px; text-decoration: none; }
+.dh-scroll-link > span { display: grid; width: 28px; height: 28px; border: 1px solid #ccd4c6; border-radius: 50%; place-items: center; color: var(--dh-ink); }
+
+.dh-travel-sheet { position: relative; min-width: 0; padding: 25px 24px 0; border: 1px solid #d5dccf; border-radius: 8px; background: #fffefa; box-shadow: 5px 6px 0 #eef0e7, 6px 7px 0 #d9dfd2, 0 15px 40px #2939290b; }
+.dh-sheet-heading { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.dh-sheet-heading > svg { flex: 0 0 32px; width: 32px; height: 38px; color: var(--dh-accent); }
+.dh-sheet-heading p { font-size: 12px; color: var(--dh-muted); }
+.dh-sheet-heading h2 { margin-top: 3px; font-size: 21px; font-weight: 650; letter-spacing: -.045em; line-height: 1.5; }
+.dh-days { display: flex; gap: 3px; padding: 0; border-bottom: 1px solid var(--dh-line); }
+.dh-days button { display: flex; flex: 1; align-items: center; justify-content: space-between; gap: 8px; min-height: 47px; padding: 8px 13px; border: 0; border-bottom: 2px solid transparent; border-radius: 5px 5px 0 0; background: transparent; color: var(--dh-muted); font-size: 14px; }
+.dh-days button i { font-family: Georgia, serif; font-size: 15px; font-style: normal; opacity: .6; }
+.dh-days button[aria-pressed="true"] { border-bottom-color: var(--dh-accent); background: #f4ede2; color: var(--dh-ink); font-weight: 700; }
+.dh-days button:hover { background: #f2f4ec; }
+.dh-map-preview { margin: 0 -24px !important; }
+.dh-map-enlarge { position: relative; display: block; width: 100%; padding: 0; border: 0; background: #e8eee0; }
+.dh-map-enlarge img { display: block; width: 100%; height: auto; aspect-ratio: 836 / 355; object-fit: contain; }
+.dh-zoom-label { position: absolute; right: 12px; bottom: 10px; display: flex; min-height: 33px; align-items: center; gap: 6px; padding: 4px 9px; border: 1px solid #d4dacd; border-radius: 4px; background: #fffefaf2; color: var(--dh-ink); font-size: 12px; }
+.dh-zoom-label svg { width: 16px; height: 16px; }
+.dh-map-preview figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 10px; padding: 9px 24px 0; color: var(--dh-muted); font-size: 11px; }
+.dh-map-preview figcaption span { white-space: nowrap; }
+.dh-day-note { padding: 22px 0 20px; }
+.dh-day-title { font-size: 19px; font-weight: 650; letter-spacing: -.04em; }
+.dh-stops-label { margin-top: 9px !important; color: var(--dh-muted); font-size: 12px; }
+.dh-stops { display: flex; align-items: flex-start; margin: 13px 0 12px; padding: 0; list-style: none; }
+.dh-stops li { position: relative; flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; padding-right: 8px; font-size: 13px; }
+.dh-stops li:not(:last-child)::after { position: absolute; z-index: 0; top: 5px; left: 16px; right: 7px; border-top: 1px dashed #a8b69a; content: ""; }
+.dh-stops i { display: block; width: 11px; height: 11px; border: 2px solid #7c916b; border-radius: 50%; background: #fffefa; }
+.dh-travel-sheet { scroll-margin-top: 130px; }
+.dh-day-description { min-height: 24px; color: var(--dh-muted); font-size: 13px; line-height: 1.65; }
+.dh-open-route { display: flex; min-height: 53px; align-items: center; justify-content: space-between; margin: 0 -24px; padding: 13px 24px; border-top: 1px solid var(--dh-line); border-radius: 0 0 8px 8px; color: var(--dh-ink); background: #f0f3e9; font-size: 14px; font-weight: 650; text-decoration: none; }
+.dh-open-route:hover { background: #e5ecda; }
+
+.dh-benefits { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; margin: 0; padding: 25px 0; border-top: 1px solid var(--dh-line); border-bottom: 1px solid var(--dh-line); list-style: none; }
+.dh-benefits li { display: flex; flex: 1; align-items: center; justify-content: center; gap: 13px; color: #52664f; font-size: 14px; }
+.dh-benefits svg { width: 23px; height: 25px; flex-shrink: 0; }
+.dh-benefits li + li { border-left: 1px solid var(--dh-line); }
+.dh-how { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(40px, 8vw, 110px); padding: 110px 0; scroll-margin-top: 32px; }
+.dh-how-intro h2 { max-width: 380px; margin-top: 20px; font-size: clamp(32px, 3.25vw, 44px); line-height: 1.5; font-weight: 600; letter-spacing: -.06em; }
+.dh-how-intro > p:last-of-type { max-width: 345px; margin-top: 22px; color: var(--dh-muted); }
+.dh-drawn-route { width: 220px; height: 95px; margin-top: 38px; stroke: #97a78b; stroke-width: 1.7; stroke-linecap: round; }
+.dh-drawn-route circle { fill: var(--dh-paper); }
+.dh-step-list { padding: 0; margin: 0; list-style: none; }
+.dh-step-list li { position: relative; display: grid; grid-template-columns: 42px minmax(0, 1fr) 34px; gap: 17px; padding: 26px 0 30px; border-top: 1px solid var(--dh-line); }
+.dh-step-list li:last-child { border-bottom: 1px solid var(--dh-line); }
+.dh-step-number { color: var(--dh-accent); font-family: Georgia, serif; font-size: 25px; line-height: 1.5; }
+.dh-step-list h3 { font-size: 23px; font-weight: 650; letter-spacing: -.04em; line-height: 1.5; }
+.dh-step-list p { margin-top: 12px; color: var(--dh-muted); font-size: 16px; }
+.dh-step-detail { display: block; margin-top: 13px; font-size: 13px; color: #536f4b; }
+.dh-step-list svg { width: 32px; height: 36px; margin-top: 3px; color: #84927d; }
+.dh-origin { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 75px; margin-inline: -48px; padding: 64px 48px; background: #eceee3; border-block: 1px solid #d9decc; }
+.dh-origin h2 { display: flex; flex-direction: column; margin-top: 20px; font-size: clamp(28px, 2.7vw, 37px); font-weight: 550; line-height: 1.55; letter-spacing: -.055em; }
+.dh-origin-letter { padding-left: 29px; border-left: 1px solid #c69f8e; font-size: 16px; line-height: 1.9; color: #566350; }
+.dh-signature { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 24px !important; font-size: 13px; }
+.dh-signature > span { font-family: Georgia, serif; font-size: 27px; font-style: italic; color: #546944; }
+.dh-final { position: relative; padding: 95px 0 100px; text-align: center; }
+.dh-final-pin { display: grid; width: 55px; height: 55px; margin: 0 auto 21px; border-radius: 50%; place-items: center; background: #f2e6db; color: var(--dh-accent); }
+.dh-final-pin svg { width: 27px; height: 30px; }
+.dh-final h2 { display: flex; flex-direction: column; gap: 4px; margin-top: 20px; font-size: clamp(33px, 3.8vw, 49px); font-weight: 600; line-height: 1.4; letter-spacing: -.065em; }
+.dh-final-description { max-width: 490px; margin: 23px auto 0 !important; color: var(--dh-muted); font-size: 16px; }
+.dh-final .dh-actions { justify-content: center; }
+.dh-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; padding: 27px 0; border-top: 1px solid var(--dh-line); font-size: 13px; color: var(--dh-muted); }
+.dh-footer a { text-decoration: none; padding-block: 9px; }
+.dh-footer a:hover { color: var(--dh-accent); }
+.dh-footer > span { color: var(--dh-ink); font-weight: 600; }
+.dh-footer i { margin: 0 6px; font-family: Georgia, serif; color: var(--dh-muted); font-weight: 400; }
+
+.dh-image-dialog { width: min(1100px, calc(100% - 32px)); max-height: calc(100dvh - 32px); padding: 24px; border: 1px solid var(--dh-line); border-radius: 9px; background: #fffefa; color: var(--dh-ink); }
+.dh-image-dialog::backdrop { background: #17291de0; }
+.dh-dialog-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.dh-dialog-heading h2 { font-size: 21px; line-height: 1.5; }
+.dh-dialog-heading button { flex-shrink: 0; min-height: 44px; padding: 6px 12px; border: 1px solid var(--dh-line); border-radius: 4px; background: #edf1e6; color: var(--dh-ink); font-size: 14px; }
+.dh-image-dialog > p { margin: 8px 0 18px; color: var(--dh-muted); font-size: 13px; }
+.dh-dialog-image { overflow: auto; overscroll-behavior: contain; }
+.dh-dialog-image img { display: block; width: 100%; min-width: 836px; height: auto; }
+.dh-image-dialog > a { display: inline-flex; align-items: center; min-height: 44px; margin-top: 16px; text-underline-offset: 4px; }
+
+@media (max-width: 1100px) {
+  .site-shell.dh-page { padding-inline: 32px; }
+  .dh-hero { gap: 30px; }
+  .dh-page .dh-hero h1 { font-size: clamp(33px, 4vw, 44px); }
+  .dh-origin { gap: 45px; margin-inline: -32px; padding-inline: 32px; }
+  .dh-actions { gap: 10px 17px; }
+  .dh-how { gap: 45px; }
+}
+@media (max-width: 800px) {
+  .dh-hero { grid-template-columns: minmax(0, 1fr); gap: 42px; padding: 44px 0 46px; }
+  .dh-brand { margin-bottom: 30px; }
+  .dh-page .dh-hero h1 { font-size: clamp(36px, 6.8vw, 53px); }
+  .dh-lead { max-width: 570px; }
+  .dh-start-note { max-width: none; }
+  .dh-scroll-link { margin-top: 24px; }
+  .dh-travel-sheet { width: 100%; }
+  .dh-map-enlarge img { max-height: none; }
+  .dh-benefits { gap: 12px; }
+  .dh-benefits li { font-size: 13px; gap: 8px; }
+  .dh-how { grid-template-columns: minmax(0, 1fr); gap: 35px; padding: 65px 0; }
+  .dh-how-intro h2 { max-width: 550px; font-size: 35px; }
+  .dh-how-intro > p:last-of-type { max-width: 530px; margin-top: 16px; }
+  .dh-drawn-route { display: none; }
+  .dh-origin { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-block: 48px; }
+  .dh-origin-letter { max-width: 590px; }
+  .dh-final { padding-block: 65px; }
+}
+@media (max-width: 480px) {
+  .site-shell.dh-page { padding-inline: 20px; }
+  .dh-page .network-bar { min-height: 72px; flex-wrap: wrap; padding-block: 10px; gap: 4px 8px; }
+  .dh-page .network-name { font-size: 13px; }
+  .dh-page .network-controls { gap: 4px; }
+  .dh-page .node-switcher a { min-width: auto; padding-inline: 7px; font-size: 12px; }
+  .dh-page .language-switcher { gap: 0; }
+  .dh-page .language-switcher button { min-width: 29px; padding-inline: 4px; font-size: 11px; }
+  .dh-brand img { width: 41px; height: 41px; }
+  .dh-brand > span { font-size: 23px; }
+  .dh-page .dh-hero h1 { font-size: clamp(30px, 8.5vw, 40px); letter-spacing: -.065em; line-height: 1.42; }
+  .dh-hero .dh-eyebrow { font-size: 12px; }
+  .dh-lead { margin-top: 28px !important; }
+  .dh-actions { align-items: stretch; flex-direction: column; gap: 7px; }
+  .dh-button { width: 100%; }
+  .dh-app-store { justify-content: center; }
+  .dh-start-note { font-size: 12px; }
+  .dh-scroll-link { margin-top: 25px; }
+  .dh-travel-sheet { padding: 20px 17px 0; }
+  .dh-sheet-heading { gap: 10px; margin-bottom: 18px; }
+  .dh-sheet-heading h2 { font-size: 19px; }
+  .dh-sheet-heading p { font-size: 12px; }
+  .dh-days button { padding-inline: 10px; font-size: 14px; }
+  .dh-map-preview { margin-inline: -17px !important; }
+  .dh-map-preview figcaption { padding-inline: 17px; font-size: 11px; }
+  .dh-zoom-label { right: 7px; bottom: 7px; min-height: 30px; padding: 3px 6px; font-size: 11px; }
+  .dh-day-title { font-size: 19px; }
+  .dh-day-description { min-height: 43px; }
+  .dh-open-route { margin-inline: -17px; padding-inline: 17px; }
+  .dh-benefits { justify-content: flex-start; gap: 17px; padding-block: 24px; }
+  .dh-benefits li { flex: 0 0 100%; justify-content: flex-start; font-size: 14px; }
+  .dh-benefits li + li { border: 0; }
+  .dh-benefits svg { width: 21px; height: 23px; }
+  .dh-how-intro h2 { font-size: 31px; line-height: 1.45; }
+  .dh-step-list li { grid-template-columns: 31px minmax(0, 1fr); column-gap: 13px; padding-block: 24px; }
+  .dh-step-list li > svg { display: none; }
+  .dh-step-number { font-size: 23px; }
+  .dh-step-list h3 { font-size: 22px; }
+  .dh-step-list p { font-size: 16px; }
+  .dh-origin { margin-inline: -20px; padding: 40px 20px; }
+  .dh-origin h2 { font-size: 28px; }
+  .dh-origin-letter { padding-left: 19px; }
+  .dh-signature { flex-wrap: wrap; }
+  .dh-final h2 { font-size: 32px; }
+  .dh-footer { gap: 8px 20px; font-size: 12px; }
+  .dh-footer > a:first-child { flex-basis: 100%; }
+  .dh-image-dialog { padding: 16px; }
+  .dh-dialog-heading h2 { font-size: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dh-page *, .dh-page *::before, .dh-page *::after { scroll-behavior: auto; animation: none; transition: none; }
+}
