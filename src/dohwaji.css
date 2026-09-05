@@ -60,6 +60,10 @@ html:has(.dh-page) { min-width: 0; background: #f8f8f2; }
 .dh-sheet-heading > svg { flex: 0 0 32px; width: 32px; height: 38px; color: var(--dh-accent); }
 .dh-sheet-heading p { font-size: 12px; color: var(--dh-muted); }
 .dh-sheet-heading h2 { margin-top: 3px; font-size: 21px; font-weight: 650; letter-spacing: -.045em; line-height: 1.5; }
+.dh-destinations { display: flex; gap: 8px; margin: -4px 0 20px; }
+.dh-destinations button { flex: 1; min-width: 0; min-height: 44px; padding: 8px 10px; border: 1px solid var(--dh-line); border-radius: 5px; background: transparent; color: var(--dh-muted); font-size: 14px; transition: background .18s, border-color .18s; }
+.dh-destinations button:hover { border-color: #8ca181; background: #f0f3e9; }
+.dh-destinations button[aria-pressed="true"] { border-color: var(--dh-ink); background: var(--dh-ink); color: #fffefa; font-weight: 650; }
 .dh-days { display: flex; gap: 3px; padding: 0; border-bottom: 1px solid var(--dh-line); }
 .dh-days button { display: flex; flex: 1; align-items: center; justify-content: space-between; gap: 8px; min-height: 47px; padding: 8px 13px; border: 0; border-bottom: 2px solid transparent; border-radius: 5px 5px 0 0; background: transparent; color: var(--dh-muted); font-size: 14px; }
 .dh-days button i { font-family: Georgia, serif; font-size: 15px; font-style: normal; opacity: .6; }

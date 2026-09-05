@@ -2,6 +2,7 @@ import { useRef, useState, type ReactNode } from "react";
 import { productApps } from "./apps";
 import type { Locale } from "./i18n";
 import { dohwajiCopy } from "./dohwaji-copy";
+import { overseasTrips } from "./dohwaji-overseas";
 import "./dohwaji.css";
 
 const basePath = import.meta.env.BASE_URL;
@@ -22,11 +23,18 @@ export function DohwajiExperience({ header, locale, appsHref }: { header: ReactN
   const app = productApps.find((item) => item.id === "dohwaji")!;
   const webUrl = app.links.find((link) => link.kind === "web")!.href;
   const appStoreUrl = app.links.find((link) => link.kind === "appStore")!.href;
+  const [tripIndex, setTripIndex] = useState(0);
   const [dayIndex, setDayIndex] = useState(0);
   const imageDialog = useRef<HTMLDialogElement>(null);
-  const selectedDay = copy.days[dayIndex];
-  const imagePath = `${basePath}product-shots/dohwaji/seoul-day-${dayIndex + 1}.webp`;
-  const routeUrl = `${publicRoute}?day=${dayIndex + 1}`;
+  const trips = [
+    { id: "seoul", routeUrl: publicRoute, attribution: "© Kakao", label: copy.seoulLabel, eyebrow: copy.mapEyebrow, days: copy.days.map((day, index) => ({ ...day, day: index + 1 })) },
+    ...overseasTrips.map((trip) => ({ id: trip.id, routeUrl: trip.routeUrl, attribution: trip.attribution, ...trip.content[locale] })),
+  ];
+  const selectedTrip = trips[tripIndex];
+  const selectedDay = selectedTrip.days[dayIndex];
+  const imagePath = `${basePath}product-shots/dohwaji/${selectedTrip.id}-day-${selectedDay.day}.webp`;
+  const routeUrl = `${selectedTrip.routeUrl}?day=${selectedDay.day}`;
+  const imageAlt = `${copy.imageAlt} — ${selectedTrip.label}, ${selectedDay.label}`;
   const zoomHint = {
     ko: "확대된 지도입니다. 좌우로 움직여 장소와 동선을 살펴보세요.",
     en: "A closer look at the map. Scroll sideways to explore its places and route.",
@@ -63,16 +71,19 @@ export function DohwajiExperience({ header, locale, appsHref }: { header: ReactN
         </div>
 
         <div className="dh-travel-sheet" id="dh-route">
-          <div className="dh-sheet-heading"><RouteMark kind="pin" /><div><p>{copy.mapEyebrow}</p><h2>{copy.mapTitle}</h2></div></div>
+          <div className="dh-sheet-heading"><RouteMark kind="pin" /><div><p>{selectedTrip.eyebrow}</p><h2>{copy.mapTitle}</h2></div></div>
+          <div className="dh-destinations" role="group" aria-label={copy.destinationsLabel}>
+            {trips.map((trip, index) => <button key={trip.id} type="button" aria-pressed={tripIndex === index} aria-controls="dh-map-preview" onClick={() => { setTripIndex(index); setDayIndex(0); }}>{trip.label}</button>)}
+          </div>
           <div className="dh-days" role="group" aria-label={copy.galleryHint}>
-            {copy.days.map((day, index) => <button key={day.label} type="button" aria-pressed={dayIndex === index} aria-controls="dh-map-preview" onClick={() => setDayIndex(index)}><span>{day.label}</span><i aria-hidden="true">0{index + 1}</i></button>)}
+            {selectedTrip.days.map((day, index) => <button key={day.label} type="button" aria-pressed={dayIndex === index} aria-controls="dh-map-preview" onClick={() => setDayIndex(index)}><span>{day.label}</span><i aria-hidden="true">{String(day.day).padStart(2, "0")}</i></button>)}
           </div>
           <figure id="dh-map-preview" className="dh-map-preview">
-            <button className="dh-map-enlarge" type="button" onClick={openMap} aria-label={`${copy.enlarge}: ${selectedDay.label}`} aria-haspopup="dialog">
-              <img src={imagePath} width="836" height="355" alt={`${copy.imageAlt} — ${selectedDay.label}`} fetchPriority="high" />
+            <button className="dh-map-enlarge" type="button" onClick={openMap} aria-label={`${copy.enlarge}: ${selectedTrip.label}, ${selectedDay.label}`} aria-haspopup="dialog">
+              <img src={imagePath} width="836" height="355" alt={imageAlt} fetchPriority="high" />
               <span className="dh-zoom-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><circle cx="10" cy="10" r="6" /><path d="m15 15 6 6M10 7v6M7 10h6" /></svg>{copy.enlarge}</span>
             </button>
-            <figcaption>{copy.mapCaption}<span>© Kakao</span></figcaption>
+            <figcaption>{copy.mapCaption}<span>{selectedTrip.attribution}</span></figcaption>
           </figure>
           <div className="dh-day-note" aria-live="polite" aria-atomic="true">
             <p className="dh-day-title">{selectedDay.title}</p>
@@ -108,9 +119,9 @@ export function DohwajiExperience({ header, locale, appsHref }: { header: ReactN
       <footer className="dh-footer"><a href={appsHref}>← {copy.back}</a><span>도화지 <i>by</i> HIORIO</span><a href={webUrl} target="_blank" rel="noreferrer">dohwaji.app ↗</a></footer>
 
       <dialog ref={imageDialog} className="dh-image-dialog" aria-labelledby="dh-dialog-title" onClick={(event) => { if (event.target === event.currentTarget) imageDialog.current?.close(); }}>
-        <div className="dh-dialog-heading"><h2 id="dh-dialog-title">{selectedDay.label} · {selectedDay.title}</h2><button type="button" onClick={() => imageDialog.current?.close()} autoFocus>{copy.close} <span aria-hidden="true">×</span></button></div>
+        <div className="dh-dialog-heading"><h2 id="dh-dialog-title">{selectedTrip.label} · {selectedDay.label} · {selectedDay.title}</h2><button type="button" onClick={() => imageDialog.current?.close()} autoFocus>{copy.close} <span aria-hidden="true">×</span></button></div>
         <p>{zoomHint}</p>
-        <div className="dh-dialog-image" tabIndex={0}><img src={imagePath} width="836" height="355" alt={`${copy.imageAlt} — ${selectedDay.label}`} /></div>
+        <div className="dh-dialog-image" tabIndex={0}><img src={imagePath} width="836" height="355" alt={imageAlt} /></div>
         <a href={routeUrl} target="_blank" rel="noreferrer">{copy.openRoute} ↗</a>
       </dialog>
     </main>

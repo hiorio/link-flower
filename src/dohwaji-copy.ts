@@ -9,6 +9,8 @@ export type DohwajiCopy = {
   noLogin: string;
   scrollHint: string;
   mapEyebrow: string;
+  seoulLabel: string;
+  destinationsLabel: string;
   mapTitle: string;
   mapDescription: string;
   mapCaption: string;
@@ -49,6 +51,8 @@ export const dohwajiCopy: Record<Locale, DohwajiCopy> = {
     noLogin: "지도 만들기와 기본 편집은 로그인 없이 시작할 수 있어요.",
     scrollHint: "도화지로 그린 하루 살펴보기",
     mapEyebrow: "지도 한 장에 담은 서울 여행",
+    seoulLabel: "서울",
+    destinationsLabel: "여행 예시 선택",
     mapTitle: "우리의 다음 목적지가 한눈에.",
     mapDescription: "날짜별로 들를 곳을 담고, 이동할 순서를 정리했어요. 도화지의 실제 화면으로 여행 동선을 살펴보세요.",
     mapCaption: "도화지에서 직접 캡처한 실제 지도 화면",
@@ -79,7 +83,7 @@ export const dohwajiCopy: Record<Locale, DohwajiCopy> = {
     explore: "다른 사람의 동선 둘러보기",
     back: "틔운 앱들로 돌아가기",
     status: "운영 중",
-    imageAlt: "도화지 실제 지도 화면: 서울 여행의 장소와 이동 동선",
+    imageAlt: "도화지 실제 지도 화면: 여행의 장소와 이동 동선",
     enlarge: "지도 화면 크게 보기",
     close: "닫기",
     galleryHint: "날짜를 선택해 동선을 살펴보세요. 화면을 누르면 크게 볼 수 있어요.",
@@ -95,6 +99,8 @@ export const dohwajiCopy: Record<Locale, DohwajiCopy> = {
     noLogin: "Create a map and make basic edits without logging in.",
     scrollHint: "See a day mapped with Dohwaji",
     mapEyebrow: "A Seoul trip on one map",
+    seoulLabel: "Seoul",
+    destinationsLabel: "Choose a trip example",
     mapTitle: "See where we're going next.",
     mapDescription: "Places are grouped by day and arranged in visiting order. Explore the trip through actual Dohwaji screens.",
     mapCaption: "Captured directly from Dohwaji's map screen",
@@ -125,7 +131,7 @@ export const dohwajiCopy: Record<Locale, DohwajiCopy> = {
     explore: "Explore other people's routes",
     back: "Back to the apps",
     status: "Live",
-    imageAlt: "An actual Dohwaji map showing places and routes for a Seoul trip",
+    imageAlt: "An actual Dohwaji map showing the places and routes of a trip",
     enlarge: "Enlarge the map screen",
     close: "Close",
     galleryHint: "Choose a day to explore its route. Select the screen to enlarge it.",
@@ -141,6 +147,8 @@ export const dohwajiCopy: Record<Locale, DohwajiCopy> = {
     noLogin: "地図の作成と基本的な編集は、ログインなしではじめられます。",
     scrollHint: "ドファジに描いた一日を見る",
     mapEyebrow: "一枚の地図にまとめたソウル旅行",
+    seoulLabel: "ソウル",
+    destinationsLabel: "旅の例を選択",
     mapTitle: "次に向かう場所が、ひと目で。",
     mapDescription: "立ち寄る場所を日ごとにまとめ、訪れる順番を整理しました。ドファジの実際の画面で、旅のルートをご覧ください。",
     mapCaption: "ドファジの地図画面を直接キャプチャしたものです",
@@ -171,7 +179,7 @@ export const dohwajiCopy: Record<Locale, DohwajiCopy> = {
     explore: "みんなのルートを見る",
     back: "アプリ一覧に戻る",
     status: "運営中",
-    imageAlt: "ソウル旅行の場所とルートを表示したドファジの実際の地図画面",
+    imageAlt: "旅の場所とルートを表示したドファジの実際の地図画面",
     enlarge: "地図画面を拡大する",
     close: "閉じる",
     galleryHint: "日付を選んでルートをご覧ください。画面を押すと拡大できます。",
