@@ -105,8 +105,8 @@ export const ssakMemoCopy: Record<Locale, SsakMemoCopy> = {
       { term: "보관", value: "iCloud · Markdown" },
     ],
     controlCenterNote: "* 제어 센터 캡처는 iOS 18 이상에서 사용할 수 있습니다.",
-    finalKicker: "EVERY MEMO STARTS AS A SPROUT.",
-    finalTitle: "그렇게 모인 메모는 하나씩 싹이 됩니다. 그 싹을 무엇으로 피워낼지는, 기록한 우리가 결정합니다.",
+    finalKicker: "EVERY MEMO, A SMALL SPROUT.",
+    finalTitle: "그렇게 심은 생각을 무엇으로 피워낼지는, 기록한 우리가 결정합니다.",
     footer: "떠오른 순간을 붙잡고, 작은 생각을 키우는 메모",
   },
   en: {
@@ -168,8 +168,8 @@ export const ssakMemoCopy: Record<Locale, SsakMemoCopy> = {
       { term: "Storage", value: "iCloud · Markdown" },
     ],
     controlCenterNote: "* Control Center capture requires iOS 18 or later.",
-    finalKicker: "EVERY MEMO STARTS AS A SPROUT.",
-    finalTitle: "The notes we gather become sprouts. What they grow into is ours to decide.",
+    finalKicker: "EVERY MEMO, A SMALL SPROUT.",
+    finalTitle: "What those thoughts grow into is ours to decide.",
     footer: "Capture a moment. Give a small thought room to grow.",
   },
   ja: {
@@ -231,8 +231,8 @@ export const ssakMemoCopy: Record<Locale, SsakMemoCopy> = {
       { term: "保存", value: "iCloud · Markdown" },
     ],
     controlCenterNote: "* コントロールセンターからの記録にはiOS 18以降が必要です。",
-    finalKicker: "EVERY MEMO STARTS AS A SPROUT.",
-    finalTitle: "集まったメモは、一つずつ芽になります。その芽を何に育てるかは、記録した私たちが決めます。",
+    finalKicker: "EVERY MEMO, A SMALL SPROUT.",
+    finalTitle: "そうして植えた思いを何に育てるかは、記録した私たちが決めます。",
     footer: "思いついた瞬間を残し、小さな考えを育てるメモ",
   },
 };
@@ -247,7 +247,7 @@ const presentationCopy = {
     saved: "작은 생각 하나, 놓치지 않도록", entry: "시작은 한 번의 탭이면 충분하니까.",
     widget: "홈 화면 위젯", control: "제어 센터", voice: "말로 남기기", text: "글로 남기기",
     shortcut: "위젯과 제어 센터에서 입력 화면으로 바로 연결됩니다.",
-    story: "모든 메모는\n작은 싹에서 시작됩니다.", tags: ["날짜별로", "태그로", "즐겨찾기로"],
+    story: "모든 메모는\n작은 싹으로 심어집니다.", tags: ["날짜별로", "태그로", "즐겨찾기로"],
   },
   en: {
     preview: "Inside the app", modes: ["Speak", "Type", "Library"],
@@ -256,7 +256,7 @@ const presentationCopy = {
     saved: "One small thought, kept", entry: "It starts with a single tap.",
     widget: "Home Screen widget", control: "Control Center", voice: "Speak a note", text: "Type a note",
     shortcut: "Widgets and Control Center take you straight to capture.",
-    story: "Every memo starts\nas a little sprout.", tags: ["By date", "By tag", "By favorites"],
+    story: "Every memo is\na small sprout we plant.", tags: ["By date", "By tag", "By favorites"],
   },
   ja: {
     preview: "実際のアプリ画面", modes: ["話してメモ", "書いてメモ", "保管庫"],
@@ -265,7 +265,7 @@ const presentationCopy = {
     saved: "小さな考えを、ひとつ残す", entry: "始まりは、ワンタップで。",
     widget: "ホーム画面ウィジェット", control: "コントロールセンター", voice: "話して残す", text: "書いて残す",
     shortcut: "ウィジェットやコントロールセンターから、すぐ入力画面へ。",
-    story: "すべてのメモは、\n小さな芽から。", tags: ["日付で", "タグで", "お気に入りで"],
+    story: "一つひとつのメモを、\n小さな芽として植える。", tags: ["日付で", "タグで", "お気に入りで"],
   },
 } satisfies Record<Locale, {
   preview: string; modes: string[]; sections: string[]; thought: string; note: string;
