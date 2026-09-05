@@ -32,7 +32,7 @@ const revealSelector = [
   ".leafmessage-hero > *",
   ".leafmessage-premise > *",
   ".leafmessage-section-heading",
-  ".leafmessage-presentation-grid > *",
+  ".lm-size-example",
   ".leafmessage-steps > li",
   ".leafmessage-self > *",
   ".leafmessage-final > *",
@@ -42,7 +42,6 @@ const depthSelector = [
   ".dohwaji-web-shot",
   ".timeflower-calendar",
   ".dailyplank-console",
-  ".leafmessage-hero-screen",
 ].join(",");
 
 type SpringAxis = {

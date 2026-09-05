@@ -8,6 +8,11 @@
   --red-bright: #f04438;
   --line: rgba(233, 228, 216, 0.16);
   --red-line: rgba(206, 37, 31, 0.4);
+  --leaf-page-paper: #faf9f5;
+  --leaf-page-ink: #203d30;
+  --leaf-page-green: #315b43;
+  --leaf-page-line: #d9dfd5;
+  --leaf-page-serif: Georgia, "Noto Serif KR", "Noto Serif JP", "AppleMyungjo", "Yu Mincho", Batang, serif;
 }
 
 * {

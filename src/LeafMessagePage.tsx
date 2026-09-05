@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { Locale } from "./i18n";
+import { LeafMessagePreview, leafScenePath } from "./LeafMessagePreview";
 import "./leaf-message.css";
 
 type LeafMessageCopy = {
@@ -186,103 +187,134 @@ export const leafMessageCopy: Record<Locale, LeafMessageCopy> = {
   },
 };
 
+const editorialCopy = {
+  ko: {
+    title: ["너의 화면에,", "내 마음 한 조각."], intro: "한마디를 고르고, 풍경을 골라요. 자주 마주치는 그 사람의 화면에 나다운 다정함을 남겨보세요.",
+    try: "마음 한 장 꾸며보기", concept: "말 한 줄.\n마음은 그 이상.", quote: "문득 네 생각이 났어.",
+    quoteFoot: "나에게서, 너에게.", feeling: "말로 건네는 다정함", feelingBody: "보고 싶다는 말, 잘 해내고 있다는 응원. 길지 않아도 충분한 마음을 40자에 담아요.",
+    scenery: "그 마음에 어울리는 풍경", sceneryBody: "함께 보고 싶은 노을, 편안한 초록, 조용한 빗소리가 떠오르는 장면. 배경을 고르는 일도 마음을 전하는 일이에요.",
+    galleryTitle: ["한마디가 머무는", "세 가지 자리."], galleryBody: "크기가 달라도, 전하고 싶은 마음은 그대로. 상대가 쓰는 위젯에 어울리는 모습을 미리 볼 수 있어요.",
+    sizes: ["작게 남기는 다정함", "일상에 나란히 두는 마음", "풍경까지 넉넉하게"], notes: ["오늘도\n네 편이야.", "문득 네 생각이 났어.", "이 노을,\n너랑 같이 보고 싶어."],
+    sender: "나에게서", time: "방금", galleryNote: "앱의 배경을 활용한 위젯 예시 · 홈 화면 전체가 아닌 위젯 한 칸을 꾸며요.",
+    flowTitle: "마음이 도착하기까지.", steps: ["마음을 쓰고", "풍경을 고르고", "화면에 남겨요"],
+    screens: "실제 앱 화면 살펴보기", screensNote: "메시지 작성과 위젯 미리보기 화면", screenLabels: ["한마디 쓰기", "배경 고르기", "크게 미리 보기"],
+    selfTitle: "첫 번째 수신자는, 나.", selfBody: "초대하기 전에 내 위젯으로 먼저 보내보세요. 내가 고른 말과 풍경이 도착하는 기분을 느낀 다음, 한 사람을 초대하면 돼요.",
+    final: ["오늘, 그 사람에게", "어떤 마음을 남길까요?"], finalNote: "짧은 말 하나와 작은 풍경 하나면 충분해요.",
+  },
+  en: {
+    title: ["On your screen,", "a little of my heart."], intro: "Choose a few words and a little scenery. Leave something of yourself on the screen they see every day.",
+    try: "Make a little note", concept: "A few words.\nA whole feeling.", quote: "You just crossed my mind.",
+    quoteFoot: "From me, to you.", feeling: "A little kindness in words", feelingBody: "Missing someone. Cheering them on. Give the feeling a place in a note of up to 40 characters.",
+    scenery: "A scene that feels like you", sceneryBody: "A sunset you wish you could share. A quiet green. Rain on a window. Choosing the scene is part of saying how you feel.",
+    galleryTitle: ["One little note.", "Three places to stay."], galleryBody: "The size changes; the feeling stays. See how your note fits the widget on their Home Screen.",
+    sizes: ["A small kindness", "A feeling alongside their day", "Room for the whole scene"], notes: ["Always\non your side.", "You just crossed my mind.", "Wish we could\nsee this sunset together."],
+    sender: "From me", time: "Just now", galleryNote: "Illustrative widgets with app backgrounds · Styles one widget, not the whole Home Screen.",
+    flowTitle: "How a feeling finds its way.", steps: ["Write a little", "Choose a scene", "Leave it with them"],
+    screens: "Explore the actual app", screensNote: "Message composer and widget previews", screenLabels: ["Write a note", "Choose a background", "Preview it large"],
+    selfTitle: "The first recipient? You.", selfBody: "Send a note to your own widget before inviting anyone. Feel how the words and scenery arrive, then invite someone to share it with.",
+    final: ["What would you", "leave with them today?"], finalNote: "A few words. A little scenery. More than enough.",
+  },
+  ja: {
+    title: ["あなたの画面に、", "私の想いをひとつ。"], intro: "ひとことと、ひとつの景色を選んで。あの人が毎日見る画面に、あなたらしい優しさを残しませんか。",
+    try: "想いを添えてみる", concept: "短いひとこと。\n想いは、それ以上。", quote: "ふと、あなたを思い出した。",
+    quoteFoot: "私から、あなたへ。", feeling: "言葉で渡す優しさ", feelingBody: "会いたい気持ち、頑張るあなたへのエール。長くなくても伝わる想いを40文字に込めます。",
+    scenery: "その気持ちに似合う景色", sceneryBody: "一緒に見たい夕焼け、落ち着く緑、窓を打つ静かな雨。景色を選ぶことも、想いを届けること。",
+    galleryTitle: ["ひとことが宿る、", "三つの場所。"], galleryBody: "大きさが変わっても、届けたい想いはそのまま。相手のウィジェットに合う姿を先に確認できます。",
+    sizes: ["小さな優しさ", "日常に寄り添う想い", "景色まで、ゆったりと"], notes: ["今日も、\nあなたの味方。", "ふと、あなたを思い出した。", "この夕焼け、\nあなたと一緒に見たい。"],
+    sender: "私から", time: "たった今", galleryNote: "アプリの背景を使ったウィジェット例 · 彩るのはホーム画面の一角です。",
+    flowTitle: "想いが届くまで。", steps: ["想いを書いて", "景色を選んで", "画面に残します"],
+    screens: "実際のアプリ画面を見る", screensNote: "メッセージ作成とウィジェットプレビュー", screenLabels: ["ひとことを書く", "背景を選ぶ", "大きく確認する"],
+    selfTitle: "最初の受け取り手は、自分。", selfBody: "招待する前に、自分のウィジェットへ送ってみてください。選んだ言葉と景色が届く気持ちを感じてから、一人を招待できます。",
+    final: ["今日、あの人に", "どんな想いを残しますか。"], finalNote: "短い言葉と、小さな景色。それだけで十分。",
+  },
+};
+
 export function LeafMessagePage({ header, locale, appsHref }: { header: ReactNode; locale: Locale; appsHref: string }) {
   const copy = leafMessageCopy[locale];
+  const editorial = editorialCopy[locale];
   const imagePath = (file: string) => `${import.meta.env.BASE_URL}product-shots/${file}`;
+  const iconPath = `${import.meta.env.BASE_URL}app-icons/leaf-message.png`;
+  const sizes = ["small", "medium", "large"] as const;
+  const galleryScenes = ["rain", "meadow", "sunset"];
+  const screens = ["leaf-message-composer.png", "leaf-message-widget-medium.png", "leaf-message-widget-large.png"];
+  const screenAlts = [copy.composerImageAlt, copy.heroImageAlt, copy.presentationImageAlt];
 
   return (
     <main className="site-shell leafmessage-shell">
-      <div className="leafmessage-paper" aria-hidden="true" />
       {header}
-
       <section className="leafmessage-hero" id="page-content" aria-labelledby="leafmessage-page-title">
         <div className="leafmessage-hero-copy">
-          <div className="leafmessage-kicker"><span>{copy.kicker}</span><span>{copy.signal}</span></div>
-          <p className="leafmessage-eyebrow">{copy.eyebrow}</p>
-          <h1 id="leafmessage-page-title"><span>{copy.title[0]}</span><span>{copy.title[1]}</span></h1>
-          <strong>{copy.heroLine}</strong>
-          <p>{copy.heroDescription}</p>
-          <div className="leafmessage-actions">
-            <span className="leafmessage-status"><i />{copy.status}</span>
-            <a href={appsHref}>{copy.backToApps}<span aria-hidden="true">←</span></a>
-          </div>
-          <dl className="leafmessage-stats">
-            {copy.stats.map((stat) => <div key={stat.label}><dt>{stat.label}</dt><dd>{stat.value}</dd></div>)}
-          </dl>
+          <div className="lm-wordmark"><img src={iconPath} alt="" width="48" height="48" /><span>Leaf <em>Message</em></span></div>
+          <p className="lm-eyebrow">FROM MY HEART, TO YOUR SCREEN</p>
+          <h1 id="leafmessage-page-title"><span>{editorial.title[0]}</span><em>{editorial.title[1]}</em></h1>
+          <p className="lm-hero-promise">{copy.heroLine}</p>
+          <p className="lm-hero-intro">{editorial.intro}</p>
+          <a className="lm-primary-link" href="#leafmessage-studio">{editorial.try}<span aria-hidden="true">↗</span></a>
+          <div className="lm-hero-meta"><span className="lm-live"><i aria-hidden="true" />{copy.status}</span><span>iPhone · iOS 26+</span></div>
         </div>
-
-        <figure className="leafmessage-hero-screen">
-          <div className="leafmessage-screen-rail"><span>LEAF MESSAGE / iOS 26</span><b>BETA 17</b></div>
-          <div className="leafmessage-phone-crop">
-            <img src={imagePath("leaf-message-widget-medium.png")} alt={copy.heroImageAlt} width="1206" height="2622" />
-          </div>
-          <figcaption>{copy.heroCaption}</figcaption>
-        </figure>
+        <LeafMessagePreview key={locale} locale={locale} />
       </section>
 
       <section className="leafmessage-premise" aria-labelledby="leafmessage-premise-title">
-        <div className="leafmessage-premise-copy">
-          <span>01 / LEAVE A FEELING</span>
-          <p>{copy.premiseKicker}</p>
-          <h2 id="leafmessage-premise-title">{copy.premiseTitle}</h2>
-          <div><i aria-hidden="true" /><p>{copy.premiseDescription}</p></div>
+        <div className="lm-letter">
+          <span className="lm-section-label">01 — LEAVE A FEELING</span>
+          <h2 id="leafmessage-premise-title">{editorial.concept}</h2>
+          <blockquote><p>“{editorial.quote}”</p><footer>{editorial.quoteFoot}</footer></blockquote>
         </div>
-        <figure className="leafmessage-composer-shot">
-          <div className="leafmessage-shot-label"><span>ACTUAL BETA SCREEN</span><b>3 / 40</b></div>
-          <img src={imagePath("leaf-message-composer.png")} alt={copy.composerImageAlt} width="1206" height="2622" loading="lazy" decoding="async" />
-          <figcaption>{copy.composerCaption}</figcaption>
-        </figure>
+        <div className="lm-two-feelings">
+          <article><span aria-hidden="true">01</span><div><h3>{editorial.feeling}</h3><p>{editorial.feelingBody}</p></div></article>
+          <article><span aria-hidden="true">02</span><div><h3>{editorial.scenery}</h3><p>{editorial.sceneryBody}</p></div></article>
+        </div>
       </section>
 
       <section className="leafmessage-presentation" aria-labelledby="leafmessage-presentation-title">
         <header className="leafmessage-section-heading">
-          <div><span>02 / STYLE THEIR SCREEN</span><p>{copy.presentationKicker}</p><h2 id="leafmessage-presentation-title">{copy.presentationTitle}</h2></div>
-          <p>{copy.presentationDescription}</p>
+          <div><span className="lm-section-label">02 — STYLE THEIR SCREEN</span><h2 id="leafmessage-presentation-title">{editorial.galleryTitle.map((line) => <span key={line}>{line}</span>)}</h2></div>
+          <p>{editorial.galleryBody}</p>
         </header>
-        <div className="leafmessage-presentation-grid">
-          <figure className="leafmessage-large-shot">
-            <img src={imagePath("leaf-message-widget-large.png")} alt={copy.presentationImageAlt} width="1206" height="2622" loading="lazy" decoding="async" />
-            <figcaption>{copy.presentationCaption}</figcaption>
-          </figure>
-          <ol className="leafmessage-presentation-facts">
-            {copy.presentationFacts.map((fact, index) => (
-              <li key={fact.title}><span>0{index + 1}</span><strong>{fact.value}</strong><div><h3>{fact.title}</h3><p>{fact.description}</p></div></li>
-            ))}
-          </ol>
+        <div className="lm-size-gallery">
+          {sizes.map((size, index) => (
+            <figure key={size} className={`lm-size-example lm-size-${size}`}>
+              <div className="lm-gallery-widget">
+                <img src={leafScenePath(galleryScenes[index])} alt="" width="960" height="960" loading="lazy" decoding="async" />
+                <div className="lm-gallery-meta"><span>{editorial.sender}</span><span>{editorial.time}</span></div>
+                <p>{editorial.notes[index]}</p>
+              </div>
+              <figcaption><span>{size}</span><p>{editorial.sizes[index]}</p></figcaption>
+            </figure>
+          ))}
         </div>
+        <p className="lm-gallery-note">{editorial.galleryNote}</p>
+        <dl className="lm-materials">
+          {copy.presentationFacts.map((fact) => <div key={fact.title}><dt>{fact.title}</dt><dd><strong>{fact.value}</strong><span>{fact.description}</span></dd></div>)}
+        </dl>
       </section>
 
       <section className="leafmessage-flow" aria-labelledby="leafmessage-flow-title">
-        <header className="leafmessage-section-heading">
-          <div><span>03 / WRITE · STYLE · SEND</span><p>{copy.flowKicker}</p><h2 id="leafmessage-flow-title">{copy.flowTitle}</h2></div>
-        </header>
+        <header className="leafmessage-section-heading"><div><span className="lm-section-label">03 — A NOTE FINDS A HOME</span><h2 id="leafmessage-flow-title">{editorial.flowTitle}</h2></div></header>
         <ol className="leafmessage-steps">
-          {copy.steps.map((step, index) => (
-            <li key={step.title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{step.title}</h3><p>{step.description}</p></div></li>
-          ))}
+          {copy.steps.map((step, index) => <li key={step.title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{editorial.steps[index]}</h3><p>{step.description}</p></li>)}
         </ol>
+        <details className="lm-app-screens">
+          <summary><span>{editorial.screens}</span><span className="lm-details-indicator" aria-hidden="true">+</span></summary>
+          <p>{editorial.screensNote}</p>
+          <div className="lm-screens-grid">
+            {screens.map((screen, index) => <figure key={screen}><div><img src={imagePath(screen)} alt={screenAlts[index]} width="1206" height="2622" loading="lazy" decoding="async" /></div><figcaption><span>0{index + 1}</span>{editorial.screenLabels[index]}</figcaption></figure>)}
+          </div>
+        </details>
         <aside className="leafmessage-self">
-          <div>
-            <span>04 / SELF PREVIEW</span>
-            <p>{copy.selfKicker}</p>
-            <h2>{copy.selfTitle}</h2>
-          </div>
-          <div className="leafmessage-self-detail">
-            <p>{copy.selfDescription}</p>
-            <ul>{copy.privacyPoints.map((point) => <li key={point}><i aria-hidden="true" />{point}</li>)}</ul>
-          </div>
+          <div><span className="lm-section-label">A NOTE TO MYSELF</span><h2>{editorial.selfTitle}</h2><p>{editorial.selfBody}</p></div>
+          <ul>{copy.privacyPoints.map((point) => <li key={point}><span aria-hidden="true">✓</span>{point}</li>)}</ul>
         </aside>
       </section>
 
-      <section className="leafmessage-final">
-        <img src={`${import.meta.env.BASE_URL}app-icons/leaf-message.png`} alt="" width="160" height="160" loading="lazy" decoding="async" />
-        <div><p>{copy.finalKicker}</p><h2>{copy.finalTitle}</h2></div>
-        <a href={appsHref}>{copy.backToApps}<span aria-hidden="true">←</span></a>
+      <section className="leafmessage-final" aria-labelledby="leafmessage-final-title">
+        <span className="lm-section-label">WITH LOVE, LEAF MESSAGE</span>
+        <h2 id="leafmessage-final-title"><span>{editorial.final[0]}</span><em>{editorial.final[1]}</em></h2>
+        <p>{editorial.finalNote}</p>
+        <a className="lm-primary-link" href="#leafmessage-studio">{editorial.try}<span aria-hidden="true">↗</span></a>
       </section>
-
-      <footer className="site-footer leafmessage-footer">
-        <div><span className="footer-node">NODE_01-G</span><p>{copy.footer}</p></div><span>© 2026 LEAF MESSAGE</span>
-      </footer>
+      <footer className="site-footer leafmessage-footer"><div className="lm-footer-brand"><img src={iconPath} alt="" width="32" height="32" /><span>Leaf Message</span></div><a href={appsHref}>← {copy.backToApps}</a><span>© 2026 · HIORIO</span></footer>
     </main>
   );
 }
