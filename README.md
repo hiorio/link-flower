@@ -6,7 +6,7 @@ Hiorio가 직접 틔운 앱과 운영하는 콘텐츠를 소개하는 개인 작
 ## 페이지 구조
 
 - `/`: Hiorio 소개와 전체 작업 인덱스
-- `/apps/`: 틔운 앱들 — 도화지, TimeFlower, 매일 플랭크, 비온다매, 싹 메모, Leaf Message, TimeRoots, 벨소리로
+- `/apps/`: 틔운 앱들 — 도화지, 싹 메모, TimeFlower, 매일 플랭크, 비온다매, Leaf Message, TimeRoots, 벨소리로
 - `/apps/dohwaji/`: NODE_01-A 도화지 제품 소개 — 공식 서비스 `https://dohwaji.app`
 - `/apps/timeflower/`: NODE_01-C TimeFlower 제품 소개 — 운영 중인 공유 캘린더
 - `/apps/daily-plank/`: NODE_01-D 매일 플랭크 제품 소개 — 운영 중인 5·7·10분 가이드 루틴

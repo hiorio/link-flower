@@ -251,13 +251,13 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(ringtoneHtml, /twitter:card/);
 });
 
-test("메인과 앱 목록은 같은 제품 순서를 사용하고 TimeRoots와 벨소리로는 하단에 놓인다", async () => {
+test("메인과 앱 목록은 도화지·싹 메모로 시작하고 TimeRoots·벨소리로로 끝난다", async () => {
   const productSource = await readFile(new URL("../src/apps.ts", import.meta.url), "utf8");
   const entries = [...productSource.matchAll(/^    id: "([^"]+)",\r?\n    order: "([^"]+)",$/gm)]
     .map((match) => ({ id: match[1], order: match[2] }));
 
   assert.deepEqual(entries.map((entry) => entry.id), [
-    "dohwaji", "timeflower", "dailyplank", "biondamae", "ssakmemo", "leaf-message", "timeroots", "ringtone",
+    "dohwaji", "ssakmemo", "timeflower", "dailyplank", "biondamae", "leaf-message", "timeroots", "ringtone",
   ]);
   assert.deepEqual(entries.map((entry) => entry.order), ["01", "02", "03", "04", "05", "06", "07", "08"]);
 
