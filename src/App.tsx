@@ -5,13 +5,14 @@ import { defaultNodeId, nodes } from "./nodes";
 import { DailyPlankPage, dailyPlankCopy } from "./DailyPlankPage";
 import { DohwajiExperience } from "./DohwajiPage";
 import { LeafMessagePage, leafMessageCopy } from "./LeafMessagePage";
+import { RingtonePage, ringtoneCopy } from "./RingtonePage";
 import { SsakMemoPage, ssakMemoCopy } from "./SsakMemoPage";
 import { TimeFlowerPage, timeFlowerCopy } from "./TimeFlowerPage";
 import { LinkHub } from "./LinkHub";
 import { SHOW_HORROR_DOPAMINE } from "./visibility";
 import { useSiteMotion } from "./useSiteMotion";
 
-type RouteId = "root" | "channels" | "apps" | "dohwaji" | "timeflower" | "dailyplank" | "ssakmemo" | "leafmessage" | "horror";
+type RouteId = "root" | "channels" | "apps" | "dohwaji" | "timeflower" | "dailyplank" | "ssakmemo" | "leafmessage" | "ringtone" | "horror";
 type Copy = (typeof ui)[Locale];
 
 const basePath = import.meta.env.BASE_URL;
@@ -28,6 +29,7 @@ function routeHref(route: RouteId) {
   if (route === "dailyplank") return `${basePath}apps/daily-plank/`;
   if (route === "ssakmemo") return `${basePath}apps/ssak-memo/`;
   if (route === "leafmessage") return `${basePath}apps/leaf-message/`;
+  if (route === "ringtone") return `${basePath}apps/ringtone/`;
   return `${basePath}${route}/`;
 }
 
@@ -38,6 +40,7 @@ function getRoute(): RouteId {
   if (relativePath === "apps/daily-plank") return "dailyplank";
   if (relativePath === "apps/ssak-memo") return "ssakmemo";
   if (relativePath === "apps/leaf-message") return "leafmessage";
+  if (relativePath === "apps/ringtone") return "ringtone";
   if (relativePath === "channels" || relativePath === "horror") return SHOW_HORROR_DOPAMINE ? relativePath : "root";
   if (relativePath === "apps") return relativePath;
   return "root";
@@ -66,7 +69,7 @@ function SiteHeader({ activeRoute, copy, locale, setLocale }: {
         <nav className="node-switcher" aria-label={copy.nodeNetworkLabel}>
           {routes.map((route) => {
             const isActive = activeRoute === route.id
-              || ((activeRoute === "dohwaji" || activeRoute === "timeflower" || activeRoute === "dailyplank" || activeRoute === "ssakmemo" || activeRoute === "leafmessage") && route.id === "apps")
+              || ((activeRoute === "dohwaji" || activeRoute === "timeflower" || activeRoute === "dailyplank" || activeRoute === "ssakmemo" || activeRoute === "leafmessage" || activeRoute === "ringtone") && route.id === "apps")
               || (activeRoute === "horror" && route.id === "channels");
             return (
               <a aria-current={isActive ? "page" : undefined} className={isActive ? "is-active" : ""} href={routeHref(route.id)} key={route.id}>
@@ -158,7 +161,7 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
     demo: copy.appStatusDemo,
   })[status];
   const liveCount = productApps.filter((app) => app.status === "live").length;
-  const detailHref = (id: string) => id === "dohwaji" ? routeHref("dohwaji") : id === "timeflower" ? routeHref("timeflower") : id === "dailyplank" ? routeHref("dailyplank") : id === "ssakmemo" ? routeHref("ssakmemo") : id === "leaf-message" ? routeHref("leafmessage") : undefined;
+  const detailHref = (id: string) => id === "dohwaji" ? routeHref("dohwaji") : id === "timeflower" ? routeHref("timeflower") : id === "dailyplank" ? routeHref("dailyplank") : id === "ssakmemo" ? routeHref("ssakmemo") : id === "leaf-message" ? routeHref("leafmessage") : id === "ringtone" ? routeHref("ringtone") : undefined;
 
   return (
     <main className="site-shell development-shell apps-showcase-shell">
@@ -367,6 +370,7 @@ export default function App() {
       timeflower: [timeFlowerCopy[locale].pageTitle, timeFlowerCopy[locale].pageDescription],
       dailyplank: [dailyPlankCopy[locale].pageTitle, dailyPlankCopy[locale].pageDescription],
       ssakmemo: [ssakMemoCopy[locale].pageTitle, ssakMemoCopy[locale].pageDescription],
+      ringtone: [ringtoneCopy[locale].pageTitle, ringtoneCopy[locale].pageDescription],
       leafmessage: [leafMessageCopy[locale].pageTitle, leafMessageCopy[locale].pageDescription], horror: [copy.horrorPageTitle, copy.horrorPageDescription],
     }[route];
     document.documentElement.lang = locale;
@@ -382,6 +386,7 @@ export default function App() {
   if (route === "dailyplank") return <DailyPlankPage header={<SiteHeader activeRoute="dailyplank" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} appsHref={routeHref("apps")} />;
   if (route === "ssakmemo") return <SsakMemoPage header={<SiteHeader activeRoute="ssakmemo" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} appsHref={routeHref("apps")} />;
   if (route === "leafmessage") return <LeafMessagePage header={<SiteHeader activeRoute="leafmessage" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} appsHref={routeHref("apps")} />;
+  if (route === "ringtone") return <RingtonePage header={<SiteHeader activeRoute="ringtone" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} appsHref={routeHref("apps")} />;
   if (SHOW_HORROR_DOPAMINE && route === "horror") return <HorrorPage copy={copy} locale={locale} setLocale={setLocale} />;
   return <RootPage copy={copy} locale={locale} setLocale={setLocale} />;
 }

@@ -15,6 +15,7 @@ const detailPaths: Record<string, string> = {
   dailyplank: "apps/daily-plank/",
   ssakmemo: "apps/ssak-memo/",
   "leaf-message": "apps/leaf-message/",
+  ringtone: "apps/ringtone/",
 };
 
 function ProjectLink({ app, locale, basePath, priority }: { app: ProductApp; locale: Locale; basePath: string; priority: boolean }) {

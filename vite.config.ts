@@ -18,6 +18,7 @@ export default defineConfig({
         dailyPlank: `${root}apps/daily-plank/index.html`,
         ssakMemo: `${root}apps/ssak-memo/index.html`,
         leafMessage: `${root}apps/leaf-message/index.html`,
+        ringtone: `${root}apps/ringtone/index.html`,
         ...(SHOW_HORROR_DOPAMINE ? {
           channels: `${root}channels/index.html`,
           horror: `${root}horror/index.html`,

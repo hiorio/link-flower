@@ -11,6 +11,7 @@ const pages = [
   ["../dist/apps/daily-plank/index.html", "매일 플랭크 | 5분부터 시작하는 플랭크 가이드"],
   ["../dist/apps/ssak-memo/index.html", "싹 메모 | 떠오른 순간, 바로 기록"],
   ["../dist/apps/leaf-message/index.html", "Leaf Message | 마음을 남기고, 상대의 홈 화면을 꾸미는 메시지"],
+  ["../dist/apps/ringtone/index.html", "벨소리로 | 좋아하는 소리의 한 구간을 벨소리로"],
 ];
 
 const operatingIcons = [
@@ -21,6 +22,7 @@ const operatingIcons = [
   "../dist/app-icons/biondamae.png",
   "../dist/app-icons/ssak-memo.webp",
   "../dist/app-icons/leaf-message.png",
+  "../dist/app-icons/ringtone.png",
 ];
 
 const ssakMemoShots = [
@@ -92,6 +94,10 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /비온다매/);
   assert.match(javascript, /싹 메모/);
   assert.match(javascript, /Leaf Message/);
+  assert.match(javascript, /벨소리로/);
+  assert.match(javascript, /Make It a Ringtone/);
+  assert.match(javascript, /Hiorio 着信音メーカー/);
+  assert.match(javascript, /https:\/\/apps\.apple\.com\/app\/id6809625649/);
   assert.match(javascript, /상대의 홈 화면에 남기는 짧은 마음/);
   assert.match(javascript, /감성 메시지를 남기고, 상대의 홈 화면 한 칸을 꾸밉니다/);
   assert.match(javascript, /STYLE THEIR SCREEN/);
@@ -127,6 +133,7 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /apps\/daily-plank/);
   assert.match(javascript, /apps\/ssak-memo/);
   assert.match(javascript, /apps\/leaf-message/);
+  assert.match(javascript, /apps\/ringtone/);
   assert.match(javascript, /그렇게 심은 생각을 무엇으로 피워낼지는, 기록한 우리가 결정합니다/);
   assert.doesNotMatch(javascript, /PRIMARY SIGNAL|horror_dopamine|horrordopamine/);
 
@@ -142,6 +149,7 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /app-icons\/biondamae\.png/);
   assert.match(javascript, /app-icons\/ssak-memo\.webp/);
   assert.match(javascript, /app-icons\/leaf-message\.png/);
+  assert.match(javascript, /app-icons\/ringtone\.png/);
 
   for (const path of ssakMemoShots) {
     const screenshot = await stat(new URL(path, import.meta.url));
@@ -236,4 +244,50 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(leafMessageHtml, /https:\/\/hiorio\.com\/apps\/leaf-message\//);
   assert.match(leafMessageHtml, /https:\/\/hiorio\.com\/app-icons\/leaf-message\.png/);
   assert.match(leafMessageHtml, /twitter:card/);
+
+  const ringtoneHtml = await readFile(new URL("../dist/apps/ringtone/index.html", import.meta.url), "utf8");
+  assert.match(ringtoneHtml, /https:\/\/hiorio\.com\/apps\/ringtone\//);
+  assert.match(ringtoneHtml, /https:\/\/hiorio\.com\/app-icons\/ringtone\.png/);
+  assert.match(ringtoneHtml, /twitter:card/);
+});
+
+test("메인과 앱 목록은 같은 제품 순서를 사용하고 TimeRoots와 벨소리로는 하단에 놓인다", async () => {
+  const productSource = await readFile(new URL("../src/apps.ts", import.meta.url), "utf8");
+  const entries = [...productSource.matchAll(/^    id: "([^"]+)",\r?\n    order: "([^"]+)",$/gm)]
+    .map((match) => ({ id: match[1], order: match[2] }));
+
+  assert.deepEqual(entries.map((entry) => entry.id), [
+    "dohwaji", "timeflower", "dailyplank", "biondamae", "ssakmemo", "leaf-message", "timeroots", "ringtone",
+  ]);
+  assert.deepEqual(entries.map((entry) => entry.order), ["01", "02", "03", "04", "05", "06", "07", "08"]);
+
+  for (const path of ["../src/LinkHub.tsx", "../src/App.tsx"]) {
+    const source = await readFile(new URL(path, import.meta.url), "utf8");
+    assert.match(source, /import \{ productApps\b[^}]*\} from "\.\/apps"/);
+    assert.match(source, /productApps\.map\(/);
+    assert.doesNotMatch(source, /productApps\.(?:sort|reverse)\(/);
+    assert.match(source, /apps\/ringtone\//);
+  }
+});
+
+test("벨소리로는 출시 원본 자산과 예시 구분을 유지한다", async () => {
+  const originals = [
+    ["../dist/app-icons/ringtone.png", "72d4ae78909ebb7b74c9d99968317c7b48b3506dea26bb5a82fda989f30732af"],
+    ["../dist/product-shots/ringtone/home-ko.png", "96929f1365c3a7a58546e720eb6687ceb4d036c0b8365bf23d209122ef609f57"],
+    ["../dist/product-shots/ringtone/home-en.png", "6a051b835628e7a37e06c5fb6efc4fc566235c209b6f8f85537f4777394c307e"],
+    ["../dist/product-shots/ringtone/home-ja.png", "999579042949eaeaf490fe38fcc826568d2274370df1e9546227c26df3522fe1"],
+  ];
+  for (const [path, hash] of originals) {
+    const file = await readFile(new URL(path, import.meta.url));
+    assert.equal(createHash("sha256").update(file).digest("hex"), hash, path);
+  }
+  const copy = await readFile(new URL("../src/ringtone-copy.ts", import.meta.url), "utf8");
+  assert.match(copy, /실제 음원은 재생되지 않아요/);
+  assert.match(copy, /최종 적용은 공유 메뉴에서 사용자가 직접/);
+  assert.match(copy, /DRM으로 보호된 스트리밍 음악은 편집할 수 없습니다/);
+  const page = await readFile(new URL("../src/RingtonePage.tsx", import.meta.url), "utf8");
+  assert.match(page, /aria-pressed=\{position === i\}/);
+  assert.match(page, /role="status"/);
+  assert.match(page, /<details/);
+  assert.doesNotMatch(page, /<audio|autoPlay|fileImporter/);
 });

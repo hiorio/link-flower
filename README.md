@@ -6,12 +6,13 @@ Hiorio가 직접 틔운 앱과 운영하는 콘텐츠를 소개하는 개인 작
 ## 페이지 구조
 
 - `/`: Hiorio 소개와 전체 작업 인덱스
-- `/apps/`: 틔운 앱들 — 도화지, TimeRoots, TimeFlower, 매일 플랭크, 비온다매, 싹 메모, Leaf Message
+- `/apps/`: 틔운 앱들 — 도화지, TimeFlower, 매일 플랭크, 비온다매, 싹 메모, Leaf Message, TimeRoots, 벨소리로
 - `/apps/dohwaji/`: NODE_01-A 도화지 제품 소개 — 공식 서비스 `https://dohwaji.app`
 - `/apps/timeflower/`: NODE_01-C TimeFlower 제품 소개 — 운영 중인 공유 캘린더
 - `/apps/daily-plank/`: NODE_01-D 매일 플랭크 제품 소개 — 운영 중인 5·7·10분 가이드 루틴
 - `/apps/ssak-memo/`: NODE_01-F 싹 메모 제품 소개 — 원탭 캡처, 로컬 보관함, 날짜별 Markdown
 - `/apps/leaf-message/`: NODE_01-G Leaf Message 제품 소개 — 감성 메시지와 장면으로 상대의 홈 화면 위젯 꾸미기, 운영 중
+- `/apps/ringtone/`: 벨소리로 제품 소개 — 오디오 파일의 최대 30초 구간을 기기 안에서 편집하고 벨소리로 내보내기, 운영 중
 - `/horror/`: NODE_02 공포도파민 브랜드
 - `/channels/`: NODE_02-A 공포도파민의 외부 채널 연결 페이지
 
@@ -29,6 +30,7 @@ npm run dev
 ```
 
 앱 목록의 제품은 `src/apps.ts`의 `productApps` 배열에서 관리합니다.
+메인 페이지와 앱 서비스 목록은 같은 배열 순서를 사용하며, TimeRoots와 벨소리로를 하단에 배치합니다.
 공포도파민 브랜드와 채널 데이터는 `src/nodes.ts`에서 관리합니다.
 공포도파민 공개 여부는 `src/visibility.ts`의 `SHOW_HORROR_DOPAMINE` 값으로 관리합니다.
 
