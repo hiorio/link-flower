@@ -1,4 +1,5 @@
 import type { Locale } from "./i18n";
+import { growingProjects } from "./growing-projects";
 
 type LocalizedAppCopy = {
   displayName: string;
@@ -11,11 +12,12 @@ export type ProductApp = {
   id: string;
   order: string;
   code: string;
-  icon: string;
+  icon: string | null;
+  detailPath?: string;
   version: string;
   platforms: string[];
   accent: "cyan" | "amber" | "apricot" | "cobalt" | "sky" | "sprout" | "leaf";
-  status: "live" | "preparing" | "demo";
+  status: "live" | "preparing" | "demo" | "testing" | "development";
   content: Record<Locale, LocalizedAppCopy>;
   links: Array<{
     kind: "web" | "appStore" | "support";
@@ -23,7 +25,7 @@ export type ProductApp = {
   }>;
 };
 
-export const productApps: ProductApp[] = [
+const establishedApps: ProductApp[] = [
   {
     id: "dohwaji",
     order: "01",
@@ -279,3 +281,23 @@ export const productApps: ProductApp[] = [
     links: [{ kind: "appStore", href: "https://apps.apple.com/app/id6809625649" }],
   },
 ];
+
+// Keep the reader's priorities stable as the collection grows.
+export const productApps: ProductApp[] = [
+  ...establishedApps.slice(0, -2),
+  ...growingProjects.map((project) => ({ ...project.app, order: "" })),
+  ...establishedApps.slice(-2),
+].map((app, index) => ({ ...app, order: String(index + 1).padStart(2, "0") }));
+
+const existingDetailPaths: Record<string, string> = {
+  dohwaji: "apps/dohwaji/",
+  timeflower: "apps/timeflower/",
+  dailyplank: "apps/daily-plank/",
+  ssakmemo: "apps/ssak-memo/",
+  "leaf-message": "apps/leaf-message/",
+  ringtone: "apps/ringtone/",
+};
+
+export function appDetailPath(app: ProductApp) {
+  return app.detailPath ?? existingDetailPaths[app.id];
+}

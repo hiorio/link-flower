@@ -69,6 +69,7 @@
 }
 
 .hub-profile h1 > span { color: var(--hub-accent); }
+.link-hub .hub-profile h1 > span { display: inline; }
 .hub-promise { max-width: 290px; margin: 0; font-size: 24px; font-weight: 500; line-height: 1.55; letter-spacing: -.045em; word-break: keep-all; text-wrap: balance; }
 .hub-bio { margin: 18px 0 0; color: var(--hub-muted); font-size: 16px; line-height: 1.8; word-break: keep-all; }
 .link-hub .hub-profile-flower { width: 190px; margin: 32px 0 0 16px; transform: none; }

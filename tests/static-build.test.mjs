@@ -2,6 +2,19 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile, readdir, stat } from "node:fs/promises";
 import test from "node:test";
+import ts from "typescript";
+
+// Evaluate the same typed registry used by the site, without a DOM or source-shape regex.
+async function moduleUrl(path, replacements = {}) {
+  const source = await readFile(new URL(path, import.meta.url), "utf8");
+  let { outputText } = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } });
+  for (const [specifier, url] of Object.entries(replacements)) outputText = outputText.replaceAll(`"${specifier}"`, `"${url}"`);
+  return `data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`;
+}
+const projectModule = await moduleUrl("../src/growing-projects.ts");
+const { growingProjects } = await import(projectModule);
+const { productApps, appDetailPath } = await import(await moduleUrl("../src/apps.ts", { "./growing-projects": projectModule }));
+const { filterApps, catalogCopy } = await import(await moduleUrl("../src/catalog.ts"));
 
 const pages = [
   ["../dist/index.html", "Hiorio — 아이디어를 오래 쓰이는 형태로 피우는 사람"],
@@ -12,6 +25,7 @@ const pages = [
   ["../dist/apps/ssak-memo/index.html", "싹 메모 | 떠오른 순간, 바로 기록"],
   ["../dist/apps/leaf-message/index.html", "Leaf Message | 마음을 남기고, 상대의 홈 화면을 꾸미는 메시지"],
   ["../dist/apps/ringtone/index.html", "벨소리로 | 좋아하는 소리의 한 구간을 벨소리로"],
+  ...growingProjects.map(({ app }) => [`../dist/${app.detailPath}index.html`, `${app.content.ko.displayName} | ${app.content.ko.tagline}`]),
 ];
 
 const operatingIcons = [
@@ -82,7 +96,7 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   const productSource = await readFile(new URL("../src/apps.ts", import.meta.url), "utf8");
   const productStatuses = [...productSource.matchAll(/^    status: "([^"]+)",$/gm)].map((match) => match[1]);
   assert.equal(productStatuses.length, operatingIcons.length);
-  assert.ok(productStatuses.every((status) => status === "live"), "제품 디렉터리의 모든 앱은 운영 중이어야 합니다");
+  assert.ok(productStatuses.every((status) => status === "live"), "기존 운영 앱 8개의 상태는 유지해야 합니다");
   assert.match(javascript, /Select language/);
   assert.match(javascript, /言語を選択/);
   assert.match(javascript, /link-flower-locale/);
@@ -252,21 +266,86 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
 });
 
 test("메인과 앱 목록은 도화지·싹 메모로 시작하고 TimeRoots·벨소리로로 끝난다", async () => {
-  const productSource = await readFile(new URL("../src/apps.ts", import.meta.url), "utf8");
-  const entries = [...productSource.matchAll(/^    id: "([^"]+)",\r?\n    order: "([^"]+)",$/gm)]
-    .map((match) => ({ id: match[1], order: match[2] }));
-
-  assert.deepEqual(entries.map((entry) => entry.id), [
-    "dohwaji", "ssakmemo", "timeflower", "dailyplank", "biondamae", "leaf-message", "timeroots", "ringtone",
+  assert.deepEqual(productApps.map((entry) => entry.id), [
+    "dohwaji", "ssakmemo", "timeflower", "dailyplank", "biondamae", "leaf-message",
+    "countlens", "duo-studio", "archive-ink", "hiho-run", "daymirror", "time-journey", "timeroots", "ringtone",
   ]);
-  assert.deepEqual(entries.map((entry) => entry.order), ["01", "02", "03", "04", "05", "06", "07", "08"]);
+  assert.deepEqual(productApps.map((entry) => entry.order), Array.from({ length: productApps.length }, (_, i) => String(i + 1).padStart(2, "0")));
 
   for (const path of ["../src/LinkHub.tsx", "../src/App.tsx"]) {
     const source = await readFile(new URL(path, import.meta.url), "utf8");
     assert.match(source, /import \{ productApps\b[^}]*\} from "\.\/apps"/);
-    assert.match(source, /productApps\.map\(/);
+    assert.match(source, /catalog\.apps\.map\(/);
     assert.doesNotMatch(source, /productApps\.(?:sort|reverse)\(/);
-    assert.match(source, /apps\/ringtone\//);
+    assert.match(source, /appDetailPath\(app\)/);
+  }
+});
+
+test("새 프로젝트는 정확한 상태와 독립 주소, 세 언어의 소개를 갖는다", async () => {
+  assert.equal(productApps.filter((app) => app.status === "live").length, 8);
+  assert.deepEqual(growingProjects.map(({ app }) => [app.id, app.status]), [
+    ["countlens", "testing"], ["duo-studio", "testing"], ["archive-ink", "development"],
+    ["hiho-run", "testing"], ["daymirror", "testing"], ["time-journey", "development"],
+  ]);
+  assert.equal(new Set(productApps.map((app) => app.id)).size, productApps.length);
+  for (const project of growingProjects) {
+    const app = productApps.find((item) => item.id === project.app.id);
+    assert.equal(appDetailPath(app), project.app.detailPath);
+    assert.equal(app.links.length, 0, "내부 TestFlight를 공개 설치로 안내하면 안 됩니다");
+    const html = await readFile(new URL(`../dist/${app.detailPath}index.html`, import.meta.url), "utf8");
+    assert.ok(html.includes(`rel="canonical" href="https://hiorio.com/${app.detailPath}"`));
+    for (const locale of ["ko", "en", "ja"]) {
+      assert.ok(app.content[locale].description.length > 30);
+      assert.equal(app.content[locale].features.length, project.copy[locale].featureDetails.length);
+      assert.ok(project.copy[locale].availability.length > 30);
+      assert.ok(project.copy[locale].mediaCaption.length > 10);
+    }
+    for (const media of [project.media, project.secondaryMedia].filter(Boolean)) {
+      const file = await stat(new URL(`../dist/${media.src}`, import.meta.url));
+      assert.ok(file.size > 20000 && file.size < 650000, media.src);
+    }
+  }
+  const source = await readFile(new URL("../src/growing-projects.ts", import.meta.url), "utf8");
+  assert.doesNotMatch(source, /appstoreconnect\.apple\.com|testflight\.apple\.com|C:\\|welsp|@[a-zA-Z]+\./);
+  assert.match(source, /온라인 생성을 선택하면.*외부 추론 서비스로 전송/);
+  assert.match(source, /샘플 러닝 기록/);
+  assert.match(source, /앱 실행 화면 아님/);
+  const timeJourney = growingProjects.find(({ app }) => app.id === "time-journey");
+  assert.equal(timeJourney.app.icon, null, "미확정 아이콘을 운영 아이콘처럼 만들지 않습니다");
+  assert.equal(timeJourney.media, undefined);
+});
+
+test("검색은 언어에 관계없이 동작하고 필터가 우선순위를 바꾸지 않는다", () => {
+  assert.equal(filterApps(productApps, "", "all").length, 14);
+  assert.equal(filterApps(productApps, "", "live").length, 8);
+  assert.equal(filterApps(productApps, "", "testing").length, 4);
+  assert.equal(filterApps(productApps, "", "development").length, 2);
+  for (const query of ["세어봐", "CountLens", "ＣＯＵＮＴＬＥＮＳ", "  countlens  "]) {
+    assert.deepEqual(filterApps(productApps, query, "all").map((app) => app.id), ["countlens"]);
+  }
+  assert.ok(filterApps(productApps, "계획", "all").some((app) => app.id === "daymirror"));
+  assert.deepEqual(filterApps(productApps, "사진", "development").map((app) => app.id), ["archive-ink"]);
+  assert.deepEqual(filterApps(productApps, "does-not-exist", "all"), []);
+  assert.deepEqual(filterApps(productApps, "Daymirror", "live"), []);
+  for (const filter of ["all", "live", "testing", "development"]) {
+    const result = filterApps(productApps, "", filter);
+    assert.deepEqual(result.map((app) => app.order), result.map((app) => app.order).sort());
+    for (const locale of ["ko", "en", "ja"]) assert.ok(catalogCopy[locale][filter]);
+  }
+});
+
+test("새 앱 아이콘은 프로젝트 원본을 그대로 사용한다", async () => {
+  const hashes = {
+    countlens: "9347137e49ecebd1dde9409f2bcaa17424179e7d0983769f5b36f4ad045e46d8",
+    "duo-studio": "a88ff7f5a4470b1cce48fe77a51e6e8d8d7ec89db9ba494ce456350d6b93eb52",
+    "archive-ink": "d2171102addf456b74bb88188fe5d80bd90b84b38662da2728d5cebe1eefcb8d",
+    "hiho-run": "2ac790390842f83c4e76f8532a4d79e7fa21a40a48483e8d18004e0518275956",
+    daymirror: "2b288b7faee6ac452682b2887a5d7eec39ed904d9c331e88684339a516d17f60",
+  };
+  for (const [id, hash] of Object.entries(hashes)) {
+    const app = productApps.find((app) => app.id === id);
+    const file = await readFile(new URL(`../dist/${app.icon}`, import.meta.url));
+    assert.equal(createHash("sha256").update(file).digest("hex"), hash, id);
   }
 });
 

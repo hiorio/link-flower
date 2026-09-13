@@ -1,36 +1,31 @@
-import { productApps, type ProductApp } from "./apps";
+import { productApps, appDetailPath, type ProductApp } from "./apps";
+import { AppIcon } from "./AppIcon";
+import { CatalogControls, CatalogEmpty, useCatalog } from "./CatalogControls";
+import { catalogCopy } from "./catalog";
 import { BotanicalBloom, botanicalLeafPaths } from "./BotanicalBloom";
 import { type Locale, ui } from "./i18n";
 import { SHOW_HORROR_DOPAMINE } from "./visibility";
 
 const hubCopy = {
-  ko: { browse: "모든 소개 보기", about: "소개 보기", web: "웹에서 열기", demo: "웹 데모", store: "App Store", collection: "직접 만들고 운영하는 것들", next: "다음 아이디어도 이곳에서.", newWindow: "새 창에서 열기" },
-  en: { browse: "Explore the collection", about: "About this project", web: "Open website", demo: "Web demo", store: "App Store", collection: "Made and maintained by me", next: "The next idea will grow here, too.", newWindow: "Opens in a new tab" },
+  ko: { browse: "모든 소개 보기", about: "소개 보기", web: "웹에서 열기", demo: "웹 데모", store: "App Store", collection: "피어난 서비스와 새롭게 틔우는 아이디어", next: "다음 아이디어도 이곳에서.", newWindow: "새 창에서 열기" },
+  en: { browse: "Explore the collection", about: "About this project", web: "Open website", demo: "Web demo", store: "App Store", collection: "Live projects and ideas taking shape", next: "The next idea will grow here, too.", newWindow: "Opens in a new tab" },
   ja: { browse: "すべての紹介を見る", about: "詳しく見る", web: "ウェブで開く", demo: "ウェブデモ", store: "App Store", collection: "自分でつくり、育てているもの", next: "次のアイデアも、ここから。", newWindow: "新しいタブで開く" },
 } satisfies Record<Locale, Record<string, string>>;
-
-const detailPaths: Record<string, string> = {
-  dohwaji: "apps/dohwaji/",
-  timeflower: "apps/timeflower/",
-  dailyplank: "apps/daily-plank/",
-  ssakmemo: "apps/ssak-memo/",
-  "leaf-message": "apps/leaf-message/",
-  ringtone: "apps/ringtone/",
-};
 
 function ProjectLink({ app, locale, basePath, priority }: { app: ProductApp; locale: Locale; basePath: string; priority: boolean }) {
   const content = app.content[locale];
   const labels = hubCopy[locale];
   const external = app.links.find((link) => link.kind === "web") ?? app.links.find((link) => link.kind === "appStore");
-  const aboutHref = `${basePath}${detailPaths[app.id] ?? `apps/#${app.id}`}`;
+  const aboutHref = `${basePath}${appDetailPath(app) ?? `apps/#${app.id}`}`;
   const destination = external?.kind === "appStore" ? labels.store
     : external?.kind === "web" ? (app.platforms.includes("WEB DEMO") ? labels.demo : labels.web)
     : labels.about;
 
   return (
     <li className={`hub-card hub-card-${app.accent}`}>
-      <img className="hub-app-icon" src={`${basePath}${app.icon}`} alt="" width="56" height="56" decoding="async" loading={priority ? "eager" : "lazy"} />
+      <AppIcon className="hub-app-icon" app={app} basePath={basePath} locale={locale} size={56} priority={priority} />
       <div className="hub-card-copy">
+        <div className="hub-card-title">
         <h3>
           <a className="hub-card-main" href={external?.href ?? aboutHref}
             target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}
@@ -38,6 +33,8 @@ function ProjectLink({ app, locale, basePath, priority }: { app: ProductApp; loc
             {content.displayName}
           </a>
         </h3>
+        {app.status !== "live" && <span className={`hub-card-state status-${app.status}`}>{catalogCopy[locale][app.status]}</span>}
+        </div>
         <p>{content.tagline}</p>
         <div className="hub-card-actions">
           <span className="hub-destination">{destination}</span>
@@ -52,6 +49,7 @@ function ProjectLink({ app, locale, basePath, priority }: { app: ProductApp; loc
 export function LinkHub({ locale, basePath }: { locale: Locale; basePath: string }) {
   const copy = ui[locale];
   const labels = hubCopy[locale];
+  const catalog = useCatalog();
 
   return (
     <div className="hub-layout" id="page-content" tabIndex={-1}>
@@ -73,9 +71,11 @@ export function LinkHub({ locale, basePath }: { locale: Locale; basePath: string
           <div><p className="hub-eyebrow">{labels.collection}</p><h2 id="root-work-title">{copy.appsCardTitle}<span className="hub-count">{String(productApps.length).padStart(2, "0")}</span></h2></div>
           <a className="hub-collection-link" href={`${basePath}apps/`}>{labels.browse}<span aria-hidden="true">↗</span></a>
         </header>
-        <ul className="hub-link-list">
-          {productApps.map((app, index) => <ProjectLink key={app.id} app={app} locale={locale} basePath={basePath} priority={index < 2} />)}
+        <CatalogControls catalog={catalog} locale={locale} resultsId="hub-app-results" />
+        <ul className="hub-link-list" id="hub-app-results">
+          {catalog.apps.map((app, index) => <ProjectLink key={app.id} app={app} locale={locale} basePath={basePath} priority={index < 2} />)}
         </ul>
+        {catalog.apps.length === 0 && <CatalogEmpty locale={locale} reset={catalog.reset} />}
 
         {SHOW_HORROR_DOPAMINE && <a className="hub-channel-link" href={`${basePath}channels/`}><span>{copy.channelsCardTitle}</span><span aria-hidden="true">↗</span></a>}
 

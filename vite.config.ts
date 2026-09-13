@@ -2,6 +2,7 @@ import react from "@vitejs/plugin-react";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import { SHOW_HORROR_DOPAMINE } from "./src/visibility";
+import { growingProjects } from "./src/growing-projects";
 
 const root = fileURLToPath(new URL(".", import.meta.url));
 
@@ -19,6 +20,7 @@ export default defineConfig({
         ssakMemo: `${root}apps/ssak-memo/index.html`,
         leafMessage: `${root}apps/leaf-message/index.html`,
         ringtone: `${root}apps/ringtone/index.html`,
+        ...Object.fromEntries(growingProjects.map(({ app }) => [app.id, `${root}${app.detailPath}index.html`])),
         ...(SHOW_HORROR_DOPAMINE ? {
           channels: `${root}channels/index.html`,
           horror: `${root}horror/index.html`,
