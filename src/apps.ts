@@ -282,11 +282,17 @@ const establishedApps: ProductApp[] = [
   },
 ];
 
-// Keep the reader's priorities stable as the collection grows.
-export const productApps: ProductApp[] = [
+const catalogApps: ProductApp[] = [
   ...establishedApps.slice(0, -2),
   ...growingProjects.map((project) => ({ ...project.app, order: "" })),
   ...establishedApps.slice(-2),
+];
+
+// Feature these apps first; preserve every other app's relative order as the collection grows.
+const featuredAppIds = ["dohwaji", "ssakmemo", "daymirror", "hiho-run"];
+export const productApps: ProductApp[] = [
+  ...featuredAppIds.flatMap((id) => catalogApps.filter((app) => app.id === id)),
+  ...catalogApps.filter((app) => !featuredAppIds.includes(app.id)),
 ].map((app, index) => ({ ...app, order: String(index + 1).padStart(2, "0") }));
 
 const existingDetailPaths: Record<string, string> = {

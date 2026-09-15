@@ -265,12 +265,19 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(ringtoneHtml, /twitter:card/);
 });
 
-test("메인과 앱 목록은 도화지·싹 메모로 시작하고 TimeRoots·벨소리로로 끝난다", async () => {
+test("메인과 앱 목록은 도화지·싹 메모·DayMirror·RUN POST를 우선 표시한다", async () => {
   assert.deepEqual(productApps.map((entry) => entry.id), [
-    "dohwaji", "ssakmemo", "timeflower", "dailyplank", "biondamae", "leaf-message",
-    "countlens", "duo-studio", "archive-ink", "hiho-run", "daymirror", "time-journey", "timeroots", "ringtone",
+    "dohwaji", "ssakmemo", "daymirror", "hiho-run", "timeflower", "dailyplank", "biondamae", "leaf-message",
+    "countlens", "duo-studio", "archive-ink", "time-journey", "timeroots", "ringtone",
   ]);
   assert.deepEqual(productApps.map((entry) => entry.order), Array.from({ length: productApps.length }, (_, i) => String(i + 1).padStart(2, "0")));
+  const runPost = productApps.find((app) => app.id === "hiho-run");
+  const dayMirror = productApps.find((app) => app.id === "daymirror");
+  for (const locale of ["ko", "en", "ja"]) {
+    assert.equal(runPost.content[locale].displayName, "RUN POST");
+    assert.equal(dayMirror.content[locale].displayName, "DayMirror");
+  }
+  assert.equal(appDetailPath(runPost), "apps/hiho-run/", "기존 상세 링크를 유지합니다");
 
   for (const path of ["../src/LinkHub.tsx", "../src/App.tsx"]) {
     const source = await readFile(new URL(path, import.meta.url), "utf8");
@@ -324,6 +331,9 @@ test("검색은 언어에 관계없이 동작하고 필터가 우선순위를 �
     assert.deepEqual(filterApps(productApps, query, "all").map((app) => app.id), ["countlens"]);
   }
   assert.ok(filterApps(productApps, "계획", "all").some((app) => app.id === "daymirror"));
+  for (const query of ["RUN POST", "run post", "ＲＵＮ ＰＯＳＴ"]) {
+    assert.deepEqual(filterApps(productApps, query, "all").map((app) => app.id), ["hiho-run"]);
+  }
   assert.deepEqual(filterApps(productApps, "사진", "development").map((app) => app.id), ["archive-ink"]);
   assert.deepEqual(filterApps(productApps, "does-not-exist", "all"), []);
   assert.deepEqual(filterApps(productApps, "Daymirror", "live"), []);
