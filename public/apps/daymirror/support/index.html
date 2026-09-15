@@ -5,10 +5,10 @@
   <meta name="description" content="Help with Daymirror planning, notes, iCloud sync, and date settings. English and Korean support.">
   <title>Daymirror Support · 도움말</title>
   <link rel="canonical" href="https://hiorio.com/apps/daymirror/support/">
-  <style>:root{color-scheme:light dark;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f6f5f0;color:#202a27;line-height:1.75}*{box-sizing:border-box}body{margin:0}main{max-width:780px;margin:auto;padding:32px 22px 72px}nav{display:flex;flex-wrap:wrap;gap:10px 22px;padding:12px 0 24px;border-bottom:1px solid #cdd4cb}a{color:#24614b;text-underline-offset:3px}a:focus-visible{outline:3px solid #639d7a;outline-offset:5px}h1{font-size:clamp(28px,6vw,42px);line-height:1.15;margin:0 0 16px}h2{font-size:24px;line-height:1.35;margin-top:32px}section{scroll-margin-top:24px;padding-top:42px}section+section{margin-top:48px;border-top:1px solid #cdd4cb}p,li{overflow-wrap:anywhere}.meta{color:#56645c;font-size:14px}footer{margin-top:48px;padding-top:24px;border-top:1px solid #cdd4cb;font-size:14px}@media(prefers-color-scheme:dark){:root{background:#131b18;color:#e5ece7}a{color:#a6d4b8}.meta{color:#b3c1b8}nav,section+section,footer{border-color:#415247}}@media print{main{max-width:none}nav{display:none}}</style>
+  <style>:root{color-scheme:light dark;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f6f5f0;color:#202a27;line-height:1.75}*{box-sizing:border-box}body{margin:0}main{max-width:780px;margin:auto;padding:32px 22px 72px}nav{display:flex;flex-wrap:wrap;gap:10px 22px;padding:12px 0 24px;border-bottom:1px solid #cdd4cb}a{color:#24614b;text-underline-offset:3px}a:focus-visible{outline:3px solid #639d7a;outline-offset:5px}h1{font-size:clamp(28px,6vw,42px);line-height:1.15;margin:0 0 16px}h2{font-size:24px;line-height:1.35;margin-top:32px}section{scroll-margin-top:24px;padding-top:42px}section+section{margin-top:48px;border-top:1px solid #cdd4cb}p,li{overflow-wrap:anywhere}h2[id]{scroll-margin-top:24px}h3{font-size:19px;line-height:1.45;margin-top:28px}code{font-size:.9em;overflow-wrap:anywhere}.meta{color:#56645c;font-size:14px}footer{margin-top:48px;padding-top:24px;border-top:1px solid #cdd4cb;font-size:14px}@media(prefers-color-scheme:dark){:root{background:#131b18;color:#e5ece7}a{color:#a6d4b8}.meta{color:#b3c1b8}nav,section+section,footer{border-color:#415247}}@media print{main{max-width:none}nav{display:none}}</style>
 </head>
 <body><main>
-  <nav aria-label="Page navigation"><a href="/apps/daymirror/">Daymirror</a><a href="#en" lang="en">English</a><a href="#ko" lang="ko">한국어</a><a href="../privacy/">Privacy · 개인정보</a></nav>
+  <nav aria-label="Page navigation"><a href="/apps/daymirror/">Daymirror</a><a href="#en" lang="en">English</a><a href="#ko" lang="ko">한국어</a><a href="../privacy/">Privacy · 개인정보</a><a href="#delete-en" lang="en">Delete data</a><a href="#delete-ko" lang="ko">데이터 삭제</a></nav>
   <section id="en" lang="en" aria-labelledby="en-title">
     <h1 id="en-title">How can we help?</h1>
     <p>For Daymirror support, email <a href="mailto:support@hiorio.com?subject=Daymirror%20support">support@hiorio.com</a>.</p>
@@ -22,8 +22,29 @@
     <p>Offline changes wait for a connection. Background delivery can be delayed by the system. A different iCloud account or removed server history stops sync to protect existing records.</p>
     <h2>Which date is today?</h2>
     <p>Settings → Date &amp; Time Zone lets you use the device's time zone or choose a fixed one. Today changes at midnight in that time zone. The day-start setting controls the timeline and reporting window. You can also choose the first day of the week. Changing display preferences does not rewrite saved instants.</p>
+    <h2 id="export-en">Export your local data</h2>
+    <p>Daymirror 1.0 (build 12) includes JSON export in Settings → data management. It saves a snapshot of the plans, actual entries, routines, activities, to-dos, notes, planner settings, locally stored revision history, and cached input drafts available on this device. Earlier text from deleted or edited items may be included.</p>
+    <p>The export does not fetch a complete copy from iCloud or include another device's unsynced changes. Save open edits and allow sync to finish first if you want recent changes included. Unsaved editor state that has not reached the draft cache is not included. The app does not provide JSON import or one-click restoration. Choose where to save the file and share it only with people you intend to give access.</p>
     <h2>Privacy and data requests</h2>
-    <p>Read the <a href="../privacy/#en">Privacy Policy</a> for local storage, private iCloud sync, revision history, and deletion limitations. For a record-copy or deletion question, email the address above. Do not assume that deleting a visible item erases its complete revision history.</p>
+    <p>Read the <a href="../privacy/#en">Privacy Policy</a> for storage and revision history. Follow the <a href="#delete-en">deletion instructions below</a> to remove local and iCloud copies, or email support for guidance. Hiorio cannot directly read or remotely erase your private CloudKit database through developer administration.</p>
+    <h2 id="delete-en">Delete your Daymirror data</h2>
+    <p>Daymirror stores data on each device you use and in your own iCloud account. Deleting an item inside the app may leave earlier revisions used for syncing. To remove all records and revision history, <strong>remove the app's local data from every device first, then delete its iCloud data</strong>. This order helps prevent an old installation from uploading retained data again.</p>
+    <h3>1. Export anything you want to keep</h3>
+    <p>Use the JSON export in the app's data management settings. The file includes data and earlier revisions stored on that device. Export separately from another device if it has changes that have not synced. Exported files remain wherever you save them and are not removed by the steps below.</p>
+    <h3>2. Remove the app and its local data from every device</h3>
+    <p><strong>iPhone and iPad:</strong> Open Settings → General → iPhone Storage or iPad Storage → Daymirror → <strong>Delete App</strong>. Do not use Offload App; it keeps the app's data. <a href="https://support.apple.com/108429">Apple's device storage guide</a></p>
+    <p><strong>Mac:</strong> Quit Daymirror using its menu or ⌘Q, then move Daymirror from Applications to the Trash. Deleting the application alone leaves its stored data. Remove its data folder as well:</p>
+    <ol><li>In Finder, choose Go → Go to Folder (⇧⌘G).</li><li>Enter <code>~/Library/Containers/com.planudid.app</code>.</li><li>Confirm this is Daymirror's <code>com.planudid.app</code> folder, then move only that folder to the Trash. Do not delete the parent <code>Containers</code> or <code>Library</code> folders.</li><li>In the Trash, select only the Daymirror app and data folder you just moved, and choose Delete Immediately. There is no need to delete other items in your Trash.</li></ol>
+    <p>If you previously installed the separate <strong>Daymirror Mac</strong> app, quit and remove that app too. Check for its older <code>~/Library/Containers/com.planudid.mac</code> folder and remove that folder in the same way if present. Do not delete other similarly named folders in bulk.</p>
+    <p>If the folder is absent or macOS blocks access, contact support instead of deleting a different folder. Repeat for other Mac user accounts where you used the app. <a href="https://support.apple.com/102610">Apple's Mac app removal guide</a></p>
+    <p>Include devices that are turned off or offline. Until you clear an old device, do not reopen its old Daymirror installation or reconnect it to iCloud. These steps do not remotely erase that device's local files.</p>
+    <h3>3. Delete Daymirror's iCloud data</h3>
+    <p>After clearing every device, use one device signed in to the Apple Account you used with Daymirror:</p>
+    <ul><li><strong>iPhone and iPad:</strong> Settings → your name → iCloud → Storage or Manage Account Storage → Daymirror. Choose its data deletion action and confirm. Button names such as Delete Data or Delete from iCloud vary by OS version. <a href="https://support.apple.com/guide/icloud/check-your-icloud-storage-on-any-device-mm039c13d410/icloud">Apple's iCloud storage guide</a></li><li><strong>Mac:</strong> System Settings → your name → iCloud → Manage → Daymirror → Delete from iCloud, then confirm. <a href="https://support.apple.com/guide/mac-help/manage-icloud-storage-mh36833/mac">Apple's Mac iCloud deletion guide</a></li></ul>
+    <p>Turning off the app's iCloud switch or deleting an exported JSON file does not erase its iCloud revision history. If Daymirror or its deletion action is missing, check which Apple Account you used and contact support. Do not delete another app's data or an entire device backup instead. Repeat iCloud deletion for each Apple Account if you used more than one with Daymirror.</p>
+    <h3>4. Backups and reinstalling</h3>
+    <p>Reinstall only after iCloud storage reflects the deletion and every old installation's local data has been removed. Earlier device backups, Time Machine or Finder backups, and saved app-data or JSON copies can still contain your records. Restoring them can bring old data back. If you also want those copies removed, manage them separately through the relevant backup or file service. Daymirror cannot erase those copies itself.</p>
+    <p><strong>Need help?</strong> Email <a href="mailto:support@hiorio.com">support@hiorio.com</a> with your device, OS version, and the step you could not complete. Do not send your Apple Account password or a full schedule export. Support can guide you through deleting data under your control.</p>
   </section>
   <section id="ko" lang="ko" aria-labelledby="ko-title">
     <h1 id="ko-title">도움이 필요하신가요?</h1>
@@ -38,8 +59,29 @@
     <p>오프라인 변경은 연결될 때까지 대기하며 백그라운드 반영은 시스템에 따라 늦어질 수 있습니다. 계정이 달라지거나 서버 이력이 삭제되면 기존 기록을 보호하기 위해 동기화가 멈춥니다.</p>
     <h2>오늘은 어떤 날짜인가요?</h2>
     <p>설정 → 날짜와 시간대에서 기기의 시간대를 자동 사용하거나 고정 시간대를 정할 수 있습니다. 오늘은 해당 시간대의 자정에 바뀝니다. 하루 시작 시각은 시간표와 집계 범위를 정하며 한 주의 시작 요일도 선택할 수 있습니다. 표시 설정을 바꿔도 저장한 실제 시각은 다시 쓰지 않습니다.</p>
+    <h2 id="export-ko">기기에 저장된 데이터 내보내기</h2>
+    <p>Daymirror 1.0(빌드 12)부터 설정의 데이터 관리에서 JSON 파일을 내보낼 수 있습니다. 이 기기에 저장된 계획·실제·루틴·활동·할 일·메모·플래너 설정, 이전 변경 이력과 저장된 입력 초안을 담습니다. 삭제하거나 수정한 항목의 이전 내용도 포함될 수 있습니다.</p>
+    <p>iCloud 전체 데이터를 새로 조회하거나 다른 기기의 미동기화 내용까지 포함하는 기능은 아닙니다. 최근 변경을 담으려면 열린 편집 내용을 저장하고 동기화를 마친 뒤 내보내세요. 초안 저장소에 아직 반영되지 않은 편집 중 내용은 포함되지 않습니다. 현재 JSON 가져오기나 한 번에 복원하는 기능은 없습니다. 파일의 저장 위치를 직접 선택하고, 내용을 공개하려는 대상에게만 공유해 주세요.</p>
     <h2>개인정보와 데이터 문의</h2>
-    <p>기기 저장, 비공개 iCloud 동기화, 변경 이력과 삭제 범위는 <a href="../privacy/#ko">개인정보처리방침</a>을 확인하세요. 기록 복사본이나 삭제에 관한 문의는 위 이메일로 보낼 수 있습니다. 화면에서 항목을 삭제하는 것과 과거 이력까지 지우는 것은 다릅니다.</p>
+    <p>저장 방식과 변경 이력은 <a href="../privacy/#ko">개인정보처리방침</a>을 확인하세요. 로컬·iCloud 사본을 제거하려면 <a href="#delete-ko">아래 삭제 절차</a>를 따르거나 지원 이메일로 문의할 수 있습니다. Hiorio는 개발자 관리 도구로 사용자의 비공개 CloudKit 데이터베이스 내용을 직접 읽거나 원격 삭제할 수 없습니다.</p>
+    <h2 id="delete-ko">Daymirror 데이터 삭제</h2>
+    <p>Daymirror 데이터는 사용한 각 기기와 본인의 iCloud에 저장됩니다. 앱에서 일정을 삭제하면 동기화에 필요한 이전 변경 이력이 남을 수 있습니다. 모든 기록과 이전 이력을 지우려면 <strong>모든 기기의 앱 데이터를 먼저 제거한 다음 iCloud 데이터를 삭제</strong>해 주세요. 이 순서가 오래된 기기에 남은 데이터의 재업로드를 방지하는 데 필요합니다.</p>
+    <h3>1. 보관할 내용이 있다면 먼저 내보내기</h3>
+    <p>앱 설정의 데이터 관리에서 JSON 파일을 내보낼 수 있습니다. 이 파일에는 해당 기기에 저장된 내용과 이전 변경 이력이 포함됩니다. 다른 기기에만 남은 미동기화 내용은 그 기기에서 별도로 내보내야 합니다. 내보낸 파일은 따로 보관되므로, 아래 삭제 절차로 함께 지워지지 않습니다.</p>
+    <h3>2. 사용했던 모든 기기에서 앱과 로컬 데이터 삭제</h3>
+    <p><strong>iPhone·iPad:</strong> 설정 → 일반 → iPhone 저장 공간 또는 iPad 저장 공간 → Daymirror → <strong>앱 삭제</strong>를 선택합니다. ‘앱 정리하기’는 데이터를 남기므로 이 절차에 사용하지 마세요. <a href="https://support.apple.com/108429">Apple의 앱 데이터 삭제 안내</a></p>
+    <p><strong>Mac:</strong> Daymirror의 모든 창을 닫는 것에 더해 메뉴에서 Daymirror 종료 또는 ⌘Q로 앱을 종료합니다. Finder의 응용 프로그램에서 Daymirror를 휴지통으로 옮깁니다. 앱 파일 삭제만으로는 저장된 기록이 제거되지 않으므로, 다음 앱 전용 데이터 폴더도 제거합니다.</p>
+    <ol><li>Finder → 이동 → 폴더로 이동(⇧⌘G)을 엽니다.</li><li><code>~/Library/Containers/com.planudid.app</code>을 입력합니다.</li><li>해당 경로가 Daymirror의 <code>com.planudid.app</code> 폴더인지 확인한 뒤 그 폴더만 휴지통으로 옮깁니다. 상위 <code>Containers</code>나 <code>Library</code> 폴더를 지우지 마세요.</li><li>휴지통에서 방금 옮긴 Daymirror 앱과 이 데이터 폴더만 선택해 ‘즉시 삭제’를 실행합니다. 다른 파일을 함께 삭제할 필요는 없습니다.</li></ol>
+    <p>예전에 별도 <strong>Daymirror Mac</strong> 앱을 설치했다면 그 앱도 종료·제거하고, <code>~/Library/Containers/com.planudid.mac</code> 폴더가 남아 있는지 같은 방법으로 확인해 제거합니다. 이 두 경로 외에 이름이 비슷한 폴더를 한꺼번에 삭제하지 마세요.</p>
+    <p>폴더가 없거나 macOS가 접근을 막으면 다른 폴더를 추측해 삭제하지 말고 지원팀에 문의해 주세요. 같은 Mac의 다른 사용자 계정에서도 앱을 사용했다면 그 계정의 데이터도 별도로 정리해야 합니다. <a href="https://support.apple.com/102610">Apple의 Mac 앱 제거 안내</a></p>
+    <p>현재 꺼져 있거나 오프라인인 기기도 포함합니다. 그 기기를 정리하지 못했다면 오래된 Daymirror를 다시 실행하거나 iCloud에 연결하지 않도록 해 주세요. 다른 기기의 로컬 데이터가 이 절차만으로 원격 삭제되는 것은 아닙니다.</p>
+    <h3>3. 본인의 iCloud에서 Daymirror 데이터 삭제</h3>
+    <p>위 단계를 모든 기기에 적용한 뒤, Daymirror에서 사용했던 Apple 계정으로 로그인한 기기 한 대에서 진행합니다.</p>
+    <ul><li><strong>iPhone·iPad:</strong> 설정 → 본인 이름 → iCloud → 저장 공간 또는 계정 저장 공간 관리 → Daymirror를 선택하고 데이터 삭제 항목을 눌러 확인합니다. OS에 따라 버튼 이름이 ‘데이터 삭제’, ‘iCloud에서 삭제’ 등으로 다를 수 있습니다. <a href="https://support.apple.com/guide/icloud/check-your-icloud-storage-on-any-device-mm039c13d410/icloud">Apple의 iCloud 저장 공간 안내</a></li><li><strong>Mac:</strong> 시스템 설정 → 본인 이름 → iCloud → 관리 → Daymirror → iCloud에서 삭제를 선택하고 확인합니다. <a href="https://support.apple.com/guide/mac-help/manage-icloud-storage-mh36833/mac">Apple의 Mac iCloud 데이터 삭제 안내</a></li></ul>
+    <p>iCloud 사용 스위치만 끄거나 파일 앱에서 내보낸 JSON만 지우는 것으로는 Daymirror의 iCloud 변경 이력이 삭제되지 않습니다. Daymirror 항목이나 삭제 버튼이 보이지 않으면 사용했던 Apple 계정을 확인한 후 지원팀에 문의해 주세요. 다른 앱이나 기기 전체 백업을 대신 삭제하지 마세요. 여러 Apple 계정에서 Daymirror를 사용했다면 계정마다 iCloud 데이터를 별도로 정리해야 합니다.</p>
+    <h3>4. 백업과 다시 설치하기</h3>
+    <p>iCloud 저장 공간에 삭제가 반영되고 모든 기기의 이전 앱 데이터가 정리된 뒤 다시 설치해 주세요. 삭제 전 기기 백업, Time Machine, Finder 백업 또는 따로 보관한 앱 데이터·JSON 파일에는 이전 내용이 남을 수 있습니다. 이 사본을 복원하면 이전 데이터가 다시 나타날 수 있습니다. 보관 중인 백업·내보내기 사본도 삭제하려면 해당 백업 관리 방법을 별도로 따라 주세요. 앱은 이 사본을 직접 삭제하지 않습니다.</p>
+    <p><strong>도움이 필요하면:</strong> <a href="mailto:support@hiorio.com">support@hiorio.com</a>으로 사용 기기와 OS 버전, 진행하지 못한 단계를 보내 주세요. Apple 계정 암호나 전체 일정 내보내기 파일은 보내지 마세요. 지원팀은 본인이 기기와 iCloud에서 삭제할 수 있도록 안내합니다.</p>
   </section>
   <footer>© 2026 Hiorio · Updated September 15, 2026 · <a href="../privacy/">Privacy Policy · 개인정보처리방침</a></footer>
 </main></body></html>
