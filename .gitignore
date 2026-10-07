@@ -41,3 +41,4 @@ dev.err.log
 /.wrangler/
 /outputs/
 /work/
+/.impeccable/review/

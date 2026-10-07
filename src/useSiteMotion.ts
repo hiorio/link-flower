@@ -22,13 +22,13 @@ const revealSelector = [
   ".timeflower-proof-list > article",
   ".timeflower-flow li",
   ".timeflower-final > *",
-  ".dailyplank-hero > *",
-  ".dailyplank-origin > *",
-  ".dailyplank-section-intro",
-  ".dailyplank-routine-rail > article",
-  ".dailyplank-coach > *",
-  ".dailyplank-record > *",
-  ".dailyplank-final > *",
+  ".dp-hero > *",
+  ".dp-origin > *",
+  ".dp-section-heading",
+  ".dp-routine-grid > article",
+  ".dp-coach > *",
+  ".dp-record > *",
+  ".dp-final > *",
   ".leafmessage-hero > *",
   ".leafmessage-premise > *",
   ".leafmessage-section-heading",
@@ -41,7 +41,6 @@ const revealSelector = [
 const depthSelector = [
   ".dohwaji-web-shot",
   ".timeflower-calendar",
-  ".dailyplank-console",
 ].join(",");
 
 type SpringAxis = {

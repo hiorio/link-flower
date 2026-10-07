@@ -1,0 +1,398 @@
+.site-shell.tr-shell {
+  background:#f7f5ee;
+  color:#263d35;
+  max-width:none;
+  min-height:100vh;
+  padding:0 5%;
+  font-family:"Noto Sans KR",sans-serif;
+  letter-spacing:0;
+  isolation:isolate}
+.tr-shell::before,.tr-shell::after {
+  display:none}
+.tr-shell * {
+  box-sizing:border-box}
+.tr-shell ::selection {
+  background:#c9d6bd;
+  color:#21382d}
+.tr-shell :focus-visible {
+  outline:3px solid #98622e;
+  outline-offset:5px}
+.tr-content {
+  max-width:1280px;
+  margin:auto}
+.tr-shell p {
+  line-height:1.8;
+  text-wrap:pretty}
+.tr-shell h1,.tr-shell h2 {
+  font-family:inherit;
+  letter-spacing:-.035em;
+  text-wrap:balance;
+  margin:0}
+.tr-shell h2 {
+  font-size:clamp(26px,3vw,40px);
+  line-height:1.4}
+.tr-product {
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding-top:35px;
+  font-size:21px}
+.tr-product img {
+  border-radius:12px}
+.tr-product>span {
+  font-size:14px;
+  color:#536454}
+.tr-product>a {
+  margin-left:auto;
+  font-size:15px;
+  text-underline-offset:5px}
+.tr-hero {
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:7%;
+  align-items:center;
+  padding:62px 0 88px}
+.tr-intro h1 {
+  font-size:clamp(38px,4.3vw,66px);
+  line-height:1.22}
+.tr-intro h1 span {
+  display:block}
+.tr-intro>p {
+  font-size:18px;
+  margin:28px 0 32px;
+  max-width:36ch;
+  color:#4d5b4e}
+.tr-button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:14px 23px;
+  background:#2c493a;
+  color:#fff;
+  border-radius:8px;
+  text-decoration:none;
+  font-size:16px;
+  font-weight:650;
+  transition:background .2s}
+.tr-button:hover {
+  background:#1b3327}
+.tr-text-link {
+  display:block;
+  width:fit-content;
+  font-size:15px;
+  margin-top:20px;
+  text-underline-offset:5px}
+.tr-records {
+  margin:0;
+  background:#e9ede1;
+  border-radius:16px;
+  padding:28px;
+  box-shadow:0 22px 48px -35px #3b513e80}
+.tr-chart-heading {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px}
+.tr-chart-heading h2 {
+  font-size:20px;
+  letter-spacing:-.025em}
+.tr-toggle {
+  display:flex;
+  flex-shrink:0;
+  border:1px solid #aab6a1;
+  padding:3px;
+  border-radius:8px;
+  gap:3px}
+.tr-toggle button {
+  font:inherit;
+  font-size:14px;
+  min-height:38px;
+  padding:6px 12px;
+  background:transparent;
+  border:0;
+  border-radius:5px;
+  color:inherit;
+  cursor:pointer}
+.tr-toggle button[aria-pressed=true] {
+  background:#2c493a;
+  color:white}
+.tr-toggle button:hover {
+  box-shadow:inset 0 0 0 1px #2c493a}
+.tr-period {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  font-size:13px;
+  margin:24px 0 16px;
+  flex-wrap:wrap}
+.tr-period b {
+  font-weight:650}
+.tr-plot {
+  display:flex;
+  gap:10px;
+  height:215px}
+.tr-scale {
+  width:44px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding-bottom:29px;
+  font-size:12px;
+  color:#536454}
+.tr-bars {
+  display:flex;
+  gap:9px;
+  flex:1;
+  min-width:0;
+  border-bottom:1px solid #aab6a1}
+.tr-bar {
+  display:flex;
+  flex:1;
+  flex-direction:column;
+  min-width:0;
+  gap:9px;
+  padding:0;
+  background:none;
+  border:0;
+  color:inherit;
+  font:inherit;
+  font-size:12px;
+  cursor:pointer}
+.tr-bar-space {
+  display:flex;
+  align-items:end;
+  justify-content:center;
+  position:relative;
+  width:100%;
+  height:182px;
+  border-bottom:1px solid #aab6a1}
+.tr-bar-space i {
+  width:68%;
+  background:#8a9f78;
+  border-radius:5px 5px 0 0;
+  transition:background .2s}
+.tr-bar[aria-pressed=true] i,.tr-bar:hover i {
+  background:#34523e}
+.tr-bar-space b {
+  position:absolute;
+  top:0;
+  font-size:12px;
+  font-weight:500}
+.tr-hint {
+  font-size:12px;
+  color:#536454;
+  margin:15px 0}
+.tr-detail {
+  display:grid;
+  grid-template-columns:100px 1fr;
+  border-top:1px solid #b8c4af;
+  padding-top:18px;
+  gap:16px}
+.tr-detail>div {
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  font-size:12px}
+.tr-detail strong {
+  font-size:18px;
+  font-weight:550}
+.tr-detail ol {
+  list-style:none;
+  padding:0;
+  margin:0}
+.tr-detail li {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  font-size:13px;
+  line-height:1.6;
+  padding:5px 0}
+.tr-detail time {
+  color:#536454;
+  font-variant-numeric:tabular-nums}
+.tr-detail li b {
+  margin-left:auto;
+  font-weight:550;
+  white-space:nowrap}
+.tr-records>figcaption {
+  font-size:11px;
+  color:#536454;
+  margin-top:22px}
+.tr-principle,.tr-privacy {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10%;
+  padding:54px 0;
+  border-top:1px solid #cdd1c3}
+.tr-principle h2 {
+  font-size:28px;
+  max-width:17ch}
+.tr-principle p,.tr-privacy p {
+  margin:0 0 18px;
+  font-size:17px}
+.tr-shell .tr-fine {
+  font-size:13px;
+  color:#586355;
+  line-height:1.75}
+.tr-screens {
+  display:grid;
+  grid-template-columns:.75fr 1.25fr;
+  gap:8%;
+  padding:65px 0 95px;
+  align-items:center}
+.tr-screen-copy h2 {
+  max-width:12ch}
+.tr-screen-copy p {
+  font-size:18px}
+.tr-screen-pair {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+  align-items:start}
+.tr-screen-pair figure {
+  margin:0}
+.tr-screen-pair figure:nth-child(2) {
+  padding-top:66px}
+.tr-screen-pair figcaption {
+  font-size:15px;
+  margin-bottom:17px;
+  font-weight:600}
+.tr-screen-pair img {
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:14px;
+  box-shadow:0 20px 40px -25px #263d3560}
+.tr-privacy {
+  padding:60px 0}
+.tr-footer {
+  padding:65px 0 35px;
+  border-top:1px solid #cdd1c3}
+.tr-footer>div {
+  display:flex;
+  gap:28px;
+  align-items:center;
+  margin:28px 0 60px}
+.tr-footer .tr-text-link {
+  margin:0}
+.tr-footer>span {
+  font-size:13px;
+  color:#586355}
+@media(max-width:850px) {
+  .tr-hero {
+  grid-template-columns:1fr;
+  gap:40px;
+  padding:44px 0 60px}
+.tr-intro>p {
+  max-width:50ch}
+.tr-intro h1 {
+  font-size:46px}
+.tr-screens {
+  grid-template-columns:1fr;
+  gap:28px}
+.tr-screen-copy h2 {
+  max-width:none}
+.tr-screen-pair {
+  max-width:620px;
+  width:100%;
+  margin:auto}
+.tr-principle,.tr-privacy {
+  gap:35px}
+.tr-detail {
+  grid-template-columns:100px 1fr}
+}
+@media(max-width:480px) {
+  .site-shell.tr-shell {
+  padding:0 20px}
+.tr-product {
+  padding-top:24px;
+  font-size:18px}
+.tr-intro h1 {
+  font-size:37px}
+.tr-intro>p {
+  font-size:16px}
+.tr-records {
+  padding:20px 15px}
+.tr-chart-heading {
+  align-items:start;
+  flex-direction:column}
+.tr-chart-heading h2 {
+  font-size:19px}
+.tr-period {
+  font-size:12px}
+.tr-scale {
+  width:35px;
+  font-size:11px}
+.tr-bars {
+  gap:4px}
+.tr-bar {
+  font-size:10px}
+.tr-detail {
+  grid-template-columns:1fr;
+  gap:12px}
+.tr-detail>div {
+  flex-direction:row;
+  align-items:center}
+.tr-detail li {
+  font-size:12px}
+.tr-principle,.tr-privacy {
+  grid-template-columns:1fr;
+  gap:20px;
+  padding:40px 0}
+.tr-screens {
+  padding:30px 0 55px}
+.tr-screen-pair {
+  gap:14px}
+.tr-screen-pair figcaption {
+  font-size:12px}
+.tr-screen-pair figure:nth-child(2) {
+  padding-top:40px}
+.tr-footer>div {
+  align-items:start;
+  flex-direction:column;
+  gap:20px}
+.tr-product>a {
+  font-size:12px}
+.tr-product>span {
+  display:none}
+}
+@media(prefers-reduced-motion:reduce) {
+  .tr-shell * {
+  transition:none!important;
+  animation:none!important}
+}
+.tr-shell .network-bar {
+  border-bottom:1px solid #cdd1c3}
+.tr-shell .node-switcher {
+  background:transparent;
+  border-color:#b8c4af;
+  border-radius:8px}
+.tr-shell .node-switcher a {
+  color:#4d5b4e;
+  font-size:14px;
+  min-height:44px;
+  display:flex;
+  align-items:center}
+.tr-shell .node-switcher a.is-active {
+  background:#e0e7d9;
+  color:#263d35;
+  border-radius:6px}
+.tr-shell .language-switcher button {
+  color:#4d5b4e;
+  min-width:38px;
+  min-height:44px;
+  font-size:12px}
+.tr-shell .language-switcher button.is-active {
+  background:#e0e7d9;
+  border-color:#aab6a1;
+  color:#263d35;
+  border-radius:6px}
+.tr-shell .record-dot {
+  background:#45664e;
+  box-shadow:none}
+.tr-shell .tr-period,.tr-shell .tr-detail,.tr-shell .tr-scale {
+  font-variant-numeric:tabular-nums}
+.tr-shell .tr-intro p {
+  word-break:keep-all;
+  overflow-wrap:anywhere}

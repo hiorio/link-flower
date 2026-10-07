@@ -23,6 +23,7 @@
 
 .link-hub .network-name { color: var(--hub-paper); font-size: 14px; letter-spacing: .14em; }
 .link-hub .record-dot { background: var(--hub-accent); }
+.link-hub .record-dot { border-radius: 50%; }
 .link-hub .node-switcher a::after { background: var(--hub-accent); }
 .link-hub .node-switcher a.is-active,
 .link-hub .language-switcher button.is-active { color: var(--hub-accent); }
@@ -37,6 +38,7 @@
   grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
   align-items: start;
   gap: clamp(40px, 6vw, 84px);
+  row-gap: 40px;
   padding-block: 48px 36px;
   scroll-margin-top: 96px;
 }
@@ -58,19 +60,19 @@
   line-height: 1.6;
 }
 
-.link-hub .hub-profile h1 {
+.link-hub .hub-profile h2 {
   color: var(--hub-paper);
-  margin: 0 0 22px;
+  margin: 0 0 18px;
   font-family: Georgia, "Noto Serif KR", serif;
-  font-size: clamp(64px, 6.3vw, 80px);
+  font-size: clamp(40px, 4vw, 54px);
   font-weight: 400;
-  letter-spacing: -.075em;
+  letter-spacing: -.035em;
   line-height: 1;
 }
 
-.hub-profile h1 > span { color: var(--hub-accent); }
-.link-hub .hub-profile h1 > span { display: inline; }
-.hub-promise { max-width: 290px; margin: 0; font-size: 24px; font-weight: 500; line-height: 1.55; letter-spacing: -.045em; word-break: keep-all; text-wrap: balance; }
+.hub-profile h2 > span { color: var(--hub-accent); }
+.link-hub .hub-profile h2 > span { display: inline; }
+.hub-promise { max-width: 290px; margin: 0; font-size: 24px; font-weight: 500; line-height: 1.55; letter-spacing: -.025em; word-break: keep-all; text-wrap: balance; }
 .hub-bio { margin: 18px 0 0; color: var(--hub-muted); font-size: 16px; line-height: 1.8; word-break: keep-all; }
 .link-hub .hub-profile-flower { width: 190px; margin: 32px 0 0 16px; transform: none; }
 .hub-profile-note { display: flex; align-items: center; gap: 12px; margin: 8px 0 0; color: var(--hub-accent); font-size: 12px; letter-spacing: .1em; }
@@ -134,9 +136,9 @@
   .link-hub .node-switcher { display: none; }
   .link-hub .language-switcher { padding-left: 0; border-left: 0; }
   .hub-layout { display: block; padding-block: 28px 24px; }
-  .link-hub .hub-profile { position: relative; top: auto; display: grid; grid-template-columns: minmax(0, 1fr) 100px; align-items: center; gap: 10px; margin-bottom: 30px; }
+  .link-hub .hub-profile { position: relative; top: auto; display: block; margin-block: 34px 30px; }
   .hub-profile .hub-eyebrow { margin-bottom: 10px; font-size: 12px; letter-spacing: .07em; }
-  .link-hub .hub-profile h1 { margin-bottom: 12px; font-size: 54px; }
+  .link-hub .hub-profile h2 { margin-bottom: 12px; font-size: 40px; }
   .hub-promise { max-width: 330px; font-size: 18px; line-height: 1.6; }
   .hub-bio { display: none; }
   .link-hub .hub-profile-flower { width: 112px; margin: 0 0 0 -8px; }
@@ -159,3 +161,9 @@
   .hub-card, .hub-card-arrow { transition: none; }
   .hub-card:hover .hub-card-arrow { transform: none; }
 }
+
+.link-hub .node-switcher{gap:14px;padding:0;border:0;border-radius:0;background:transparent}
+.link-hub .node-switcher a,.link-hub .node-switcher a.is-active{border:0;border-radius:0;background:transparent}
+.link-hub .language-switcher button,.link-hub .language-switcher button.is-active{border:0;border-radius:0;background:transparent}
+.link-hub .language-switcher button.is-active{text-decoration:underline;text-underline-offset:6px}
+.link-hub .record-dot{box-shadow:none;animation:none}

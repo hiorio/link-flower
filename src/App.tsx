@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { productApps, appDetailPath } from "./apps";
+import { productApps, appIntroductionHref } from "./apps";
 import { AppIcon } from "./AppIcon";
 import { CatalogControls, CatalogEmpty, useCatalog } from "./CatalogControls";
 import { catalogCopy } from "./catalog";
+import { CatalogPreviewProvider, CatalogPreviewTrigger } from "./CatalogPreview";
 import { GrowingProjectPage } from "./GrowingProjectPage";
+import { DayMirrorPage } from "./DayMirrorPage";
 import { growingProjects } from "./growing-projects";
 import { detectLocale, localeLabels, supportedLocales, ui, type Locale } from "./i18n";
 import { defaultNodeId, nodes } from "./nodes";
@@ -13,11 +15,19 @@ import { LeafMessagePage, leafMessageCopy } from "./LeafMessagePage";
 import { RingtonePage, ringtoneCopy } from "./RingtonePage";
 import { SsakMemoPage, ssakMemoCopy } from "./SsakMemoPage";
 import { TimeFlowerPage, timeFlowerCopy } from "./TimeFlowerPage";
+import { TimeRootsPage, timeRootsCopy } from "./TimeRootsPage";
+import { BiondamaePage, biondamaeCopy } from "./BiondamaePage";
 import { LinkHub } from "./LinkHub";
+import { BlueMoonFeature } from "./BlueMoonFeature";
+import { BlueMoonPage } from "./BlueMoonPage";
+import { blueMoonCopy } from "./bluemoon-content";
+import { ProductivityCollection, ProductivityCollectionPage } from "./ProductivityCollection";
+import { productivityCopy } from "./productivity-collection";
+import { MediaCollections } from "./MediaCollections";
 import { SHOW_HORROR_DOPAMINE } from "./visibility";
 import { useSiteMotion } from "./useSiteMotion";
 
-type RouteId = "root" | "channels" | "apps" | "dohwaji" | "timeflower" | "dailyplank" | "ssakmemo" | "leafmessage" | "ringtone" | "project" | "horror";
+type RouteId = "root" | "channels" | "apps" | "productivity" | "dohwaji" | "timeflower" | "timeroots" | "dailyplank" | "biondamae" | "ssakmemo" | "leafmessage" | "ringtone" | "project" | "horror";
 type Copy = (typeof ui)[Locale];
 
 const basePath = import.meta.env.BASE_URL;
@@ -29,9 +39,12 @@ const localeAccessibleNames: Record<Locale, string> = {
 
 function routeHref(route: RouteId) {
   if (route === "root") return basePath;
+  if (route === "productivity") return `${basePath}collections/productivity/`;
   if (route === "dohwaji") return `${basePath}apps/dohwaji/`;
   if (route === "timeflower") return `${basePath}apps/timeflower/`;
+  if (route === "timeroots") return `${basePath}apps/timeroots/`;
   if (route === "dailyplank") return `${basePath}apps/daily-plank/`;
+  if (route === "biondamae") return `${basePath}apps/biondamae/`;
   if (route === "ssakmemo") return `${basePath}apps/ssak-memo/`;
   if (route === "leafmessage") return `${basePath}apps/leaf-message/`;
   if (route === "ringtone") return `${basePath}apps/ringtone/`;
@@ -40,10 +53,14 @@ function routeHref(route: RouteId) {
 
 function getRoute(): RouteId {
   const relativePath = window.location.pathname.slice(basePath.length).replace(/^\/+|\/+$/g, "");
-  if (growingProjects.some((project) => project.app.detailPath === `${relativePath}/`)) return "project";
+  if (relativePath === "collections/productivity" || relativePath === "collections/productivity/index.html") return "productivity";
+  if (relativePath === "apps/bluemoon/index.html") return "project";
+  if (growingProjects.some((project) => project.app.detailPath === `${relativePath.replace(/\/index\.html$/, "")}/`)) return "project";
   if (relativePath === "apps/dohwaji") return "dohwaji";
   if (relativePath === "apps/timeflower") return "timeflower";
+  if (relativePath === "apps/timeroots" || relativePath === "apps/timeroots/index.html") return "timeroots";
   if (relativePath === "apps/daily-plank") return "dailyplank";
+  if (relativePath === "apps/biondamae" || relativePath === "apps/biondamae/index.html") return "biondamae";
   if (relativePath === "apps/ssak-memo") return "ssakmemo";
   if (relativePath === "apps/leaf-message") return "leafmessage";
   if (relativePath === "apps/ringtone") return "ringtone";
@@ -75,7 +92,7 @@ function SiteHeader({ activeRoute, copy, locale, setLocale }: {
         <nav className="node-switcher" aria-label={copy.nodeNetworkLabel}>
           {routes.map((route) => {
             const isActive = activeRoute === route.id
-              || ((activeRoute === "dohwaji" || activeRoute === "timeflower" || activeRoute === "dailyplank" || activeRoute === "ssakmemo" || activeRoute === "leafmessage" || activeRoute === "ringtone" || activeRoute === "project") && route.id === "apps")
+              || ((activeRoute === "dohwaji" || activeRoute === "timeflower" || activeRoute === "timeroots" || activeRoute === "dailyplank" || activeRoute === "biondamae" || activeRoute === "ssakmemo" || activeRoute === "leafmessage" || activeRoute === "ringtone" || activeRoute === "project") && route.id === "apps")
               || (activeRoute === "horror" && route.id === "channels");
             return (
               <a aria-current={isActive ? "page" : undefined} className={isActive ? "is-active" : ""} href={routeHref(route.id)} key={route.id}>
@@ -99,14 +116,14 @@ function SiteHeader({ activeRoute, copy, locale, setLocale }: {
 
 function RootPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; setLocale: (locale: Locale) => void }) {
   return (
-    <main className="site-shell root-shell garden-root link-hub">
+    <main className="site-shell root-shell link-hub">
       <div className="root-grid-bg" aria-hidden="true" />
       <SiteHeader activeRoute="root" copy={copy} locale={locale} setLocale={setLocale} />
 
       <LinkHub locale={locale} basePath={basePath} />
 
       <footer className="site-footer root-footer">
-        <div><span className="footer-node">HIORIO</span><p>{copy.rootFooter}</p></div><span>LINK FLOWER · © 2026</span>
+        <span className="footer-node">HIORIO</span><span>APPS & SERVICES · © 2026</span>
       </footer>
     </main>
   );
@@ -171,7 +188,7 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
     development: labels.development,
   })[status];
   const liveCount = productApps.filter((app) => app.status === "live").length;
-  const detailHref = (app: (typeof productApps)[number]) => appDetailPath(app) ? `${basePath}${appDetailPath(app)}` : undefined;
+  const detailHref = (app: (typeof productApps)[number]) => appIntroductionHref(app, basePath);
 
   return (
     <main className="site-shell development-shell apps-showcase-shell">
@@ -232,12 +249,16 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
         </aside>
       </section>
 
+      <BlueMoonFeature locale={locale} basePath={basePath} variant="compact" />
+      <ProductivityCollection locale={locale} basePath={basePath} />
+      <MediaCollections locale={locale} basePath={basePath} />
       <section className="apps-showcase-products" aria-labelledby="app-products-title">
         <header className="apps-section-heading">
           <div><span className="apps-section-index">01</span><div><small>PRODUCT INDEX</small><h2 id="app-products-title">{copy.appsSectionTitle}</h2></div></div>
           <p>{copy.appsSectionHint}</p>
         </header>
         <CatalogControls catalog={catalog} locale={locale} resultsId="catalog-app-results" />
+        <CatalogPreviewProvider locale={locale} basePath={basePath}>
         <div className="apps-product-list" id="catalog-app-results">
           {catalog.apps.map((app) => {
             const content = app.content[locale];
@@ -268,9 +289,10 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
                 <footer className="apps-product-foot">
                   <dl>
                     <div><dt>{copy.appsPlatformsLabel}</dt><dd>{app.platforms.map((platform) => <span key={platform}>{platform}</span>)}</dd></div>
-                    <div><dt>{copy.appsVersionLabel}</dt><dd>v{app.version}</dd></div>
+                    {app.version && <div><dt>{copy.appsVersionLabel}</dt><dd>v{app.version}</dd></div>}
                   </dl>
                   <div className="apps-product-links">
+                    <CatalogPreviewTrigger app={app} locale={locale} />
                     {internalHref && <a className="is-primary" href={internalHref}>{copy.appDetail} <span aria-hidden="true">→</span></a>}
                     {app.links.map((link, index) => <a className={!internalHref && index === 0 ? "is-primary" : undefined} href={link.href} key={link.kind} target="_blank" rel="noreferrer"
                       aria-label={`${copy.appLinkLabel(content.displayName)} — ${linkLabel(link.kind)}`}>
@@ -282,6 +304,7 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
             );
           })}
         </div>
+        </CatalogPreviewProvider>
         {catalog.apps.length === 0 && <CatalogEmpty locale={locale} reset={catalog.reset} />}
       </section>
 
@@ -370,16 +393,19 @@ function HorrorPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; s
 export default function App() {
   const [locale, setLocale] = useState<Locale>(detectLocale);
   const route = getRoute();
-  const project = route === "project" ? growingProjects.find((item) => `${basePath}${item.app.detailPath}`.replace(/\/$/, "") === window.location.pathname.replace(/\/$/, "")) : undefined;
+  const project = route === "project" ? growingProjects.find((item) => `${basePath}${item.app.detailPath}`.replace(/\/$/, "") === window.location.pathname.replace(/index\.html$/, "").replace(/\/$/, "")) : undefined;
   const copy = ui[locale];
   useSiteMotion(route);
 
   useEffect(() => {
     const metadata = {
-      root: [copy.rootPageTitle, copy.rootPageDescription], channels: [copy.channelsPageTitle, copy.channelsPageDescription],
+      root: [blueMoonCopy[locale].homeTitle, blueMoonCopy[locale].homeDescription], channels: [copy.channelsPageTitle, copy.channelsPageDescription],
+      productivity: [productivityCopy[locale].pageTitle, productivityCopy[locale].description],
       apps: [copy.appsPageTitle, copy.appsPageDescription], dohwaji: [copy.dohwajiPageTitle, copy.dohwajiPageDescription],
       timeflower: [timeFlowerCopy[locale].pageTitle, timeFlowerCopy[locale].pageDescription],
+      timeroots: [timeRootsCopy[locale].pageTitle, timeRootsCopy[locale].pageDescription],
       dailyplank: [dailyPlankCopy[locale].pageTitle, dailyPlankCopy[locale].pageDescription],
+      biondamae: [biondamaeCopy[locale].pageTitle, biondamaeCopy[locale].pageDescription],
       ssakmemo: [ssakMemoCopy[locale].pageTitle, ssakMemoCopy[locale].pageDescription],
       ringtone: [ringtoneCopy[locale].pageTitle, ringtoneCopy[locale].pageDescription],
       project: project ? [`${project.app.content[locale].displayName} | ${project.app.content[locale].tagline}`, project.app.content[locale].description] : [copy.appsPageTitle, copy.appsPageDescription],
@@ -393,10 +419,15 @@ export default function App() {
 
   if (SHOW_HORROR_DOPAMINE && route === "channels") return <ChannelsPage copy={copy} locale={locale} setLocale={setLocale} />;
   if (route === "apps") return <AppsPage copy={copy} locale={locale} setLocale={setLocale} />;
+  if (route === "productivity") return <ProductivityCollectionPage header={<SiteHeader activeRoute="apps" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} basePath={basePath} />;
+  if (project?.app.id === "bluemoon") return <BlueMoonPage header={<SiteHeader activeRoute="project" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} basePath={basePath} />;
+  if (project?.app.id === "daymirror") return <DayMirrorPage project={project} header={<SiteHeader activeRoute="project" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} basePath={basePath} />;
   if (project) return <GrowingProjectPage project={project} header={<SiteHeader activeRoute="project" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} basePath={basePath} />;
   if (route === "dohwaji") return <DohwajiPage copy={copy} locale={locale} setLocale={setLocale} />;
   if (route === "timeflower") return <TimeFlowerPage header={<SiteHeader activeRoute="timeflower" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} appsHref={routeHref("apps")} />;
+  if (route === "timeroots") return <TimeRootsPage header={<SiteHeader activeRoute="timeroots" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} appsHref={routeHref("apps")} />;
   if (route === "dailyplank") return <DailyPlankPage header={<SiteHeader activeRoute="dailyplank" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} appsHref={routeHref("apps")} />;
+  if (route === "biondamae") return <BiondamaePage header={<SiteHeader activeRoute="biondamae" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} basePath={basePath} appsHref={routeHref("apps")} />;
   if (route === "ssakmemo") return <SsakMemoPage header={<SiteHeader activeRoute="ssakmemo" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} appsHref={routeHref("apps")} />;
   if (route === "leafmessage") return <LeafMessagePage header={<SiteHeader activeRoute="leafmessage" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} appsHref={routeHref("apps")} />;
   if (route === "ringtone") return <RingtonePage header={<SiteHeader activeRoute="ringtone" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} appsHref={routeHref("apps")} />;

@@ -14,6 +14,7 @@ export type ProductApp = {
   code: string;
   icon: string | null;
   detailPath?: string;
+  introductionUrl?: string;
   version: string;
   platforms: string[];
   accent: "cyan" | "amber" | "apricot" | "cobalt" | "sky" | "sprout" | "leaf";
@@ -155,6 +156,7 @@ const establishedApps: ProductApp[] = [
   },
   {
     id: "biondamae",
+    detailPath: "apps/biondamae/",
     order: "05",
     code: "OBSERVE / COMPARE / JUDGE",
     icon: "app-icons/biondamae.png",
@@ -182,7 +184,7 @@ const establishedApps: ProductApp[] = [
         features: ["現在の観測と7日間予報", "6つの予報元を比較", "過去予報と精度の記録"],
       },
     },
-    links: [{ kind: "web", href: "https://weather-forecast-production-0aac.up.railway.app/" }],
+    links: [{ kind: "web", href: "https://web-dashboard-production-a81f.up.railway.app/" }],
   },
   {
     id: "leaf-message",
@@ -220,7 +222,7 @@ const establishedApps: ProductApp[] = [
     order: "07",
     code: "TIME / TRACK / REFLECT",
     icon: "app-icons/timeroots.jpg",
-    version: "1.1",
+    version: "1.2",
     platforms: ["iOS", "WIDGET"],
     accent: "amber",
     status: "live",
@@ -296,6 +298,7 @@ export const productApps: ProductApp[] = [
 ].map((app, index) => ({ ...app, order: String(index + 1).padStart(2, "0") }));
 
 const existingDetailPaths: Record<string, string> = {
+  timeroots: "apps/timeroots/",
   dohwaji: "apps/dohwaji/",
   timeflower: "apps/timeflower/",
   dailyplank: "apps/daily-plank/",
@@ -306,4 +309,9 @@ const existingDetailPaths: Record<string, string> = {
 
 export function appDetailPath(app: ProductApp) {
   return app.detailPath ?? existingDetailPaths[app.id];
+}
+
+export function appIntroductionHref(app: ProductApp, basePath: string) {
+  const path = appDetailPath(app);
+  return app.introductionUrl ?? (path ? `${basePath}${path}` : undefined);
 }

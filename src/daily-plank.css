@@ -1,354 +1,331 @@
-.dailyplank-shell {
-  --dp-bg: #f4f6fc;
-  --dp-paper: #ffffff;
-  --dp-ink: #101828;
-  --dp-muted: #667085;
-  --dp-faint: #98a2b3;
-  --dp-line: #d9deea;
-  --dp-blue: #3859d9;
-  --dp-blue-dark: #233d9d;
-  --dp-blue-soft: #e7ecff;
-  --dp-green: #2f7d4a;
-  --dp-green-soft: #e4f5e8;
-  --dp-yellow: #ffd94a;
-  --dp-coral: #e85348;
-  position: relative;
-  overflow-x: clip;
+/* Daily Plank: a bright training journal, with the original app artwork. */
+.dailyplank-shell.site-shell {
+  --dp-bg: var(--plank-page-paper);
+  --dp-ink: var(--plank-page-ink);
+  --dp-blue: var(--plank-page-blue);
+  --dp-yellow: var(--plank-page-yellow);
+  --dp-line: var(--plank-page-line);
+  --dp-muted: #5d6b80;
+  --dp-blue-soft: #edf1ff;
+  --page-accent: var(--dp-blue);
+  width: min(100%, 1240px);
+  padding-inline: 40px;
   background: var(--dp-bg);
+  color: var(--dp-ink);
+  font-family: "Noto Sans KR", "Noto Sans JP", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
   box-shadow: 0 0 0 100vmax var(--dp-bg);
+}
+html:has(.dailyplank-shell), body:has(.dailyplank-shell) { background: var(--plank-page-paper); }
+.dailyplank-shell.site-shell::before, .dailyplank-shell.site-shell::after { display: none; }
+.dailyplank-shell :where(h1, h2, h3, p, figure) { margin: 0; }
+.dailyplank-shell :where(h1, h2, h3) { word-break: keep-all; overflow-wrap: anywhere; text-wrap: balance; }
+.dailyplank-shell :where(p) { word-break: keep-all; overflow-wrap: anywhere; }
+.dailyplank-shell :where(a) { -webkit-tap-highlight-color: transparent; }
+.dailyplank-shell ::selection { background: var(--dp-yellow); color: var(--dp-ink); }
+.dailyplank-shell.site-shell .network-bar {
+  min-height: 80px;
+  border-color: var(--dp-line);
+  background: rgba(251, 252, 255, .94);
   color: var(--dp-ink);
-  font-family: "Noto Sans KR", "Noto Sans JP", "Yu Gothic", "Malgun Gothic", Arial, sans-serif;
+  backdrop-filter: blur(16px);
+  font-family: inherit;
+  letter-spacing: 0;
 }
+.dailyplank-shell.site-shell .network-name { font-size: .9375rem; letter-spacing: .12em; }
+.dailyplank-shell.site-shell .record-dot { width: 8px; height: 8px; background: var(--dp-blue); box-shadow: none; }
+.dailyplank-shell.site-shell .node-switcher { padding: 3px; border: 0; background: #eef1f7; border-radius: 100px; }
+.dailyplank-shell.site-shell .node-switcher a { padding: 8px 17px; color: var(--dp-muted); font-size: .875rem; border-radius: 100px; }
+.dailyplank-shell.site-shell .node-switcher a.is-active { color: var(--dp-blue); background: white; box-shadow: 0 2px 6px #22333b08; }
+.dailyplank-shell.site-shell .language-switcher button { min-width: 42px; min-height: 44px; color: var(--dp-muted); font-size: .75rem; border: 0; border-radius: 50%; }
+.dailyplank-shell.site-shell .language-switcher button.is-active { color: var(--dp-blue); background: var(--dp-blue-soft); }
+.dailyplank-shell.site-shell .node-switcher a:hover, .dailyplank-shell.site-shell .language-switcher button:hover { color: var(--dp-blue); }
 
-.dailyplank-field {
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 79% 8%, rgba(56, 89, 217, 0.14), transparent 26%),
-    linear-gradient(rgba(56, 89, 217, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 89, 217, 0.035) 1px, transparent 1px);
-  background-size: auto, 56px 56px, 56px 56px;
-  mask-image: linear-gradient(to bottom, #000 0 760px, transparent 1160px);
+/* The timer is the first screen's main product evidence. */
+.dp-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 64px; align-items: center; padding: 78px 0 86px; }
+.dp-hero-copy { min-width: 0; }
+.dp-product-name { display: flex; align-items: center; gap: 13px; margin-bottom: 44px; }
+.dp-product-name > img { width: 48px; height: 48px; border-radius: 14px; }
+.dp-product-name > span:not(.dp-live) { display: flex; flex-direction: column; font-size: 1.0625rem; font-weight: 800; letter-spacing: -.04em; line-height: 1.45; }
+.dp-product-name small { margin-top: 3px; color: var(--dp-muted); font: 600 .75rem/1.4 Arial, sans-serif; letter-spacing: .1em; }
+.dp-live { display: inline-flex; align-items: center; gap: 6px; margin-left: 7px; padding: 4px 9px; border: 1px solid #d5e6da; border-radius: 100px; color: #347148; font-size: .75rem; white-space: nowrap; }
+.dp-live i, .dp-workout-state i { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.dp-eyebrow { color: var(--dp-muted); font-size: .875rem; margin-bottom: 17px !important; }
+.dp-hero h1 { display: flex; flex-direction: column; align-items: flex-start; font-size: clamp(3.4rem, 5.8vw, 4.625rem); line-height: 1.17; letter-spacing: -.075em; font-weight: 900; }
+.dp-hero h1 em { position: relative; z-index: 0; color: var(--dp-blue); font-style: normal; }
+.dp-hero h1 em::after { position: absolute; z-index: -1; right: 0; bottom: .025em; left: 0; height: .16em; background: var(--dp-yellow); border-radius: 3px; content: ""; transform: rotate(-1deg); }
+.dp-introduction { max-width: 440px; margin-top: 29px !important; color: var(--dp-muted); font-size: 1rem; line-height: 1.9; }
+.dp-introduction strong { display: block; margin-bottom: 5px; color: var(--dp-ink); font-weight: 650; }
+.dp-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; margin-top: 31px; }
+.dp-primary { display: inline-flex; min-height: 56px; padding: 13px 23px; align-items: center; justify-content: center; gap: 26px; border: 1px solid transparent; border-radius: 100px; background: var(--dp-blue); color: white; text-decoration: none; font-size: .9375rem; font-weight: 750; transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease; }
+.dp-primary > span { font: 400 1.4rem/1 Arial, sans-serif; }
+.dp-primary:hover { background: #2f49af; transform: translateY(-2px); box-shadow: 0 8px 20px #3658db20; }
+.dailyplank-shell .dp-primary:focus-visible { outline-color: var(--dp-blue) !important; }
+.dp-text-link { display: inline-flex; min-height: 44px; align-items: center; gap: 13px; color: var(--dp-ink); font-size: .875rem; font-weight: 650; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.dp-text-link:hover { color: var(--dp-blue); }
+.dp-demo-note { margin-top: 14px !important; color: var(--dp-muted); font-size: .75rem; }
+.dp-workout-preview { position: relative; min-width: 0; margin: 0; padding: 26px 29px 20px; border: 1px solid #dce3f6; border-radius: 34px; background: #edf1ff; }
+.dp-preview-heading { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 19px; color: #5064a0; font-size: .75rem; }
+.dp-preview-heading > span:last-child { flex-shrink: 0; font-family: "Courier New", monospace; font-weight: 700; }
+.dp-workout-card { position: relative; padding: 20px 23px 0; border: 1px solid #e0e5f4; border-radius: 24px; background: white; box-shadow: 0 16px 26px -18px #34519b55; }
+.dp-workout-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.dp-workout-top > span { display: flex; align-items: center; gap: 7px; font-size: .875rem; font-weight: 650; }
+.dp-workout-top i { width: 7px; height: 7px; border-radius: 50%; background: var(--dp-blue); }
+.dp-workout-top b { color: var(--dp-blue); font: 750 1.75rem/1 Arial, sans-serif; }
+.dp-workout-top small { color: var(--dp-muted); font: 500 .875rem/1.5 Arial, sans-serif; }
+.dp-timer-ring { display: grid; width: min(100%, 280px); aspect-ratio: 1; margin: 23px auto 25px; padding: 12px; border-radius: 50%; background: conic-gradient(from -90deg, var(--dp-blue) 0deg 272deg, #edf1fa 272deg 360deg); }
+.dp-timer-face { display: flex; min-width: 0; border-radius: 50%; align-items: center; justify-content: center; flex-direction: column; background: #fff; }
+.dp-timer-face > span:first-child { color: var(--dp-muted); font-size: .9375rem; font-weight: 600; }
+.dp-timer-face > strong { margin: 7px 0 12px; color: var(--dp-blue); font: 750 clamp(3rem, 5.5vw, 4.1rem)/1 Arial, sans-serif; font-variant-numeric: tabular-nums; letter-spacing: -.075em; }
+.dp-workout-state { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 100px; background: #eef5ef; color: #327148; font-size: .75rem; }
+.dp-companion { display: flex; align-items: center; gap: 13px; padding: 10px; border: 1px solid #f3e7b6; border-radius: 15px; background: #fff9e4; }
+.dp-companion img { flex: 0 0 auto; width: 63px; height: 63px; border-radius: 12px; }
+.dp-companion > div { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.dp-companion strong { font-size: .875rem; letter-spacing: -.035em; line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
+.dp-companion div > span { color: #79643d; font-size: .75rem; line-height: 1.55; word-break: keep-all; overflow-wrap: anywhere; }
+.dp-up-next { display: flex; min-height: 61px; align-items: center; justify-content: space-between; gap: 12px; color: var(--dp-muted); font-size: .875rem; }
+.dp-up-next strong { font-weight: 550; }
+.dp-up-next > span { color: var(--dp-blue); font-size: 1.25rem; }
+.dp-workout-preview figcaption { margin-top: 14px; color: #596d9b; font-size: .75rem; text-align: center; }
+.dp-session-stamp { position: absolute; top: 64px; right: -18px; padding: 14px 16px; border: 1px solid #e8bf40; border-radius: 10px; background: var(--dp-yellow); color: #3c3b2a; box-shadow: 0 5px 9px #222d4020; font: 600 .75rem/1.3 Arial, sans-serif; letter-spacing: .025em; transform: rotate(9deg); }
+.dp-session-stamp b { font-weight: 900; }
+
+/* Three readable choices, with a clear invitation to start small. */
+.dp-routines { padding: 63px 0 88px; border-top: 1px solid var(--dp-line); }
+.dp-section-heading { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); align-items: end; gap: 45px; margin-bottom: 34px; }
+.dp-section-label { display: flex; align-items: center; gap: 12px; color: var(--dp-blue); font-size: .8125rem; font-weight: 650; letter-spacing: -.02em; }
+.dp-section-label > span { display: inline-grid; flex: 0 0 auto; width: 29px; height: 29px; place-items: center; border: 1px solid #ccd6f4; border-radius: 50%; font: 600 .75rem/1 Arial, sans-serif; }
+.dailyplank-shell h2 { margin-top: 18px; font-size: clamp(2rem, 3.3vw, 2.65rem); font-weight: 800; line-height: 1.32; letter-spacing: -.06em; white-space: pre-line; }
+.dp-routine-note { max-width: 320px; justify-self: end; color: var(--dp-muted); font-size: .875rem; line-height: 1.8; }
+.dp-routine-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.dp-routine { display: flex; min-width: 0; padding: 26px 27px 22px; flex-direction: column; border: 1px solid var(--dp-line); border-radius: 22px; background: white; }
+.dp-routine-1 { background: var(--dp-blue); border-color: var(--dp-blue); color: white; }
+.dp-routine-2 { background: var(--dp-blue-soft); border-color: #e1e7f8; }
+.dp-routine-top { display: flex; align-items: center; justify-content: space-between; gap: 15px; font-size: .875rem; font-weight: 650; }
+.dp-intensity { display: flex; gap: 4px; height: 18px; align-items: flex-end; }
+.dp-intensity i { width: 4px; height: 9px; border-radius: 2px; background: #d1d9ec; }
+.dp-intensity i:nth-child(2) { height: 13px; }
+.dp-intensity i:nth-child(3) { height: 18px; }
+.dp-intensity .is-filled { background: var(--dp-blue); }
+.dp-routine-1 .dp-intensity i { background: #ffffff40; }
+.dp-routine-1 .dp-intensity .is-filled { background: var(--dp-yellow); }
+.dp-minutes { display: flex; align-items: baseline; gap: 9px; margin: 20px 0 15px; }
+.dp-minutes strong { color: var(--dp-blue); font: 500 5.75rem/1.08 Arial, sans-serif; letter-spacing: -.085em; }
+.dp-minutes > span { color: var(--dp-muted); font-size: .9375rem; }
+.dp-routine-1 .dp-minutes strong { color: var(--dp-yellow); }
+.dp-routine-1 .dp-minutes > span { color: white; }
+.dp-routine h3 { font-size: 1.2rem; font-weight: 750; letter-spacing: -.045em; line-height: 1.5; text-wrap: initial; }
+.dp-routine > p { flex: 1; margin: 11px 0 28px; color: var(--dp-muted); font-size: 1rem; line-height: 1.8; }
+.dp-routine-1 > p { color: #e3e9ff; }
+.dp-routine-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; padding-top: 16px; border-top: 1px solid #d2dced; font-size: .75rem; }
+.dp-routine-bottom > span:last-child { font: 600 .6875rem/1.6 Arial, sans-serif; letter-spacing: .04em; color: var(--dp-muted); }
+.dp-routine-1 .dp-routine-bottom { border-color: #ffffff38; }
+.dp-routine-1 .dp-routine-bottom > span:last-child { color: #d4dfff; }
+
+/* A quieter screen: voice, recovery, and the last countdown. */
+.dp-coach { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 60px; padding: 56px 48px; border-radius: 28px; background: #243eaa; color: white; }
+.dp-coach .dp-section-label { color: #d1dcff; }
+.dp-coach .dp-section-label > span { border-color: #9cb3ff66; }
+.dp-coach h2 { margin-top: 24px; color: white; font-size: clamp(2rem, 3vw, 2.55rem); }
+.dp-coach-copy > p:not(.dp-section-label) { max-width: 420px; margin-top: 23px; color: #d5dfff; font-size: 1rem; line-height: 1.9; }
+.dp-soundwave { display: flex; min-height: 68px; align-items: center; gap: 5px; margin-top: 28px; }
+.dp-soundwave i { display: block; flex: 0 1 4px; width: 4px; border-radius: 5px; background: #a8baff; transform-origin: center; animation: dp-wave-arrive 750ms ease-out both; }
+.dp-soundwave i:nth-child(3n) { background: var(--dp-yellow); animation-delay: 100ms; }
+.dp-soundwave i:nth-child(4n) { animation-delay: 180ms; }
+.dp-soundwave > span { margin-left: 17px; color: var(--dp-yellow); font: 600 1.3rem/1 Arial, sans-serif; white-space: nowrap; }
+.dp-cues { align-self: center; }
+.dp-cue { display: grid; grid-template-columns: 45px minmax(0, 1fr); align-items: start; gap: 17px; padding: 23px 0; border-top: 1px solid #ffffff2b; }
+.dp-cue:first-child { padding-top: 0; border-top: 0; }
+.dp-cue-icon { display: grid; width: 43px; height: 43px; margin-top: 5px; place-items: center; border-radius: 12px; background: #ffffff12; color: #dde6ff; }
+.dp-cue:nth-child(2) .dp-cue-icon { color: #c7efd3; }
+.dp-cue:nth-child(3) .dp-cue-icon { color: var(--dp-yellow); }
+.dp-cue-icon svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.dp-cue-label { color: #b6c8ff; font: 700 .75rem/1.4 Arial, sans-serif; letter-spacing: .1em; }
+.dp-cue h3 { margin: 6px 0; font-size: 1.125rem; letter-spacing: -.035em; line-height: 1.5; text-wrap: initial; }
+.dp-cue p { color: #d5dfff; font-size: .9375rem; line-height: 1.7; }
+.dp-cue-note { padding-top: 2px; color: #c2d0f9; font-size: .75rem; line-height: 1.65; }
+
+/* Keep all seven days together, including on narrow screens. */
+.dp-record { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 66px; padding: 106px 0 96px; }
+.dp-record-copy > p:not(.dp-section-label) { max-width: 475px; margin-top: 24px; color: var(--dp-muted); font-size: 1rem; line-height: 1.9; }
+.dp-growth { display: flex; align-items: center; gap: 15px; margin-top: 26px; }
+.dp-growth img { flex: 0 0 auto; width: 64px; height: 64px; border-radius: 18px; }
+.dp-growth > div { display: flex; flex-direction: column; gap: 6px; }
+.dp-growth strong { font-size: .9375rem; line-height: 1.6; letter-spacing: -.025em; }
+.dp-growth span { color: var(--dp-muted); font-size: .8125rem; line-height: 1.7; }
+.dp-history { min-width: 0; padding: 28px 27px 0; border: 1px solid var(--dp-line); border-radius: 24px; background: white; box-shadow: 0 12px 30px -18px #2d456630; }
+.dp-history-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 7px 14px; }
+.dp-history-heading h3 { font-size: 1rem; line-height: 1.6; font-weight: 750; letter-spacing: -.035em; }
+.dp-history-heading > span { color: var(--dp-muted); font-size: .75rem; }
+.dp-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; padding: 27px 0; }
+.dp-week > div { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 13px; color: var(--dp-muted); font-size: .8125rem; }
+.dp-day-mark { display: grid; width: 100%; max-width: 48px; aspect-ratio: 1; place-items: center; border: 1px solid #e5eaf2; border-radius: 50%; background: #f8f9fc; }
+.dp-day-mark > i { width: 5px; height: 5px; border-radius: 50%; background: #d6ddec; }
+.dp-day-mark svg { width: 55%; height: 55%; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.dp-week .is-done .dp-day-mark { border-color: var(--dp-blue); background: var(--dp-blue); color: white; }
+.dp-week .is-done:nth-child(4) .dp-day-mark { border-color: var(--dp-yellow); background: var(--dp-yellow); color: #574919; }
+.dp-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding: 21px 0 25px; border-top: 1px solid var(--dp-line); }
+.dp-stats > div + div { padding-left: 24px; border-left: 1px solid var(--dp-line); }
+.dp-stats dt { color: var(--dp-muted); font-size: .8125rem; }
+.dp-stats dd { margin: 5px 0 0; color: var(--dp-blue); font-size: 2.25rem; font-weight: 750; letter-spacing: -.06em; line-height: 1.4; }
+.dp-history-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 15px 0; border-top: 1px solid var(--dp-line); color: var(--dp-muted); font: 600 .6875rem/1.5 Arial, sans-serif; letter-spacing: .05em; }
+.dp-history-foot > span:last-child { color: var(--dp-blue); font-size: 1rem; letter-spacing: .1em; }
+
+/* The maker's story stays part of the product, after the useful details. */
+.dp-origin { display: grid; grid-template-columns: 145px minmax(0, 1fr); gap: 48px; padding: 42px 46px; border: 1px solid var(--dp-line); border-radius: 22px; background: #f2f4f8; }
+.dp-origin-mark { display: flex; flex-direction: column; align-self: center; color: #7b8494; font: 600 .75rem/1.5 Arial, sans-serif; letter-spacing: .06em; }
+.dp-origin-mark strong { margin: 0 0 6px; color: var(--dp-ink); font: 500 4.75rem/1.2 Arial, sans-serif; letter-spacing: -.085em; }
+.dp-origin-mark > span { color: var(--dp-muted); }
+.dp-origin .dp-section-label { color: var(--dp-muted); }
+.dp-origin h2 { margin-top: 10px; font-size: 1.55rem; line-height: 1.5; letter-spacing: -.045em; text-wrap: initial; }
+.dp-origin-description { max-width: 800px; margin-top: 14px !important; color: var(--dp-muted); font-size: 1rem; line-height: 1.95; }
+.dp-final { padding: 92px 0 82px; text-align: center; }
+.dp-final > p:first-child { color: var(--dp-blue); font: 650 .75rem/1.6 Arial, sans-serif; letter-spacing: .15em; }
+.dp-final h2 { margin-top: 19px; font-size: clamp(2rem, 3.7vw, 3rem); }
+.dp-final h2 + p { margin: 18px auto 28px; color: var(--dp-muted); font-size: 1rem; }
+.dp-final .dp-primary { min-width: 210px; }
+.dp-footer { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 28px; padding: 27px 0 32px; border-top: 1px solid var(--dp-line); }
+.dp-footer strong { font-size: 1rem; font-weight: 750; }
+.dp-footer p { margin-top: 5px; color: var(--dp-muted); font-size: .75rem; }
+.dp-footer > span { color: var(--dp-muted); font: 550 .75rem/1.6 Arial, sans-serif; letter-spacing: .04em; }
+html[lang="en"] .dp-hero h1 { font-size: clamp(2.75rem, 4.6vw, 3.75rem); letter-spacing: -.06em; }
+html[lang="ja"] .dp-hero h1 { font-size: clamp(2.65rem, 4.8vw, 3.8rem); letter-spacing: -.065em; }
+@keyframes dp-wave-arrive { from { transform: scaleY(.25); opacity: .4; } to { transform: scaleY(1); opacity: 1; } }
+
+@media (max-width: 1050px) {
+  .dailyplank-shell.site-shell { padding-inline: 28px; }
+  .dp-hero { gap: 35px; padding-block: 63px; }
+  .dp-product-name { margin-bottom: 34px; }
+  .dp-workout-preview { padding-inline: 20px; }
+  .dp-workout-card { padding-inline: 17px; }
+  .dp-timer-ring { width: min(100%, 255px); }
+  .dp-session-stamp { right: -12px; padding: 10px 12px; }
+  .dp-coach { padding: 38px 32px; gap: 35px; }
+  .dp-routine { padding-inline: 22px; }
+  .dp-routine-bottom > span:last-child { display: none; }
+  .dp-record { gap: 36px; }
+  .dp-history { padding-inline: 21px; }
+  .dp-companion { gap: 10px; }
+  .dp-companion img { width: 54px; height: 54px; }
 }
-
-.dailyplank-shell > *:not(.dailyplank-field) { position: relative; z-index: 1; }
-.dailyplank-shell::before,.dailyplank-shell::after { background: rgba(16, 24, 40, 0.08); }
-
-.dailyplank-shell .network-bar {
-  z-index: 5;
-  border-color: rgba(16, 24, 40, 0.12);
-  background: rgba(244, 246, 252, 0.88);
-  color: var(--dp-ink);
-  backdrop-filter: blur(14px);
+@media (max-width: 800px) {
+  .dp-hero { grid-template-columns: 1fr; gap: 42px; padding: 48px 0 58px; }
+  .dp-hero-copy { max-width: 590px; }
+  .dp-hero h1 { font-size: clamp(3.5rem, 8vw, 4.5rem); }
+  html[lang="en"] .dp-hero h1 { font-size: clamp(3.1rem, 7vw, 4rem); }
+  html[lang="ja"] .dp-hero h1 { font-size: clamp(2.8rem, 7vw, 4rem); }
+  .dp-introduction { max-width: 560px; }
+  .dp-workout-preview { width: min(100%, 490px); justify-self: center; padding: 22px 28px 18px; }
+  .dp-workout-card { padding: 20px 23px 0; }
+  .dp-timer-ring { width: min(100%, 265px); }
+  .dp-timer-face > strong { font-size: 4rem; }
+  .dp-companion img { width: 62px; height: 62px; }
+  .dp-companion strong { font-size: 1rem; }
+  .dp-section-heading { grid-template-columns: 1fr; gap: 20px; }
+  .dp-routine-note { max-width: 600px; justify-self: start; }
+  .dp-routines { padding: 48px 0 58px; }
+  .dp-routine-grid { gap: 12px; }
+  .dp-routine { padding: 20px 16px; }
+  .dp-minutes strong { font-size: 4.6rem; }
+  .dp-routine h3 { font-size: 1.0625rem; }
+  .dp-routine > p { font-size: 1rem; }
+  .dp-coach { grid-template-columns: 1fr; gap: 31px; padding: 36px; }
+  .dp-coach h2 { font-size: 2.3rem; }
+  .dp-coach-copy > p:not(.dp-section-label) { max-width: 100%; }
+  .dp-cues { border-top: 1px solid #ffffff2b; padding-top: 28px; }
+  .dp-record { grid-template-columns: 1fr; gap: 33px; padding: 65px 0; }
+  .dp-record-copy > p:not(.dp-section-label) { max-width: 570px; }
+  .dp-history { width: min(100%, 540px); justify-self: center; padding-inline: 28px; }
+  .dp-origin { grid-template-columns: 90px minmax(0, 1fr); gap: 27px; padding: 30px; }
+  .dp-origin-mark strong { font-size: 4.2rem; }
+  .dp-final { padding-block: 65px; }
+  .dp-footer { grid-template-columns: minmax(0, 1fr) auto; gap: 15px 25px; }
+  .dp-footer > span { grid-column: 1 / -1; }
 }
-.dailyplank-shell .record-dot { background: var(--dp-blue); box-shadow: 0 0 0 5px rgba(56, 89, 217, 0.1), 0 0 15px rgba(56, 89, 217, 0.35); }
-.dailyplank-shell .node-switcher { border-color: rgba(16, 24, 40, 0.14); background: rgba(255, 255, 255, 0.72); }
-.dailyplank-shell .node-switcher a { color: #8a94a6; }
-.dailyplank-shell .node-switcher a:hover { color: var(--dp-ink); }
-.dailyplank-shell .node-switcher a.is-active { background: var(--dp-blue-soft); color: var(--dp-blue-dark); }
-.dailyplank-shell .language-switcher button { color: #98a2b3; }
-.dailyplank-shell .language-switcher button:hover { color: var(--dp-ink); }
-.dailyplank-shell .language-switcher button.is-active { border-color: var(--dp-blue); background: rgba(56, 89, 217, 0.08); color: var(--dp-blue-dark); }
-.dailyplank-shell .node-status { color: var(--dp-faint); }
-.dailyplank-shell .node-status span:last-child { color: var(--dp-green); }
-
-.dailyplank-hero {
-  display: grid;
-  min-height: 790px;
-  padding: 80px 0 90px;
-  border-bottom: 1px solid var(--dp-line);
-  grid-template-columns: minmax(0, 0.96fr) minmax(410px, 0.78fr);
-  gap: clamp(40px, 7vw, 92px);
-  align-items: center;
+@media (max-width: 540px) {
+  .dailyplank-shell.site-shell { padding-inline: 20px; }
+  .dailyplank-shell.site-shell .network-bar { min-height: 108px; padding-block: 10px; }
+  .dailyplank-shell.site-shell .network-controls { gap: 6px; }
+  .dailyplank-shell.site-shell .node-switcher a { min-height: 40px; padding: 6px 10px; font-size: .8125rem; }
+  .dailyplank-shell.site-shell .language-switcher button { min-width: 37px; font-size: .75rem; }
+  .dp-hero { padding-top: 33px; gap: 34px; }
+  .dp-product-name { margin-bottom: 30px; }
+  .dp-product-name > img { width: 43px; height: 43px; border-radius: 12px; }
+  .dp-eyebrow { font-size: .8125rem; }
+  .dp-hero h1 { font-size: clamp(2.9rem, 12.6vw, 4rem); }
+  html[lang="en"] .dp-hero h1 { font-size: clamp(2.5rem, 10.7vw, 3.5rem); }
+  html[lang="ja"] .dp-hero h1 { font-size: clamp(2.2rem, 9.9vw, 3.3rem); }
+  .dp-introduction { margin-top: 23px !important; font-size: 1rem; line-height: 1.85; }
+  .dp-actions { gap: 16px; margin-top: 25px; }
+  .dp-primary { min-height: 52px; padding-inline: 21px; font-size: .875rem; gap: 22px; }
+  .dp-text-link { gap: 8px; font-size: .8125rem; }
+  .dp-demo-note { margin-top: 12px !important; }
+  .dp-workout-preview { padding: 19px 18px 16px; border-radius: 26px; }
+  .dp-workout-card { padding: 18px 15px 0; border-radius: 20px; }
+  .dp-preview-heading { padding-right: 0; font-size: .75rem; }
+  .dp-timer-ring { width: min(100%, 240px); margin-block: 23px; padding: 10px; }
+  .dp-timer-face > strong { font-size: clamp(3rem, 14vw, 3.75rem); }
+  .dp-timer-face > span:first-child { font-size: .875rem; }
+  .dp-session-stamp { top: 62px; right: -7px; padding: 8px 10px; font-size: .625rem; }
+  .dp-companion { padding: 8px; gap: 10px; }
+  .dp-companion img { width: 52px; height: 52px; border-radius: 10px; }
+  .dp-companion strong { font-size: .875rem; }
+  .dp-companion div > span { font-size: .75rem; }
+  .dp-up-next { min-height: 56px; font-size: .875rem; }
+  .dp-workout-preview figcaption { font-size: .75rem; }
+  .dailyplank-shell h2 { font-size: 1.95rem; line-height: 1.4; }
+  .dp-section-label { gap: 9px; font-size: .8125rem; }
+  .dp-routine-grid { grid-template-columns: 1fr; gap: 14px; }
+  .dp-routine { display: grid; grid-template-columns: 87px minmax(0, 1fr); gap: 0 20px; padding: 22px; border-radius: 19px; }
+  .dp-routine-top { grid-column: 1 / -1; }
+  .dp-minutes { grid-row: 2 / 4; align-self: center; margin: 20px 0 21px; gap: 5px; }
+  .dp-minutes strong { font-size: 3.85rem; }
+  .dp-minutes > span { font-size: .8125rem; }
+  .dp-routine h3 { align-self: end; padding-top: 17px; font-size: 1.0625rem; }
+  .dp-routine > p { margin: 7px 0 18px; font-size: 1rem; line-height: 1.8; }
+  .dp-routine-bottom { grid-column: 1 / -1; padding-top: 12px; }
+  .dp-routine-bottom > span:last-child { display: inline; }
+  .dp-coach { padding: 30px 23px; border-radius: 23px; }
+  .dp-coach-copy > p:not(.dp-section-label) { font-size: 1rem; }
+  .dp-soundwave { gap: 4px; margin-top: 24px; }
+  .dp-soundwave > span { margin-left: 12px; font-size: 1.1rem; }
+  .dp-cue { grid-template-columns: 37px minmax(0, 1fr); gap: 14px; }
+  .dp-cue-icon { width: 37px; height: 37px; border-radius: 11px; }
+  .dp-cue h3 { font-size: 1.0625rem; }
+  .dp-cue p { font-size: .9375rem; }
+  .dp-record { padding-block: 57px; }
+  .dp-growth { align-items: flex-start; gap: 12px; }
+  .dp-growth img { width: 53px; height: 53px; border-radius: 14px; }
+  .dp-history { padding: 22px 18px 0; border-radius: 20px; }
+  .dp-week { gap: 6px; padding-block: 23px; }
+  .dp-stats > div + div { padding-left: 18px; }
+  .dp-stats dd { font-size: 2rem; }
+  .dp-origin { grid-template-columns: 1fr; gap: 23px; padding: 25px; border-radius: 20px; }
+  .dp-origin-mark { display: grid; grid-template-columns: auto auto; align-items: center; justify-content: start; gap: 0 19px; }
+  .dp-origin-mark strong { grid-column: 1; grid-row: 1 / 3; font-size: 3.35rem; margin: 0; }
+  .dp-origin-mark > span { grid-column: 2; }
+  .dp-origin h2 { font-size: 1.45rem; }
+  .dp-origin-description { font-size: 1rem; }
+  .dp-final { padding-block: 60px; }
+  .dp-final h2 { font-size: 2rem; }
+  .dp-final h2 + p { max-width: 320px; line-height: 1.8; }
+  .dp-footer { gap: 15px; }
+  .dp-footer p { max-width: 230px; }
 }
-
-.dailyplank-kicker { display: flex; margin-bottom: 56px; align-items: center; gap: 22px; color: var(--dp-blue); font: 700 9px monospace; letter-spacing: 0.13em; }
-.dailyplank-kicker span:first-child { display: inline-flex; align-items: center; gap: 10px; }
-.dailyplank-kicker span:first-child::before { width: 28px; height: 2px; background: var(--dp-blue); content: ""; }
-.dailyplank-kicker span:last-child { color: var(--dp-faint); }
-.dailyplank-eyebrow { margin: 0 0 14px; color: var(--dp-blue-dark); font-size: 13px; font-weight: 800; }
-.dailyplank-hero-copy h1 { display: flex; margin: 0; flex-direction: column; color: var(--dp-ink); font-size: clamp(78px, 8.5vw, 118px); font-weight: 900; letter-spacing: -0.09em; line-height: 0.78; }
-.dailyplank-hero-copy h1 strong { color: var(--dp-blue); font: inherit; }
-.dailyplank-hero-copy h2 { max-width: 590px; margin: 55px 0 17px; color: var(--dp-ink); font-size: clamp(24px, 2.8vw, 36px); letter-spacing: -0.055em; line-height: 1.25; }
-.dailyplank-description { max-width: 540px; margin: 0; color: var(--dp-muted); font-size: 14px; line-height: 1.85; }
-.dailyplank-actions { display: flex; margin-top: 34px; flex-wrap: wrap; align-items: center; gap: 11px; }
-.dailyplank-primary,.dailyplank-back { display: inline-flex; min-height: 48px; padding: 0 17px; align-items: center; justify-content: space-between; gap: 28px; border: 1px solid var(--dp-blue); font: 700 10px monospace; text-decoration: none; }
-.dailyplank-primary { background: var(--dp-blue); color: white; box-shadow: 0 10px 25px rgba(56, 89, 217, 0.2); }
-.dailyplank-primary:hover { background: var(--dp-blue-dark); border-color: var(--dp-blue-dark); }
-.dailyplank-back { min-height: 40px; padding: 0 12px; border-color: transparent; color: var(--dp-muted); gap: 10px; }
-.dailyplank-back:hover { color: var(--dp-blue-dark); }
-.dailyplank-status { display: inline-flex; min-height: 48px; padding: 0 14px; align-items: center; gap: 8px; border: 1px solid var(--dp-line); background: rgba(255,255,255,.58); color: var(--dp-muted); font: 700 9px monospace; }
-.dailyplank-status i { width: 6px; height: 6px; border-radius: 50%; background: #e5a13a; box-shadow: 0 0 8px rgba(229,161,58,.5); }
-.dailyplank-primary:focus-visible,.dailyplank-back:focus-visible { outline: 2px solid var(--dp-blue); outline-offset: 3px; }
-
-.dailyplank-console { position: relative; width: 100%; min-height: 650px; }
-.dailyplank-console::before { position: absolute; inset: 68px 30px 32px; border: 1px dashed rgba(56,89,217,.22); border-radius: 50%; content: ""; animation: dailyplank-orbit 22s linear infinite; }
-.dailyplank-phone { position: absolute; z-index: 2; top: 8px; left: 50%; width: 330px; min-height: 630px; overflow: hidden; border: 7px solid #131a2a; border-radius: 44px; background: var(--dp-paper); box-shadow: 0 34px 70px rgba(31,51,112,.24), 10px 13px 0 rgba(56,89,217,.08); transform: translateX(-50%) rotate(2deg); }
-.dailyplank-phone::before { position: absolute; z-index: 4; top: 7px; left: 50%; width: 84px; height: 20px; border-radius: 0 0 13px 13px; background: #131a2a; content: ""; transform: translateX(-50%); }
-.dailyplank-phone-head { display: flex; min-height: 61px; padding: 21px 20px 9px; align-items: center; justify-content: space-between; color: var(--dp-muted); font-size: 12px; }
-.dailyplank-phone-head b { font-size: 10px; }
-.dailyplank-progress { height: 6px; margin: 0 20px; overflow: hidden; border-radius: 99px; background: #edf0f7; }
-.dailyplank-progress i { display: block; width: 17%; height: 100%; border-radius: inherit; background: var(--dp-blue); }
-.dailyplank-timer { position: relative; display: flex; width: 194px; height: 194px; margin: 28px auto 16px; flex-direction: column; align-items: center; justify-content: center; border: 12px solid var(--dp-blue-soft); border-radius: 50%; background: white; box-shadow: inset 0 0 0 2px rgba(56,89,217,.08); }
-.dailyplank-timer::before { position: absolute; inset: -12px; border: 12px solid transparent; border-top-color: var(--dp-blue); border-right-color: var(--dp-blue); border-radius: 50%; content: ""; transform: rotate(18deg); }
-.dailyplank-timer span { color: var(--dp-blue); font: 800 8px monospace; letter-spacing: .15em; }
-.dailyplank-timer strong { margin: 3px 0 1px; color: var(--dp-blue); font: 800 55px/1 monospace; letter-spacing: -0.09em; }
-.dailyplank-timer small { color: var(--dp-muted); font-size: 11px; font-weight: 800; }
-.dailyplank-mascot-stage { display: grid; height: 100px; margin: 0 18px; place-items: center; border: 1px solid var(--dp-line); border-radius: 20px; background: #fff9e8; }
-.dailyplank-next { display: flex; min-height: 56px; margin: 12px 18px 0; padding: 0 14px; flex-direction: column; justify-content: center; gap: 5px; border-radius: 16px; background: var(--dp-blue-soft); }
-.dailyplank-next span { color: var(--dp-blue); font: 800 7px monospace; letter-spacing: .14em; }
-.dailyplank-next b { overflow: hidden; color: var(--dp-ink); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
-.dailyplank-controls { display: grid; margin: 12px 18px 19px; grid-template-columns: 44px 1fr 44px; gap: 8px; }
-.dailyplank-controls i,.dailyplank-controls b { display: grid; height: 42px; border-radius: 13px; place-items: center; font-style: normal; }
-.dailyplank-controls i { border: 1px solid var(--dp-line); color: var(--dp-blue); }
-.dailyplank-controls b { background: var(--dp-blue); color: white; font-size: 11px; }
-.dailyplank-console-note { position: absolute; z-index: 3; display: flex; width: 110px; min-height: 71px; padding: 12px; flex-direction: column; justify-content: space-between; border: 1px solid var(--dp-line); background: rgba(255,255,255,.94); box-shadow: 0 13px 30px rgba(35,61,157,.13); }
-.dailyplank-console-note span { color: var(--dp-faint); font: 700 7px monospace; letter-spacing: .14em; }
-.dailyplank-console-note b { color: var(--dp-blue); font: 800 23px monospace; }
-.dailyplank-console-note i { position: absolute; top: 50%; width: 38px; height: 1px; background: var(--dp-blue); opacity: .5; }
-.note-voice { top: 130px; left: -7px; }
-.note-voice i { right: -38px; }
-.note-haptic { right: -5px; bottom: 115px; }
-.note-haptic i { left: -38px; }
-
-.dailyplank-chick { position: relative; display: block; flex: 0 0 auto; }
-.dailyplank-chick i { position: absolute; display: block; }
-
-/* The two poses below mirror the dimensions and palette of the app's ChickSprite. */
-.dailyplank-chick.is-plank { width: 100px; height: 62px; transform: scale(1.34); }
-.dailyplank-chick.is-plank .chick-body { top: 12px; left: 2px; width: 92px; height: 44px; border: 2px solid #f5b800; border-radius: 40px 34px 16px 16px; background: #ffd54f; }
-.dailyplank-chick.is-plank .chick-tuft { top: 5px; left: 18px; width: 10px; height: 12px; border: 2px solid #f5b800; border-radius: 6px 6px 6px 0; background: #ffd54f; transform: rotate(-25deg); }
-.dailyplank-chick.is-plank .chick-brow { top: 17px; width: 9px; height: 3px; border-radius: 2px; background: #20242e; }
-.dailyplank-chick.is-plank .brow-left { left: 16px; transform: rotate(14deg); }
-.dailyplank-chick.is-plank .brow-right { left: 34px; transform: rotate(-6deg); }
-.dailyplank-chick.is-plank .chick-eye { top: 22px; width: 7px; height: 7px; border-radius: 50%; background: #20242e; }
-.dailyplank-chick.is-plank .chick-eye::after { position: absolute; top: 1px; left: 1px; width: 2.5px; height: 2.5px; border-radius: 50%; background: white; content: ""; }
-.dailyplank-chick.is-plank .eye-left { left: 16px; }
-.dailyplank-chick.is-plank .eye-right { left: 34px; }
-.dailyplank-chick.is-plank .chick-beak { top: 28px; left: 27px; width: 10px; height: 7px; border-radius: 2px 2px 5px 5px; background: #ff9838; }
-.dailyplank-chick.is-plank .chick-blush { top: 31px; left: 8px; width: 9px; height: 5px; border-radius: 4px; background: #ffab91; opacity: .8; }
-.dailyplank-chick.is-plank .chick-forearm { top: 48px; width: 9px; height: 14px; border: 2px solid #f5b800; border-radius: 4px; background: #ffc93a; }
-.dailyplank-chick.is-plank .arm-left { left: 20px; }
-.dailyplank-chick.is-plank .arm-right { left: 34px; }
-.dailyplank-chick.is-plank .chick-leg { top: 50px; width: 4px; height: 10px; border-radius: 2px; background: #ff9838; transform: rotate(12deg); }
-.dailyplank-chick.is-plank .leg-left { left: 78px; }
-.dailyplank-chick.is-plank .leg-right { left: 68px; }
-.dailyplank-chick.is-plank .chick-sweat { top: 2px; left: 8px; width: 7px; height: 9px; border-radius: 4px 4px 5px 5px; background: #7eb6ff; animation: dailyplank-sweat 1.8s ease-in-out infinite; }
-
-.dailyplank-chick.is-proud { width: 82px; height: 82px; transform: scale(.68); transform-origin: left center; }
-.dailyplank-chick.is-proud .chick-body { top: 10px; left: 6px; width: 70px; height: 62px; border: 2px solid #f5b800; border-radius: 35px 35px 28px 28px; background: #ffd54f; }
-.dailyplank-chick.is-proud .chick-tuft { top: 3px; left: 36px; width: 10px; height: 12px; border: 2px solid #f5b800; border-radius: 6px 6px 6px 0; background: #ffd54f; transform: rotate(-25deg); }
-.dailyplank-chick.is-proud .chick-smile-eye { top: 30px; width: 9px; height: 6px; border-bottom: 3px solid #20242e; border-radius: 0 0 6px 6px; }
-.dailyplank-chick.is-proud .eye-left { left: 22px; }
-.dailyplank-chick.is-proud .eye-right { left: 46px; }
-.dailyplank-chick.is-proud .chick-beak { top: 36px; left: 35px; width: 12px; height: 8px; border-radius: 2px 2px 6px 6px; background: #ff9838; }
-.dailyplank-chick.is-proud .chick-blush { top: 39px; width: 9px; height: 5px; border-radius: 4px; background: #ffab91; opacity: .8; }
-.dailyplank-chick.is-proud .blush-left { left: 16px; }
-.dailyplank-chick.is-proud .blush-right { left: 57px; }
-.dailyplank-chick.is-proud .chick-wing { top: 40px; width: 16px; height: 22px; border: 2px solid #f5b800; border-radius: 8px 8px 10px 10px; background: #ffc93a; }
-.dailyplank-chick.is-proud .wing-left { left: 0; transform: rotate(18deg); }
-.dailyplank-chick.is-proud .wing-right { left: 66px; transform: rotate(-18deg); }
-.dailyplank-chick.is-proud .chick-leg { top: 70px; width: 4px; height: 10px; border-radius: 2px; background: #ff9838; }
-.dailyplank-chick.is-proud .chick-leg::after { position: absolute; top: 8px; left: -3px; width: 10px; height: 4px; border-radius: 2px; background: #ff9838; content: ""; }
-.dailyplank-chick.is-proud .leg-left { left: 30px; }
-.dailyplank-chick.is-proud .leg-right { left: 48px; }
-
-.dailyplank-origin {
-  display: grid;
-  padding: 112px 0 116px;
-  border-bottom: 1px solid var(--dp-line);
-  grid-template-columns: minmax(240px, .48fr) minmax(0, 1.52fr);
-  gap: 44px;
-  align-items: center;
+@media (max-width: 360px) {
+  .dailyplank-shell.site-shell { padding-inline: 16px; }
+  .dailyplank-shell.site-shell .node-switcher a { padding-inline: 7px; }
+  .dailyplank-shell.site-shell .language-switcher button { min-width: 34px; }
+  .dp-actions { gap: 12px; }
+  .dp-primary { padding-inline: 18px; gap: 15px; }
+  .dp-workout-preview { padding-inline: 13px; }
+  .dp-companion img { width: 45px; height: 45px; }
+  .dp-routine { grid-template-columns: 76px minmax(0, 1fr); padding: 20px 17px; gap: 0 14px; }
+  .dp-minutes strong { font-size: 3.4rem; }
+  .dp-coach { padding-inline: 20px; }
 }
-
-.dailyplank-origin-mark {
-  position: relative;
-  display: flex;
-  width: min(100%, 280px);
-  min-height: 310px;
-  padding: 25px;
-  overflow: hidden;
-  border: 1px solid #cbd2e3;
-  background: var(--dp-paper);
-  box-shadow: -12px 14px 0 rgba(56, 89, 217, .065);
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.dailyplank-origin-mark::after {
-  position: absolute;
-  right: -47px;
-  bottom: -58px;
-  width: 150px;
-  height: 150px;
-  border: 22px solid var(--dp-blue-soft);
-  border-radius: 50%;
-  content: "";
-}
-
-.dailyplank-origin-mark span,
-.dailyplank-origin-mark small { color: var(--dp-blue); font: 800 9px monospace; letter-spacing: .15em; }
-.dailyplank-origin-mark strong { color: var(--dp-blue); font: 900 118px/.82 monospace; letter-spacing: -.13em; }
-.dailyplank-origin-mark i { width: 48px; height: 3px; background: var(--dp-coral); }
-.dailyplank-origin-mark small { position: relative; z-index: 1; color: var(--dp-faint); }
-
-.dailyplank-origin-copy > span,
-.dailyplank-section-intro > span,.dailyplank-coach-copy > span,.dailyplank-record-copy > span { color: var(--dp-blue); font: 800 9px monospace; letter-spacing: .13em; }
-.dailyplank-origin-copy > p { margin: 34px 0 14px; color: var(--dp-blue-dark); font-size: 12px; font-weight: 800; }
-.dailyplank-origin-copy h2 { max-width: 820px; margin: 0; color: var(--dp-ink); font-size: clamp(40px, 5vw, 66px); letter-spacing: -.075em; line-height: 1.08; overflow-wrap: break-word; word-break: keep-all; }
-.dailyplank-origin-copy > div { display: grid; max-width: 720px; margin-top: 34px; grid-template-columns: 36px 1fr; gap: 17px; }
-.dailyplank-origin-copy > div i { width: 32px; height: 3px; margin-top: 10px; background: var(--dp-blue); }
-.dailyplank-origin-copy > div p { margin: 0; color: var(--dp-muted); font-size: 14px; line-height: 1.9; }
-
-.dailyplank-section-intro { display: grid; margin-bottom: 65px; grid-template-columns: .48fr 1.52fr; gap: 44px; align-items: start; }
-.dailyplank-section-intro p,.dailyplank-coach-copy > p,.dailyplank-record-copy > p { margin: 0 0 14px; color: var(--dp-blue-dark); font-size: 12px; font-weight: 800; }
-.dailyplank-section-intro h2,.dailyplank-coach h2,.dailyplank-record h2,.dailyplank-final h2 { margin: 0; color: var(--dp-ink); font-size: clamp(40px, 5vw, 66px); letter-spacing: -0.075em; line-height: 1.08; }
-
-.dailyplank-routines { padding: 112px 0 116px; border-bottom: 1px solid var(--dp-line); }
-.dailyplank-routine-rail { border-top: 2px solid var(--dp-ink); }
-.dailyplank-routine-rail article { position: relative; display: grid; min-height: 174px; padding: 25px 0; border-bottom: 1px solid var(--dp-line); grid-template-columns: 150px 1fr 120px; gap: 28px; align-items: center; }
-.dailyplank-minute { display: flex; align-items: baseline; gap: 8px; }
-.dailyplank-minute strong { color: var(--dp-blue); font: 800 clamp(52px,6vw,78px)/1 monospace; letter-spacing: -.08em; }
-.dailyplank-minute span { color: var(--dp-faint); font: 800 8px monospace; }
-.dailyplank-routine-rail small { color: var(--dp-blue); font: 800 8px monospace; text-transform: uppercase; }
-.dailyplank-routine-rail h3 { margin: 10px 0 7px; color: var(--dp-ink); font-size: 23px; letter-spacing: -.045em; }
-.dailyplank-routine-rail p { margin: 0; color: var(--dp-muted); font-size: 12px; line-height: 1.6; }
-.dailyplank-routine-rail article > i { position: relative; display: block; width: 108px; height: 13px; border-radius: 99px; background: var(--dp-blue-soft); }
-.dailyplank-routine-rail article > i::before { position: absolute; top: 0; left: 0; width: var(--routine-width, 35%); height: 100%; border-radius: inherit; background: var(--dp-blue); content: ""; }
-.dailyplank-routine-rail article:nth-child(2) > i::before { --routine-width: 62%; }
-.dailyplank-routine-rail article:nth-child(3) > i::before { --routine-width: 100%; }
-
-.dailyplank-coach { display: grid; padding: 120px 0; border-bottom: 1px solid var(--dp-line); grid-template-columns: minmax(0, .86fr) minmax(440px, 1fr); gap: clamp(55px, 9vw, 120px); align-items: center; }
-.dailyplank-coach-copy h2 { margin-top: 0; }
-.dailyplank-coach-description,.dailyplank-record-copy > div { display: grid; max-width: 570px; margin-top: 34px; grid-template-columns: 36px 1fr; gap: 17px; }
-.dailyplank-coach-description > i,.dailyplank-record-copy > div > i { display: block; width: 32px; height: 3px; margin-top: 10px; background: var(--dp-blue); }
-.dailyplank-coach-description p,.dailyplank-record-copy > div p { margin: 0; color: var(--dp-muted); font-size: 13px; line-height: 1.85; }
-.dailyplank-cue-board { overflow: hidden; border: 1px solid #cbd2e3; background: var(--dp-paper); box-shadow: 13px 16px 0 rgba(56,89,217,.065); }
-.dailyplank-cue-head { display: flex; min-height: 58px; padding: 0 19px; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--dp-line); color: var(--dp-muted); font: 700 8px monospace; letter-spacing: .08em; }
-.dailyplank-cue-head i { padding: 5px 7px; border-radius: 99px; background: #e4f5e8; color: var(--dp-green); font-style: normal; }
-.dailyplank-cue-timeline { position: relative; padding: 12px 21px 6px; }
-.dailyplank-cue-timeline::before { position: absolute; top: 35px; bottom: 32px; left: 81px; width: 1px; background: var(--dp-line); content: ""; }
-.dailyplank-cue-timeline article { position: relative; z-index: 1; display: grid; min-height: 101px; grid-template-columns: 46px 16px 1fr; gap: 13px; align-items: center; }
-.dailyplank-cue-timeline time { color: var(--dp-faint); font: 700 9px monospace; }
-.dailyplank-cue-timeline .cue-dot { display: block; width: 12px; height: 12px; border: 3px solid white; border-radius: 50%; background: var(--dp-blue); box-shadow: 0 0 0 1px var(--dp-blue); }
-.dailyplank-cue-timeline .cue-2 { background: var(--dp-green); box-shadow: 0 0 0 1px var(--dp-green); }
-.dailyplank-cue-timeline .cue-3 { background: var(--dp-coral); box-shadow: 0 0 0 1px var(--dp-coral); }
-.dailyplank-cue-timeline small { color: var(--dp-blue); font: 800 8px monospace; letter-spacing: .13em; }
-.dailyplank-cue-timeline p { margin: 7px 0 0; color: var(--dp-ink); font-size: 12px; font-weight: 700; line-height: 1.55; }
-.dailyplank-wave { display: flex; height: 74px; padding: 0 21px; align-items: center; gap: 5px; border-top: 1px solid var(--dp-line); background: #f9faff; }
-.dailyplank-wave i { width: 3px; height: 12px; border-radius: 3px; background: var(--dp-blue); opacity: .32; }
-.dailyplank-wave i:nth-child(3n) { height: 28px; opacity: .72; }
-.dailyplank-wave i:nth-child(5n) { height: 42px; opacity: 1; }
-.dailyplank-wave i:nth-child(7n) { height: 20px; background: var(--dp-green); }
-
-.dailyplank-record { display: grid; padding: 120px 0; border-bottom: 1px solid var(--dp-line); grid-template-columns: minmax(430px, .95fr) minmax(0, .88fr); gap: clamp(60px, 10vw, 130px); align-items: center; }
-.dailyplank-history-board { border: 1px solid #cbd2e3; background: var(--dp-paper); box-shadow: -13px 16px 0 rgba(56,89,217,.065); }
-.dailyplank-history-head { display: flex; min-height: 58px; padding: 0 19px; border-bottom: 1px solid var(--dp-line); align-items: center; justify-content: space-between; }
-.dailyplank-history-head span { color: var(--dp-ink); font-size: 13px; font-weight: 900; }
-.dailyplank-history-head b { color: var(--dp-faint); font: 700 8px monospace; }
-.dailyplank-week { display: grid; padding: 22px 17px; grid-template-columns: repeat(7,1fr); gap: 7px; }
-.dailyplank-week > span { display: flex; min-width: 0; height: 79px; flex-direction: column; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--dp-line); border-radius: 15px; background: #fafbfe; }
-.dailyplank-week small { color: var(--dp-faint); font-size: 9px; }
-.dailyplank-week b { color: var(--dp-muted); font: 800 11px monospace; }
-.dailyplank-week i { display: grid; width: 18px; height: 18px; border-radius: 50%; place-items: center; color: white; font-size: 9px; font-style: normal; }
-.dailyplank-week .is-done { border-color: #bdc9fa; background: var(--dp-blue-soft); }
-.dailyplank-week .is-done small,.dailyplank-week .is-done b { color: var(--dp-blue-dark); }
-.dailyplank-week .is-done i { background: var(--dp-blue); }
-.dailyplank-stats { display: grid; margin: 0 17px 18px; grid-template-columns: 1fr 1fr; border: 1px solid var(--dp-line); }
-.dailyplank-stats div { display: flex; min-height: 86px; padding: 15px; flex-direction: column; justify-content: center; gap: 5px; }
-.dailyplank-stats div + div { border-left: 1px solid var(--dp-line); }
-.dailyplank-stats span { color: var(--dp-faint); font-size: 10px; font-weight: 700; }
-.dailyplank-stats strong { color: var(--dp-ink); font: 800 26px monospace; }
-.dailyplank-mascot-message { display: grid; min-height: 87px; padding: 0 18px; border-top: 1px solid var(--dp-line); grid-template-columns: 74px 1fr; align-items: center; background: #fff9e8; }
-.dailyplank-mascot-message p { position: relative; margin: 0; padding: 12px 14px; border: 1px solid #eadfbf; border-radius: 14px; background: white; color: var(--dp-ink); font-size: 11px; font-weight: 800; }
-.dailyplank-mascot-message p::before { position: absolute; top: 50%; left: -7px; width: 12px; height: 12px; border-bottom: 1px solid #eadfbf; border-left: 1px solid #eadfbf; background: white; content: ""; transform: translateY(-50%) rotate(45deg); }
-
-.dailyplank-final { padding: 140px 0 130px; text-align: center; }
-.dailyplank-final > p { margin: 0 0 23px; color: var(--dp-blue); font: 800 9px monospace; letter-spacing: .18em; }
-.dailyplank-final h2 { max-width: 850px; margin-inline: auto; }
-.dailyplank-final > div { display: flex; margin-top: 40px; justify-content: center; gap: 10px; }
-.dailyplank-footer { border-color: var(--dp-line); color: var(--dp-faint); }
-.dailyplank-footer .footer-node { border-color: rgba(56,89,217,.42); color: var(--dp-blue); }
-
-html[lang="en"] .dailyplank-hero-copy h1 { font-size: clamp(76px,8vw,110px); }
-html[lang="ja"] .dailyplank-hero-copy h1 { font-size: clamp(68px,7.2vw,99px); }
-
-@keyframes dailyplank-orbit { to { transform: rotate(360deg); } }
-@keyframes dailyplank-sweat { 0%,100% { opacity: .2; transform: translateY(-3px); } 50% { opacity: 1; transform: translateY(2px); } }
-
-@media (max-width: 1000px) {
-  .dailyplank-hero { min-height: auto; grid-template-columns: 1fr; }
-  .dailyplank-console { width: min(100%, 570px); justify-self: center; }
-  .dailyplank-coach,.dailyplank-record { grid-template-columns: 1fr; }
-  .dailyplank-cue-board,.dailyplank-history-board { width: min(100%, 650px); }
-  .dailyplank-record-copy { order: -1; }
-  .dailyplank-origin { grid-template-columns: 210px minmax(0, 1fr); }
-  .dailyplank-origin-mark { min-height: 270px; }
-  .dailyplank-origin-mark strong { font-size: 92px; }
-}
-
-@media (max-width: 760px) {
-  .dailyplank-hero { padding: 70px 0 78px; }
-  .dailyplank-kicker { margin-bottom: 42px; }
-  .dailyplank-hero-copy h1 { font-size: clamp(72px,18vw,102px); }
-  html[lang="en"] .dailyplank-hero-copy h1,html[lang="ja"] .dailyplank-hero-copy h1 { font-size: clamp(66px,17vw,94px); }
-  .dailyplank-section-intro { grid-template-columns: 1fr; gap: 26px; }
-  .dailyplank-origin { padding: 82px 0; grid-template-columns: 1fr; }
-  .dailyplank-origin-mark { width: 190px; min-height: 210px; padding: 19px; }
-  .dailyplank-origin-mark strong { font-size: 72px; }
-  .dailyplank-origin-copy > p { margin-top: 0; }
-  .dailyplank-routines,.dailyplank-coach,.dailyplank-record { padding: 82px 0; }
-  .dailyplank-routine-rail article { grid-template-columns: 110px 1fr; }
-  .dailyplank-routine-rail article > i { display: none; }
-  .dailyplank-section-intro h2,.dailyplank-coach h2,.dailyplank-record h2,.dailyplank-final h2 { font-size: 42px; }
-  .dailyplank-final { padding: 100px 0; }
-}
-
-@media (max-width: 520px) {
-  .dailyplank-kicker { align-items: flex-start; flex-direction: column; gap: 11px; }
-  .dailyplank-hero-copy h2 { margin-top: 43px; }
-  .dailyplank-actions { align-items: stretch; flex-direction: column; }
-  .dailyplank-actions > * { width: 100%; }
-  .dailyplank-status { justify-content: center; }
-  .dailyplank-console { min-height: 590px; margin-top: 20px; }
-  .dailyplank-console::before { inset: 60px 0 25px; }
-  .dailyplank-phone { width: min(100%, 310px); min-height: 570px; border-width: 6px; }
-  .dailyplank-timer { width: 172px; height: 172px; margin-top: 23px; }
-  .dailyplank-timer strong { font-size: 48px; }
-  .dailyplank-mascot-stage { height: 88px; }
-  .dailyplank-console-note { z-index: 3; width: 83px; min-height: 60px; padding: 9px; }
-  .dailyplank-console-note b { font-size: 17px; }
-  .dailyplank-console-note i { display: none; }
-  .note-voice { top: 118px; left: -5px; }
-  .note-haptic { right: -5px; bottom: 89px; }
-  .dailyplank-routine-rail article { min-height: 154px; grid-template-columns: 83px 1fr; gap: 18px; }
-  .dailyplank-minute strong { font-size: 51px; }
-  .dailyplank-routine-rail h3 { font-size: 19px; }
-  .dailyplank-coach,.dailyplank-record { gap: 48px; }
-  .dailyplank-coach-description,.dailyplank-record-copy > div { grid-template-columns: 27px 1fr; gap: 12px; }
-  .dailyplank-origin-copy > div { grid-template-columns: 27px 1fr; gap: 12px; }
-  .dailyplank-origin-copy > div i { width: 23px; }
-  .dailyplank-origin-copy > div p { font-size: 13px; }
-  .dailyplank-coach-description > i,.dailyplank-record-copy > div > i { width: 23px; }
-  .dailyplank-cue-head { padding-inline: 13px; }
-  .dailyplank-cue-timeline { padding-inline: 13px; }
-  .dailyplank-cue-timeline::before { left: 73px; }
-  .dailyplank-cue-timeline article { grid-template-columns: 44px 16px 1fr; gap: 10px; }
-  .dailyplank-wave { padding-inline: 13px; gap: 4px; }
-  .dailyplank-history-head { padding-inline: 13px; }
-  .dailyplank-week { padding: 15px 8px; gap: 4px; }
-  .dailyplank-week > span { height: 70px; border-radius: 11px; }
-  .dailyplank-week small { font-size: 8px; }
-  .dailyplank-week b { font-size: 9px; }
-  .dailyplank-week i { width: 15px; height: 15px; }
-  .dailyplank-stats { margin-inline: 8px; }
-  .dailyplank-mascot-message { padding-inline: 8px; grid-template-columns: 65px 1fr; }
-  .dailyplank-final > div { align-items: stretch; flex-direction: column; }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .dailyplank-console::before,.dailyplank-chick .chick-sweat { animation: none; }
+  .dailyplank-shell *, .dailyplank-shell *::before, .dailyplank-shell *::after { animation: none !important; transition: none !important; }
+  .dp-primary:hover { transform: none; }
 }

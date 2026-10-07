@@ -1,8 +1,12 @@
-import { productApps, appDetailPath, type ProductApp } from "./apps";
+import { productApps, appIntroductionHref, type ProductApp } from "./apps";
 import { AppIcon } from "./AppIcon";
 import { CatalogControls, CatalogEmpty, useCatalog } from "./CatalogControls";
 import { catalogCopy } from "./catalog";
-import { BotanicalBloom, botanicalLeafPaths } from "./BotanicalBloom";
+import { CatalogPreviewProvider, CatalogPreviewTrigger } from "./CatalogPreview";
+import { BlueMoonFeature } from "./BlueMoonFeature";
+import { blueMoonCopy } from "./bluemoon-content";
+import { ProductivityCollection } from "./ProductivityCollection";
+import { MediaCollections } from "./MediaCollections";
 import { type Locale, ui } from "./i18n";
 import { SHOW_HORROR_DOPAMINE } from "./visibility";
 
@@ -16,7 +20,7 @@ function ProjectLink({ app, locale, basePath, priority }: { app: ProductApp; loc
   const content = app.content[locale];
   const labels = hubCopy[locale];
   const external = app.links.find((link) => link.kind === "web") ?? app.links.find((link) => link.kind === "appStore");
-  const aboutHref = `${basePath}${appDetailPath(app) ?? `apps/#${app.id}`}`;
+  const aboutHref = appIntroductionHref(app, basePath) ?? `${basePath}apps/#${app.id}`;
   const destination = external?.kind === "appStore" ? labels.store
     : external?.kind === "web" ? (app.platforms.includes("WEB DEMO") ? labels.demo : labels.web)
     : labels.about;
@@ -39,6 +43,7 @@ function ProjectLink({ app, locale, basePath, priority }: { app: ProductApp; loc
         <div className="hub-card-actions">
           <span className="hub-destination">{destination}</span>
           {external && <a className="hub-about-link" href={aboutHref} aria-label={`${content.displayName} · ${labels.about}`}>{labels.about}</a>}
+          <CatalogPreviewTrigger app={app} locale={locale} />
         </div>
       </div>
       <span className="hub-card-arrow" aria-hidden="true">{external ? "↗" : "→"}</span>
@@ -53,37 +58,34 @@ export function LinkHub({ locale, basePath }: { locale: Locale; basePath: string
 
   return (
     <div className="hub-layout" id="page-content" tabIndex={-1}>
-      <section className="garden-hero hub-profile" aria-labelledby="root-page-title">
+      <BlueMoonFeature locale={locale} basePath={basePath} />
+      <ProductivityCollection locale={locale} basePath={basePath} />
+      <MediaCollections locale={locale} basePath={basePath} />
+      <section className="hub-profile" aria-labelledby="root-maker-title">
         <div className="hub-profile-copy">
-          <p className="hub-eyebrow">INDEPENDENT MAKER</p>
-          <h1 id="root-page-title">{copy.rootTitle}<span aria-hidden="true">.</span></h1>
-          <p className="hub-promise">{copy.rootTitleAccent}</p>
-          <p className="hub-bio">{copy.rootDescription[0]}</p>
+          <h2 id="root-maker-title">{copy.rootTitle}<span aria-hidden="true">.</span></h2>
+          <p className="hub-promise">{blueMoonCopy[locale].makerPromise}</p>
+          <p className="hub-bio">{blueMoonCopy[locale].creator}</p>
         </div>
-        <div className="garden-hero-flower hub-profile-flower" aria-hidden="true">
-          <BotanicalBloom basePath={basePath} />
-        </div>
-        <p className="hub-profile-note"><span aria-hidden="true">↳</span> IDEAS, TAKING ROOT.</p>
       </section>
 
       <section className="garden-index hub-index" id="work-index" aria-labelledby="root-work-title">
         <header className="hub-index-heading">
-          <div><p className="hub-eyebrow">{labels.collection}</p><h2 id="root-work-title">{copy.appsCardTitle}<span className="hub-count">{String(productApps.length).padStart(2, "0")}</span></h2></div>
+          <div><h2 id="root-work-title">{copy.appsCardTitle}<span className="hub-count">{String(productApps.length).padStart(2, "0")}</span></h2></div>
           <a className="hub-collection-link" href={`${basePath}apps/`}>{labels.browse}<span aria-hidden="true">↗</span></a>
         </header>
         <CatalogControls catalog={catalog} locale={locale} resultsId="hub-app-results" />
+        <CatalogPreviewProvider locale={locale} basePath={basePath} theme="dark">
         <ul className="hub-link-list" id="hub-app-results">
           {catalog.apps.map((app, index) => <ProjectLink key={app.id} app={app} locale={locale} basePath={basePath} priority={index < 2} />)}
         </ul>
+        </CatalogPreviewProvider>
         {catalog.apps.length === 0 && <CatalogEmpty locale={locale} reset={catalog.reset} />}
 
         {SHOW_HORROR_DOPAMINE && <a className="hub-channel-link" href={`${basePath}channels/`}><span>{copy.channelsCardTitle}</span><span aria-hidden="true">↗</span></a>}
 
-        <aside className="hub-next" aria-label={copy.rootFutureTitle}>
-          <div><p className="hub-eyebrow">NEXT BLOOM</p><p>{labels.next}</p></div>
-          <div className="future-buds" aria-hidden="true">
-            {[2, 0, 1].map((leaf, index) => <img className={`future-leaf future-leaf-${index + 1}`} src={`${basePath}${botanicalLeafPaths[leaf]}`} alt="" loading="lazy" decoding="async" key={index} />)}
-          </div>
+        <aside className="hub-next" aria-label={blueMoonCopy[locale].next}>
+          <p>{blueMoonCopy[locale].next}</p>
         </aside>
       </section>
     </div>

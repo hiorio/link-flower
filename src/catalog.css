@@ -15,6 +15,18 @@
 .catalog-filters button[aria-pressed="true"] { background: var(--catalog-selected); color: var(--catalog-on-selected); }
 .catalog-filters button span { font-size: 12px; font-variant-numeric: tabular-nums; }
 .catalog-filters button:hover { border-color: var(--catalog-line); }
+.catalog-purpose-row { margin-top: 18px; }
+.catalog-availability-row { margin-top: 14px; }
+.catalog-group-label { margin: 0 0 6px; color: var(--catalog-muted); font-size: 13px; line-height: 1.5; }
+.catalog-purpose-chips { gap: 6px; }
+.catalog-purpose-chips button { border-color: var(--catalog-line); border-radius: 24px; color: var(--catalog-ink); }
+.catalog-purpose-chips button[aria-pressed="true"] { border-color: var(--catalog-selected); }
+.catalog-filter-hint { margin: 4px 0; color: var(--catalog-muted); font-size: 13px; line-height: 1.6; }
+.catalog-active-filters { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--catalog-line); }
+.catalog-active-filters button { display: inline-flex; align-items: center; gap: 8px; max-width: 100%; min-height: 44px; padding: 8px 12px; border: 1px solid var(--catalog-line); border-radius: 8px; background: var(--catalog-field); color: var(--catalog-ink); font: inherit; font-size: 13px; cursor: pointer; }
+.catalog-active-filters button > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.catalog-active-filters svg { width: 16px; height: 16px; flex-shrink: 0; }
+.catalog-active-filters .catalog-reset { border-color: transparent; background: transparent; text-decoration: underline; text-underline-offset: 4px; }
 .catalog-result-count { margin: 4px 0; color: var(--catalog-muted); font-size: 13px; }
 .catalog-empty { padding: 48px 20px; border: 1px dashed #8a9696; border-radius: 12px; text-align: center; }
 .catalog-empty p { margin: 0 0 12px; font-size: 16px; }

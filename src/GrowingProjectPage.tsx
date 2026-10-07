@@ -28,12 +28,15 @@ export function GrowingProjectPage({ project, header, locale, basePath }: { proj
           <h1 id="growing-title">{text.headline.map((line) => <span key={line}>{line}</span>)}</h1>
           <p className="growing-intro">{content.description}</p>
           <a className="growing-explore" href="#growing-features">{l.explore}<span aria-hidden="true">↓</span></a>
-          <p className="growing-platforms">{app.platforms.join(" / ")}<span>v{app.version}</span></p>
+          <p className="growing-platforms">{app.platforms.join(" / ")}{app.version && <span>v{app.version}</span>}</p>
           <p className="growing-pending">{l.pending}</p>
         </div>
         <figure className="growing-visual">
           {media ? <div className="growing-media-pair">
             {[media, ...(secondaryMedia ? [secondaryMedia] : [])].map((item, index) => <a className="growing-image-link" href={`${basePath}${item.src}`} target="_blank" rel="noreferrer" key={item.src} aria-label={`${content.displayName} · ${l.open} ${index + 1}`}><img src={`${basePath}${item.src}`} width={item.width} height={item.height} alt={index === 0 ? text.mediaAlt : text.mediaCaption} decoding="async" fetchPriority={index === 0 ? "high" : "auto"} /></a>)}
+          </div> : project.layout === "workflow" ? <div className="growing-workflow" role="group" aria-label={text.mediaAlt}>
+            <h2>{content.tagline}</h2>
+            <ol>{content.features.map((feature, index) => <li key={feature}><span aria-hidden="true">{index + 1}</span><strong>{feature}</strong><p>{text.featureDetails[index]}</p></li>)}</ol>
           </div> : <div className="journey-diagram" role="img" aria-label={text.mediaAlt}>
             <p className="journey-ticket-label">TIMEJOURNEY / CONCEPT</p>
             <h2>{l.journey}</h2>
