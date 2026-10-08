@@ -9,7 +9,7 @@ body:has(.link-hub)::-webkit-scrollbar-thumb{background:#2455e6}
 .link-hub::before,.link-hub::after{display:none}
 .link-hub ::selection{background:#2455e6;color:#fff}
 .link-hub :is(h1,h2,h3,p){text-shadow:none}
-.link-hub :is(h1,h2,h3){text-wrap:balance;letter-spacing:-.035em}
+.site-shell.link-hub :is(h1,h2,h3){text-wrap:balance;letter-spacing:-.035em}
 .link-hub :is(a,button,input){-webkit-tap-highlight-color:transparent}
 .link-hub :is(a,button):focus-visible{outline:3px solid currentColor;outline-offset:5px}
 .link-hub .network-bar{position:relative;min-height:92px;margin-inline:var(--home-gutter);padding:16px 0;gap:24px;border-bottom:1px solid var(--hub-line);background:var(--hub-page);font-family:inherit;box-shadow:none}
@@ -30,7 +30,7 @@ body:has(.link-hub)::-webkit-scrollbar-thumb{background:#2455e6}
 .hiorio-intro{padding:56px var(--home-gutter) 48px}
 .hiorio-masthead{width:100%;mix-blend-mode:multiply}
 .hiorio-intro-bottom{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-top:42px}
-.hiorio-intro h1{margin:0;max-width:16ch;font-size:clamp(29px,3.35vw,50px);font-weight:800;line-height:1.25;word-break:keep-all}
+.link-hub .hiorio-intro h1{margin:0;max-width:16ch;font-size:clamp(29px,3.35vw,50px);font-weight:800;line-height:1.25;word-break:keep-all}
 .hiorio-intro-note{flex:0 1 350px}
 .hiorio-intro-note p{color:var(--hub-muted);margin:0 0 13px;font-size:15px;line-height:1.7;word-break:keep-all}
 .hiorio-intro-note a{display:inline-flex;align-items:center;gap:32px;min-height:44px;color:var(--hub-accent);font-size:15px;font-weight:750;text-decoration:underline;text-underline-offset:6px}
@@ -116,7 +116,7 @@ html[lang=ja] .link-hub :is(h1,h2,h3,p,a){word-break:normal}
  .site-shell.link-hub .network-name{font-size:14px;gap:7px}.link-hub .network-logo{width:30px;height:30px}
  .link-hub .network-controls{gap:10px}.link-hub .node-switcher{display:none}.link-hub .language-switcher button{min-width:36px;padding-inline:8px}
  .hiorio-intro{padding-block:34px 35px}.hiorio-intro-bottom{display:block;margin-top:26px}
- .hiorio-intro h1{max-width:18ch;font-size:30px;line-height:1.25}.hiorio-intro-note{margin-top:18px}
+ .link-hub .hiorio-intro h1{max-width:18ch;font-size:30px;line-height:1.25}.hiorio-intro-note{margin-top:18px}
  .hiorio-intro-note p{max-width:33ch;font-size:14px;margin-bottom:5px}.hiorio-intro-note a{font-size:14px}
  .hiorio-feature-field{padding-block:34px 36px}.link-hub .bm-feature{grid-template-columns:minmax(0,1fr);gap:28px}
  .link-hub .bm-brand{margin-bottom:23px}.link-hub .bm-brand strong{font-size:24px}

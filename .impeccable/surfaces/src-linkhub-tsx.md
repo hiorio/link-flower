@@ -5,9 +5,9 @@ primary_target: "src/LinkHub.tsx"
 related_targets: ["src/hiorio-home.css","src/HiorioIntro.tsx","src/HiorioLogo.tsx"]
 ---
 
-# HIORIO homepage — approved logo identity
+# HIORIO app directory — approved logo identity
 
-Scope: `/`, shared brand mark and favicon. Experience mode; visitors discover independently made apps and open the right existing product destination. Preserve 21 public products, states, real captures, category membership, search, previews and Korean/English/Japanese.
+Scope: `/apps/` (including direct `/apps/index.html`), shared brand mark and favicon. The user moved this complete former homepage here on 2026-10-09; its approved world and composition are preserved. Experience mode; visitors discover independently made apps and open the right existing product destination. Preserve 21 public products, relative order, states, real captures, category membership, search, previews and Korean/English/Japanese. Both home and app-directory tabs stay visible on mobile. Legacy root product/group hashes redirect here, and `app-products-title` resolves to the registry. The separate brand/creator entrance at `/` is owned by `src-hioriolanding-tsx.md` and inherits the same FORM seed; no new-world roll.
 
 ## Direction contract
 THESIS: A bold independent software catalogue built around the user's selected organic H and cobalt identity. Actual apps remain the work on display.

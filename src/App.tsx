@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-import { productApps, appIntroductionHref } from "./apps";
-import { AppIcon } from "./AppIcon";
-import { CatalogControls, CatalogEmpty, useCatalog } from "./CatalogControls";
-import { catalogCopy } from "./catalog";
-import { CatalogPreviewProvider, CatalogPreviewTrigger } from "./CatalogPreview";
+import { productApps } from "./apps";
 import { GrowingProjectPage } from "./GrowingProjectPage";
 import { DayMirrorPage } from "./DayMirrorPage";
 import { growingProjects } from "./growing-projects";
@@ -18,12 +14,10 @@ import { TimeFlowerPage, timeFlowerCopy } from "./TimeFlowerPage";
 import { TimeRootsPage, timeRootsCopy } from "./TimeRootsPage";
 import { BiondamaePage, biondamaeCopy } from "./BiondamaePage";
 import { LinkHub } from "./LinkHub";
-import { BlueMoonFeature } from "./BlueMoonFeature";
+import { HiorioLanding, hiorioLandingCopy } from "./HiorioLanding";
 import { BlueMoonPage } from "./BlueMoonPage";
-import { blueMoonCopy } from "./bluemoon-content";
-import { ProductivityCollection, ProductivityCollectionPage } from "./ProductivityCollection";
+import { ProductivityCollectionPage } from "./ProductivityCollection";
 import { productivityCopy } from "./productivity-collection";
-import { MediaCollections } from "./MediaCollections";
 import { SHOW_HORROR_DOPAMINE } from "./visibility";
 import { useSiteMotion } from "./useSiteMotion";
 import { HiorioLogo } from "./HiorioLogo";
@@ -67,7 +61,7 @@ function getRoute(): RouteId {
   if (relativePath === "apps/leaf-message") return "leafmessage";
   if (relativePath === "apps/ringtone") return "ringtone";
   if (relativePath === "channels" || relativePath === "horror") return SHOW_HORROR_DOPAMINE ? relativePath : "root";
-  if (relativePath === "apps") return relativePath;
+  if (relativePath === "apps" || relativePath === "apps/index.html") return "apps";
   return "root";
 }
 
@@ -116,15 +110,15 @@ function SiteHeader({ activeRoute, copy, locale, setLocale }: {
   );
 }
 
-function RootPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; setLocale: (locale: Locale) => void }) {
+function RootPage({ copy, locale, setLocale, directory = false }: { copy: Copy; locale: Locale; setLocale: (locale: Locale) => void; directory?: boolean }) {
   return (
-    <main className="site-shell root-shell link-hub">
-      <SiteHeader activeRoute="root" copy={copy} locale={locale} setLocale={setLocale} />
+    <main className={`site-shell root-shell link-hub ${directory ? "directory-page" : "brand-page"}`}>
+      <SiteHeader activeRoute={directory ? "apps" : "root"} copy={copy} locale={locale} setLocale={setLocale} />
 
-      <LinkHub locale={locale} basePath={basePath} />
+      {directory ? <LinkHub locale={locale} basePath={basePath} /> : <HiorioLanding locale={locale} basePath={basePath} />}
 
       <footer className="site-footer root-footer">
-        <a href={routeHref("root")} aria-label="HIORIO"><HiorioLogo basePath={basePath} tone="white" /><span>HIORIO</span></a><span>APPS & SERVICES · © 2026</span>
+        <a href={routeHref("root")} aria-label="HIORIO"><HiorioLogo basePath={basePath} tone="white" /><span>HIORIO</span></a><span>{directory ? "APPS & SERVICES" : "MAKER / STORIES"} · © 2026</span>
         <BusinessInfo locale={locale} />
       </footer>
     </main>
@@ -173,165 +167,6 @@ function ChannelsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale;
 
       <footer className="site-footer">
         <div><span className="footer-node">NODE_02-A</span><p>{copy.channelsFooter}</p></div><span>© 2026 LINK FLOWER</span>
-      </footer>
-    </main>
-  );
-}
-
-function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; setLocale: (locale: Locale) => void }) {
-  const catalog = useCatalog();
-  const labels = catalogCopy[locale];
-  const linkLabel = (kind: "web" | "appStore" | "support") => ({ web: copy.appLinkWeb, appStore: copy.appLinkAppStore, support: copy.appLinkSupport })[kind];
-  const statusLabel = (status: (typeof productApps)[number]["status"]) => ({
-    live: copy.appStatus,
-    preparing: copy.appStatusPreparing,
-    demo: copy.appStatusDemo,
-    testing: labels.testing,
-    development: labels.development,
-  })[status];
-  const liveCount = productApps.filter((app) => app.status === "live").length;
-  const detailHref = (app: (typeof productApps)[number]) => appIntroductionHref(app, basePath);
-
-  return (
-    <main className="site-shell development-shell apps-showcase-shell">
-      <div className="development-grid-bg" aria-hidden="true" />
-      <SiteHeader activeRoute="apps" copy={copy} locale={locale} setLocale={setLocale} />
-
-      <section className="apps-showcase-hero" id="page-content" aria-labelledby="apps-page-title">
-        <div className="apps-showcase-copy">
-          <div className="apps-hero-eyebrow">
-            <span>{copy.appsKicker}</span>
-            <span>DESIGN / GROW / OPERATE</span>
-            <b aria-hidden="true">2026</b>
-          </div>
-          <h1 id="apps-page-title" className="apps-hero-title">{copy.appsTitle}</h1>
-          <p className="apps-hero-description">
-            {copy.appsDescription.map((line) => <span key={line}>{line}</span>)}
-          </p>
-          <nav className="apps-hero-actions" aria-label={copy.appsPageNavLabel}>
-            <a className="apps-hero-primary" href="#app-products-title">{copy.appsBrowseLabel}<span aria-hidden="true">↘</span></a>
-            <a href="#app-principles-title">{copy.appsPrinciplesLink}<span aria-hidden="true">→</span></a>
-          </nav>
-          <dl className="apps-hero-stats">
-            <div><dt>{copy.appsTotalLabel}</dt><dd>{String(productApps.length).padStart(2, "0")}</dd></div>
-            <div><dt>{copy.appsLiveLabel}</dt><dd>{String(liveCount).padStart(2, "0")}</dd></div>
-          </dl>
-        </div>
-        <aside className="apps-directory" aria-labelledby="apps-directory-title">
-          <header className="apps-directory-head">
-            <div><span>PRODUCT DIRECTORY</span><strong id="apps-directory-title">{copy.appsDirectoryLabel}</strong></div>
-            <b>{String(productApps.length).padStart(2, "0")}</b>
-          </header>
-          <nav className="apps-directory-nav" aria-label={copy.appsSectionTitle}>
-            <ul className="apps-directory-list">
-              {productApps.slice(0, 6).map((app) => {
-                const content = app.content[locale];
-                return (
-                  <li key={app.id}>
-                    <a className={`apps-directory-item directory-${app.accent}`} href={`#${app.id}`} onClick={catalog.reset}>
-                      <span className="apps-directory-number">{app.order}</span>
-                      <AppIcon app={app} basePath={basePath} locale={locale} size={58} />
-                      <span className="apps-directory-name"><strong>{content.displayName}</strong><small>{content.tagline}</small></span>
-                      <span className={`apps-directory-status status-${app.status}`}><i />{statusLabel(app.status)}</span>
-                      <span className="apps-directory-arrow" aria-hidden="true">↓</span>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-          <a className="apps-directory-more" href="#app-products-title">{copy.appsBrowseLabel} · {productApps.length}<span aria-hidden="true">↓</span></a>
-          <footer className="apps-directory-foot">
-            <span>HIORIO / PRODUCT LAB</span>
-            <div aria-label={copy.appsStatusLegend}>
-              <span><i className="is-live" />{copy.appStatus} {liveCount}</span>
-              <span>{labels.inProgress} {productApps.length - liveCount}</span>
-            </div>
-          </footer>
-        </aside>
-      </section>
-
-      <BlueMoonFeature locale={locale} basePath={basePath} variant="compact" />
-      <ProductivityCollection locale={locale} basePath={basePath} />
-      <MediaCollections locale={locale} basePath={basePath} />
-      <section className="apps-showcase-products" aria-labelledby="app-products-title">
-        <header className="apps-section-heading">
-          <div><span className="apps-section-index">01</span><div><small>PRODUCT INDEX</small><h2 id="app-products-title">{copy.appsSectionTitle}</h2></div></div>
-          <p>{copy.appsSectionHint}</p>
-        </header>
-        <CatalogControls catalog={catalog} locale={locale} resultsId="catalog-app-results" />
-        <CatalogPreviewProvider locale={locale} basePath={basePath}>
-        <div className="apps-product-list" id="catalog-app-results">
-          {catalog.apps.map((app) => {
-            const content = app.content[locale];
-            const internalHref = detailHref(app);
-            return (
-              <article className={`apps-product-card product-${app.accent}`} id={app.id} key={app.id} tabIndex={-1}>
-                <header className="apps-product-rail">
-                  <div><i /><span>APP / {app.order}</span><span>HIORIO PRODUCT</span></div>
-                  <span className={`apps-product-status status-${app.status}`}><i />{statusLabel(app.status)}</span>
-                </header>
-                <div className="apps-product-body">
-                  <div className="apps-product-identity">
-                    <span className="apps-product-icon"><AppIcon app={app} basePath={basePath} locale={locale} size={128} /></span>
-                    <div>
-                      <span className="apps-product-code">{app.code}</span>
-                      <h3>{content.displayName}</h3>
-                      <strong>{content.tagline}</strong>
-                    </div>
-                  </div>
-                  <div className="apps-product-story">
-                    <p>{content.description}</p>
-                    <div className="apps-product-features">
-                      <span>{copy.appsFeaturesLabel}</span>
-                      <ol>{content.features.map((feature, index) => <li key={feature}><b>{String(index + 1).padStart(2, "0")}</b><span>{feature}</span></li>)}</ol>
-                    </div>
-                  </div>
-                </div>
-                <footer className="apps-product-foot">
-                  <dl>
-                    <div><dt>{copy.appsPlatformsLabel}</dt><dd>{app.platforms.map((platform) => <span key={platform}>{platform}</span>)}</dd></div>
-                    {app.version && <div><dt>{copy.appsVersionLabel}</dt><dd>v{app.version}</dd></div>}
-                  </dl>
-                  <div className="apps-product-links">
-                    <CatalogPreviewTrigger app={app} locale={locale} />
-                    {internalHref && <a className="is-primary" href={internalHref}>{copy.appDetail} <span aria-hidden="true">→</span></a>}
-                    {app.links.map((link, index) => <a className={!internalHref && index === 0 ? "is-primary" : undefined} href={link.href} key={link.kind} target="_blank" rel="noreferrer"
-                      aria-label={`${copy.appLinkLabel(content.displayName)} — ${linkLabel(link.kind)}`}>
-                      {linkLabel(link.kind)} <span aria-hidden="true">↗</span>
-                    </a>)}
-                  </div>
-                </footer>
-              </article>
-            );
-          })}
-        </div>
-        </CatalogPreviewProvider>
-        {catalog.apps.length === 0 && <CatalogEmpty locale={locale} reset={catalog.reset} />}
-      </section>
-
-      <section className="apps-method" aria-labelledby="app-principles-title">
-        <div className="apps-method-intro">
-          <span>02 / OPERATING PRINCIPLES</span>
-          <h2 id="app-principles-title">{copy.appsPrinciplesTitle}</h2>
-          <p>{copy.appsPrinciplesHint}</p>
-        </div>
-        <div className="apps-method-list">
-          {copy.appsPrinciples.map((principle, index) => (
-            <article className="apps-method-item" key={principle.code}>
-              <header><span>{String(index + 1).padStart(2, "0")}</span><small>{principle.code}</small></header>
-              <h3>{principle.title}</h3>
-              <p>{principle.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <footer className="site-footer apps-showcase-footer">
-        <a href={routeHref("root")}>{copy.appsBackHome}<span aria-hidden="true">↖</span></a>
-        <div><span className="footer-node">APPS / SERVICES</span><p>{copy.appsFooter}</p></div>
-        <div><a href="#page-content">{copy.appsBackTop} <span aria-hidden="true">↑</span></a><span>© 2026 HIORIO</span></div>
-        <BusinessInfo locale={locale} />
       </footer>
     </main>
   );
@@ -401,8 +236,24 @@ export default function App() {
   useSiteMotion(route);
 
   useEffect(() => {
+    const anchor = window.location.hash.slice(1);
+    const directoryAnchors = new Set(["work-index", "root-work-title", "hiorio-title", "photo-services", "vision-services", "health-services", "everyday-services", ...productApps.map(app => app.id)]);
+    if (route === "root" && directoryAnchors.has(anchor)) {
+      window.location.replace(`${routeHref("apps")}#${anchor}`);
+    } else if (route === "apps" && anchor) {
+      const target = anchor === "app-products-title" ? "work-index" : anchor;
+      if (target !== anchor) window.history.replaceState(null, "", `#${target}`);
+      let cancelled = false;
+      void document.fonts.ready.then(() => {
+        if (!cancelled) document.getElementById(target)?.scrollIntoView({ behavior: "instant", block: "start" });
+      });
+      return () => { cancelled = true; };
+    }
+  }, [route]);
+
+  useEffect(() => {
     const metadata = {
-      root: [blueMoonCopy[locale].homeTitle, blueMoonCopy[locale].homeDescription], channels: [copy.channelsPageTitle, copy.channelsPageDescription],
+      root: [hiorioLandingCopy[locale].title, hiorioLandingCopy[locale].description], channels: [copy.channelsPageTitle, copy.channelsPageDescription],
       productivity: [productivityCopy[locale].pageTitle, productivityCopy[locale].description],
       apps: [copy.appsPageTitle, copy.appsPageDescription], dohwaji: [copy.dohwajiPageTitle, copy.dohwajiPageDescription],
       timeflower: [timeFlowerCopy[locale].pageTitle, timeFlowerCopy[locale].pageDescription],
@@ -421,7 +272,7 @@ export default function App() {
   }, [copy, locale, route, project]);
 
   if (SHOW_HORROR_DOPAMINE && route === "channels") return <ChannelsPage copy={copy} locale={locale} setLocale={setLocale} />;
-  if (route === "apps") return <AppsPage copy={copy} locale={locale} setLocale={setLocale} />;
+  if (route === "apps") return <RootPage copy={copy} locale={locale} setLocale={setLocale} directory />;
   if (route === "productivity") return <ProductivityCollectionPage header={<SiteHeader activeRoute="apps" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} basePath={basePath} />;
   if (project?.app.id === "bluemoon") return <BlueMoonPage header={<SiteHeader activeRoute="project" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} basePath={basePath} />;
   if (project?.app.id === "daymirror") return <DayMirrorPage project={project} header={<SiteHeader activeRoute="project" copy={copy} locale={locale} setLocale={setLocale} />} locale={locale} basePath={basePath} />;

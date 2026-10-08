@@ -76,9 +76,9 @@ test("TimeRoots의 독립 경로와 운영 링크, 주·월 예시 합계가 일
 });
 
 const pages = [
-  ["../dist/index.html", "HIORIO | BlueMoon과 직접 만드는 앱·서비스"],
+  ["../dist/index.html", "HIORIO | 만드는 사람, 이어지는 이야기"],
   ["../dist/collections/productivity/index.html", "작은 도구의 생태계 | HIORIO 생산성 보조 도구"],
-  ["../dist/apps/index.html", "틔운 앱들 | Hiorio"],
+  ["../dist/apps/index.html", "앱과 서비스 | HIORIO"],
   ["../dist/apps/dohwaji/index.html", "도화지 | 함께 만드는 모임 동선 지도"],
   ["../dist/apps/timeflower/index.html", "TimeFlower | 함께 쓰는 공유 캘린더"],
   ["../dist/apps/timeroots/index.html", "TimeRoots | 하루의 기록이 삶의 흐름으로"],
@@ -190,7 +190,7 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /Product directory/);
   assert.match(javascript, /プロダクト一覧/);
   assert.match(javascript, /제품 살펴보기/);
-  assert.match(javascript, /apps-showcase-copy/);
+  assert.match(javascript, /hiorio-landing-copy/);
   assert.doesNotMatch(javascript, /apps-hero-copy/);
   assert.match(javascript, /나부터 필요로 하는 것을 만듭니다/);
   assert.match(javascript, /더 많은 사람이 쉽게 닿을 수 있도록/);
@@ -269,17 +269,15 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(javascript, /--garden-trunk-x/);
   assert.match(javascript, /--garden-future-x/);
   assert.match(javascript, /pointercancel/);
-  assert.match(stylesheet, /apps-showcase-hero/);
-  assert.match(stylesheet, /apps-directory-item/);
-  assert.match(stylesheet, /apps-product-card/);
-  assert.match(stylesheet, /apps-method-item/);
-  assert.match(stylesheet, /product-sprout/);
-  assert.match(stylesheet, /product-leaf/);
+  assert.match(stylesheet, /hiorio-landing-hero/);
+  assert.match(stylesheet, /hiorio-maker/);
+  assert.match(stylesheet, /hiorio-ecosystem-row/);
+  assert.match(stylesheet, /hub-link-list/);
   assert.match(stylesheet, /ssak-hero/);
   assert.match(stylesheet, /ssak-capture-grid/);
   assert.match(stylesheet, /leafmessage-hero/);
   assert.match(stylesheet, /leafmessage-presentation/);
-  assert.match(stylesheet, /\.apps-product-links a\{[^}]*min-height:44px/);
+  assert.match(stylesheet, /\.directory-page \.hub-card-actions :is\(a,button\)\{[^}]*min-height:44px/);
   assert.match(stylesheet, /prefers-reduced-motion:reduce/);
   assert.doesNotMatch(stylesheet, /hiorio-botanical-sway/);
 
@@ -327,7 +325,7 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   assert.match(ringtoneHtml, /twitter:card/);
 });
 
-test("메인과 앱 목록은 도화지·싹 메모·DayMirror·RUN POST를 우선 표시한다", async () => {
+test("앱 목록은 도화지·싹 메모·DayMirror·RUN POST의 순서를 유지한다", async () => {
   assert.deepEqual(productApps.map((entry) => entry.id), [
     "dohwaji", "ssakmemo", "daymirror", "hiho-run", "timeflower", "dailyplank", "biondamae", "leaf-message",
     "countlens", "duo-studio", "archive-ink", "time-journey",
@@ -343,7 +341,7 @@ test("메인과 앱 목록은 도화지·싹 메모·DayMirror·RUN POST를 우�
   }
   assert.equal(appDetailPath(runPost), "apps/hiho-run/", "기존 상세 링크를 유지합니다");
 
-  for (const path of ["../src/LinkHub.tsx", "../src/App.tsx"]) {
+  for (const path of ["../src/LinkHub.tsx"]) {
     const source = await readFile(new URL(path, import.meta.url), "utf8");
     assert.match(source, /import \{ productApps\b[^}]*\} from "\.\/apps"/);
     assert.match(source, /catalog\.apps\.map\(/);

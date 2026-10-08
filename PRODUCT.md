@@ -1,5 +1,15 @@
 # Link Flower / HIORIO
 
+## Brand and creator entrance confirmed 2026-10-09
+
+The user moved the complete existing homepage to `/apps/` and replaced `/` with an introduction to HIORIO and its creator, independent ecosystems and BlueMoon as a future flagship business. The approved organic H, cobalt, warm white and self-hosted HIORIO Sans identity remains fixed. This is an authorized recomposition within that world, not a replacement identity. The root has no full catalog, search or purpose filters; `/apps/` retains the original 21 public products, relative order, statuses, purpose groups, filters, search and screenshot previews.
+
+The creator biography is an authorized initial draft about independently making and refining useful tools. Do not invent credentials or history. Personal SNS, blog and media links will be supplied later; their current placements are honest non-interactive pending text. Hidden horror destinations remain hidden. Existing app and botanical-collection destinations are genuine links; the grouping continues to describe independent tools, without promising integration. BlueMoon's future-business positioning does not change its development status or imply a verified public download.
+
+Both routes retain visible mobile navigation, Korean/English/Japanese, the authorized business disclosure without residential details and independent product pages. Old root product/group anchors redirect to the directory; the old `app-products-title` alias and direct `/apps/index.html` access remain supported. Sources: `src/HiorioLanding.tsx`, `src/hiorio-landing.css`, `src/LinkHub.tsx` and `src/App.tsx`; scoped composition is recorded in `.impeccable/surfaces/src-hioriolanding-tsx.md` and `.impeccable/surfaces/src-linkhub-tsx.md`.
+
+Earlier sections below are dated request history. Claims that the home and `/apps/` share catalog/search, that homepage redesign was unapproved, or that `/apps/` retains the earlier Slate/Taupe register are superseded by this direction. Product facts, registry memberships, native-source boundaries and privacy commitments remain authoritative.
+
 ## Logo and homepage redesign confirmed 2026-10-08
 
 The user selected the first round's concept 02: a heavy organic H with a long oval opening on the left and round opening on the right. They approved warm-white/black treatments and cobalt blue (`#2455E6`) and explicitly requested applying the logo to the page and redesigning the homepage to be bold and experimental. This supersedes prior statements that homepage redesign was unapproved or that its Slate/Taupe visual system must remain fixed. The confirmed scope is the homepage, shared HIORIO logo, favicon and home social preview; individual product experiences retain their identities. The 21 public products, flagship BlueMoon, real screenshots, purpose groups, actual links, lifecycle states and ko/en/ja support remain authoritative.
@@ -44,7 +54,7 @@ Spotter is the sole new catalog product: an iPhone workout journal, version 1.0.
 
 ## Complete purpose classification follow-up confirmed 2026-10-08
 
-Classify every public catalog product once by its existing purpose. `src/catalog.ts` owns the seven memberships in `catalogGroups`; `src/MediaCollections.tsx` reads photo, vision, health and everyday memberships directly. Home and `/apps/` share the purpose filters with the existing search and lifecycle filters. The 21 products retain their relative registry order, statuses, names, icons, links and Korean/English/Japanese product copy.
+Classify every public catalog product once by its existing purpose. `src/catalog.ts` owns the seven memberships in `catalogGroups`; `src/MediaCollections.tsx` reads photo, vision, health and everyday memberships directly. The request originally shared purpose filters, search and lifecycle filters between home and `/apps/`; on 2026-10-09 this complete discovery surface moved to `/apps/` alone. The 21 products retain their relative registry order, statuses, names, icons, links and Korean/English/Japanese product copy.
 
 | Purpose | Products |
 | --- | --- |

@@ -1,6 +1,6 @@
 ---
 name: HIORIO
-description: An independent software catalogue led by the approved organic H and cobalt identity.
+description: HIORIO's creator entrance and independent software directory, led by the approved organic H and cobalt identity.
 colors:
   cobalt: '#2455e6'
   warm-white: '#faf8f2'
@@ -58,6 +58,40 @@ typography:
     fontSize: 12px
     fontWeight: 650
     lineHeight: 1.5
+  landing-display:
+    fontFamily: '"HIORIO Sans", "Noto Sans JP", sans-serif'
+    fontSize: clamp(38px, 4.6vw, 72px)
+    fontWeight: 850
+    lineHeight: 1.18
+    letterSpacing: -.035em
+  landing-headline:
+    fontFamily: '"HIORIO Sans", "Noto Sans JP", sans-serif'
+    fontSize: clamp(30px, 3vw, 44px)
+    fontWeight: 800
+    lineHeight: 1.35
+    letterSpacing: -.035em
+  landing-future-headline:
+    fontFamily: '"HIORIO Sans", "Noto Sans JP", sans-serif'
+    fontSize: clamp(30px, 3.3vw, 48px)
+    fontWeight: 800
+    lineHeight: 1.3
+    letterSpacing: -.035em
+  landing-title:
+    fontFamily: '"HIORIO Sans", "Noto Sans JP", sans-serif'
+    fontSize: clamp(24px, 2.3vw, 34px)
+    fontWeight: 750
+    lineHeight: 1.35
+    letterSpacing: -.035em
+  landing-lead:
+    fontFamily: '"HIORIO Sans", "Noto Sans JP", sans-serif'
+    fontSize: 16px
+    lineHeight: 1.8
+  landing-close:
+    fontFamily: '"HIORIO Sans", "Noto Sans JP", sans-serif'
+    fontSize: clamp(28px, 3vw, 42px)
+    fontWeight: 800
+    lineHeight: 1.35
+    letterSpacing: -.035em
 rounded:
   square: '0'
   capture: 5px
@@ -69,6 +103,10 @@ spacing:
   row-gap: 17px
   section-gap: 40px
   collection-gap: 60px
+  landing-column-gap: clamp(32px, 6vw, 96px)
+  landing-section-top: 64px
+  landing-section-bottom: 72px
+  landing-mobile-gap: 24px
 components:
   button-primary:
     backgroundColor: '{colors.white}'
@@ -76,6 +114,14 @@ components:
     rounded: '{rounded.square}'
     padding: 13px 22px
   button-primary-hover:
+    backgroundColor: '{colors.ink}'
+    textColor: '{colors.white}'
+  landing-button-primary:
+    backgroundColor: '{colors.cobalt}'
+    textColor: '{colors.white}'
+    rounded: '{rounded.square}'
+    padding: 13px 20px
+  landing-button-primary-hover:
     backgroundColor: '{colors.ink}'
     textColor: '{colors.white}'
   search-field:
@@ -114,7 +160,7 @@ components:
 
 HIORIO's approved organic H anchors a bold, open catalogue: saturated cobalt, warm white, black ink and weighty type. The two primary logo treatments are cobalt artwork on a light background and black artwork on cobalt; monochrome treatments serve utility uses. Generous space and strong fields give the identity scale while actual app icons and captures keep the work recognisable.
 
-This record captures the implementation approved on 2026-10-08. Its frontmatter is normative for the homepage and its controls. The shared HIORIO mark, favicon and home social preview carry the approved identity beyond that surface. Individual product pages, the app register and the shared preview panel retain their existing visual systems. The north-star name describes the confirmed catalogue direction rather than introducing a new brand decision.
+This record captures the identity approved on 2026-10-08 and its authorized route recomposition on 2026-10-09. The complete former homepage now lives at `/apps/`; `/` is the brand and creator entrance. The frontmatter is normative for those two scoped surfaces and their controls; `landing-*` roles describe the new entrance only. The shared HIORIO mark, favicon and social preview carry the approved identity beyond them. Individual product pages and the shared preview panel retain their independent visual systems. The north-star name describes the established catalogue world rather than introducing a new brand decision.
 
 **Key Characteristics:**
 
@@ -123,11 +169,11 @@ This record captures the implementation approved on 2026-10-08. Its frontmatter 
 - Flat warm surfaces, thin rules, open product rows and a dark closing field.
 - Actual product evidence, Korean/English/Japanese support and reduced-motion behaviour.
 
-Authority: PRODUCT.md records approval; .impeccable/surfaces/src-linkhub-tsx.md owns the homepage composition. Sources: src/hiorio-home.css, src/HiorioLogo.tsx, src/HiorioIntro.tsx, src/LinkHub.tsx and shared header/footer in src/App.tsx. This is code-led with no page comp. These are shipped declarations, not a proposed site-wide migration.
+Authority: PRODUCT.md records approval; .impeccable/surfaces/src-linkhub-tsx.md owns the preserved directory composition and .impeccable/surfaces/src-hioriolanding-tsx.md owns the creator entrance. Sources: src/hiorio-home.css, src/hiorio-landing.css, src/HiorioLanding.tsx, src/HiorioLogo.tsx, src/HiorioIntro.tsx, src/LinkHub.tsx and shared header/footer in src/App.tsx. This remains code-led with inherited FORM seed 055631f4 and no page comp or identity roll. These are shipped declarations, not a proposed site-wide migration.
 
 ## Colors
 
-The homepage pairs saturated cobalt with warm neutrals. Primitive values live in the frontmatter.
+The creator entrance and app directory pair saturated cobalt with warm neutrals. Primitive values live in the frontmatter.
 
 ### Primary
 
@@ -143,7 +189,7 @@ The homepage pairs saturated cobalt with warm neutrals. Primitive values live in
 - **White / hover wash:** inverse text and CTA surface / inactive language hover.
 - **Closing black / footer muted:** closing statement and footer.
 
-**The Scoped Identity Rule.** Apply these identity tokens to the homepage. Preserve the independent visual language of product pages and the existing app register unless their redesign is approved.
+**The Scoped Identity Rule.** Apply these identity tokens to the creator entrance and app directory. Preserve the independent visual language of product pages and the shared preview panel unless their redesign is approved.
 
 ## Typography
 
@@ -153,15 +199,19 @@ The hierarchy is fluid, heavy and direct, with balanced headings and negative tr
 
 At 720px and below, the maker headline is 30px, registry heading 34px, product titles 20px and row descriptions 13px. The flagship heading becomes clamp(29px, 7.6vw, 44px) / 1.3. Maker promise measure is 16ch on desktop and 18ch on mobile. Japanese uses normal word breaking; Korean keeps phrases together with emergency wrapping.
 
-**The Raster Wordmark Rule.** The HIORIO masthead is approved artwork, not a font treatment. Preserve the maker promise as the real h1 and the product headings beneath it.
+The entrance's scoped landing roles use the same family and inherited heading tracking. Landing display is the real h1, landing headline serves creator/ecosystem headings, landing future headline serves BlueMoon, landing title serves ecosystem rows, and landing close serves the black closing note. Lead copy has a 45ch measure; creator copy reuses feature-body size/leading with a 65ch measure. At 1050px the landing h1 becomes clamp(36px, 4.6vw, 52px); at 720px it becomes clamp(34px, 8.8vw, 58px) / 1.25. Mobile lead is 15px; creator, future and ecosystem body copy are 14px. Future body uses 16px / 1.85 on desktop; ecosystem body uses 15px / 1.8. Japanese entrance and directory h1 declarations are scoped under the shared shell so the legacy global language rule cannot replace this hierarchy. These intentional role and responsive steps are documented, not a new global type scale.
+
+**The Raster Wordmark Rule.** The HIORIO masthead is approved artwork, not a font treatment. Preserve a real text h1 on each surface and the section/product headings beneath it.
 
 ## Layout
 
-The homepage is capped at 1680px with the fluid home-gutter token. A compact header leads into the masthead, cobalt flagship field, open purpose collections, searchable registry and black closing field. This composition belongs to the homepage rather than every product page.
+The creator entrance and directory are capped at 1680px with the fluid home-gutter token. At `/apps/`, a compact header leads into the preserved masthead, cobalt flagship field, open purpose collections, searchable registry and black closing field. This composition belongs to the directory rather than every product page. The root entrance has no full catalog or search.
 
 Desktop BlueMoon uses 0.88fr / 1.12fr columns with a fluid 30–80px gap. Collection groups and registry rows use two columns; registry column gap is 40px. Collection gaps are 60px vertically and 72px horizontally. Major desktop section padding ranges roughly from 48px to 78px.
 
-At 1050px the flagship uses equal columns and tighter gaps. At 720px the flagship, collection groups and registry become single-column; the maker note stacks. Text navigation hides while brand and language controls remain. Gutters settle at 22px and major vertical section spacing becomes roughly 34–44px. Search input height changes from 58px to 52px; filters wrap; product icons change from 54px to 48px. The shared preview has an independent 640px image-height breakpoint.
+At 1050px the directory flagship uses equal columns and tighter gaps. At 720px the flagship, collection groups and registry become single-column; the maker note stacks. On both root and directory, text navigation remains visible alongside brand and language controls, with a full-width control row and 20px tab gap. This supersedes the earlier mobile-hidden-tab rule. Gutters settle at 22px and major directory vertical section spacing becomes roughly 34–44px. Search input height changes from 58px to 52px; filters wrap; product icons change from 54px to 48px. The shared preview has an independent 640px image-height breakpoint.
+
+The entrance hero uses 1.2fr / .8fr columns; creator and future sections use .9fr / 1.1fr, with the landing-column-gap rhythm. Hero and creator use the landing-section-top/bottom padding; future uses 58px vertical padding and ecosystems 72px. Ecosystem rows use .9fr / 1.1fr / auto columns, a 32px gap and 28px vertical padding. Below 720px sections stack, creator/future gaps use landing-mobile-gap, and ecosystem descriptions occupy a second row. Hero spacing becomes 38px/40px, creator 40px/44px, future 38px and ecosystems 44px. Pending personal/media placements are text, not disabled controls.
 
 ## Elevation & Depth
 
@@ -187,6 +237,8 @@ The original four shipping brand rasters passed the existing provenance scan. Th
 
 The flagship CTA is white with action-blue text, a white 1px border, square corners and at least 50px height. Hover switches to ink black and white. Mobile padding becomes 11px 17px and type 13px. Ordinary links are cobalt with offset underlines; flagship text links remain white.
 
+The entrance action is square cobalt/white with 13px 20px padding and at least 48px height; hover uses ink/white. The app-directory row actions and shared navigation links/buttons have at least 44px targets. Live ecosystem rows are full native links; pending media and personal connections have no interactive affordance or destination.
+
 Homepage links/buttons generally use a 3px current-colour focus ring at 5px offset. Product primary links ring the entire row in cobalt at 4px offset. Search uses a 2px selected-colour wrapper ring at 3px offset; inherited controls retain more specific focus rules where applicable.
 
 ### Search and filters
@@ -197,6 +249,8 @@ A square warm-white field uses the control-rule border, 18px left inset, search 
 
 The desktop header is at least 92px tall with a thin bottom rule, 38px symbol and 17px/850 label. Navigation is 14px/650 with cobalt active text and underline on hover. Language controls are square and at least 44px tall, with a cobalt active state. Mobile header is at least 76px tall, symbol 30px and label 14px. Other page shells retain their existing geometry around the shared updated mark.
 
+On the creator entrance and directory, mobile home/app tabs remain visible at 13px and share a full-width control row with the language switcher; this supersedes the previous hidden-tab treatment.
+
 ### Product rows and quick preview
 
 Open rows combine actual icon, title, description, destination and arrow. Only non-live products show an explicit lifecycle label. A stretched native primary link covers the row; about and preview controls remain separately accessible. Hover makes the title cobalt. Preserve the distinction between website, web demo, App Store and introduction destinations.
@@ -205,7 +259,7 @@ The screenshot preview portal still uses the shared light Slate/Taupe system: No
 
 ### Preserved product and legacy surface records
 
-**Scope:** the material below preserves unrelated product guidance from the previous record. Slate/Taupe belongs to the incumbent app-register/detail-page family, not the new homepage. Historical references to the dark home map, previous BlueMoon home layout or inherited home colours are superseded by the sections above. Product-specific guidance stays scoped to named surfaces; lifecycle truth comes from src/apps.ts.
+**Scope:** the material below preserves unrelated product guidance and dated surface history from the previous record. The earlier Slate/Taupe `/apps/` register and old home/app-register composition claims are superseded by the 2026-10-09 move of the complete cobalt homepage to `/apps/`. Slate/Taupe remains scoped to the product/detail-page family and shared preview where implemented. Historical references below to the dark home map, previous BlueMoon home layout, compact register feature or inherited home/register colours are not current guidance for either root or directory. Product-specific guidance stays scoped to named surfaces; lifecycle truth comes from src/apps.ts.
 
 #### 보존된 제품 공통 원칙
 

@@ -1,0 +1,65 @@
+.hiorio-landing-hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:center;gap:clamp(32px,6vw,96px);padding:64px var(--home-gutter) 72px}
+.link-hub .hiorio-landing-copy h1{margin:0;font-size:clamp(38px,4.6vw,72px);font-weight:850;line-height:1.18;word-break:keep-all}
+.hiorio-landing-copy h1 span{display:block}
+.hiorio-landing-copy>p{max-width:45ch;margin:28px 0 0;color:var(--hub-muted);font-size:16px;line-height:1.8;word-break:keep-all}
+.hiorio-landing-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:30px}
+.hiorio-landing-actions a{display:inline-flex;min-height:48px;gap:22px;align-items:center;color:var(--hub-accent);font-size:14px;font-weight:700;text-underline-offset:5px}
+.hiorio-landing-actions .hiorio-landing-primary{padding:13px 20px;background:var(--hub-accent);color:#fff;text-decoration:none}
+.hiorio-landing-actions .hiorio-landing-primary:hover{background:var(--hub-paper)}
+.hiorio-landing-mark{min-width:0}
+.hiorio-maker{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,96px);padding:64px var(--home-gutter) 72px;border-top:1px solid var(--hub-line)}
+.hiorio-maker h2,.hiorio-ecosystems>h2{margin:0;max-width:16ch;font-size:clamp(30px,3vw,44px);font-weight:800;line-height:1.35;word-break:keep-all}
+.hiorio-maker-name{margin:22px 0 0;color:var(--hub-accent);font-size:15px;font-weight:700}
+.hiorio-maker-body>p{max-width:65ch;margin:0 0 20px;color:var(--hub-muted);font-size:15px;line-height:1.85;word-break:keep-all}
+.hiorio-maker-connections{margin-top:30px;padding-top:22px;border-top:1px solid var(--hub-line)}
+.hiorio-maker-connections h3{margin:0;font-size:17px;font-weight:750;line-height:1.5}
+.hiorio-maker-connections p{margin:10px 0;color:var(--hub-muted);font-size:14px;line-height:1.8}
+.hiorio-maker-connections>span,.hiorio-connection-pending{color:var(--hub-muted);font-size:12px;line-height:1.7}
+.hiorio-future{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,96px);padding:58px var(--home-gutter);background:var(--hub-accent);color:#fff}
+.hiorio-future-title{display:flex;align-items:center;gap:30px;justify-content:space-between}
+.hiorio-future h2{margin:0;font-size:clamp(30px,3.3vw,48px);font-weight:800;line-height:1.3;word-break:keep-all}
+.hiorio-future h2 span{display:block}
+.hiorio-future .bm-companion{flex:none}
+.hiorio-future>div>p{margin:0 0 16px;max-width:55ch;color:#e4eaff;font-size:16px;line-height:1.85;word-break:keep-all}
+.hiorio-future>div>.hiorio-future-status{font-size:12px;font-weight:650;margin-bottom:10px}
+.hiorio-future a{display:inline-flex;align-items:center;gap:26px;min-height:44px;color:#fff;font-size:15px;font-weight:750;text-underline-offset:6px}
+.hiorio-future small{display:block;margin-top:12px;color:#e4eaff;font-size:12px;line-height:1.7}
+.hiorio-ecosystems{padding:72px var(--home-gutter)}
+.hiorio-ecosystems>h2{max-width:24ch;margin-bottom:40px}
+.hiorio-ecosystems ul{list-style:none;margin:0;padding:0}
+.hiorio-ecosystems li{border-top:1px solid var(--hub-line)}
+.hiorio-ecosystems li:last-child{border-bottom:1px solid var(--hub-line)}
+.hiorio-ecosystem-row{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr) auto;align-items:center;gap:32px;min-height:146px;padding:28px 0;color:inherit;text-decoration:none}
+.hiorio-ecosystem-row h3{margin:0;font-size:clamp(24px,2.3vw,34px);font-weight:750;line-height:1.35;word-break:keep-all}
+.hiorio-ecosystem-row p{max-width:55ch;margin:0;color:var(--hub-muted);font-size:15px;line-height:1.8;word-break:keep-all}
+.hiorio-ecosystem-row>svg{width:28px;height:28px;color:var(--hub-accent)}
+a.hiorio-ecosystem-row:hover h3{color:var(--hub-accent)}
+.hiorio-landing-close{padding:44px var(--home-gutter) 20px;background:#111;color:#faf8f2}
+.hiorio-landing-close p{margin:0;max-width:24ch;font-size:clamp(28px,3vw,42px);font-weight:800;line-height:1.35;word-break:keep-all}
+html[lang="ja"] .hiorio-landing :is(h1,h2,h3,p){word-break:normal;overflow-wrap:anywhere}
+.directory-page .hub-card{scroll-margin-top:24px}
+.directory-page .hub-card-actions :is(a,button){min-height:44px}
+@media(max-width:1050px){
+ .hiorio-landing-hero{gap:28px}.link-hub .hiorio-landing-copy h1{font-size:clamp(36px,4.6vw,52px)}
+ .hiorio-future-title{flex-wrap:wrap;justify-content:start;gap:20px}
+ .hiorio-ecosystem-row{gap:24px}.hiorio-connection-pending{max-width:12ch}
+}
+@media(max-width:720px){
+ .hiorio-landing-hero{grid-template-columns:minmax(0,1fr);gap:32px;padding-block:38px 40px}
+ .link-hub .hiorio-landing-copy h1{font-size:clamp(34px,8.8vw,58px);line-height:1.25}
+ .hiorio-landing-copy>p{max-width:42ch;margin-top:22px;font-size:15px}
+ .hiorio-landing-actions{margin-top:22px;gap:8px 20px}
+ .hiorio-landing-mark{width:min(70%,320px);justify-self:end}
+ .hiorio-maker{grid-template-columns:minmax(0,1fr);gap:24px;padding-block:40px 44px}
+ .hiorio-maker h2{max-width:18ch}.hiorio-maker-name{margin-top:16px}.hiorio-maker-body>p{font-size:14px}
+ .hiorio-future{grid-template-columns:minmax(0,1fr);gap:24px;padding-block:38px}
+ .hiorio-future-title{justify-content:space-between;flex-wrap:nowrap;gap:16px}.hiorio-future>div>p{font-size:14px}
+ .hiorio-ecosystems{padding-block:44px}.hiorio-ecosystems>h2{margin-bottom:28px}
+ .hiorio-ecosystem-row{grid-template-columns:minmax(0,1fr) auto;gap:14px 20px;padding-block:26px}
+ .hiorio-ecosystem-row p{grid-column:1/-1;grid-row:2;font-size:14px}
+ .hiorio-connection-pending{max-width:10ch;text-align:right}
+ .hiorio-landing-close{padding-block:34px 12px}
+ .link-hub .network-controls{width:100%;justify-content:space-between}
+ .link-hub .node-switcher{display:flex;gap:20px}.link-hub .node-switcher a{font-size:13px}
+ .link-hub .network-bar{gap:4px}
+}

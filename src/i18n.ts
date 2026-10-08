@@ -64,8 +64,8 @@ export const ui = {
     channelsToHorror: "공포도파민 브랜드 노드 보기",
     channelsFooter: "외부 콘텐츠 발행 채널을 모은 연결 노드",
 
-    appsPageTitle: "틔운 앱들 | Hiorio",
-    appsPageDescription: "필요에서 피어난 서비스와 새롭게 틔우는 앱. 이름과 쓰임, 운영·테스트·개발 상황으로 살펴보세요.",
+    appsPageTitle: "앱과 서비스 | HIORIO",
+    appsPageDescription: "HIORIO의 앱과 서비스를 이름과 쓰임, 운영·테스트·개발 상황으로 살펴보세요.",
     appsKicker: "APPS & SERVICES",
     appsTitle: "틔운 앱들.",
     appsDescription: ["불편함 하나를 씨앗 삼아 직접 설계하고 운영합니다.", "이미 피어난 서비스부터 새롭게 틔우는 앱까지, 이곳에서 만나보세요."],
@@ -187,7 +187,7 @@ export const ui = {
     channelsToHorror: "View the Horror Dopamine brand node",
     channelsFooter: "A connection node for external publishing channels",
 
-    appsPageTitle: "Apps in Bloom | Hiorio",
+    appsPageTitle: "Apps & Services | HIORIO",
     appsPageDescription: "Live services and new apps taking shape. Explore by name, purpose, and development stage.",
     appsKicker: "APPS & SERVICES",
     appsTitle: "APPS IN BLOOM.",
@@ -310,8 +310,8 @@ export const ui = {
     channelsToHorror: "ホラードーパミンのブランドノードを見る",
     channelsFooter: "外部コンテンツ発信チャンネルをまとめた接続ノード",
 
-    appsPageTitle: "芽吹かせたアプリ | Hiorio",
-    appsPageDescription: "すでに咲いたサービスと、新しく芽吹くアプリ。名前や用途、開発状況から探せます。",
+    appsPageTitle: "アプリとサービス | HIORIO",
+    appsPageDescription: "HIORIOのアプリとサービスを、名前や用途、開発状況から探せます。",
     appsKicker: "APPS & SERVICES",
     appsTitle: "芽吹かせたアプリ。",
     appsDescription: ["一つの不便を種に、自分で設計し、運営まで続けます。", "すでに咲いたサービスから、新しく芽吹くアプリまで。"],

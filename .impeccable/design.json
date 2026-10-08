@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-08T02:08:05.1942134Z",
+  "generatedAt": "2026-10-08T20:45:32.7141017Z",
   "title": "Design System: HIORIO",
   "extensions": {
     "colorMeta": {
@@ -204,42 +204,66 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Homepage display; see DESIGN.md for responsive role."
+        "purpose": "App-directory role; see DESIGN.md for responsive use."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Homepage headline; see DESIGN.md for responsive role."
+        "purpose": "App-directory role; see DESIGN.md for responsive use."
       },
       "feature-headline": {
         "displayName": "Feature Headline",
-        "purpose": "Homepage feature headline; see DESIGN.md for responsive role."
+        "purpose": "App-directory role; see DESIGN.md for responsive use."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Homepage title; see DESIGN.md for responsive role."
+        "purpose": "App-directory role; see DESIGN.md for responsive use."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Homepage body; see DESIGN.md for responsive role."
+        "purpose": "App-directory role; see DESIGN.md for responsive use."
       },
       "feature-body": {
         "displayName": "Feature Body",
-        "purpose": "Homepage feature body; see DESIGN.md for responsive role."
+        "purpose": "App-directory role; see DESIGN.md for responsive use."
       },
       "row-body": {
         "displayName": "Row Body",
-        "purpose": "Homepage row body; see DESIGN.md for responsive role."
+        "purpose": "App-directory role; see DESIGN.md for responsive use."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Homepage label; see DESIGN.md for responsive role."
+        "purpose": "App-directory role; see DESIGN.md for responsive use."
+      },
+      "landing-display": {
+        "displayName": "landing-display",
+        "purpose": "Creator entrance h1, with compact and mobile overrides in DESIGN.md."
+      },
+      "landing-headline": {
+        "displayName": "landing-headline",
+        "purpose": "Creator and ecosystem section headings on the root entrance."
+      },
+      "landing-future-headline": {
+        "displayName": "landing-future-headline",
+        "purpose": "BlueMoon future-business heading on the root entrance."
+      },
+      "landing-title": {
+        "displayName": "landing-title",
+        "purpose": "Independent ecosystem row titles on the root entrance."
+      },
+      "landing-lead": {
+        "displayName": "landing-lead",
+        "purpose": "Root entrance lead copy."
+      },
+      "landing-close": {
+        "displayName": "landing-close",
+        "purpose": "Root entrance closing note."
       }
     },
     "shadows": [
       {
         "name": "flagship-capture",
         "value": "0 20px 48px #09257440",
-        "purpose": "Real screenshot on the cobalt home field."
+        "purpose": "Real screenshot on the cobalt app-directory field."
       },
       {
         "name": "legacy-preview",
@@ -318,12 +342,12 @@
       "css": ".ds-selected{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:9px 13px;border:1px solid transparent;border-radius:0;background:#2455e6;color:#fff;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;font-size:14px;cursor:pointer}.ds-selected span{font-size:12px;font-variant-numeric:tabular-nums}.ds-selected:hover{border-color:#b9b9b2}.ds-selected:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
     },
     {
-      "name": "Homepage navigation",
+      "name": "Shared entrance and directory navigation",
       "kind": "nav",
       "refersTo": "navigation",
-      "description": "Text navigation; isolated controls sample intentionally omits raster logo.",
+      "description": "Home/app tabs remain visible on mobile, with 44px targets; sample intentionally omits the raster logo.",
       "html": "<nav class=\"ds-nav\" aria-label=\"주요 메뉴\"><a class=\"ds-current\" href=\"/\" aria-current=\"page\">홈</a><a href=\"/apps/\">앱</a><button type=\"button\" aria-pressed=\"true\">KO</button></nav>",
-      "css": ".ds-nav{display:flex;align-items:center;gap:26px;min-height:92px;padding:16px 0;border-bottom:1px solid #d1d0c8;background:#faf8f2;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;}.ds-nav a{padding:10px 0;color:#141414;font-size:14px;font-weight:650;line-height:1.5;text-decoration:none}.ds-nav .ds-current{color:#2455e6}.ds-nav a:hover{text-decoration:underline;text-underline-offset:6px}.ds-nav button{min-width:40px;min-height:44px;padding:10px;border:0;border-radius:0;background:#2455e6;color:#fff;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;font-size:12px;font-weight:650;line-height:1.5;cursor:pointer}.ds-nav a:focus-visible,.ds-nav button:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
+      "css": ".ds-nav{display:flex;align-items:center;gap:26px;min-height:92px;padding:16px 0;border-bottom:1px solid #d1d0c8;background:#faf8f2;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;}.ds-nav a{display:inline-flex;align-items:center;min-height:44px;padding:10px 0;color:#141414;font-size:14px;font-weight:650;line-height:1.5;text-decoration:none}.ds-nav .ds-current{color:#2455e6}.ds-nav a:hover{text-decoration:underline;text-underline-offset:6px}.ds-nav button{min-width:40px;min-height:44px;padding:10px;border:0;border-radius:0;background:#2455e6;color:#fff;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;font-size:12px;font-weight:650;line-height:1.5;cursor:pointer}.ds-nav a:focus-visible,.ds-nav button:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
     },
     {
       "name": "Preview trigger",
@@ -331,12 +355,20 @@
       "refersTo": "preview-trigger",
       "description": "Separate screenshot-preview control within registry rows; the app supplies the live overlay.",
       "html": "<button class=\"ds-preview\" type=\"button\" aria-expanded=\"false\">미리보기</button>",
-      "css": ".ds-preview{display:inline-flex;align-items:center;gap:7px;min-height:32px;padding:6px 0;border:0;background:transparent;color:#555650;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;font-size:14px;cursor:pointer;text-decoration:underline;text-decoration-color:#a9927d;text-underline-offset:4px}.ds-preview:hover,.ds-preview[aria-expanded=true]{color:#141414}.ds-preview:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
+      "css": ".ds-preview{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:6px 0;border:0;background:transparent;color:#555650;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;font-size:14px;cursor:pointer;text-decoration:underline;text-decoration-color:#a9927d;text-underline-offset:4px}.ds-preview:hover,.ds-preview[aria-expanded=true]{color:#141414}.ds-preview:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
+    },
+    {
+      "name": "Creator entrance action",
+      "kind": "button",
+      "refersTo": "landing-button-primary",
+      "description": "Square cobalt action from the creator entrance to the complete app directory.",
+      "html": "<a class=\"ds-landing-action\" href=\"/apps/\">앱과 서비스 보기</a>",
+      "css": ".ds-landing-action{display:inline-flex;align-items:center;min-height:48px;padding:13px 20px;border-radius:0;background:#2455e6;color:#fff;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;font-size:14px;font-weight:700;text-decoration:none}.ds-landing-action:hover{background:#141414}.ds-landing-action:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
     }
   ],
   "narrative": {
     "northStar": "The Independent Software Catalogue",
-    "overview": "HIORIO's approved organic H anchors a bold, open catalogue: saturated cobalt, warm white, black ink and weighty type. The two primary logo treatments are cobalt artwork on a light background and black artwork on cobalt; monochrome treatments serve utility uses. Generous space and strong fields give the identity scale while actual app icons and captures keep the work recognisable.\n\nThis record captures the implementation approved on 2026-10-08. Its frontmatter is normative for the homepage and its controls. The shared HIORIO mark, favicon and home social preview carry the approved identity beyond that surface. Individual product pages, the app register and the shared preview panel retain their existing visual systems. The north-star name describes the confirmed catalogue direction rather than introducing a new brand decision.",
+    "overview": "HIORIO's approved organic H anchors a bold, open catalogue: saturated cobalt, warm white, black ink and weighty type. The two primary logo treatments are cobalt artwork on a light background and black artwork on cobalt; monochrome treatments serve utility uses. Generous space and strong fields give the identity scale while actual app icons and captures keep the work recognisable.\n\nThis record captures the identity approved on 2026-10-08 and its authorized route recomposition on 2026-10-09. The complete former homepage now lives at `/apps/`; `/` is the brand and creator entrance. The frontmatter is normative for those two scoped surfaces and their controls; `landing-*` roles describe the new entrance only. The shared HIORIO mark, favicon and social preview carry the approved identity beyond them. Individual product pages and the shared preview panel retain their independent visual systems. The north-star name describes the established catalogue world rather than introducing a new brand decision.",
     "keyCharacteristics": [
       "Original raster logo artwork framed by SVG viewports.",
       "Self-hosted variable Pretendard, large headings and square cobalt control states.",
@@ -346,12 +378,12 @@
     "rules": [
       {
         "name": "The Scoped Identity Rule",
-        "body": "Apply these identity tokens to the homepage. Preserve the independent visual language of product pages and the existing app register unless their redesign is approved.",
+        "body": "Apply these identity tokens to the creator entrance and app directory. Preserve the independent visual language of product pages and the shared preview panel unless their redesign is approved.",
         "section": "colors"
       },
       {
         "name": "The Raster Wordmark Rule",
-        "body": "The HIORIO masthead is approved artwork, not a font treatment. Preserve the maker promise as the real h1 and the product headings beneath it.",
+        "body": "The HIORIO masthead is approved artwork, not a font treatment. Preserve a real text h1 on each surface and the section/product headings beneath it.",
         "section": "typography"
       }
     ],

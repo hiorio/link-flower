@@ -29,7 +29,7 @@ function ProjectLink({ app, locale, basePath, priority }: { app: ProductApp; loc
     : labels.about;
 
   return (
-    <li className={`hub-card hub-card-${app.accent}`}>
+    <li className={`hub-card hub-card-${app.accent}`} id={app.id} tabIndex={-1}>
       <AppIcon className="hub-app-icon" app={app} basePath={basePath} locale={locale} size={56} priority={priority} />
       <div className="hub-card-copy">
         <div className="hub-card-title">
@@ -68,7 +68,7 @@ export function LinkHub({ locale, basePath }: { locale: Locale; basePath: string
       <section className="garden-index hub-index" id="work-index" aria-labelledby="root-work-title">
         <header className="hub-index-heading">
           <div><h2 id="root-work-title">{copy.appsCardTitle}<span className="hub-count">{String(productApps.length).padStart(2, "0")}</span></h2></div>
-          <a className="hub-collection-link" href={`${basePath}apps/`}>{labels.browse}<ServiceArrow direction="external" /></a>
+          <a className="hub-collection-link" href={basePath}>{copy.mainNode}<ServiceArrow direction="left" /></a>
         </header>
         <CatalogControls catalog={catalog} locale={locale} resultsId="hub-app-results" />
         <CatalogPreviewProvider locale={locale} basePath={basePath} theme="light">
