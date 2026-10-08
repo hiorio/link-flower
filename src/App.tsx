@@ -27,6 +27,7 @@ import { MediaCollections } from "./MediaCollections";
 import { SHOW_HORROR_DOPAMINE } from "./visibility";
 import { useSiteMotion } from "./useSiteMotion";
 import { HiorioLogo } from "./HiorioLogo";
+import { BusinessInfo } from "./BusinessInfo";
 
 type RouteId = "root" | "channels" | "apps" | "productivity" | "dohwaji" | "timeflower" | "timeroots" | "dailyplank" | "biondamae" | "ssakmemo" | "leafmessage" | "ringtone" | "project" | "horror";
 type Copy = (typeof ui)[Locale];
@@ -124,6 +125,7 @@ function RootPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
 
       <footer className="site-footer root-footer">
         <a href={routeHref("root")} aria-label="HIORIO"><HiorioLogo basePath={basePath} tone="white" /><span>HIORIO</span></a><span>APPS & SERVICES · © 2026</span>
+        <BusinessInfo locale={locale} />
       </footer>
     </main>
   );
@@ -329,6 +331,7 @@ function AppsPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; set
         <a href={routeHref("root")}>{copy.appsBackHome}<span aria-hidden="true">↖</span></a>
         <div><span className="footer-node">APPS / SERVICES</span><p>{copy.appsFooter}</p></div>
         <div><a href="#page-content">{copy.appsBackTop} <span aria-hidden="true">↑</span></a><span>© 2026 HIORIO</span></div>
+        <BusinessInfo locale={locale} />
       </footer>
     </main>
   );

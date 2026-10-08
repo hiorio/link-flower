@@ -1019,7 +1019,7 @@
 }
 
 .apps-showcase-footer > a,
-.apps-showcase-footer > div:last-child a {
+.apps-showcase-footer > div:last-of-type a {
   display: inline-flex;
   min-height: 44px;
   gap: 18px;
@@ -1045,13 +1045,13 @@
   color: #687378;
 }
 
-.apps-showcase-footer > div:last-child {
+.apps-showcase-footer > div:last-of-type {
   display: grid;
   gap: 8px;
   justify-items: end;
 }
 
-.apps-showcase-footer > div:last-child > span {
+.apps-showcase-footer > div:last-of-type > span {
   color: #737d80;
   font-size: 9px;
   letter-spacing: .08em;
