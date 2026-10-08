@@ -28,8 +28,27 @@ This is a bounded extension and recomposition of the incumbent HIORIO Slate / Ta
 
 ## Photo and visual-recognition groups request confirmed 2026-10-08
 
-Group Beauty Touch and Inkmile as photo tools, and CountLens / 세어봐 and Spotter as visual-recognition tools on the home and `/apps/`, after the productivity collection. These pairs are navigation sections linking to each app's introduction; they do not add catalog products, imply integration or require independent collection routes. BlueMoon remains the featured service.
+Group Beauty Touch, Inkmile, RUN POST and Duo Studio as photo tools, and CountLens / 세어봐, Spotter and HUNTLOG as video/screen-recognition tools on the home and `/apps/`, after the productivity collection. These navigation sections link to each app's introduction; they do not add catalog products, imply integration or require independent collection routes. BlueMoon remains the featured service.
 
 Beauty Touch remains the public name; Beauty Up / beautyUp is a searchable internal name. Inkmile is the current public name while `archive-ink` and `/apps/archive-ink/` remain its stable id and route. Its current generation uses installed local SD 2.1, so copy must not retain the old online-generation claim. Familiar names for CountLens and Spotter also remain searchable.
 
 Spotter is the sole new catalog product: an iPhone workout journal, version 1.0.0, in testing with no verified public installation link. Its on-device pose analysis, editable repetitions and labels, manual entries and optional read-only Health import are evidenced; automatic exercise classification remains experimental. Normal capture does not save or upload images, while separately enabled internal equipment learning may save representative images locally. The introduction uses the original native icon and explicitly qualified explanatory flow, not a camera capture or recognition result. Evidence and verification are recorded in `docs/media-collections.md`.
+
+## Complete purpose classification follow-up confirmed 2026-10-08
+
+Classify every catalog product once by its existing purpose. `src/catalog.ts` owns the eight memberships in `catalogGroups`; `src/MediaCollections.tsx` reads its photo and vision memberships directly. Home and `/apps/` share the purpose filters with the existing search and lifecycle filters. The 25 products retain their relative registry order, statuses, names, icons, links and Korean/English/Japanese product copy.
+
+| Purpose | Products |
+| --- | --- |
+| Productivity and notes (7) | Ssak Memo, Namu Note, Drawing Ground, TimeFlower, DayMirror, TimeRoots, TimeJourney |
+| Photos and editing (4) | Beauty Touch, Inkmile, RUN POST, Duo Studio |
+| Video and screen recognition (3) | CountLens / 세어봐, Spotter, HUNTLOG |
+| Writing and documents (3) | BlueMoon, Pretty Speech, ai-ocr |
+| Everyday and connections (3) | Dohwaji, Biondamae, Leaf Message |
+| Exercise and sleep (2) | Daily Plank, Jamgyeol |
+| Video and sound (2) | deepPlayer, Ringtone |
+| Data research (1) | AutoTrade |
+
+The seven-product productivity purpose is distinct from the four-app botanical collection of Ssak Memo, Namu Note, Drawing Ground and TimeFlower. BlueMoon remains the flagship and is also discoverable under writing. RUN POST styles completed running records on photos; Duo Studio composes photos, text and shapes across two connected canvases. HUNTLOG watches only the visibility of a user-selected icon in a shared game screen; this does not imply general object detection or automatic game understanding. AutoTrade is public-market-data research and paper simulation, not a public investment service.
+
+This follow-up extends the incumbent Slate / Taupe navigation without changing design tokens or the visual system. Homepage redesign suggestions remain unapproved advice. Verification in `.impeccable/review/catalog-purpose-20261008/` covers 18 route/locale/viewport cases and 144 purpose states, with the build, 14 tests and targeted detector passing; source rationale is in `docs/media-collections.md`.

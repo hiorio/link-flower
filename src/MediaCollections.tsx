@@ -1,27 +1,27 @@
 import { productApps, appIntroductionHref } from "./apps";
 import { AppIcon } from "./AppIcon";
 import { ServiceArrow } from "./ServiceArrow";
-import { catalogCopy } from "./catalog";
+import { catalogCopy, catalogGroups } from "./catalog";
 import type { Locale } from "./i18n";
 import "./media-collections.css";
 
 export const mediaCollections = [
-  { id: "photo-services", appIds: ["beauty-touch", "archive-ink"] },
-  { id: "vision-services", appIds: ["countlens", "spotter"] },
+  { id: "photo-services", appIds: catalogGroups.photos },
+  { id: "vision-services", appIds: catalogGroups.vision },
 ] as const;
 
 const copy = {
   ko: [
-    { title: "사진을 다루는 도구", description: "인물 사진을 다듬고, 사진 속 기억을 기록으로 남겨요." },
-    { title: "영상에서 알아보는 도구", description: "물체를 찾아 세거나 운동 동작을 분석해요. 인식 결과는 직접 확인하고 고칠 수 있어요." },
+    { title: "사진을 다루는 도구", description: "인물 사진을 다듬고, 추억과 러닝 기록을 담거나 두 화면으로 이어지는 구성을 만들어요." },
+    { title: "영상·화면을 살피는 도구", description: "물체를 찾아 세고, 운동 동작을 분석하고, 게임 화면에서 고른 아이콘의 변화를 살펴요." },
   ],
   en: [
-    { title: "Tools for your photos", description: "Refine portraits and turn photographed moments into keepsakes." },
-    { title: "Tools that understand motion", description: "Find and count objects, or analyze exercise movements. Review and correct recognition results yourself." },
+    { title: "Tools for your photos", description: "Refine portraits, frame memories and running records, or compose two connected canvases." },
+    { title: "Tools for video and screens", description: "Count objects, analyze exercise movements, or watch changes in an icon you choose on a game screen." },
   ],
   ja: [
-    { title: "写真を扱う道具", description: "人物写真を整え、写真の思い出を記録に残します。" },
-    { title: "映像から見つける道具", description: "物体を見つけて数えたり、運動の動きを分析したり。認識結果は自分で確認・修正できます。" },
+    { title: "写真を扱う道具", description: "人物写真を整え、思い出やランニング記録を残し、つながる二つの画面をつくります。" },
+    { title: "映像・画面を観察する道具", description: "物体を数え、運動の動きを分析し、ゲーム画面で選んだアイコンの変化を観察します。" },
   ],
 } satisfies Record<Locale, { title: string; description: string }[]>;
 

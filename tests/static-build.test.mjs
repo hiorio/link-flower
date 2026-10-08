@@ -16,16 +16,19 @@ const additionalModule = await moduleUrl("../src/additional-projects.ts");
 const projectModule = await moduleUrl("../src/growing-projects.ts", { "./additional-projects": additionalModule });
 const { growingProjects } = await import(projectModule);
 const { productApps, appDetailPath } = await import(await moduleUrl("../src/apps.ts", { "./growing-projects": projectModule }));
-const { filterApps, catalogCopy, appCategories, catalogCategories, catalogNavigationCopy } = await import(await moduleUrl("../src/catalog.ts"));
+const { filterApps, catalogCopy, appCategories, catalogCategories, catalogGroups, catalogNavigationCopy } = await import(await moduleUrl("../src/catalog.ts"));
 const { catalogPreviewImage } = await import(await moduleUrl("../src/catalog-preview.ts", { "./growing-projects": projectModule }));
 
 test("쓰임 분류는 25개 제품을 빠짐없이 포함하고 검색·진행 상태와 함께 적용된다", () => {
   assert.deepEqual(Object.keys(appCategories).sort(), productApps.map((app) => app.id).sort());
-  assert.deepEqual(catalogCategories.map((purpose) => filterApps(productApps, "", "all", purpose).length), [7, 8, 10]);
-  assert.deepEqual(filterApps(productApps, "", "live", "time-records").map((app) => app.id), ["ssakmemo", "daymirror", "timeflower", "timeroots"]);
-  assert.deepEqual(filterApps(productApps, "소설", "development", "photo-creative").map((app) => app.id), ["bluemoon"]);
-  assert.deepEqual(filterApps(productApps, "소설", "development", "time-records").map((app) => app.id), ["ai-ocr"]);
-  assert.deepEqual(filterApps(productApps, "CountLens", "testing", "photo-creative"), []);
+  assert.deepEqual(catalogCategories.map((purpose) => filterApps(productApps, "", "all", purpose).length), [7, 4, 3, 3, 3, 2, 2, 1]);
+  const groupedIds = Object.values(catalogGroups).flat();
+  assert.equal(new Set(groupedIds).size, groupedIds.length, "제품은 주된 쓰임 한 곳에만 분류한다");
+  assert.deepEqual(filterApps(productApps, "", "live", "productivity").map((app) => app.id), ["ssakmemo", "daymirror", "timeflower", "timeroots"]);
+  assert.deepEqual(filterApps(productApps, "소설", "development", "writing").map((app) => app.id), ["bluemoon", "ai-ocr"]);
+  assert.deepEqual(filterApps(productApps, "RUN POST", "testing", "photos").map((app) => app.id), ["hiho-run"]);
+  assert.deepEqual(filterApps(productApps, "CountLens", "testing", "photos"), []);
+  assert.deepEqual(filterApps(productApps, "HUNTLOG", "testing", "vision").map((app) => app.id), ["huntlog"]);
   assert.deepEqual(filterApps(productApps, "", "all", "all"), productApps);
   for (const locale of ["ko", "en", "ja"]) {
     for (const purpose of catalogCategories) assert.ok(catalogNavigationCopy[locale][purpose]);

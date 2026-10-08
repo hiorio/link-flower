@@ -2,7 +2,7 @@ import type { ProductApp } from "./apps";
 import type { Locale } from "./i18n";
 
 export type CatalogFilter = "all" | ProductApp["status"];
-export const catalogCategories = ["time-records", "photo-creative", "everyday-tools"] as const;
+export const catalogCategories = ["productivity", "photos", "vision", "writing", "everyday", "wellbeing", "media", "research"] as const;
 export type CatalogCategory = (typeof catalogCategories)[number];
 export type CatalogPurpose = "all" | CatalogCategory;
 
@@ -14,23 +14,25 @@ const appSearchAliases: Record<string, string[]> = {
   spotter: ["스포터"],
 };
 
-// Primary purpose, based on the descriptions: RUN POST creates a poster,
-// AI OCR transcribes a document, and DeepPlayer is a viewing tool.
-export const appCategories: Record<string, CatalogCategory> = {
-  ssakmemo: "time-records", timeflower: "time-records", timeroots: "time-records",
-  daymirror: "time-records", "time-journey": "time-records", "namu-note": "time-records", "ai-ocr": "time-records",
-  "hiho-run": "photo-creative", "leaf-message": "photo-creative", "duo-studio": "photo-creative",
-  "archive-ink": "photo-creative", "beauty-touch": "photo-creative", bluemoon: "photo-creative",
-  "drawing-ground": "photo-creative", ringtone: "photo-creative",
-  dohwaji: "everyday-tools", dailyplank: "everyday-tools", biondamae: "everyday-tools",
-  countlens: "everyday-tools", "pretty-speech": "everyday-tools", jamgyeol: "everyday-tools",
-  deepplayer: "everyday-tools", huntlog: "everyday-tools", autotrade: "everyday-tools", spotter: "everyday-tools",
-};
+// One primary purpose per product; registry order and the separate botanical collection stay intact.
+export const catalogGroups = {
+  productivity: ["ssakmemo", "namu-note", "drawing-ground", "timeflower", "daymirror", "timeroots", "time-journey"],
+  photos: ["beauty-touch", "archive-ink", "hiho-run", "duo-studio"],
+  vision: ["countlens", "spotter", "huntlog"],
+  writing: ["bluemoon", "pretty-speech", "ai-ocr"],
+  everyday: ["dohwaji", "biondamae", "leaf-message"],
+  wellbeing: ["dailyplank", "jamgyeol"],
+  media: ["deepplayer", "ringtone"],
+  research: ["autotrade"],
+} as const satisfies Record<CatalogCategory, readonly string[]>;
+
+export const appCategories = Object.fromEntries(catalogCategories.flatMap((category) =>
+  catalogGroups[category].map((id) => [id, category]))) as Record<string, CatalogCategory>;
 
 export const catalogNavigationCopy = {
-  ko: { purposes: "쓰임으로 보기", "time-records": "시간·기록", "photo-creative": "사진·창작", "everyday-tools": "생활 도구", hint: "쓰임과 진행 상태를 함께 선택할 수 있어요.", selected: "선택한 조건", remove: "조건 해제", reset: "모두 해제", preview: "빠른 미리보기", dismiss: "바깥을 누르거나 Esc 키로 닫기" },
-  en: { purposes: "Browse by purpose", "time-records": "Time & notes", "photo-creative": "Photos & creation", "everyday-tools": "Everyday tools", hint: "Combine a purpose with an availability filter.", selected: "Active filters", remove: "Remove filter", reset: "Clear all", preview: "Quick preview", dismiss: "Tap outside or press Esc to close" },
-  ja: { purposes: "用途から探す", "time-records": "時間・記録", "photo-creative": "写真・創作", "everyday-tools": "暮らしの道具", hint: "用途と公開状況を組み合わせて選べます。", selected: "選択中の条件", remove: "条件を解除", reset: "すべて解除", preview: "クイックプレビュー", dismiss: "外側をタップ、またはEscキーで閉じる" },
+  ko: { purposes: "쓰임으로 보기", productivity: "생산성·기록", photos: "사진·편집", vision: "영상·화면 인식", writing: "글쓰기·문서", everyday: "생활·소통", wellbeing: "운동·수면", media: "미디어·소리", research: "데이터 연구", hint: "쓰임과 진행 상태를 함께 선택할 수 있어요.", selected: "선택한 조건", remove: "조건 해제", reset: "모두 해제", preview: "빠른 미리보기", dismiss: "바깥을 누르거나 Esc 키로 닫기" },
+  en: { purposes: "Browse by purpose", productivity: "Productivity & notes", photos: "Photos & editing", vision: "Visual recognition", writing: "Writing & documents", everyday: "Everyday & connections", wellbeing: "Exercise & sleep", media: "Video & sound", research: "Data research", hint: "Combine a purpose with an availability filter.", selected: "Active filters", remove: "Remove filter", reset: "Clear all", preview: "Quick preview", dismiss: "Tap outside or press Esc to close" },
+  ja: { purposes: "用途から探す", productivity: "作業・記録", photos: "写真・編集", vision: "映像・画面認識", writing: "執筆・文書", everyday: "暮らし・つながり", wellbeing: "運動・睡眠", media: "動画・音", research: "データ研究", hint: "用途と公開状況を組み合わせて選べます。", selected: "選択中の条件", remove: "条件を解除", reset: "すべて解除", preview: "クイックプレビュー", dismiss: "外側をタップ、またはEscキーで閉じる" },
 } satisfies Record<Locale, Record<string, string>>;
 
 export const catalogCopy = {

@@ -8,7 +8,7 @@ Hiorio가 직접 틔운 앱과 운영하는 콘텐츠를 소개하는 개인 작
 - `/`: BlueMoon 대표 소개, 생산성·사진·영상 인식 도구 모음, Hiorio 소개와 전체 작업 인덱스
 - `/collections/productivity/`: 싹 메모·나무 노트·땅바닥·TimeFlower를 묶은 별도 생산성 도구 생태계
 - `/apps/bluemoon/`: BlueMoon 전용 소개 — 집필·인물·플롯 개발 화면과 현재 공개 준비 상태
-- `/apps/`: 틔운 앱들 — 운영·테스트·개발 중인 앱과 서비스 25개, 검색과 진행 상태 필터 제공
+- `/apps/`: 틔운 앱들 — 앱과 서비스 25개, 검색·8개 쓰임 분류·진행 상태 필터 제공
 - `/apps/spotter/`: Spotter 소개 — 기기 내 운동 동작 분석과 기록, 내부 테스트 상태 안내
 - `/apps/dohwaji/`: NODE_01-A 도화지 제품 소개 — 공식 서비스 `https://dohwaji.app`
 - `/apps/timeflower/`: NODE_01-C TimeFlower 제품 소개 — 운영 중인 공유 캘린더
@@ -37,7 +37,7 @@ npm run dev
 앱 목록의 제품은 `src/apps.ts`의 `productApps` 배열에서 관리합니다.
 확장 제품의 소개는 `src/growing-projects.ts`와 `src/additional-projects.ts`에 등록하고, 빌드 경로와 상세 라우팅에서 함께 사용합니다. 추가 제품의 원본 자료와 공개 상태 확인 기준은 `GROWING_APPS.md`에 기록합니다.
 메인 페이지와 앱 서비스 목록은 같은 배열 순서를 사용하며, TimeRoots와 벨소리로를 하단에 배치합니다.
-BlueMoon 대표 영역과 생산성·사진·영상 인식 도구 모음은 이 배열과 별도로 표시합니다. 사진 그룹은 Beauty Touch·Inkmile, 영상 인식 그룹은 세어봐·Spotter입니다. Spotter를 추가해 총 25개이며 기존 제품의 상대 순서와 필터를 유지합니다. Inkmile은 기존 `archive-ink` 식별자와 주소를 사용합니다.
+BlueMoon 대표 영역과 생산성·사진·영상 인식 도구 모음은 이 배열과 별도로 표시합니다. 사진 그룹은 Beauty Touch·Inkmile·RUN POST·Duo Studio, 영상·화면 인식 그룹은 세어봐·Spotter·HUNTLOG입니다. 총 25개의 상대 순서와 상태를 유지하며, 홈과 앱 목록에서 생산성·기록 / 사진·편집 / 영상·화면 인식 / 글쓰기·문서 / 생활·소통 / 운동·수면 / 미디어·소리 / 데이터 연구로 필터링합니다. 분류는 `src/catalog.ts`의 `catalogGroups`를 함께 사용합니다. Inkmile은 기존 `archive-ink` 식별자와 주소를 사용합니다.
 대표 영역과 화면 출처·검증 기준은 `docs/bluemoon-feature.md`에 기록합니다.
 공포도파민 브랜드와 채널 데이터는 `src/nodes.ts`에서 관리합니다.
 공포도파민 공개 여부는 `src/visibility.ts`의 `SHOW_HORROR_DOPAMINE` 값으로 관리합니다.
