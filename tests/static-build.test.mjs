@@ -13,22 +13,29 @@ async function moduleUrl(path, replacements = {}) {
   return `data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`;
 }
 const additionalModule = await moduleUrl("../src/additional-projects.ts");
-const projectModule = await moduleUrl("../src/growing-projects.ts", { "./additional-projects": additionalModule });
+const { additionalProjects } = await import(additionalModule);
+const visibilityModule = await moduleUrl("../src/product-visibility.ts");
+const { privateProductIds } = await import(visibilityModule);
+const projectModule = await moduleUrl("../src/growing-projects.ts", { "./additional-projects": additionalModule, "./product-visibility": visibilityModule });
 const { growingProjects } = await import(projectModule);
 const { productApps, appDetailPath } = await import(await moduleUrl("../src/apps.ts", { "./growing-projects": projectModule }));
 const { filterApps, catalogCopy, appCategories, catalogCategories, catalogGroups, catalogNavigationCopy } = await import(await moduleUrl("../src/catalog.ts"));
 const { catalogPreviewImage } = await import(await moduleUrl("../src/catalog-preview.ts", { "./growing-projects": projectModule }));
 
-test("쓰임 분류는 25개 제품을 빠짐없이 포함하고 검색·진행 상태와 함께 적용된다", () => {
+test("쓰임 분류는 공개 소개 제품 21개를 포함하고 개인용 프로젝트를 제외한다", async () => {
   assert.deepEqual(Object.keys(appCategories).sort(), productApps.map((app) => app.id).sort());
-  assert.deepEqual(catalogCategories.map((purpose) => filterApps(productApps, "", "all", purpose).length), [7, 4, 3, 3, 3, 2, 2, 1]);
+  assert.deepEqual(catalogCategories.map((purpose) => filterApps(productApps, "", "all", purpose).length), [7, 4, 2, 2, 3, 2, 1]);
   const groupedIds = Object.values(catalogGroups).flat();
   assert.equal(new Set(groupedIds).size, groupedIds.length, "제품은 주된 쓰임 한 곳에만 분류한다");
   assert.deepEqual(filterApps(productApps, "", "live", "productivity").map((app) => app.id), ["ssakmemo", "daymirror", "timeflower", "timeroots"]);
-  assert.deepEqual(filterApps(productApps, "소설", "development", "writing").map((app) => app.id), ["bluemoon", "ai-ocr"]);
+  assert.deepEqual(filterApps(productApps, "소설", "development", "writing").map((app) => app.id), ["bluemoon"]);
   assert.deepEqual(filterApps(productApps, "RUN POST", "testing", "photos").map((app) => app.id), ["hiho-run"]);
   assert.deepEqual(filterApps(productApps, "CountLens", "testing", "photos"), []);
-  assert.deepEqual(filterApps(productApps, "HUNTLOG", "testing", "vision").map((app) => app.id), ["huntlog"]);
+  for (const id of privateProductIds) {
+    assert.equal(productApps.some((app) => app.id === id), false);
+    assert.deepEqual(filterApps(productApps, id, "all"), []);
+    await assert.rejects(stat(new URL(`../dist/apps/${id}/index.html`, import.meta.url)), { code: "ENOENT" });
+  }
   assert.deepEqual(filterApps(productApps, "", "all", "all"), productApps);
   for (const locale of ["ko", "en", "ja"]) {
     for (const purpose of catalogCategories) assert.ok(catalogNavigationCopy[locale][purpose]);
@@ -325,7 +332,7 @@ test("메인과 앱 목록은 도화지·싹 메모·DayMirror·RUN POST를 우�
     "dohwaji", "ssakmemo", "daymirror", "hiho-run", "timeflower", "dailyplank", "biondamae", "leaf-message",
     "countlens", "duo-studio", "archive-ink", "time-journey",
     "beauty-touch", "bluemoon", "namu-note", "drawing-ground", "pretty-speech", "jamgyeol",
-    "deepplayer", "huntlog", "ai-ocr", "autotrade", "spotter", "timeroots", "ringtone",
+    "spotter", "timeroots", "ringtone",
   ]);
   assert.deepEqual(productApps.map((entry) => entry.order), Array.from({ length: productApps.length }, (_, i) => String(i + 1).padStart(2, "0")));
   const runPost = productApps.find((app) => app.id === "hiho-run");
@@ -352,7 +359,7 @@ test("새 프로젝트는 정확한 상태와 독립 주소, 세 언어의 소�
     ["hiho-run", "testing"], ["daymirror", "live"], ["time-journey", "development"],
     ["beauty-touch", "testing"], ["bluemoon", "development"], ["namu-note", "development"],
     ["drawing-ground", "testing"], ["pretty-speech", "testing"], ["jamgyeol", "testing"],
-    ["deepplayer", "development"], ["huntlog", "testing"], ["ai-ocr", "development"], ["autotrade", "development"], ["spotter", "testing"],
+    ["spotter", "testing"],
   ]);
   assert.equal(new Set(productApps.map((app) => app.id)).size, productApps.length);
   for (const project of growingProjects) {
@@ -383,10 +390,10 @@ test("새 프로젝트는 정확한 상태와 독립 주소, 세 언어의 소�
 });
 
 test("검색은 언어에 관계없이 동작하고 필터가 우선순위를 바꾸지 않는다", () => {
-  assert.equal(filterApps(productApps, "", "all").length, 25);
+  assert.equal(filterApps(productApps, "", "all").length, 21);
   assert.equal(filterApps(productApps, "", "live").length, 9);
-  assert.equal(filterApps(productApps, "", "testing").length, 9);
-  assert.equal(filterApps(productApps, "", "development").length, 7);
+  assert.equal(filterApps(productApps, "", "testing").length, 8);
+  assert.equal(filterApps(productApps, "", "development").length, 4);
   for (const query of ["세어봐", "CountLens", "ＣＯＵＮＴＬＥＮＳ", "  countlens  "]) {
     assert.deepEqual(filterApps(productApps, query, "all").map((app) => app.id), ["countlens"]);
   }
@@ -397,7 +404,7 @@ test("검색은 언어에 관계없이 동작하고 필터가 우선순위를 �
   assert.deepEqual(filterApps(productApps, "사진", "development").map((app) => app.id), ["archive-ink"]);
   assert.deepEqual(filterApps(productApps, "does-not-exist", "all"), []);
   assert.deepEqual(filterApps(productApps, "Daymirror", "live").map(app => app.id), ["daymirror"]);
-  for (const [query, id] of [["Beauty Up", "beauty-touch"], ["beautyUp", "beauty-touch"], ["Inkmile", "archive-ink"], ["ArchiveInk", "archive-ink"], ["물체카운터", "countlens"], ["Spotter", "spotter"], ["스포터", "spotter"], ["나무 노트", "namu-note"], ["Namu Note", "namu-note"], ["블루문", "bluemoon"], ["BlueMoon", "bluemoon"], ["예쁘게 말하기", "pretty-speech"], ["잠결", "jamgyeol"], ["LOCAL API", "ai-ocr"]]) {
+  for (const [query, id] of [["Beauty Up", "beauty-touch"], ["beautyUp", "beauty-touch"], ["Inkmile", "archive-ink"], ["ArchiveInk", "archive-ink"], ["물체카운터", "countlens"], ["Spotter", "spotter"], ["스포터", "spotter"], ["나무 노트", "namu-note"], ["Namu Note", "namu-note"], ["블루문", "bluemoon"], ["BlueMoon", "bluemoon"], ["예쁘게 말하기", "pretty-speech"], ["잠결", "jamgyeol"]]) {
     assert.deepEqual(filterApps(productApps, query, "all").map(app => app.id), [id]);
   }
   for (const filter of ["all", "live", "testing", "development"]) {
@@ -423,7 +430,7 @@ test("새 앱 아이콘은 프로젝트 원본을 그대로 사용한다", async
     deepplayer: "c0beb76bebd8a7005671ddc898fb0fc250e71b564a1380f44d34d9281bafcc19",
   };
   for (const [id, hash] of Object.entries(hashes)) {
-    const app = productApps.find((app) => app.id === id);
+    const app = productApps.find((app) => app.id === id) ?? additionalProjects.find((project) => project.app.id === id)?.app;
     const file = await readFile(new URL(`../dist/${app.icon}`, import.meta.url));
     assert.equal(createHash("sha256").update(file).digest("hex"), hash, id);
   }

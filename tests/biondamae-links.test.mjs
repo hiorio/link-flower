@@ -10,7 +10,8 @@ async function moduleUrl(path, replacements = {}) {
   return `data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`;
 }
 const additional = await moduleUrl("../src/additional-projects.ts");
-const growing = await moduleUrl("../src/growing-projects.ts", { "./additional-projects": additional });
+const visibility = await moduleUrl("../src/product-visibility.ts");
+const growing = await moduleUrl("../src/growing-projects.ts", { "./additional-projects": additional, "./product-visibility": visibility });
 const { productApps, appDetailPath, appIntroductionHref } = await import(await moduleUrl("../src/apps.ts", { "./growing-projects": growing }));
 
 test("Biondamae introduction uses the internal page while opening weather uses the live service", () => {

@@ -1,5 +1,13 @@
 # Photo and visual-recognition groups · 2026-10-08
 
+## Current public showcase correction
+
+The latest user correction excludes personal/unverified-public-destination services: deepPlayer, HUNTLOG, ai-ocr and AutoTrade. Their local source records remain; exported registry, navigation, search, runtime detail routing and Vite static entries exclude them. There are now 21 showcase apps and seven purpose filters (7/4/2/2/3/2/1). Explicitly requested unreleased showcase apps keep their real statuses, including Jamgyeol and BlueMoon. HUNTLOG's README says public alpha but supplies no verified public-use destination; this exclusion is not a claim that its implementation is necessarily private.
+
+The home and app register display Productivity/records (seven apps), Photos (four), Visual recognition (CountLens/Spotter), Health (Daily Plank/Jamgyeol), and Everyday/connections (Dohwaji/Biondamae/Leaf Message). The productivity summary links explicitly to the unchanged four-app botanical collection. Existing Slate/Taupe, icons, statuses, links, localized content and responsive patterns are retained. Evidence: `.impeccable/review/public-collections-20261008/`.
+
+## Historical grouping and verification (superseded by the correction above)
+
 The home and `/apps/` now group **Beauty Touch + Inkmile + RUN POST + Duo Studio** under photo tools, and **CountLens / 세어봐 + Spotter + HUNTLOG** under video/screen-recognition tools. The two groups sit after the existing productivity collection. BlueMoon remains the featured service. Each entry opens its own introduction; no integration between the apps is implied. Group membership now shares `catalogGroups` with the purpose filters; the four-app botanical productivity collection remains a separate editorial collection.
 
 ## Product names and evidence

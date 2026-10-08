@@ -1,6 +1,7 @@
 import type { ProductApp } from "./apps";
 import type { Locale } from "./i18n";
 import { additionalProjects } from "./additional-projects";
+import { isPublicProduct } from "./product-visibility";
 
 type ProjectCopy = {
   headline: [string, string];
@@ -21,7 +22,7 @@ export type GrowingProject = {
 
 // Public-facing facts checked against each native project on 2026-09-13.
 // Internal TestFlight availability is not a public installation link.
-export const growingProjects: GrowingProject[] = [
+const registeredProjects: GrowingProject[] = [
   {
     app: {
       id: "countlens", detailPath: "apps/countlens/", code: "FIND / COUNT / CHECK",
@@ -132,3 +133,5 @@ export const growingProjects: GrowingProject[] = [
   },
   ...additionalProjects,
 ];
+
+export const growingProjects = registeredProjects.filter(({ app }) => isPublicProduct(app.id));

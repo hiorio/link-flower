@@ -1,5 +1,7 @@
 # Growing app introductions
 
+Latest showcase policy (2026-10-08): `src/product-visibility.ts` excludes deepPlayer, HUNTLOG, ai-ocr and AutoTrade from the exported registry, public navigation/search, routing and static page build. Their source records remain local. The current showcase has 21 apps (9 live / 8 testing / 4 development), seven purpose filters, and visible Health / Everyday / Productivity groups. Jamgyeol and BlueMoon retain their explicitly requested showcase positions and actual testing/development states. Earlier counts below are historical. See `PRODUCT.md` and `docs/media-collections.md` for the correction and its stated interpretation.
+
 Verified against local project evidence on 2026-09-13. This document is maintainer context, not public installation guidance.
 
 ## Registry and priority

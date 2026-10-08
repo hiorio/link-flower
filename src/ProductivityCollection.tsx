@@ -1,18 +1,24 @@
 import type { ReactNode } from "react";
-import { appIntroductionHref } from "./apps";
+import { productApps, appIntroductionHref } from "./apps";
 import { AppIcon } from "./AppIcon";
 import { ServiceArrow } from "./ServiceArrow";
 import { BotanicalBloom } from "./BotanicalBloom";
-import { catalogCopy } from "./catalog";
+import { catalogCopy, catalogGroups, catalogNavigationCopy } from "./catalog";
 import { catalogPreviewImage } from "./catalog-preview";
 import type { Locale } from "./i18n";
 import { productivityApps, productivityCopy } from "./productivity-collection";
 import "./productivity-collection.css";
 
 export function ProductivityCollection({ locale, basePath }: { locale: Locale; basePath: string }) {
-  const text = productivityCopy[locale];
-  return <section className="prod-summary" aria-labelledby="prod-summary-title"><div><h2 id="prod-summary-title">{text.title}</h2><p>{text.short}</p><a className="prod-link" href={`${basePath}collections/productivity/`}>{text.open}<ServiceArrow /></a></div>
-    <nav aria-label={text.title}><ul>{productivityApps.map((app) => <li key={app.id}><a href={appIntroductionHref(app, basePath)}><AppIcon app={app} locale={locale} basePath={basePath} size={40} /><span>{app.content[locale].displayName}</span></a></li>)}</ul></nav>
+  const summary = {
+    ko: { description: "메모와 그림부터 일정, 하루 기록과 집중까지. 필요한 도구를 골라 쓰세요.", collection: "싹·나무·땅·꽃 도구 모음 보기" },
+    en: { description: "Notes, drawings, schedules, daily records, and focus. Choose the tool you need.", collection: "Explore four nature-inspired tools" },
+    ja: { description: "メモ、絵、予定、一日の記録、集中。必要な道具を選んで使えます。", collection: "自然を名前にした4つの道具を見る" },
+  }[locale];
+  const apps = catalogGroups.productivity.flatMap((id) => productApps.filter((app) => app.id === id));
+  const title = catalogNavigationCopy[locale].productivity;
+  return <section className="prod-summary" aria-labelledby="prod-summary-title"><div><h2 id="prod-summary-title">{title}</h2><p>{summary.description}</p><a className="prod-link" href={`${basePath}collections/productivity/`}>{summary.collection}<ServiceArrow /></a></div>
+    <nav aria-label={title}><ul>{apps.map((app) => <li key={app.id}><a href={appIntroductionHref(app, basePath)}><AppIcon app={app} locale={locale} basePath={basePath} size={40} /><span>{app.content[locale].displayName}</span></a></li>)}</ul></nav>
   </section>;
 }
 
