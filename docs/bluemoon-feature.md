@@ -1,5 +1,9 @@
 # BlueMoon flagship and productivity collection · 2026-10-08
 
+## Public web destination confirmed 2026-10-09
+
+The introduction's primary action now opens `https://bluemoon.hiorio.com/` in a new tab, with Korean, English and Japanese labels. The native-source deployment record in `BlueMoon/docs/web-account.md` names this custom domain; a read-only browser check returned HTTP 200 and the BlueMoon landing page. This supersedes the earlier pending-web-deployment statement below, without asserting verified authentication, multi-device sync or Windows download availability. The existing on-page capture gallery remains a separate action. The native app repository was not modified.
+
 ## Confirmed presentation
 
 BlueMoon is HIORIO's featured service. The home introduces it before the creator profile and full product registry; `/apps/` has a separate BlueMoon feature. `/apps/bluemoon/` now uses a dedicated writing-studio introduction rather than the generic developing-product layout.

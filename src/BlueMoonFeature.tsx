@@ -1,6 +1,6 @@
 import { BlueMoonCompanion } from "./BlueMoonCompanion";
 import { ServiceArrow } from "./ServiceArrow";
-import { blueMoonCopy, blueMoonProject, blueMoonScenes } from "./bluemoon-content";
+import { blueMoonCopy, blueMoonProject, blueMoonScenes, blueMoonServiceUrl } from "./bluemoon-content";
 import type { Locale } from "./i18n";
 import "./bluemoon.css";
 
@@ -21,7 +21,9 @@ export function BlueMoonFeature({ locale, basePath, variant = "hero", headingLev
       <div className="bm-brand"><BlueMoonCompanion locale={locale} basePath={basePath} /><div><strong>{content.displayName}</strong><span>{text.flagship}</span></div></div>
       <Heading id={variant === "hero" ? "root-page-title" : "bm-page-title"}>{blueMoonProject.copy[locale].headline.map((line) => <span key={line}>{line}</span>)}</Heading>
       <p className="bm-feature-description">{content.description}</p>
-      <div className="bm-feature-actions"><a className="bm-primary" href={variant === "detail" ? "#bm-workshop" : href}>{variant === "detail" ? text.workshop : text.about}<ServiceArrow /></a>
+      <div className="bm-feature-actions">{variant === "detail"
+        ? <><a className="bm-primary" href={blueMoonServiceUrl} target="_blank" rel="noreferrer" aria-label={`${text.service} · ${text.newWindow}`}>{text.service}<ServiceArrow direction="external" /></a><a className="bm-text-link" href="#bm-workshop">{text.workshop}</a></>
+        : <a className="bm-primary" href={href}>{text.about}<ServiceArrow /></a>}
         <a className="bm-text-link" href={`${basePath}apps/`}>{text.all}</a></div>
       <p className="bm-availability">{text.availability}</p>
     </div>
