@@ -1,0 +1,35 @@
+[
+  {
+    "id": "01-black",
+    "name": "따뜻한 흰색 배경 · 검정 로고",
+    "ink": "#111111",
+    "background": "#FAF8F2",
+    "prompt": "Use case: precise-object-edit. Input image is the exact selected HIORIO logo, an EDIT TARGET, not merely inspiration. Recolor and clean up its presentation while preserving the original main symbol and original wordmark design faithfully. Extract the LARGE main H symbol and the HIORIO wordmark directly beneath it. Preserve the main symbol's chunky organic H contour, asymmetric uprights, deeply curved open top and bottom notches, the long narrow vertical oval cutout through the LEFT upright, and the circular cutout through the RIGHT upright. BOTH INTERNAL CUTOUTS ARE ESSENTIAL. Do not replace the main symbol with the simplified bottom thumbnails. Preserve original wordmark shapes and exact text HIORIO, six letters H I O R I O. Do not redesign, reinterpret, regularize, rotate or change proportions. Remove the acid chartreuse/fluorescent rectangle completely; the whole square canvas must use a single uniform background. Remove the \"02\", \"PRESSURE\", and all bottom miniature tests and their frames. Show only the original main symbol above its original wordmark, generously spaced on a clean square canvas with balanced margins. The symbol should occupy roughly 55 percent of the image width, the wordmark roughly 60 percent, grouped centrally as a polished standalone vertical company logo lockup. All mark and wordmark shapes use a single solid ink color; all cutouts show the background color. Completely flat solid colors, crisp vector-like edges, no texture, gradient, shadows, lighting, extra marks or labels. Ink color #111111. Entire background color #FAF8F2.",
+    "file": "01-black.png",
+    "source": "C:\\Users\\welsp\\.codex\\generated_images\\01a118ff-bfb3-7e31-b25a-eddbb463cb70\\exec-fd6683c4-3b19-4a47-a7ee-c6f5511c84b7.png",
+    "provider": "Built-in image_gen",
+    "reference": "../hiorio-logo-20261008-bold-01/initial-02.png"
+  },
+  {
+    "id": "02-white",
+    "name": "검정 배경 · 흰색 로고",
+    "ink": "#FAF8F2",
+    "background": "#111111",
+    "prompt": "Use case: precise-object-edit. Input image is the exact selected HIORIO logo, an EDIT TARGET, not merely inspiration. Recolor and clean up its presentation while preserving the original main symbol and original wordmark design faithfully. Extract the LARGE main H symbol and the HIORIO wordmark directly beneath it. Preserve the main symbol's chunky organic H contour, asymmetric uprights, deeply curved open top and bottom notches, the long narrow vertical oval cutout through the LEFT upright, and the circular cutout through the RIGHT upright. BOTH INTERNAL CUTOUTS ARE ESSENTIAL. Do not replace the main symbol with the simplified bottom thumbnails. Preserve original wordmark shapes and exact text HIORIO, six letters H I O R I O. Do not redesign, reinterpret, regularize, rotate or change proportions. Remove the acid chartreuse/fluorescent rectangle completely; the whole square canvas must use a single uniform background. Remove the \"02\", \"PRESSURE\", and all bottom miniature tests and their frames. Show only the original main symbol above its original wordmark, generously spaced on a clean square canvas with balanced margins. The symbol should occupy roughly 55 percent of the image width, the wordmark roughly 60 percent, grouped centrally as a polished standalone vertical company logo lockup. All mark and wordmark shapes use a single solid ink color; all cutouts show the background color. Completely flat solid colors, crisp vector-like edges, no texture, gradient, shadows, lighting, extra marks or labels. Ink color #FAF8F2. Entire background color #111111.",
+    "file": "02-white.png",
+    "source": "C:\\Users\\welsp\\.codex\\generated_images\\01a118ff-bfb3-7e31-b25a-eddbb463cb70\\exec-7478ef93-7b47-4ef9-a9e7-a01e77f388f2.png",
+    "provider": "Built-in image_gen",
+    "reference": "../hiorio-logo-20261008-bold-01/initial-02.png"
+  },
+  {
+    "id": "03-cobalt",
+    "name": "흰색 배경 · 코발트 블루 로고",
+    "ink": "#2455E6",
+    "background": "#FFFFFF",
+    "prompt": "Use case: precise-object-edit. Input image is the exact selected HIORIO logo, an EDIT TARGET, not merely inspiration. Recolor and clean up its presentation while preserving the original main symbol and original wordmark design faithfully. Extract the LARGE main H symbol and the HIORIO wordmark directly beneath it. Preserve the main symbol's chunky organic H contour, asymmetric uprights, deeply curved open top and bottom notches, the long narrow vertical oval cutout through the LEFT upright, and the circular cutout through the RIGHT upright. BOTH INTERNAL CUTOUTS ARE ESSENTIAL. Do not replace the main symbol with the simplified bottom thumbnails. Preserve original wordmark shapes and exact text HIORIO, six letters H I O R I O. Do not redesign, reinterpret, regularize, rotate or change proportions. Remove the acid chartreuse/fluorescent rectangle completely; the whole square canvas must use a single uniform background. Remove the \"02\", \"PRESSURE\", and all bottom miniature tests and their frames. Show only the original main symbol above its original wordmark, generously spaced on a clean square canvas with balanced margins. The symbol should occupy roughly 55 percent of the image width, the wordmark roughly 60 percent, grouped centrally as a polished standalone vertical company logo lockup. All mark and wordmark shapes use a single solid ink color; all cutouts show the background color. Completely flat solid colors, crisp vector-like edges, no texture, gradient, shadows, lighting, extra marks or labels. Ink color #2455E6. Entire background color #FFFFFF.",
+    "file": "03-cobalt.png",
+    "source": "C:\\Users\\welsp\\.codex\\generated_images\\01a118ff-bfb3-7e31-b25a-eddbb463cb70\\exec-a680f32b-0a74-460e-8e82-92b195149aff.png",
+    "provider": "Built-in image_gen",
+    "reference": "../hiorio-logo-20261008-bold-01/initial-02.png"
+  }
+]

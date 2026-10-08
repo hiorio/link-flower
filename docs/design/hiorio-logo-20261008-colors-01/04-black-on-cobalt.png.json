@@ -1,0 +1,6 @@
+{
+  "provider": "Built-in image_gen",
+  "prompt": "Use case: precise-object-edit. Edit the supplied HIORIO logo image by CHANGING COLORS ONLY. Recolor every blue foreground shape, both the large organic H symbol and the HIORIO wordmark below it, to solid near-black #111111. Recolor the entire white background to solid cobalt blue #2455E6, including every white negative-space opening within the symbol and letters. Preserve the exact original symbol silhouette, the long narrow vertical oval cutout on the left upright, the circular hole in the right upright, the original six-letter HIORIO typography, size, position, spacing, margins and square composition. Do not redraw or redesign anything. No additional words, labels, decorations, borders, gradients, texture, lighting, shadows or mockup. This is a faithful color-swap preview of the user's selected logo: black logo and black lettering on uniform cobalt blue.",
+  "source": "C:\\Users\\welsp\\.codex\\generated_images\\01a118ff-bfb3-7e31-b25a-eddbb463cb70\\exec-d5539589-add5-45b6-83b0-8d7d1408e48c.png",
+  "reference": "03-cobalt.png"
+}

@@ -26,6 +26,7 @@ import { productivityCopy } from "./productivity-collection";
 import { MediaCollections } from "./MediaCollections";
 import { SHOW_HORROR_DOPAMINE } from "./visibility";
 import { useSiteMotion } from "./useSiteMotion";
+import { HiorioLogo } from "./HiorioLogo";
 
 type RouteId = "root" | "channels" | "apps" | "productivity" | "dohwaji" | "timeflower" | "timeroots" | "dailyplank" | "biondamae" | "ssakmemo" | "leafmessage" | "ringtone" | "project" | "horror";
 type Copy = (typeof ui)[Locale];
@@ -85,7 +86,7 @@ function SiteHeader({ activeRoute, copy, locale, setLocale }: {
     <header className="network-bar">
       <a className="skip-link" href="#page-content">{copy.skipToContent}</a>
       <a className="network-name" href={routeHref("root")}>
-        <span className="record-dot" aria-hidden="true" />
+        <HiorioLogo basePath={basePath} className="network-logo" />
         HIORIO
       </a>
       <div className="network-controls">
@@ -117,13 +118,12 @@ function SiteHeader({ activeRoute, copy, locale, setLocale }: {
 function RootPage({ copy, locale, setLocale }: { copy: Copy; locale: Locale; setLocale: (locale: Locale) => void }) {
   return (
     <main className="site-shell root-shell link-hub">
-      <div className="root-grid-bg" aria-hidden="true" />
       <SiteHeader activeRoute="root" copy={copy} locale={locale} setLocale={setLocale} />
 
       <LinkHub locale={locale} basePath={basePath} />
 
       <footer className="site-footer root-footer">
-        <span className="footer-node">HIORIO</span><span>APPS & SERVICES · © 2026</span>
+        <a href={routeHref("root")} aria-label="HIORIO"><HiorioLogo basePath={basePath} tone="white" /><span>HIORIO</span></a><span>APPS & SERVICES · © 2026</span>
       </footer>
     </main>
   );

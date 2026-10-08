@@ -1,5 +1,13 @@
 # Link Flower / HIORIO
 
+## Logo and homepage redesign confirmed 2026-10-08
+
+The user selected the first round's concept 02: a heavy organic H with a long oval opening on the left and round opening on the right. They approved warm-white/black treatments and cobalt blue (`#2455E6`) and explicitly requested applying the logo to the page and redesigning the homepage to be bold and experimental. This supersedes prior statements that homepage redesign was unapproved or that its Slate/Taupe visual system must remain fixed. The confirmed scope is the homepage, shared HIORIO logo, favicon and home social preview; individual product experiences retain their identities. The 21 public products, flagship BlueMoon, real screenshots, purpose groups, actual links, lifecycle states and ko/en/ja support remain authoritative.
+
+## Dual primary logo treatments confirmed 2026-10-08
+
+The user approved both primary treatments together on the current homepage: cobalt artwork on a light background and black artwork on cobalt. The header symbol and masthead keep the first treatment; the closing section uses the complete square black-on-cobalt H and HIORIO lockup from the approved `04-black-on-cobalt.png`. Its surrounding closing field stays black with warm-white text. Black/white monochrome artwork remains available for utility use, including the small white footer mark. This extends logo usage without changing the homepage palette, typography, layout or independent product identities.
+
 ## Confirmed scope and audience
 This is HIORIO's personal collection of independently made and operated apps, services, content, and future work. The creator, not the collection name Link Flower, leads the main page. Visitors browse products, understand their purpose, and follow their genuine installation or support links.
 

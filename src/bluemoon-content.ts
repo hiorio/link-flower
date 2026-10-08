@@ -12,7 +12,7 @@ export const blueMoonScenes = [
 export const blueMoonCopy = {
   ko: {
     homeTitle: "HIORIO | BlueMoon과 직접 만드는 앱·서비스",
-    homeDescription: "소설 창작 스튜디오 BlueMoon을 중심으로 HIORIO가 직접 만드는 24개 앱과 서비스를 만나보세요. BlueMoon은 Windows 개발 버전입니다.",
+    homeDescription: "소설 창작 스튜디오 BlueMoon을 중심으로 HIORIO가 직접 만드는 21개 앱과 서비스를 만나보세요. BlueMoon은 Windows 개발 버전입니다.",
     flagship: "HIORIO 대표 서비스", about: "BlueMoon 알아보기", all: "모든 앱 보기", workshop: "작업실 살펴보기", back: "앱과 서비스",
     availability: "Windows 개발 버전 · 공개 설치 준비 중", capture: "개발 버전 브라우저 미리보기 · 예제 작품", captureNote: "실제 개발 화면을 캡처했습니다. 화면 속 원고와 인물은 예제이며, 개인 기록이나 웹에서 실행한 결과가 아닙니다.",
     companion: "블루문 친구를 눌러 표정 보기", hint: "달 친구를 톡 눌러보세요.", happy: "달 친구가 웃어요.", confused: "달 친구가 간지러워해요.",
@@ -29,7 +29,7 @@ export const blueMoonCopy = {
   },
   en: {
     homeTitle: "HIORIO | BlueMoon and independently made apps",
-    homeDescription: "Meet BlueMoon, a novel-writing studio, and HIORIO's collection of 24 independently made apps and services. BlueMoon is a Windows development build.",
+    homeDescription: "Meet BlueMoon, a novel-writing studio, and HIORIO's collection of 21 independently made apps and services. BlueMoon is a Windows development build.",
     flagship: "HIORIO's featured service", about: "Explore BlueMoon", all: "See all apps", workshop: "Explore the studio", back: "Apps & services",
     availability: "Windows development build · public download pending", capture: "Development browser preview · sample novel", captureNote: "Captured from the development interface. The manuscript and characters are examples, not personal records or results produced on this page.",
     companion: "Press the BlueMoon companion to see its expression", hint: "Give the little moon a tap.", happy: "The moon is smiling.", confused: "The moon is feeling ticklish.",
@@ -46,7 +46,7 @@ export const blueMoonCopy = {
   },
   ja: {
     homeTitle: "HIORIO | BlueMoonと、自らつくるアプリ・サービス",
-    homeDescription: "小説制作スタジオBlueMoonを中心に、HIORIOがつくる24のアプリとサービスをご紹介。BlueMoonはWindows開発版です。",
+    homeDescription: "小説制作スタジオBlueMoonを中心に、HIORIOがつくる21のアプリとサービスをご紹介。BlueMoonはWindows開発版です。",
     flagship: "HIORIOの代表サービス", about: "BlueMoonを詳しく見る", all: "すべてのアプリを見る", workshop: "作業室を見てみる", back: "アプリとサービス",
     availability: "Windows開発版 · 一般公開の準備中", capture: "開発版ブラウザプレビュー · サンプル作品", captureNote: "実際の開発画面のキャプチャです。原稿や人物はサンプルであり、個人の記録やこのページで実行した結果ではありません。",
     companion: "BlueMoonの仲間を押して表情を見る", hint: "月の仲間をタップしてみてください。", happy: "月の仲間が笑っています。", confused: "月の仲間がくすぐったがっています。",

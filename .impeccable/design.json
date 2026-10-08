@@ -1,0 +1,373 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-08T02:08:05.1942134Z",
+  "title": "Design System: HIORIO",
+  "extensions": {
+    "colorMeta": {
+      "cobalt": {
+        "role": "primary",
+        "displayName": "Cobalt",
+        "tonalRamp": [
+          "oklch(15.00% 0.22525 264.80)",
+          "oklch(26.43% 0.22525 264.80)",
+          "oklch(37.86% 0.22525 264.80)",
+          "oklch(49.29% 0.22525 264.80)",
+          "oklch(60.71% 0.22525 264.80)",
+          "oklch(72.14% 0.22525 264.80)",
+          "oklch(83.57% 0.22525 264.80)",
+          "oklch(95.00% 0.22525 264.80)"
+        ]
+      },
+      "warm-white": {
+        "role": "neutral",
+        "displayName": "Warm White",
+        "tonalRamp": [
+          "oklch(15.00% 0.00821 91.48)",
+          "oklch(26.43% 0.00821 91.48)",
+          "oklch(37.86% 0.00821 91.48)",
+          "oklch(49.29% 0.00821 91.48)",
+          "oklch(60.71% 0.00821 91.48)",
+          "oklch(72.14% 0.00821 91.48)",
+          "oklch(83.57% 0.00821 91.48)",
+          "oklch(95.00% 0.00821 91.48)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 0.00)",
+          "oklch(26.43% 0.00000 0.00)",
+          "oklch(37.86% 0.00000 0.00)",
+          "oklch(49.29% 0.00000 0.00)",
+          "oklch(60.71% 0.00000 0.00)",
+          "oklch(72.14% 0.00000 0.00)",
+          "oklch(83.57% 0.00000 0.00)",
+          "oklch(95.00% 0.00000 0.00)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "tonalRamp": [
+          "oklch(15.00% 0.00965 114.46)",
+          "oklch(26.43% 0.00965 114.46)",
+          "oklch(37.86% 0.00965 114.46)",
+          "oklch(49.29% 0.00965 114.46)",
+          "oklch(60.71% 0.00965 114.46)",
+          "oklch(72.14% 0.00965 114.46)",
+          "oklch(83.57% 0.00965 114.46)",
+          "oklch(95.00% 0.00965 114.46)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "tonalRamp": [
+          "oklch(15.00% 0.01095 100.85)",
+          "oklch(26.43% 0.01095 100.85)",
+          "oklch(37.86% 0.01095 100.85)",
+          "oklch(49.29% 0.01095 100.85)",
+          "oklch(60.71% 0.01095 100.85)",
+          "oklch(72.14% 0.01095 100.85)",
+          "oklch(83.57% 0.01095 100.85)",
+          "oklch(95.00% 0.01095 100.85)"
+        ]
+      },
+      "registry": {
+        "role": "neutral",
+        "displayName": "Registry",
+        "tonalRamp": [
+          "oklch(15.00% 0.00938 99.99)",
+          "oklch(26.43% 0.00938 99.99)",
+          "oklch(37.86% 0.00938 99.99)",
+          "oklch(49.29% 0.00938 99.99)",
+          "oklch(60.71% 0.00938 99.99)",
+          "oklch(72.14% 0.00938 99.99)",
+          "oklch(83.57% 0.00938 99.99)",
+          "oklch(95.00% 0.00938 99.99)"
+        ]
+      },
+      "control-rule": {
+        "role": "neutral",
+        "displayName": "Control Rule",
+        "tonalRamp": [
+          "oklch(15.00% 0.00974 106.62)",
+          "oklch(26.43% 0.00974 106.62)",
+          "oklch(37.86% 0.00974 106.62)",
+          "oklch(49.29% 0.00974 106.62)",
+          "oklch(60.71% 0.00974 106.62)",
+          "oklch(72.14% 0.00974 106.62)",
+          "oklch(83.57% 0.00974 106.62)",
+          "oklch(95.00% 0.00974 106.62)"
+        ]
+      },
+      "row-rule": {
+        "role": "neutral",
+        "displayName": "Row Rule",
+        "tonalRamp": [
+          "oklch(15.00% 0.01097 106.64)",
+          "oklch(26.43% 0.01097 106.64)",
+          "oklch(37.86% 0.01097 106.64)",
+          "oklch(49.29% 0.01097 106.64)",
+          "oklch(60.71% 0.01097 106.64)",
+          "oklch(72.14% 0.01097 106.64)",
+          "oklch(83.57% 0.01097 106.64)",
+          "oklch(95.00% 0.01097 106.64)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 0.00)",
+          "oklch(26.43% 0.00000 0.00)",
+          "oklch(37.86% 0.00000 0.00)",
+          "oklch(49.29% 0.00000 0.00)",
+          "oklch(60.71% 0.00000 0.00)",
+          "oklch(72.14% 0.00000 0.00)",
+          "oklch(83.57% 0.00000 0.00)",
+          "oklch(95.00% 0.00000 0.00)"
+        ]
+      },
+      "on-cobalt-muted": {
+        "role": "primary",
+        "displayName": "On Cobalt Muted",
+        "tonalRamp": [
+          "oklch(15.00% 0.02911 273.10)",
+          "oklch(26.43% 0.02911 273.10)",
+          "oklch(37.86% 0.02911 273.10)",
+          "oklch(49.29% 0.02911 273.10)",
+          "oklch(60.71% 0.02911 273.10)",
+          "oklch(72.14% 0.02911 273.10)",
+          "oklch(83.57% 0.02911 273.10)",
+          "oklch(95.00% 0.02911 273.10)"
+        ]
+      },
+      "action-ink": {
+        "role": "primary",
+        "displayName": "Action Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.21614 264.35)",
+          "oklch(26.43% 0.21614 264.35)",
+          "oklch(37.86% 0.21614 264.35)",
+          "oklch(49.29% 0.21614 264.35)",
+          "oklch(60.71% 0.21614 264.35)",
+          "oklch(72.14% 0.21614 264.35)",
+          "oklch(83.57% 0.21614 264.35)",
+          "oklch(95.00% 0.21614 264.35)"
+        ]
+      },
+      "hover-wash": {
+        "role": "neutral",
+        "displayName": "Hover Wash",
+        "tonalRamp": [
+          "oklch(15.00% 0.01670 271.24)",
+          "oklch(26.43% 0.01670 271.24)",
+          "oklch(37.86% 0.01670 271.24)",
+          "oklch(49.29% 0.01670 271.24)",
+          "oklch(60.71% 0.01670 271.24)",
+          "oklch(72.14% 0.01670 271.24)",
+          "oklch(83.57% 0.01670 271.24)",
+          "oklch(95.00% 0.01670 271.24)"
+        ]
+      },
+      "closing-black": {
+        "role": "neutral",
+        "displayName": "Closing Black",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 0.00)",
+          "oklch(26.43% 0.00000 0.00)",
+          "oklch(37.86% 0.00000 0.00)",
+          "oklch(49.29% 0.00000 0.00)",
+          "oklch(60.71% 0.00000 0.00)",
+          "oklch(72.14% 0.00000 0.00)",
+          "oklch(83.57% 0.00000 0.00)",
+          "oklch(95.00% 0.00000 0.00)"
+        ]
+      },
+      "footer-muted": {
+        "role": "neutral",
+        "displayName": "Footer Muted",
+        "tonalRamp": [
+          "oklch(15.00% 0.00831 106.59)",
+          "oklch(26.43% 0.00831 106.59)",
+          "oklch(37.86% 0.00831 106.59)",
+          "oklch(49.29% 0.00831 106.59)",
+          "oklch(60.71% 0.00831 106.59)",
+          "oklch(72.14% 0.00831 106.59)",
+          "oklch(83.57% 0.00831 106.59)",
+          "oklch(95.00% 0.00831 106.59)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Homepage display; see DESIGN.md for responsive role."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Homepage headline; see DESIGN.md for responsive role."
+      },
+      "feature-headline": {
+        "displayName": "Feature Headline",
+        "purpose": "Homepage feature headline; see DESIGN.md for responsive role."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Homepage title; see DESIGN.md for responsive role."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Homepage body; see DESIGN.md for responsive role."
+      },
+      "feature-body": {
+        "displayName": "Feature Body",
+        "purpose": "Homepage feature body; see DESIGN.md for responsive role."
+      },
+      "row-body": {
+        "displayName": "Row Body",
+        "purpose": "Homepage row body; see DESIGN.md for responsive role."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Homepage label; see DESIGN.md for responsive role."
+      }
+    },
+    "shadows": [
+      {
+        "name": "flagship-capture",
+        "value": "0 20px 48px #09257440",
+        "purpose": "Real screenshot on the cobalt home field."
+      },
+      {
+        "name": "legacy-preview",
+        "value": "0 12px 36px #15252c40",
+        "purpose": "Inherited shared Slate/Taupe overlay."
+      }
+    ],
+    "motion": [
+      {
+        "name": "masthead-settle",
+        "value": "700ms cubic-bezier(.16,1,.3,1)",
+        "purpose": "One visible 16px vertical settle; no reduced-motion animation."
+      },
+      {
+        "name": "flagship-action",
+        "value": "160ms cubic-bezier(.16,1,.3,1)",
+        "purpose": "Inherited CTA background transition, disabled for reduced motion."
+      },
+      {
+        "name": "companion-response",
+        "value": "460ms cubic-bezier(.16,1,.3,1)",
+        "purpose": "Existing poke/tickle response, disabled for reduced motion."
+      },
+      {
+        "name": "preview-arrival",
+        "value": "120ms ease-out",
+        "purpose": "Existing opacity arrival, disabled for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "home-compact",
+        "value": "1050px"
+      },
+      {
+        "name": "home-mobile",
+        "value": "720px"
+      },
+      {
+        "name": "legacy-preview-image",
+        "value": "640px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Flagship CTA",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "White action within the cobalt BlueMoon field.",
+      "html": "<div class=\"ds-field\"><a class=\"ds-primary\" href=\"/apps/bluemoon/\">BlueMoon 소개</a></div>",
+      "css": ".ds-field{background:#2455e6;padding:24px}.ds-primary{display:inline-flex;align-items:center;min-height:50px;padding:13px 22px;border:1px solid #fff;border-radius:0;background:#fff;color:#1645ce;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;font-size:14px;font-weight:750;line-height:1.6;text-decoration:none;transition:background 160ms cubic-bezier(.16,1,.3,1)}.ds-primary:hover{background:#141414;border-color:#141414;color:#fff}.ds-primary:focus-visible{outline:3px solid currentColor;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+    },
+    {
+      "name": "Catalogue search",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "Square search with a wrapper focus ring.",
+      "html": "<label class=\"ds-label\" for=\"ds-search\">앱 검색</label><div class=\"ds-search\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m16 16 4 4\"/></svg><input id=\"ds-search\" type=\"search\" placeholder=\"이름이나 기능으로 검색\"/></div>",
+      "css": ".ds-label{display:block;margin-bottom:9px;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;font-size:14px;font-weight:500;line-height:1.5;color:#141414}.ds-search{display:flex;align-items:center;gap:10px;padding-left:18px;border:1px solid #b9b9b2;background:#faf8f2;color:#555650}.ds-search input{width:100%;min-width:0;height:58px;padding:8px 12px 8px 0;border:0;background:transparent;color:#141414;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;font-size:16px;caret-color:#2455e6;outline:none}.ds-search input::placeholder{color:#555650;opacity:1}.ds-search:focus-within{outline:2px solid #2455e6;outline-offset:3px}.ds-search input:focus-visible{outline:none}"
+    },
+    {
+      "name": "Lifecycle filter",
+      "kind": "chip",
+      "refersTo": "filter",
+      "description": "Unselected native lifecycle filter.",
+      "html": "<button class=\"ds-filter\" type=\"button\" aria-pressed=\"false\">운영 중</button>",
+      "css": ".ds-filter{min-height:44px;padding:9px 13px;border:1px solid transparent;border-radius:0;background:transparent;color:#555650;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;font-size:14px;cursor:pointer}.ds-filter:hover{border-color:#b9b9b2}.ds-filter:focus-visible{outline:3px solid currentColor;outline-offset:5px}.ds-filter[aria-pressed=true]{background:#2455e6;color:#fff}"
+    },
+    {
+      "name": "Selected filter",
+      "kind": "chip",
+      "refersTo": "filter-selected",
+      "description": "Cobalt pressed filter state.",
+      "html": "<button class=\"ds-selected\" type=\"button\" aria-pressed=\"true\">전체 <span>21</span></button>",
+      "css": ".ds-selected{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:9px 13px;border:1px solid transparent;border-radius:0;background:#2455e6;color:#fff;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;font-size:14px;cursor:pointer}.ds-selected span{font-size:12px;font-variant-numeric:tabular-nums}.ds-selected:hover{border-color:#b9b9b2}.ds-selected:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
+    },
+    {
+      "name": "Homepage navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Text navigation; isolated controls sample intentionally omits raster logo.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"주요 메뉴\"><a class=\"ds-current\" href=\"/\" aria-current=\"page\">홈</a><a href=\"/apps/\">앱</a><button type=\"button\" aria-pressed=\"true\">KO</button></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:26px;min-height:92px;padding:16px 0;border-bottom:1px solid #d1d0c8;background:#faf8f2;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;}.ds-nav a{padding:10px 0;color:#141414;font-size:14px;font-weight:650;line-height:1.5;text-decoration:none}.ds-nav .ds-current{color:#2455e6}.ds-nav a:hover{text-decoration:underline;text-underline-offset:6px}.ds-nav button{min-width:40px;min-height:44px;padding:10px;border:0;border-radius:0;background:#2455e6;color:#fff;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;font-size:12px;font-weight:650;line-height:1.5;cursor:pointer}.ds-nav a:focus-visible,.ds-nav button:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
+    },
+    {
+      "name": "Preview trigger",
+      "kind": "button",
+      "refersTo": "preview-trigger",
+      "description": "Separate screenshot-preview control within registry rows; the app supplies the live overlay.",
+      "html": "<button class=\"ds-preview\" type=\"button\" aria-expanded=\"false\">미리보기</button>",
+      "css": ".ds-preview{display:inline-flex;align-items:center;gap:7px;min-height:32px;padding:6px 0;border:0;background:transparent;color:#555650;font-family:\"HIORIO Sans\",\"Noto Sans JP\",sans-serif;font-size:14px;cursor:pointer;text-decoration:underline;text-decoration-color:#a9927d;text-underline-offset:4px}.ds-preview:hover,.ds-preview[aria-expanded=true]{color:#141414}.ds-preview:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Independent Software Catalogue",
+    "overview": "HIORIO's approved organic H anchors a bold, open catalogue: saturated cobalt, warm white, black ink and weighty type. The two primary logo treatments are cobalt artwork on a light background and black artwork on cobalt; monochrome treatments serve utility uses. Generous space and strong fields give the identity scale while actual app icons and captures keep the work recognisable.\n\nThis record captures the implementation approved on 2026-10-08. Its frontmatter is normative for the homepage and its controls. The shared HIORIO mark, favicon and home social preview carry the approved identity beyond that surface. Individual product pages, the app register and the shared preview panel retain their existing visual systems. The north-star name describes the confirmed catalogue direction rather than introducing a new brand decision.",
+    "keyCharacteristics": [
+      "Original raster logo artwork framed by SVG viewports.",
+      "Self-hosted variable Pretendard, large headings and square cobalt control states.",
+      "Flat warm surfaces, thin rules, open product rows and a dark closing field.",
+      "Actual product evidence, Korean/English/Japanese support and reduced-motion behaviour."
+    ],
+    "rules": [
+      {
+        "name": "The Scoped Identity Rule",
+        "body": "Apply these identity tokens to the homepage. Preserve the independent visual language of product pages and the existing app register unless their redesign is approved.",
+        "section": "colors"
+      },
+      {
+        "name": "The Raster Wordmark Rule",
+        "body": "The HIORIO masthead is approved artwork, not a font treatment. Preserve the maker promise as the real h1 and the product headings beneath it.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do preserve the approved logo pixels and proportions.",
+      "Do keep homepage tokens scoped to the documented surfaces.",
+      "Do preserve actual icons, screenshot captions, lifecycle states and genuine destinations.",
+      "Do retain visible content by default, keyboard focus and reduced-motion behaviour.",
+      "Do preserve the product-specific records below."
+    ],
+    "donts": [
+      "Don't redraw the logo with CSS or replacement glyphs.",
+      "Don't apply legacy Slate/Taupe homepage rules to the new homepage.",
+      "Don't recolour independent product experiences merely to match the homepage.",
+      "Don't present example captures as production evidence or imply integration between independent apps.",
+      "Don't hide links until the masthead animation finishes."
+    ]
+  }
+}

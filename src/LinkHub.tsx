@@ -9,6 +9,9 @@ import { ProductivityCollection } from "./ProductivityCollection";
 import { MediaCollections } from "./MediaCollections";
 import { type Locale, ui } from "./i18n";
 import { SHOW_HORROR_DOPAMINE } from "./visibility";
+import { HiorioIntro } from "./HiorioIntro";
+import { HiorioLogo } from "./HiorioLogo";
+import { ServiceArrow } from "./ServiceArrow";
 
 const hubCopy = {
   ko: { browse: "모든 소개 보기", about: "소개 보기", web: "웹에서 열기", demo: "웹 데모", store: "App Store", collection: "피어난 서비스와 새롭게 틔우는 아이디어", next: "다음 아이디어도 이곳에서.", newWindow: "새 창에서 열기" },
@@ -46,7 +49,7 @@ function ProjectLink({ app, locale, basePath, priority }: { app: ProductApp; loc
           <CatalogPreviewTrigger app={app} locale={locale} />
         </div>
       </div>
-      <span className="hub-card-arrow" aria-hidden="true">{external ? "↗" : "→"}</span>
+      <span className="hub-card-arrow"><ServiceArrow direction={external ? "external" : "right"} /></span>
     </li>
   );
 }
@@ -58,24 +61,17 @@ export function LinkHub({ locale, basePath }: { locale: Locale; basePath: string
 
   return (
     <div className="hub-layout" id="page-content" tabIndex={-1}>
-      <BlueMoonFeature locale={locale} basePath={basePath} />
-      <ProductivityCollection locale={locale} basePath={basePath} />
-      <MediaCollections locale={locale} basePath={basePath} />
-      <section className="hub-profile" aria-labelledby="root-maker-title">
-        <div className="hub-profile-copy">
-          <h2 id="root-maker-title">{copy.rootTitle}<span aria-hidden="true">.</span></h2>
-          <p className="hub-promise">{blueMoonCopy[locale].makerPromise}</p>
-          <p className="hub-bio">{blueMoonCopy[locale].creator}</p>
-        </div>
-      </section>
+      <HiorioIntro locale={locale} basePath={basePath} />
+      <div className="hiorio-feature-field"><BlueMoonFeature locale={locale} basePath={basePath} headingLevel={2} /></div>
+      <div className="hiorio-collections"><ProductivityCollection locale={locale} basePath={basePath} /><MediaCollections locale={locale} basePath={basePath} /></div>
 
       <section className="garden-index hub-index" id="work-index" aria-labelledby="root-work-title">
         <header className="hub-index-heading">
           <div><h2 id="root-work-title">{copy.appsCardTitle}<span className="hub-count">{String(productApps.length).padStart(2, "0")}</span></h2></div>
-          <a className="hub-collection-link" href={`${basePath}apps/`}>{labels.browse}<span aria-hidden="true">↗</span></a>
+          <a className="hub-collection-link" href={`${basePath}apps/`}>{labels.browse}<ServiceArrow direction="external" /></a>
         </header>
         <CatalogControls catalog={catalog} locale={locale} resultsId="hub-app-results" />
-        <CatalogPreviewProvider locale={locale} basePath={basePath} theme="dark">
+        <CatalogPreviewProvider locale={locale} basePath={basePath} theme="light">
         <ul className="hub-link-list" id="hub-app-results">
           {catalog.apps.map((app, index) => <ProjectLink key={app.id} app={app} locale={locale} basePath={basePath} priority={index < 2} />)}
         </ul>
@@ -84,10 +80,10 @@ export function LinkHub({ locale, basePath }: { locale: Locale; basePath: string
 
         {SHOW_HORROR_DOPAMINE && <a className="hub-channel-link" href={`${basePath}channels/`}><span>{copy.channelsCardTitle}</span><span aria-hidden="true">↗</span></a>}
 
-        <aside className="hub-next" aria-label={blueMoonCopy[locale].next}>
-          <p>{blueMoonCopy[locale].next}</p>
-        </aside>
       </section>
+      <aside className="hiorio-close" aria-label={blueMoonCopy[locale].next}>
+        <p>{blueMoonCopy[locale].next}</p><HiorioLogo basePath={basePath} tone="black-on-cobalt" part="lockup" />
+      </aside>
     </div>
   );
 }
