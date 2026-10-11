@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { Locale } from "./i18n";
+import { ProductInstallLink } from "./ProductInstallLink";
 import "./daily-plank.css";
 
 type DailyPlankCopy = {
@@ -162,7 +163,7 @@ const details = {
   ko: {
     headline: ["오늘도,", "5분만 같이."],
     eyebrow: "혼자 하는 운동에도, 같이 버티는 친구.",
-    browse: "루틴 살펴보기", demoNote: "설치 없이 웹에서 먼저 만나보세요.",
+    browse: "루틴 살펴보기", demoNote: "웹 데모는 설치 없이 체험할 수 있어요.",
     preview: "함께 운동하는 순간", previewNote: "앱의 운동 흐름을 보여주는 예시 화면",
     workout: "운동 중", companion: "나도 같이 버티는 중!", companionNote: "혼자가 아닌 오늘의 플랭크",
     minute: "분", routineNote: "5·7·10분은 운동 시간이에요. 준비와 휴식, 마무리 시간은 별도로 포함됩니다.",
@@ -177,7 +178,7 @@ const details = {
   en: {
     headline: ["Five minutes.", "Together, today."],
     eyebrow: "Your own workout. A little friend holding on with you.",
-    browse: "Explore routines", demoNote: "Meet the app in your browser. No install needed.",
+    browse: "Explore routines", demoNote: "The web demo runs in your browser without installation.",
     preview: "A moment of moving together", previewNote: "An illustrative preview of the workout flow",
     workout: "Holding", companion: "I'm holding on with you!", companionNote: "A little company for today's plank",
     minute: "min", routineNote: "5, 7, and 10 minutes refer to exercise time. Preparation, rest, and cooldown add to the full session.",
@@ -192,7 +193,7 @@ const details = {
   ja: {
     headline: ["今日も、", "5分だけ一緒に。"],
     eyebrow: "ひとりの運動にも、一緒にがんばる仲間。",
-    browse: "ルーティンを見る", demoNote: "インストールなしで、ブラウザから体験できます。",
+    browse: "ルーティンを見る", demoNote: "ウェブデモはインストールなしで体験できます。",
     preview: "一緒に運動するひととき", previewNote: "運動の流れを表現したイメージ画面",
     workout: "運動中", companion: "ぼくも一緒にがんばるよ！", companionNote: "今日のプランクは、ひとりじゃない",
     minute: "分", routineNote: "5・7・10分は運動時間です。準備・休憩・クールダウンの時間は別途含まれます。",
@@ -245,7 +246,7 @@ export function DailyPlankPage({ header, locale, appsHref }: { header: ReactNode
           <p className="dp-eyebrow">{detail.eyebrow}</p>
           <h1 id="dailyplank-page-title"><span>{detail.headline[0]}</span><em>{detail.headline[1]}</em></h1>
           <p className="dp-introduction"><strong>{copy.heroLine}</strong>{copy.heroDescription}</p>
-          <div className="dp-actions"><a className="dp-primary" href={demoUrl} target="_blank" rel="noreferrer">{copy.openDemo}<Arrow diagonal /></a><a className="dp-text-link" href="#dailyplank-routines">{detail.browse}<span aria-hidden="true">↓</span></a></div>
+          <div className="dp-actions"><ProductInstallLink id="dailyplank" locale={locale} className="dp-primary" /><a className="dp-text-link" href={demoUrl} target="_blank" rel="noreferrer">{copy.openDemo}<Arrow diagonal /></a><a className="dp-text-link" href="#dailyplank-routines">{detail.browse}<span aria-hidden="true">↓</span></a></div>
           <p className="dp-demo-note">{detail.demoNote}</p>
         </div>
         <WorkoutPreview copy={copy} detail={detail} />

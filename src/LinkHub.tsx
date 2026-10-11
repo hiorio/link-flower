@@ -22,7 +22,9 @@ const hubCopy = {
 function ProjectLink({ app, locale, basePath, priority }: { app: ProductApp; locale: Locale; basePath: string; priority: boolean }) {
   const content = app.content[locale];
   const labels = hubCopy[locale];
-  const external = app.links.find((link) => link.kind === "web") ?? app.links.find((link) => link.kind === "appStore");
+  const web = app.links.find((link) => link.kind === "web");
+  const store = app.links.find((link) => link.kind === "appStore");
+  const external = app.platforms.includes("WEB DEMO") ? store ?? web : web ?? store;
   const aboutHref = appIntroductionHref(app, basePath) ?? `${basePath}apps/#${app.id}`;
   const destination = external?.kind === "appStore" ? labels.store
     : external?.kind === "web" ? (app.platforms.includes("WEB DEMO") ? labels.demo : labels.web)

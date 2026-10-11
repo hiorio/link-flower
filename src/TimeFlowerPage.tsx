@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { Locale } from "./i18n";
+import { ProductInstallLink } from "./ProductInstallLink";
 import "./timeflower.css";
 
 type TimeFlowerCopy = {
@@ -223,6 +224,7 @@ export function TimeFlowerPage({ header, locale, appsHref }: { header: ReactNode
           <strong>{copy.heroLine}</strong>
           <p>{copy.heroDescription}</p>
           <div className="timeflower-actions">
+            <ProductInstallLink id="timeflower" locale={locale} />
             <span className="timeflower-status"><i />{copy.status}</span>
             <a href={appsHref}>{copy.backToApps}<span aria-hidden="true">←</span></a>
           </div>

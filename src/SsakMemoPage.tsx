@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react";
 import type { Locale } from "./i18n";
+import { ProductInstallLink } from "./ProductInstallLink";
 import "./ssak-memo.css";
 
 type SsakMemoCopy = {
@@ -309,7 +310,8 @@ export function SsakMemoPage({ header, locale, appsHref }: { header: ReactNode; 
           <h1 id="ssak-page-title">{copy.heroLine}</h1>
           <p className="ssak-hero-description">{copy.heroDescription}</p>
           <div className="ssak-actions">
-            <a className="is-primary" href={supportHref} target="_blank" rel="noreferrer">{copy.support}<span aria-hidden="true">↗</span></a>
+            <ProductInstallLink id="ssakmemo" locale={locale} className="is-primary" />
+            <a href={supportHref} target="_blank" rel="noreferrer">{copy.support}<span aria-hidden="true">↗</span></a>
             <a href={appsHref}>{copy.backToApps}<span aria-hidden="true">←</span></a>
           </div>
           <div className="ssak-hero-meta"><span className="ssak-status"><i />{copy.status}</span><span>iPhone · iOS 17+</span></div>

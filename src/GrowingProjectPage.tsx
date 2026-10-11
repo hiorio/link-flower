@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { AppIcon } from "./AppIcon";
+import { ProductInstallLink } from "./ProductInstallLink";
 import { catalogCopy } from "./catalog";
 import { growingProjects, type GrowingProject } from "./growing-projects";
 import type { Locale } from "./i18n";
@@ -27,9 +28,9 @@ export function GrowingProjectPage({ project, header, locale, basePath }: { proj
           <p className="growing-kicker">{app.code}</p>
           <h1 id="growing-title">{text.headline.map((line) => <span key={line}>{line}</span>)}</h1>
           <p className="growing-intro">{content.description}</p>
-          <a className="growing-explore" href="#growing-features">{l.explore}<span aria-hidden="true">↓</span></a>
+          <div className="growing-actions"><ProductInstallLink id={app.id} locale={locale} className="growing-explore" /><a className="growing-explore" href="#growing-features">{l.explore}<span aria-hidden="true">↓</span></a></div>
           <p className="growing-platforms">{app.platforms.join(" / ")}{app.version && <span>v{app.version}</span>}</p>
-          <p className="growing-pending">{l.pending}</p>
+          {app.status !== "live" && <p className="growing-pending">{l.pending}</p>}
         </div>
         <figure className="growing-visual">
           {media ? <div className="growing-media-pair">
@@ -51,7 +52,7 @@ export function GrowingProjectPage({ project, header, locale, basePath }: { proj
         <ol>{content.features.map((feature, index) => <li key={feature}><span className="growing-feature-number">0{index + 1}</span><h3>{feature}</h3><p>{text.featureDetails[index]}</p></li>)}</ol>
       </section>
       <section className="growing-notes" aria-labelledby="growing-status-title">
-        <div><span className="growing-kicker">WORK IN PROGRESS</span><h2 id="growing-status-title">{l.status}</h2><p>{text.availability}</p></div>
+        <div><span className="growing-kicker">{app.status === "live" ? "AVAILABILITY" : "WORK IN PROGRESS"}</span><h2 id="growing-status-title">{l.status}</h2><p>{text.availability}</p></div>
         <div><span className="growing-kicker">DATA & PERMISSIONS</span><h2>{l.privacy}</h2><p>{text.privacy}</p></div>
       </section>
       <footer className="growing-footer">

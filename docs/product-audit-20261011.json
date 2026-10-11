@@ -1,0 +1,407 @@
+{
+  "checkedAt": "2026-10-11",
+  "policy": "Only publicly released new products may be added. Existing introductions retain accurate pre-release status. Published App Store versions and artwork take precedence over newer beta builds. Native source repositories are read-only.",
+  "products": [
+    {
+      "id": "dohwaji",
+      "version": "1.15",
+      "status": "live",
+      "icon": "app-icons/dohwaji.jpg",
+      "links": [
+        {
+          "kind": "web",
+          "href": "https://dohwaji.app"
+        },
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6797682561"
+        }
+      ],
+      "appleId": 6797682561,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c2/4e/5f/c24e5f37-da76-0e87-9249-34c9f3b44886/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "16.0",
+      "iconSha256": "119ea5ec8902ac7098ec173ee37ab2feb32f702435536573efeb467a54d9824b"
+    },
+    {
+      "id": "ssakmemo",
+      "version": "1.1.10",
+      "status": "live",
+      "icon": "app-icons/ssak-memo.webp",
+      "links": [
+        {
+          "kind": "support",
+          "href": "https://hiorio.github.io/ssak-memo-support/"
+        },
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/kr/app/id6806136527"
+        }
+      ],
+      "appleId": 6806136527,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/aa/2f/e4/aa2fe4ef-3d0c-84f8-568e-331cda6899a2/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "17.0",
+      "iconSha256": "d226dec4db7527871bd4f2b3cdf2c71c0817d7f8f11282667420da0dab512fda"
+    },
+    {
+      "id": "daymirror",
+      "version": "1.5.1",
+      "status": "live",
+      "icon": "app-icons/daymirror.png",
+      "links": [
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6811468895"
+        }
+      ],
+      "appleId": 6811468895,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b5/c7/fd/b5c7fdab-529e-52c3-b5fa-34043d9be495/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "17.0",
+      "iconSha256": "ddedc229a5b44fbbb21e814a32a709965df05b839442d1c84b9dc17cbb3a178e"
+    },
+    {
+      "id": "hiho-run",
+      "version": "1.0.1",
+      "status": "live",
+      "icon": "app-icons/hiho-run.png",
+      "links": [
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6811446021"
+        }
+      ],
+      "appleId": 6811446021,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d0/4b/67/d04b6786-becd-885f-bdea-ea593b39e2ce/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "17.0",
+      "iconSha256": "a2a85c3602019484c9c13317eb3f96cf9e553cb089486756f4ee7b7c5adb2580"
+    },
+    {
+      "id": "timeflower",
+      "version": "1.4.1",
+      "status": "live",
+      "icon": "app-icons/timeflower.png",
+      "links": [
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6795333546"
+        }
+      ],
+      "appleId": 6795333546,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/f3/e5/9b/f3e59b0c-b8d6-d46b-5a37-ccd456dc0143/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "16.4",
+      "iconSha256": "bdf6d6d48bbfaa0ed78166a14d65e14f7e54111ea7b0dffa8ae47882f114ed28"
+    },
+    {
+      "id": "dailyplank",
+      "version": "0.2.1",
+      "status": "live",
+      "icon": "app-icons/daily-plank.png",
+      "links": [
+        {
+          "kind": "web",
+          "href": "https://hiorio.github.io/Daily-Plank/"
+        },
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6789138699"
+        }
+      ],
+      "appleId": 6789138699,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/74/a7/55/74a75583-5653-e3fa-9249-607d8c758729/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "16.4",
+      "iconSha256": "25735a3933d46c5b526d5f84314109fb431846f94074b64ee35ed0f24c87f4a2"
+    },
+    {
+      "id": "biondamae",
+      "version": "1.2.1",
+      "status": "live",
+      "icon": "app-icons/biondamae.png",
+      "links": [
+        {
+          "kind": "web",
+          "href": "https://web-dashboard-production-a81f.up.railway.app/"
+        },
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6791359709"
+        }
+      ],
+      "appleId": 6791359709,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e6/24/3a/e6243ac9-0c16-e40c-7dcc-32bf0cb639c6/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "16.4",
+      "iconSha256": "a4f01d09b46590f2b7010d631d5a9d692acf2d92c36f5fb731c39744b55b1222"
+    },
+    {
+      "id": "leaf-message",
+      "version": "0.1.0",
+      "status": "live",
+      "icon": "app-icons/leaf-message.png",
+      "links": [
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6805002469"
+        }
+      ],
+      "appleId": 6805002469,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/39/cb/4b/39cb4bc1-91d0-5113-02b2-8a4a89750b7e/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "26.0",
+      "iconSha256": "48ec57eb258f2a8b72ff5e348cc43ae0a9847c0623fdd74e5c8df0a2a12969ea"
+    },
+    {
+      "id": "countlens",
+      "version": "1.0.0",
+      "status": "live",
+      "icon": "app-icons/countlens.png",
+      "links": [
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6809061893"
+        }
+      ],
+      "appleId": 6809061893,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/65/54/01/65540153-01e8-3a45-73bd-f8380ed92219/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "17.0",
+      "iconSha256": "291f4b55066b68727eb0e38651396f9451ae0c1994e94fd1355772779d664ca3"
+    },
+    {
+      "id": "duo-studio",
+      "version": "1.0",
+      "status": "testing",
+      "icon": "app-icons/duo-studio.png",
+      "links": [],
+      "appleId": 6810578916,
+      "publicStoreAvailable": false,
+      "iconSource": "C:/Projects/duo studio/DuoStudio/Resources/Assets.xcassets/AppIcon.appiconset/icon.png",
+      "appStoreState": "PREPARE_FOR_SUBMISSION",
+      "iconSha256": "a88ff7f5a4470b1cce48fe77a51e6e8d8d7ec89db9ba494ce456350d6b93eb52"
+    },
+    {
+      "id": "archive-ink",
+      "version": "0.1.0",
+      "status": "live",
+      "icon": "app-icons/archive-ink.png",
+      "links": [
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6818748771"
+        }
+      ],
+      "appleId": 6818748771,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/45/41/c3/4541c383-7857-cc23-fb05-791d09ae899b/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "17.0",
+      "iconSha256": "8453b7b68f2e724119b83d10ca15c2f29cd7d1760cc6a675ffc7389649878c0e"
+    },
+    {
+      "id": "time-journey",
+      "version": "1.0.1",
+      "status": "live",
+      "icon": "app-icons/time-journey.png",
+      "links": [
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6811493304"
+        }
+      ],
+      "appleId": 6811493304,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/61/5b/28/615b285e-ef22-bf9e-9eb9-989c64c74175/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "16.0",
+      "iconSha256": "f0fd6972ec7ccdfa2c59d215c810a541d962239dfc13f5ae7b0a96a3e52fab88"
+    },
+    {
+      "id": "beauty-touch",
+      "version": "1.0.0",
+      "status": "preparing",
+      "icon": "app-icons/beauty-touch.png",
+      "links": [],
+      "appleId": 6815617220,
+      "publicStoreAvailable": false,
+      "iconSource": "C:/Projects/beautyUp/BeautyUp/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+      "appStoreState": "WAITING_FOR_REVIEW",
+      "iconSha256": "a6b5b3ed4fc74f12f97fb5c64b1378afc4a925a03578c9730bdd629e624999d5"
+    },
+    {
+      "id": "bluemoon",
+      "version": "0.1.0",
+      "status": "live",
+      "icon": "app-icons/bluemoon.png",
+      "links": [
+        {
+          "kind": "web",
+          "href": "https://bluemoon.hiorio.com/"
+        }
+      ],
+      "appleId": null,
+      "publicStoreAvailable": false,
+      "iconSource": "C:/Projects/BlueMoon/apps/desktop/app-icon.png",
+      "appStoreState": null,
+      "iconSha256": "0866f0ece6d8edc310a1b18e839463f3c0914c19d88f9d279ee48b4bf7939996"
+    },
+    {
+      "id": "namu-note",
+      "version": "0.1.0",
+      "status": "testing",
+      "icon": "app-icons/namu-note.png",
+      "links": [],
+      "appleId": 6813698375,
+      "publicStoreAvailable": false,
+      "iconSource": "C:/Projects/hwinote/apps/apple/App/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
+      "appStoreState": "PREPARE_FOR_SUBMISSION",
+      "iconSha256": "aa1e129a8be5ccb06345b045851d44790b51194f14a2deb41ee9a415960cbf5e"
+    },
+    {
+      "id": "drawing-ground",
+      "version": "0.1.0",
+      "status": "live",
+      "icon": "app-icons/drawing-ground.png",
+      "links": [
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6818748025"
+        }
+      ],
+      "appleId": 6818748025,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/84/df/da/84dfda26-083b-3bad-526c-74bf2e1b1aa6/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "18.0",
+      "iconSha256": "1edafba84abf7c1e00a525bc8e846f3f95a7cff5957b9a95e58b0a7780913e26"
+    },
+    {
+      "id": "pretty-speech",
+      "version": "2.0.0",
+      "status": "testing",
+      "icon": "app-icons/pretty-speech.png",
+      "links": [],
+      "appleId": 6816609972,
+      "publicStoreAvailable": false,
+      "iconSource": "C:/Projects/keyboard/MainApp/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+      "appStoreState": "PREPARE_FOR_SUBMISSION",
+      "iconSha256": "6e23e7138693017dea2890d118921a85f86b50a1d85fbec82272376cfeba16ae"
+    },
+    {
+      "id": "jamgyeol",
+      "version": "1.0",
+      "status": "live",
+      "icon": "app-icons/jamgyeol.png",
+      "links": [
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6818943004"
+        }
+      ],
+      "appleId": 6818943004,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e8/32/c7/e832c7b2-36c0-ef43-b09a-fafc148b6674/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "18.0",
+      "iconSha256": "8a9115c36888097106241ab828f48acad3dfb24f810d1b18da84eeab90bce27a"
+    },
+    {
+      "id": "spotter",
+      "version": "1.0.0",
+      "status": "preparing",
+      "icon": "app-icons/spotter.png",
+      "links": [],
+      "appleId": 6807207610,
+      "publicStoreAvailable": false,
+      "iconSource": "C:/Users/welsp/OneDrive/문서/Spotter/assets/images/spotter-icon.png",
+      "appStoreState": "WAITING_FOR_REVIEW",
+      "iconSha256": "9702b27a282cd2b1871a6fef0fcc7714ebc67fa7b7b1732dae17a4e697e291d0"
+    },
+    {
+      "id": "timeroots",
+      "version": "1.2",
+      "status": "live",
+      "icon": "app-icons/timeroots.jpg",
+      "links": [
+        {
+          "kind": "support",
+          "href": "https://hiorio.github.io/timeroots-support/"
+        },
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6798457487"
+        }
+      ],
+      "appleId": 6798457487,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/18/26/5f/18265fea-1efe-ced8-f0c4-612de224340e/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "16.4",
+      "iconSha256": "5aea4b996e419ea80c8d6de1c8a7764c916d8f3943ea532f12c3b393f8442a3f"
+    },
+    {
+      "id": "ringtone",
+      "version": "1.3",
+      "status": "live",
+      "icon": "app-icons/ringtone.png",
+      "links": [
+        {
+          "kind": "appStore",
+          "href": "https://apps.apple.com/app/id6809625649"
+        }
+      ],
+      "appleId": 6809625649,
+      "publicStoreAvailable": true,
+      "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/35/b2/bb/35b2bb9b-deae-23b4-b483-193b5f6a212c/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "appStoreState": "READY_FOR_DISTRIBUTION",
+      "minimumOsVersion": "26.0",
+      "iconSha256": "6cd59e7959fafc1d3ed8e920f77246ed1c541387f50a9a849905799b89b1bfa9"
+    }
+  ],
+  "excludedNewProducts": [
+    {
+      "name": "Keeps",
+      "reason": "PREPARE_FOR_SUBMISSION; internal TestFlight only"
+    },
+    {
+      "name": "인생 서랍",
+      "reason": "PREPARE_FOR_SUBMISSION; internal TestFlight only"
+    },
+    {
+      "name": "BigFinger",
+      "reason": "PREPARE_FOR_SUBMISSION; internal TestFlight only"
+    },
+    {
+      "name": "가둬",
+      "reason": "PENDING_DEVELOPER_RELEASE; not publicly released"
+    },
+    {
+      "name": "Debut",
+      "reason": "Public deployment deferred"
+    },
+    {
+      "name": "GoogleTimelineVisualizer",
+      "reason": "No verified public deployment"
+    },
+    {
+      "name": "HoneyVoice",
+      "reason": "Native core without a public product"
+    },
+    {
+      "name": "lightPhoto",
+      "reason": "No verified public distribution"
+    }
+  ]
+}

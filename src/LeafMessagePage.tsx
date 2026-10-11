@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { Locale } from "./i18n";
+import { ProductInstallLink } from "./ProductInstallLink";
 import { LeafMessagePreview, leafScenePath } from "./LeafMessagePreview";
 import "./leaf-message.css";
 
@@ -249,7 +250,7 @@ export function LeafMessagePage({ header, locale, appsHref }: { header: ReactNod
           <h1 id="leafmessage-page-title"><span>{editorial.title[0]}</span><em>{editorial.title[1]}</em></h1>
           <p className="lm-hero-promise">{copy.heroLine}</p>
           <p className="lm-hero-intro">{editorial.intro}</p>
-          <a className="lm-primary-link" href="#leafmessage-studio">{editorial.try}<span aria-hidden="true">↗</span></a>
+          <div className="lm-install-actions"><ProductInstallLink id="leaf-message" locale={locale} className="lm-primary-link" /><a className="lm-primary-link" href="#leafmessage-studio">{editorial.try}<span aria-hidden="true">↗</span></a></div>
           <div className="lm-hero-meta"><span className="lm-live"><i aria-hidden="true" />{copy.status}</span><span>iPhone · iOS 26+</span></div>
         </div>
         <LeafMessagePreview key={locale} locale={locale} />

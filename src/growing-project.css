@@ -48,6 +48,7 @@ html:has(.growing-shell), body:has(.growing-shell) { min-width: 0; background: #
 .growing-intro { max-width: 490px; color: var(--grow-muted); font-size: 17px; line-height: 1.85; }
 .growing-explore { display: inline-flex; min-height: 48px; align-items: center; justify-content: space-between; gap: 30px; margin-top: 26px; padding: 10px 17px; border: 1px solid var(--grow-accent); border-radius: 8px; color: var(--grow-accent); font-size: 15px; font-weight: 550; text-decoration: none; }
 .growing-explore:hover { background: var(--grow-tint); }
+.growing-actions { display: flex; flex-wrap: wrap; gap: 0 12px; }
 .growing-shell .growing-platforms { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 24px; color: var(--grow-muted); font-size: 13px; line-height: 1.7; }
 .growing-shell .growing-pending { margin-top: 8px; color: var(--grow-muted); font-size: 13px; line-height: 1.6; }
 .growing-visual { min-width: 0; margin: 0; }

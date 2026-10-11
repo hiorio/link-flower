@@ -343,15 +343,33 @@ The screenshot preview portal still uses the shared light Slate/Taupe system: No
 앱 목록의 아이콘은 페이지를 위해 다시 그리거나 CSS로 흉내 내지 않는다. 출시 앱은 현재 스토어
 아트워크를, 개발 중 앱은 실제 빌드 설정이 가리키는 원본 파일을 사용한다.
 
-| 앱 | 목록에 사용하는 기준 | 확인 버전 |
+2026-10-11 재검수: 아래 배포 기록을 현재 기준으로 사용하며 과거 제품별 개발 기록의 상태 표기보다 우선합니다. 공개 버전은 App Store Lookup과 Apple 배포 기록으로 확인하고, 더 높은 TestFlight 버전으로 바꾸지 않습니다. 새 제품은 일반 공개된 경우에만 추가합니다. 기존 소개의 테스트 제품은 정확한 상태로 유지합니다. BlueMoon은 웹 서비스 운영 중, Windows 앱 개발 중으로 구분합니다. 아이콘 출처·해시·공개 링크와 제외 후보는 `docs/product-audit-20261011.json`에 보관합니다.
+
+| 앱 | 현재 상태 | 확인 버전 |
 | --- | --- | --- |
-| 도화지 | App Store에 등록된 현재 아트워크 | `1.2` |
-| TimeRoots | App Store에 등록된 현재 아트워크 | `1.1` |
-| TimeFlower | 최신 iPhone release build 6의 `assets/images/icon.png` (`codex/timeline-release`) | `1.0.0` |
-| 매일 플랭크 | 앱 빌드 설정의 `src/assets/branding/icon.png` | `0.2.1` |
-| 비온다매 | 운영 앱 설정의 `apps/mobile/assets/biondamae-icon.png` | `1.1.0` |
-| 싹 메모 | iPhone release build 5의 `AppIcon.appiconset/AppIcon-1024.png` | `1.0` |
-| Leaf Message | TestFlight Build 17의 `Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` | `0.1.0 (17)` |
+| dohwaji | 운영 중 | `1.15` |
+| ssakmemo | 운영 중 | `1.1.10` |
+| daymirror | 운영 중 | `1.5.1` |
+| hiho-run | 운영 중 | `1.0.1` |
+| timeflower | 운영 중 | `1.4.1` |
+| dailyplank | 운영 중 | `0.2.1` |
+| biondamae | 운영 중 | `1.2.1` |
+| leaf-message | 운영 중 | `0.1.0` |
+| countlens | 운영 중 | `1.0.0` |
+| duo-studio | 내부 TestFlight | `1.0` |
+| archive-ink | 운영 중 | `0.1.0` |
+| time-journey | 운영 중 | `1.0.1` |
+| beauty-touch | 심사 대기 | `1.0.0` |
+| bluemoon | 운영 중 | `0.1.0` |
+| namu-note | 내부 TestFlight | `0.1.0` |
+| drawing-ground | 운영 중 | `0.1.0` |
+| pretty-speech | 내부 TestFlight | `2.0.0` |
+| jamgyeol | 운영 중 | `1.0` |
+| spotter | 심사 대기 | `1.0.0` |
+| timeroots | 운영 중 | `1.2` |
+| ringtone | 운영 중 | `1.3` |
+
+공개 제품의 상세 페이지에서는 검증된 App Store 또는 서비스 링크를 네이티브 링크로 제공합니다. 새 창 안내를 접근 가능한 이름에 포함하며, 각 페이지의 기존 버튼·44px 이상 터치 영역·포커스 규칙을 재사용합니다. 기존 웹 체험과 앱 캡처·예시 데이터 설명은 유지합니다. 공통 소개의 버튼 묶음은 `display:flex; flex-wrap:wrap; gap:0 12px`로 줄바꿈하며 새 모션·색상·타입 토큰은 도입하지 않습니다.
 
 ##### 페이지 추가 시 통과할 기준
 

@@ -27,9 +27,9 @@ test("쓰임 분류는 공개 소개 제품 21개를 포함하고 개인용 프�
   assert.deepEqual(catalogCategories.map((purpose) => filterApps(productApps, "", "all", purpose).length), [7, 4, 2, 2, 3, 2, 1]);
   const groupedIds = Object.values(catalogGroups).flat();
   assert.equal(new Set(groupedIds).size, groupedIds.length, "제품은 주된 쓰임 한 곳에만 분류한다");
-  assert.deepEqual(filterApps(productApps, "", "live", "productivity").map((app) => app.id), ["ssakmemo", "daymirror", "timeflower", "timeroots"]);
-  assert.deepEqual(filterApps(productApps, "소설", "development", "writing").map((app) => app.id), ["bluemoon"]);
-  assert.deepEqual(filterApps(productApps, "RUN POST", "testing", "photos").map((app) => app.id), ["hiho-run"]);
+  assert.deepEqual(filterApps(productApps, "", "live", "productivity").map((app) => app.id), ["ssakmemo", "daymirror", "timeflower", "time-journey", "drawing-ground", "timeroots"]);
+  assert.deepEqual(filterApps(productApps, "소설", "live", "writing").map((app) => app.id), ["bluemoon"]);
+  assert.deepEqual(filterApps(productApps, "RUN POST", "live", "photos").map((app) => app.id), ["hiho-run"]);
   assert.deepEqual(filterApps(productApps, "CountLens", "testing", "photos"), []);
   for (const id of privateProductIds) {
     assert.equal(productApps.some((app) => app.id === id), false);
@@ -284,29 +284,29 @@ test("루트와 하위 노드의 정적 페이지가 생성된다", async () => 
   const timeFlowerIcon = await readFile(new URL("../dist/app-icons/timeflower.png", import.meta.url));
   assert.equal(
     createHash("sha256").update(timeFlowerIcon).digest("hex"),
-    "45b0dd9b95adbf6f0001837b8a230b917fe0773cd2e53c37e105c8bf17c6015a",
-    "TimeFlower should use the iPhone build 6 operating icon",
+    "bdf6d6d48bbfaa0ed78166a14d65e14f7e54111ea7b0dffa8ae47882f114ed28",
+    "TimeFlower uses its published 1.4.1 artwork",
   );
 
   const biondamaeIcon = await readFile(new URL("../dist/app-icons/biondamae.png", import.meta.url));
   assert.equal(
     createHash("sha256").update(biondamaeIcon).digest("hex"),
-    "b30c8eab930b18f2d2169f105b17c7ca925bdcc978fc9cf496965aecd9d0d1a8",
-    "Biondamae should use the version 1.1.0 operating icon",
+    "a4f01d09b46590f2b7010d631d5a9d692acf2d92c36f5fb731c39744b55b1222",
+    "Biondamae uses its published 1.2.1 artwork",
   );
 
   const ssakMemoIcon = await readFile(new URL("../dist/app-icons/ssak-memo.png", import.meta.url));
   assert.equal(
     createHash("sha256").update(ssakMemoIcon).digest("hex"),
-    "71c1eeb3085dd5111598a67e1f650f43bb0962e4eb31b6d317141620a02b3c1c",
-    "Ssak Memo should use the iPhone build 5 operating icon",
+    "bdf5063bbee3b78c6172903cc0549d89a390095cd6f018319a1d499e78e80517",
+    "Ssak Memo uses its published 1.1.10 artwork",
   );
 
   const leafMessageIcon = await readFile(new URL("../dist/app-icons/leaf-message.png", import.meta.url));
   assert.equal(
     createHash("sha256").update(leafMessageIcon).digest("hex"),
-    "4d44f4ad58de05d14b834c746f17903c91b7df799980cf68091deac6ea7df135",
-    "Leaf Message should use the TestFlight Build 17 operating icon",
+    "48ec57eb258f2a8b72ff5e348cc43ae0a9847c0623fdd74e5c8df0a2a12969ea",
+    "Leaf Message uses its published 0.1.0 artwork",
   );
 
   const ssakMemoHtml = await readFile(new URL("../dist/apps/ssak-memo/index.html", import.meta.url), "utf8");
@@ -351,25 +351,26 @@ test("앱 목록은 도화지·싹 메모·DayMirror·RUN POST의 순서를 유�
 });
 
 test("새 프로젝트는 정확한 상태와 독립 주소, 세 언어의 소개를 갖는다", async () => {
-  assert.equal(productApps.filter((app) => app.status === "live").length, 9);
+  assert.equal(productApps.filter((app) => app.status === "live").length, 16);
   assert.deepEqual(growingProjects.map(({ app }) => [app.id, app.status]), [
-    ["countlens", "testing"], ["duo-studio", "testing"], ["archive-ink", "development"],
-    ["hiho-run", "testing"], ["daymirror", "live"], ["time-journey", "development"],
-    ["beauty-touch", "testing"], ["bluemoon", "development"], ["namu-note", "development"],
-    ["drawing-ground", "testing"], ["pretty-speech", "testing"], ["jamgyeol", "testing"],
-    ["spotter", "testing"],
+    ["countlens", "live"], ["duo-studio", "testing"], ["archive-ink", "live"],
+    ["hiho-run", "live"], ["daymirror", "live"], ["time-journey", "live"],
+    ["beauty-touch", "preparing"], ["bluemoon", "live"], ["namu-note", "testing"],
+    ["drawing-ground", "live"], ["pretty-speech", "testing"], ["jamgyeol", "live"],
+    ["spotter", "preparing"],
   ]);
   assert.equal(new Set(productApps.map((app) => app.id)).size, productApps.length);
   for (const project of growingProjects) {
     const app = productApps.find((item) => item.id === project.app.id);
     assert.equal(appDetailPath(app), project.app.detailPath);
-    assert.equal(app.links.length, app.id === "daymirror" ? 1 : 0, "내부 TestFlight를 공개 설치로 안내하면 안 됩니다");
+    assert.equal(app.links.some((link) => link.kind === "appStore" || link.kind === "web"), app.status === "live", "실제로 공개된 앱만 설치·서비스 링크를 안내합니다");
     const html = await readFile(new URL(`../dist/${app.detailPath}index.html`, import.meta.url), "utf8");
     assert.ok(html.includes(`rel="canonical" href="https://hiorio.com/${app.detailPath}"`));
     for (const locale of ["ko", "en", "ja"]) {
       assert.ok(app.content[locale].description.length > 30);
       assert.equal(app.content[locale].features.length, project.copy[locale].featureDetails.length);
       assert.ok(project.copy[locale].availability.length > 30);
+      if (app.status !== "live") assert.doesNotMatch(project.copy[locale].availability, /App Storeで.*公開しています|publicly available on the App Store|App Store에서 .*공개했습니다/, "テスト版を公開版として紹介しない");
       assert.ok(project.copy[locale].mediaCaption.length > 10);
     }
     for (const media of [project.media, project.secondaryMedia].filter(Boolean)) {
@@ -383,15 +384,15 @@ test("새 프로젝트는 정확한 상태와 독립 주소, 세 언어의 소�
   assert.match(source, /샘플 러닝 기록/);
   assert.match(source, /앱 실행 화면 아님/);
   const timeJourney = growingProjects.find(({ app }) => app.id === "time-journey");
-  assert.equal(timeJourney.app.icon, null, "미확정 아이콘을 운영 아이콘처럼 만들지 않습니다");
+  assert.equal(timeJourney.app.icon, "app-icons/time-journey.png", "공개 스토어의 확정 아이콘을 사용합니다");
   assert.equal(timeJourney.media, undefined);
 });
 
 test("검색은 언어에 관계없이 동작하고 필터가 우선순위를 바꾸지 않는다", () => {
   assert.equal(filterApps(productApps, "", "all").length, 21);
-  assert.equal(filterApps(productApps, "", "live").length, 9);
-  assert.equal(filterApps(productApps, "", "testing").length, 8);
-  assert.equal(filterApps(productApps, "", "development").length, 4);
+  assert.equal(filterApps(productApps, "", "live").length, 16);
+  assert.equal(filterApps(productApps, "", "testing").length, 3);
+  assert.equal(filterApps(productApps, "", "development").length, 0);
   for (const query of ["세어봐", "CountLens", "ＣＯＵＮＴＬＥＮＳ", "  countlens  "]) {
     assert.deepEqual(filterApps(productApps, query, "all").map((app) => app.id), ["countlens"]);
   }
@@ -399,44 +400,44 @@ test("검색은 언어에 관계없이 동작하고 필터가 우선순위를 �
   for (const query of ["RUN POST", "run post", "ＲＵＮ ＰＯＳＴ"]) {
     assert.deepEqual(filterApps(productApps, query, "all").map((app) => app.id), ["hiho-run"]);
   }
-  assert.deepEqual(filterApps(productApps, "사진", "development").map((app) => app.id), ["archive-ink"]);
+  assert.deepEqual(filterApps(productApps, "Inkmile", "live").map((app) => app.id), ["archive-ink"]);
   assert.deepEqual(filterApps(productApps, "does-not-exist", "all"), []);
   assert.deepEqual(filterApps(productApps, "Daymirror", "live").map(app => app.id), ["daymirror"]);
   for (const [query, id] of [["Beauty Up", "beauty-touch"], ["beautyUp", "beauty-touch"], ["Inkmile", "archive-ink"], ["ArchiveInk", "archive-ink"], ["물체카운터", "countlens"], ["Spotter", "spotter"], ["스포터", "spotter"], ["나무 노트", "namu-note"], ["Namu Note", "namu-note"], ["블루문", "bluemoon"], ["BlueMoon", "bluemoon"], ["예쁘게 말하기", "pretty-speech"], ["잠결", "jamgyeol"]]) {
     assert.deepEqual(filterApps(productApps, query, "all").map(app => app.id), [id]);
   }
-  for (const filter of ["all", "live", "testing", "development"]) {
+  for (const filter of ["all", "live", "testing", "development", "preparing"]) {
     const result = filterApps(productApps, "", filter);
     assert.deepEqual(result.map((app) => app.order), result.map((app) => app.order).sort());
     for (const locale of ["ko", "en", "ja"]) assert.ok(catalogCopy[locale][filter]);
   }
 });
 
-test("새 앱 아이콘은 프로젝트 원본을 그대로 사용한다", async () => {
-  const hashes = {
-    countlens: "9347137e49ecebd1dde9409f2bcaa17424179e7d0983769f5b36f4ad045e46d8",
-    "duo-studio": "a88ff7f5a4470b1cce48fe77a51e6e8d8d7ec89db9ba494ce456350d6b93eb52",
-    "archive-ink": "d2171102addf456b74bb88188fe5d80bd90b84b38662da2728d5cebe1eefcb8d",
-    "hiho-run": "2ac790390842f83c4e76f8532a4d79e7fa21a40a48483e8d18004e0518275956",
-    daymirror: "fc176eac5ec32c8dbfbfa65f215d0bd8928144241f6930961597ddac750458ba",
-    "beauty-touch": "a6b5b3ed4fc74f12f97fb5c64b1378afc4a925a03578c9730bdd629e624999d5",
-    bluemoon: "0866f0ece6d8edc310a1b18e839463f3c0914c19d88f9d279ee48b4bf7939996",
-    "namu-note": "5ce75116750539d2c0575601ec181c0620e7a2d4c0b1874ab7f9fd3553ee06e8",
-    "drawing-ground": "509c71454bec6c9bf77835c3cc619d517b96b2762b5fe75ec4e25bebd3f79007",
-    "pretty-speech": "6e23e7138693017dea2890d118921a85f86b50a1d85fbec82272376cfeba16ae",
-    jamgyeol: "3473684a5fc2ef130144a458819ae9c296785396596c7551079394de44ff8fb6",
-    deepplayer: "c0beb76bebd8a7005671ddc898fb0fc250e71b564a1380f44d34d9281bafcc19",
-  };
-  for (const [id, hash] of Object.entries(hashes)) {
-    const app = productApps.find((app) => app.id === id) ?? additionalProjects.find((project) => project.app.id === id)?.app;
+test("아이콘과 배포 상태는 2026-10-11 공개 스토어 및 원본 검수 기록과 일치한다", async () => {
+  const audit = JSON.parse(await readFile(new URL("../docs/product-audit-20261011.json", import.meta.url), "utf8"));
+  assert.equal(audit.products.length, 21);
+  for (const fact of audit.products) {
+    const app = productApps.find((app) => app.id === fact.id);
+    assert.ok(app, fact.id);
+    assert.equal(app.version, fact.version, fact.id);
+    assert.equal(app.status, fact.status, fact.id);
     const file = await readFile(new URL(`../dist/${app.icon}`, import.meta.url));
-    assert.equal(createHash("sha256").update(file).digest("hex"), hash, id);
+    assert.equal(createHash("sha256").update(file).digest("hex"), fact.iconSha256, fact.id);
+    const store = app.links.find((link) => link.kind === "appStore");
+    assert.equal(Boolean(store), fact.publicStoreAvailable, fact.id);
+    if (store) assert.ok(store.href.endsWith(`/id${fact.appleId}`));
   }
+  // Uploaded beta versions must never masquerade as the publicly installable release.
+  for (const [id, published] of [["timeflower", "1.4.1"], ["dailyplank", "0.2.1"], ["hiho-run", "1.0.1"], ["drawing-ground", "0.1.0"]]) {
+    assert.equal(productApps.find((app) => app.id === id).version, published);
+  }
+  assert.equal(productApps.filter((app) => app.status === "preparing").length, 2);
+  for (const id of ["keeps", "human-map", "bigfinger", "gadwo"]) assert.equal(productApps.some((app) => app.id === id), false);
 });
 
 test("DayMirror 전용 페이지는 출시 링크와 실제 화면, 접근 가능한 선택기를 제공한다", async () => {
   const app = productApps.find(app => app.id === "daymirror");
-  assert.equal(app.version, "1.3");
+  assert.equal(app.version, "1.5.1");
   assert.equal(app.status, "live");
   assert.equal(app.links[0].href, "https://apps.apple.com/app/id6811468895");
   const page = await readFile(new URL("../src/DayMirrorPage.tsx", import.meta.url), "utf8");
@@ -456,7 +457,7 @@ test("DayMirror 전용 페이지는 출시 링크와 실제 화면, 접근 가�
 
 test("벨소리로는 출시 원본 자산과 예시 구분을 유지한다", async () => {
   const originals = [
-    ["../dist/app-icons/ringtone.png", "72d4ae78909ebb7b74c9d99968317c7b48b3506dea26bb5a82fda989f30732af"],
+    ["../dist/app-icons/ringtone.png", "6cd59e7959fafc1d3ed8e920f77246ed1c541387f50a9a849905799b89b1bfa9"],
     ["../dist/product-shots/ringtone/home-ko.png", "96929f1365c3a7a58546e720eb6687ceb4d036c0b8365bf23d209122ef609f57"],
     ["../dist/product-shots/ringtone/home-en.png", "6a051b835628e7a37e06c5fb6efc4fc566235c209b6f8f85537f4777394c307e"],
     ["../dist/product-shots/ringtone/home-ja.png", "999579042949eaeaf490fe38fcc826568d2274370df1e9546227c26df3522fe1"],
